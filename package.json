@@ -10,30 +10,42 @@
     "precommit": "lint-staged",
     "lint": "xo",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d dist",
-    "build:watch": "babel src -d dist -w"
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "babel-env": "^2.4.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-xo-react": "^0.16.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
     "fs-extra": "^6.0.0",
     "globby": "^8.0.1",
     "highlightjs": "^9.10.0",
-    "remarkable": "^1.7.1",
-    "serve": "^6.5.6",
-    "transform-markdown-links": "^2.0.0",
-    "watch": "^1.0.2"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-env": "^2.4.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.0",
+    "html-webpack-plugin": "^3.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.5",
     "log-update": "^2.3.0",
     "prettier": "^1.12.1",
+    "remarkable": "^1.7.1",
+    "serve": "^6.5.6",
+    "style-loader": "^0.21.0",
+    "transform-markdown-links": "^2.0.0",
+    "watch": "^1.0.2",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2",
+    "webpack-dev-server": "^3.1.3",
     "xo": "^0.20.3",
     "yargs": "^11.0.0"
   },
@@ -41,27 +53,22 @@
     "singleQuote": true
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "xo": {
-    "extends": ["prettier"],
-    "plugins": ["prettier"]
-  },
-  "babel": {
-    "presets": [
-      "babel-preset-env",
-      {
-        "modules": "commonjs"
-      }
+    "extends": [
+      "prettier",
+      "xo-react"
     ],
     "plugins": [
-      [
-        "transform-runtime",
-        {
-          "polyfill": false,
-          "regenerator": true
-        }
-      ]
+      "prettier"
+    ],
+    "env": [
+      "browser",
+      "node"
     ]
   }
 }

@@ -1,6 +1,11 @@
 {
   "presets": [
-    "env",
+    [
+      "env",
+      {
+        "modules": "commonjs"
+      }
+    ],
     "react",
     "stage-0"
   ],
@@ -8,6 +13,13 @@
     "transform-class-properties",
     "transform-decorators",
     "transform-react-constant-elements",
-    "transform-react-inline-elements"
+    "transform-react-inline-elements",
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
   ]
 }
