@@ -1,0 +1,42 @@
+{
+  "name": "ignite",
+  "version": "0.0.0",
+  "description": "Modern markdown documentation generator",
+  "main": "dist/index.js",
+  "bin": {
+    "ignite": "./dist/igniteCLI.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist",
+    "build:watch": "babel src -d dist -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "remarkable": "^1.7.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "yargs": "^11.0.0"
+  },
+  "babel": {
+    "presets": [
+      "babel-preset-env",
+      {
+        "modules": "commonjs"
+      }
+    ],
+    "plugins": [
+      [
+        "transform-runtime",
+        {
+          "polyfill": false,
+          "regenerator": true
+        }
+      ]
+    ]
+  }
+}
