@@ -25,7 +25,10 @@ export default async function build({ src, dst, index }) {
     let markdown = await readFile(filePath, 'utf8');
     markdown = transformLinks(
       markdown,
-      link => path.basename(link, '.md') + '.html'
+      link =>
+        path.extname(link, '.md') === '.md'
+          ? path.basename(link, '.md') + '.html'
+          : link
     );
 
     const html = markdownRenderer.render(markdown);
