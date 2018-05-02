@@ -1,18 +1,13 @@
 import 'babel-polyfill';
 
-import fs from 'fs';
 import path from 'path';
-import { promisify } from 'util';
+import fs from 'fs-extra';
 import globby from 'globby';
 
 import transformLinks from 'transform-markdown-links';
 import Remarkable from 'remarkable';
 
-const mkDir = promisify(fs.mkdir);
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
-
-const markdownRenderer = new Remarkable({ linkify: true });
+const markdownRenderer = new Remarkable();
 
 const writePage = markdown => `
   <html>
@@ -25,15 +20,24 @@ const writePage = markdown => `
   </html>
 `;
 
-export default async function build({ src, dst, index }) {
-  const docs = await globby([src]);
-
-  if (!fs.existsSync(dst)) {
-    await mkDir(dst);
+const replaceInPath = (filePath, toReplace, replacement) => {
+  if (toReplace[toReplace.length - 1] === '/') {
+    toReplace = toReplace.substring(0, toReplace.length - 1);
   }
 
+  if (replacement[replacement.length - 1] === '/') {
+    replacement = replacement.substring(0, replacement.length - 1);
+  }
+
+  return filePath.replace(toReplace, replacement);
+};
+
+const buildMarkdown = async ({ src, dst, index }) => {
+  const srcGlob = path.join(src, '**/*.md');
+  const docs = await globby([srcGlob]);
+
   docs.map(async filePath => {
-    let markdown = await readFile(filePath, 'utf8');
+    let markdown = await fs.readFile(filePath, 'utf8');
     markdown = transformLinks(
       markdown,
       link =>
@@ -43,11 +47,20 @@ export default async function build({ src, dst, index }) {
     );
 
     const html = writePage(markdownRenderer.render(markdown));
-    const base = path.basename(filePath, '.md');
-    const destination = filePath.includes(index)
+    const baseFile = path.basename(filePath);
+    const baseName = path.basename(filePath, '.md');
+    const destinationFile = filePath.includes(index)
       ? 'index.html'
-      : `${base}.html`;
+      : `${baseName}.html`;
 
-    await writeFile(path.join(dst, destination), html);
+    let destination = replaceInPath(filePath, src, dst);
+    destination = replaceInPath(destination, baseFile, destinationFile);
+
+    await fs.ensureDir(path.dirname(destination));
+    await fs.writeFile(destination, html);
   });
+};
+
+export default async function build(argv) {
+  buildMarkdown(argv);
 }

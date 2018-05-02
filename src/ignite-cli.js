@@ -5,7 +5,7 @@ import build from './ignite';
 import watch from './watch';
 
 const argv = yargs
-  .default('src', 'docs/**/*.md')
+  .default('src', 'docs/')
   .alias('s', 'src')
   .describe('i', 'root index file used as sidebar')
   .default('i', 'index.md')
