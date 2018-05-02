@@ -45,8 +45,6 @@ const replaceInPath = (filePath, toReplace, replacement) => {
   return filePath.replace(toReplace, replacement);
 };
 
-// const
-
 const buildMarkdown = async ({ src, dst, index }) => {
   const docs = await globby([path.join(src, '**/*.md')]);
 
