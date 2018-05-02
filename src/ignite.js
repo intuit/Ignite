@@ -48,7 +48,7 @@ const buildMarkdown = async ({ src, dst, index }) => {
 
     const baseFile = path.basename(filePath);
     const destination = replaceInPath(filePath, src, dst);
-    const destinationPath = destination.includes(index)
+    const destinationPath = destination.includes(path.join(src, index))
       ? destination.replace(baseFile, 'index.html')
       : destination.replace('.md', '.html');
 
