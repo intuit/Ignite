@@ -17,7 +17,9 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "remarkable": "^1.7.1"
+    "remarkable": "^1.7.1",
+    "serve": "^6.5.6",
+    "watch": "^1.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
