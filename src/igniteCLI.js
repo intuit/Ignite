@@ -12,8 +12,7 @@ const argv = yargs
       default: 'http://yargs.js.org/'
     }
   })
-  .help()
-  .argv
+  .help().argv;
 
-console.log(argv)
+console.log(argv);
 build(argv);

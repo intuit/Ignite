@@ -7,6 +7,7 @@
     "ignite": "./dist/igniteCLI.js"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist",
     "build:watch": "babel src -d dist -w"
@@ -20,7 +21,16 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-env": "^2.4.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.5",
+    "prettier": "^1.12.1",
     "yargs": "^11.0.0"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "git add"]
   },
   "babel": {
     "presets": [
