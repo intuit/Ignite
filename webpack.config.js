@@ -14,7 +14,7 @@ renderer.code = (code, language) => {
 };
 
 module.exports = function(options = {}) {
-  const docs = globby.sync([path.join(options.dir, '**/*.md')]);
+  const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const docHTML = docs.map(doc => {
     return new HtmlWebPackPlugin({
       template: doc,
@@ -24,6 +24,11 @@ module.exports = function(options = {}) {
 
   return {
     entry: [...docs.map(doc => path.resolve(doc)), './src/index.js'],
+
+    output: {
+      path: path.resolve(options.dst),
+      filename: 'bundle.js'
+    },
 
     devServer: {
       contentBase: path.join(__dirname, 'dist')
@@ -37,9 +42,7 @@ module.exports = function(options = {}) {
             {
               loader: 'html-loader'
             },
-
             // Create loader to transform .md links to .html
-
             {
               loader: 'markdown-loader',
               options: {

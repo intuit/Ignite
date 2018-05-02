@@ -10,8 +10,8 @@
     "precommit": "lint-staged",
     "lint": "xo",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open --env.dir=example --env.index=index.md",
-    "build": "webpack --mode production --env.dir=example --env.index=index.md",
+    "start": "webpack-dev-server --open --env.src=example --env.dst=_ignite --env.index=index.md",
+    "build": "webpack --mode production --env.src=example --env.dst=_ignite --env.index=index.md",
     "build:lib": "babel src -d dist",
     "build:lib:watch": "babel src -d dist -w"
   },

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Index = () => {
+const Index = props => {
+  console.log(props);
   return <div>Hello React!</div>;
 };
 
