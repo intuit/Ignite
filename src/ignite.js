@@ -3,15 +3,28 @@ import 'babel-polyfill';
 import path from 'path';
 import fs from 'fs-extra';
 import globby from 'globby';
+import highlight from 'highlightjs';
 
 import transformLinks from 'transform-markdown-links';
 import Remarkable from 'remarkable';
 
-const markdownRenderer = new Remarkable();
+const markdownRenderer = new Remarkable({
+  highlight(str, lang) {
+    if (lang && highlight.getLanguage(lang)) {
+      try {
+        return highlight.highlight(lang, str).value;
+      } catch (__) {}
+    }
+
+    return '';
+  }
+});
 
 const writePage = markdown => `
   <html>
     <head>
+      <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css">
       <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
     </head>
     <body>
