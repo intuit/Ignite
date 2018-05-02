@@ -12,6 +12,9 @@ const argv = yargs
   .boolean('watch')
   .alias('w', 'watch')
   .describe('w', 'watch documentation files for changes')
+  .default('port', 8008)
+  .number('port')
+  .alias('p', 'port')
   .alias('v', 'version')
   .alias('h', 'help')
   .help().argv;

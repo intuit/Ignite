@@ -3,32 +3,33 @@ import serve from 'serve';
 import watch from 'watch';
 import build from './ignite';
 
-const PORT = 8008;
 let server;
 
-function startServer(dist) {
+function startServer(dist, port) {
   server = serve(dist, {
     silent: true,
-    port: PORT,
+    port,
     ignore: ['node_modules']
   });
 }
 
 export default async function watchDocs(argv) {
-  const { src, dst } = argv;
+  const { src, dst, port } = argv;
 
-  startServer(dst);
+  startServer(dst, port);
 
   watch.watchTree(src, async () => {
     log('Building docs...');
+
     server.stop();
     await build(argv);
+    startServer(dst, port);
+
     log(`
       Serving docs at:
 
-        Local:   http://localhost:${PORT}
-        Network: http://192.168.1.14:${PORT}
+        Local:   http://localhost:${port}
+        Network: http://192.168.1.14:${port}
     `);
-    startServer(dst);
   });
 }
