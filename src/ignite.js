@@ -14,10 +14,7 @@ const writeFile = promisify(fs.writeFile);
 
 const markdownRenderer = new Remarkable({ linkify: true });
 
-export default async function build({
-  src = 'docs/**/*.md',
-  dst = '_ignite/'
-}) {
+export default async function build({ src, dst, index }) {
   const docs = await globby([src]);
 
   if (!fs.existsSync(dst)) {
@@ -33,7 +30,10 @@ export default async function build({
 
     const html = markdownRenderer.render(markdown);
     const base = path.basename(filePath, '.md');
+    const destination = filePath.includes(index)
+      ? 'index.html'
+      : `${base}.html`;
 
-    await writeFile(path.join(dst, `${base}.html`), html);
+    await writeFile(path.join(dst, destination), html);
   });
 }
