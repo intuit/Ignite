@@ -1,3 +1,3 @@
 # My Awesome Docs
 
-* [Example](./moreDocs/example.md)
+* [Example](moreDocs/example.md)

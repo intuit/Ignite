@@ -32,35 +32,43 @@ const replaceInPath = (filePath, toReplace, replacement) => {
   return filePath.replace(toReplace, replacement);
 };
 
+// const
+
 const buildMarkdown = async ({ src, dst, index }) => {
-  const srcGlob = path.join(src, '**/*.md');
-  const docs = await globby([srcGlob]);
+  const docs = await globby([path.join(src, '**/*.md')]);
 
   docs.map(async filePath => {
-    let markdown = await fs.readFile(filePath, 'utf8');
-    markdown = transformLinks(
-      markdown,
+    const markdown = transformLinks(
+      await fs.readFile(filePath, 'utf8'),
       link =>
-        path.extname(link, '.md') === '.md'
-          ? path.basename(link, '.md') + '.html'
-          : link
+        path.extname(link) === '.md' ? link.replace('.md', '.html') : link
     );
 
     const html = writePage(markdownRenderer.render(markdown));
+
     const baseFile = path.basename(filePath);
-    const baseName = path.basename(filePath, '.md');
-    const destinationFile = filePath.includes(index)
-      ? 'index.html'
-      : `${baseName}.html`;
+    const destination = replaceInPath(filePath, src, dst);
+    const destinationPath = destination.includes(index)
+      ? destination.replace(baseFile, 'index.html')
+      : destination.replace('.md', '.html');
 
-    let destination = replaceInPath(filePath, src, dst);
-    destination = replaceInPath(destination, baseFile, destinationFile);
+    await fs.ensureDir(path.dirname(destinationPath));
+    await fs.writeFile(destinationPath, html);
+  });
+};
 
+const includeImages = async ({ src, dst }) => {
+  const srcGlob = path.join(src, '**/*.{jpg,jpeg,png,gif}');
+  const images = await globby([srcGlob]);
+
+  images.map(async imagePath => {
+    const destination = replaceInPath(imagePath, src, dst);
     await fs.ensureDir(path.dirname(destination));
-    await fs.writeFile(destination, html);
+    await fs.copy(imagePath, destination);
   });
 };
 
 export default async function build(argv) {
   buildMarkdown(argv);
+  includeImages(argv);
 }
