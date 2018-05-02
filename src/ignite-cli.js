@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 import yargs from 'yargs';
-import build from './ignite';
-import watch from './watch';
+
+import config from '../webpack.config';
 
 const argv = yargs
   .describe('s', 'folder to look for markdown files in')
@@ -30,8 +32,20 @@ const argv = yargs
   .alias('h', 'help')
   .help().argv;
 
-build(argv);
+const webpackConfig = config({
+  dir: argv.src
+});
+const compiler = webpack(webpackConfig);
 
 if (argv.watch) {
-  watch(argv);
+  const devServerOptions = Object.assign({}, webpackConfig.devServer, {
+    stats: {
+      colors: true
+    }
+  });
+  const server = new WebpackDevServer(compiler, devServerOptions);
+
+  server.listen(8080, '127.0.0.1', () => {
+    console.log('Starting server on http://localhost:8080');
+  });
 }
