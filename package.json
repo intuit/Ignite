@@ -2,12 +2,13 @@
   "name": "ignite",
   "version": "0.0.0",
   "description": "Modern markdown documentation generator",
-  "main": "dist/index.js",
+  "main": "dist/ignite.js",
   "bin": {
-    "ignite": "./dist/igniteCLI.js"
+    "ignite": "./dist/ignite-cli.js"
   },
   "scripts": {
     "precommit": "lint-staged",
+    "lint": "xo",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist",
     "build:watch": "babel src -d dist -w"
@@ -21,9 +22,12 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-env": "^2.4.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.5",
     "prettier": "^1.12.1",
+    "xo": "^0.20.3",
     "yargs": "^11.0.0"
   },
   "prettier": {
@@ -31,6 +35,10 @@
   },
   "lint-staged": {
     "*.{js,json,css,md}": ["prettier --write", "git add"]
+  },
+  "xo": {
+    "extends": ["prettier"],
+    "plugins": ["prettier"]
   },
   "babel": {
     "presets": [

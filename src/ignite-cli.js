@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs';
-import build from './index';
+import build from './ignite';
 
 const argv = yargs
   .default('src', 'docs/')
