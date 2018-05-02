@@ -33,16 +33,16 @@ const writePage = markdown => `
   </html>
 `;
 
+const stripSlash = str => {
+  if (str[str.length - 1] === '/') {
+    str = str.substring(0, str.length - 1);
+  }
+
+  return str;
+};
+
 const replaceInPath = (filePath, toReplace, replacement) => {
-  if (toReplace[toReplace.length - 1] === '/') {
-    toReplace = toReplace.substring(0, toReplace.length - 1);
-  }
-
-  if (replacement[replacement.length - 1] === '/') {
-    replacement = replacement.substring(0, replacement.length - 1);
-  }
-
-  return filePath.replace(toReplace, replacement);
+  return filePath.replace(stripSlash(toReplace), stripSlash(replacement));
 };
 
 const buildMarkdown = async ({ src, dst, index }) => {
