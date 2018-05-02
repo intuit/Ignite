@@ -14,6 +14,17 @@ const writeFile = promisify(fs.writeFile);
 
 const markdownRenderer = new Remarkable({ linkify: true });
 
+const writePage = markdown => `
+  <html>
+    <head>
+      <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    </head>
+    <body>
+      ${markdown}
+    </body>
+  </html>
+`;
+
 export default async function build({ src, dst, index }) {
   const docs = await globby([src]);
 
@@ -31,7 +42,7 @@ export default async function build({ src, dst, index }) {
           : link
     );
 
-    const html = markdownRenderer.render(markdown);
+    const html = writePage(markdownRenderer.render(markdown));
     const base = path.basename(filePath, '.md');
     const destination = filePath.includes(index)
       ? 'index.html'
