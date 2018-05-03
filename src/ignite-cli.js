@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import yargs from 'yargs';
 
-import config from '../webpack.config';
+import config from '../webpack.withDocs.config';
 
 const argv = yargs
   .describe('s', 'folder to look for markdown files in')
@@ -47,5 +47,13 @@ if (argv.watch) {
 
   server.listen(8080, '127.0.0.1', () => {
     console.log('Starting server on http://localhost:8080');
+  });
+} else {
+  compiler.run(err => {
+    if (err) {
+      throw err;
+    }
+
+    console.log('Documentation packaged!');
   });
 }
