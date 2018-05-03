@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter, Route, Link } from 'react-router-dom';
 
 const noDocsFound = () => (
   <div>Hmmmm, somethings wrong. No docs files found....</div>
@@ -15,7 +16,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props;
+    this.state = {
+      ...this.props,
+      markdown
+    };
+
     updateCallback = this.onUpdate;
   }
 
@@ -30,7 +35,12 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App markdown={markdown} />, document.getElementById('index'));
+ReactDOM.render(
+  <HashRouter>
+    <Route path="/" component={App} />
+  </HashRouter>,
+  document.getElementById('index')
+);
 
 export default function registerMarkdown(path, markdownInJS, isIndex) {
   markdown[path] = markdownInJS;
