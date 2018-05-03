@@ -37,12 +37,11 @@ module.exports = function(options = {}) {
             {
               loader: 'babel-loader'
             },
+            // Create loader to Render parsed markdown html as React Component and change above html-loader to babel-loader
             {
               loader: path.resolve('./dist/markdown-to-react.js'),
               options
             },
-            // Create loader to Render parsed markdown html as React Component and change above html-loader to babel-loader
-            // Create loader to transform .md links to .html
             {
               loader: 'markdown-loader',
               options: {
@@ -50,6 +49,10 @@ module.exports = function(options = {}) {
                 xhtml: true,
                 renderer
               }
+            },
+            // Create loader to transform .md links to hash links
+            {
+              loader: path.resolve('./dist/hash-link.js')
             }
           ]
         },
