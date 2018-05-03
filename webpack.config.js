@@ -13,6 +13,18 @@ renderer.code = (code, language) => {
   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
 };
 
+function BundleDocs(options) {
+  // Setup the plugin instance with options...
+  console.log(options, this);
+}
+
+BundleDocs.prototype.apply = function(compiler) {
+  compiler.plugin('done', function() {
+    console.log('Hello World!');
+    console.log(global.docs);
+  });
+};
+
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const docHTML = docs.map(doc => {
@@ -43,6 +55,16 @@ module.exports = function(options = {}) {
             {
               loader: 'html-loader'
             },
+            {
+              loader: path.resolve('./dist/markdown-to-react.js')
+            },
+            // {
+            //   loader: (arg) => {
+            //     console.log('here')
+            //     return arg
+            //   }
+            // },
+            // Create loader to Render parsed markdown html as React Component and change above html-loader to babel-loader
             // Create loader to transform .md links to .html
             {
               loader: 'markdown-loader',
@@ -94,6 +116,7 @@ module.exports = function(options = {}) {
 
     plugins: [
       ...docHTML,
+      new BundleDocs({ options: true }),
       new HtmlWebPackPlugin({
         template: './src/index.html',
         filename: './index.html'
