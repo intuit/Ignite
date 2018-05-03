@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import yargs from 'yargs';
 
-import config from '../webpack.withDocs.config';
+import config from '../webpack.config';
 
 const argv = yargs
   .describe('s', 'folder to look for markdown files in')
@@ -32,9 +32,7 @@ const argv = yargs
   .alias('h', 'help')
   .help().argv;
 
-const webpackConfig = config({
-  dir: argv.src
-});
+const webpackConfig = config(argv);
 const compiler = webpack(webpackConfig);
 
 if (argv.watch) {
