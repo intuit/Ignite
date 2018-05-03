@@ -2,6 +2,7 @@ const path = require('path');
 const globby = require('globby');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MarkdownRenderer = require('marked').Renderer;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const highlightjs = require('highlight.js');
 
 const renderer = new MarkdownRenderer();
@@ -18,16 +19,15 @@ module.exports = function(options = {}) {
 
   return {
     mode: 'development',
+
     entry: [...docs.map(doc => path.resolve(doc)), './src/index.js'],
+
     devtool: 'source-map',
+
     output: {
       path: options.dst ? path.resolve(options.dst) : null,
       filename: 'bundle.js'
     },
-
-    // devServer: {
-    //   contentBase: path.join(__dirname, 'dist')
-    // },
 
     module: {
       rules: [
@@ -37,9 +37,8 @@ module.exports = function(options = {}) {
             {
               loader: 'babel-loader'
             },
-            // Create loader to Render parsed markdown html as React Component and change above html-loader to babel-loader
             {
-              loader: path.resolve('./dist/markdown-to-react.js'),
+              loader: path.resolve('./dist/html-to-react.js'),
               options
             },
             {
@@ -50,9 +49,9 @@ module.exports = function(options = {}) {
                 renderer
               }
             },
-            // Create loader to transform .md links to hash links
             {
-              loader: path.resolve('./dist/hash-link.js')
+              loader: path.resolve('./dist/hash-link.js'),
+              options
             }
           ]
         },
@@ -102,6 +101,11 @@ module.exports = function(options = {}) {
     },
 
     plugins: [
+      new CopyWebpackPlugin([
+        {
+          from: path.join(options.src, '**/*.{jpg,png,gif}')
+        }
+      ]),
       new HtmlWebPackPlugin({
         template: './src/index.html',
         filename: './index.html'
