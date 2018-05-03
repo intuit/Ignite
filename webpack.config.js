@@ -13,26 +13,8 @@ renderer.code = (code, language) => {
   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
 };
 
-function BundleDocs(options) {
-  // Setup the plugin instance with options...
-  console.log(options, this);
-}
-
-BundleDocs.prototype.apply = function(compiler) {
-  compiler.plugin('done', function() {
-    console.log('Hello World!');
-    console.log(global.docs);
-  });
-};
-
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
-  const docHTML = docs.map(doc => {
-    return new HtmlWebPackPlugin({
-      template: doc,
-      filename: doc.replace('.md', '.html')
-    });
-  });
 
   return {
     mode: 'development',
@@ -53,23 +35,21 @@ module.exports = function(options = {}) {
           test: /\.md$/,
           use: [
             {
-              loader: 'html-loader'
+              loader: 'babel-loader'
             },
             {
-              loader: path.resolve('./dist/markdown-to-react.js')
+              loader: path.resolve('./dist/markdown-to-react.js'),
+              options: {
+                src: options.src
+              }
             },
-            // {
-            //   loader: (arg) => {
-            //     console.log('here')
-            //     return arg
-            //   }
-            // },
             // Create loader to Render parsed markdown html as React Component and change above html-loader to babel-loader
             // Create loader to transform .md links to .html
             {
               loader: 'markdown-loader',
               options: {
                 pedantic: true,
+                xhtml: true,
                 renderer
               }
             }
@@ -115,8 +95,6 @@ module.exports = function(options = {}) {
     },
 
     plugins: [
-      ...docHTML,
-      new BundleDocs({ options: true }),
       new HtmlWebPackPlugin({
         template: './src/index.html',
         filename: './index.html'
