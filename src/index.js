@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route, Link } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 const noDocsFound = () => (
   <div>Hmmmm, somethings wrong. No docs files found....</div>
@@ -13,11 +14,14 @@ const markdown = {
 let updateCallback = () => {};
 
 class App extends React.Component {
+  static propTypes = {
+    location: ReactRouterPropTypes.location.isRequired
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
-      ...this.props,
       markdown
     };
 
@@ -31,7 +35,14 @@ class App extends React.Component {
   };
 
   render() {
-    return this.state.markdown.docRootIndexFile();
+    const filePath = this.props.location.pathname.substring(1);
+    let page = this.state.markdown[filePath];
+
+    if (!page) {
+      page = this.state.markdown.docRootIndexFile;
+    }
+
+    return page();
   }
 }
 
