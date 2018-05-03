@@ -13,7 +13,7 @@
     "start": "webpack-dev-server --open --env.src=example --env.dst=_ignite --env.index=index.md",
     "build": "webpack --mode production --env.src=example --env.dst=_ignite --env.index=index.md",
     "build:lib": "babel src -d dist",
-    "build:lib:watch": "babel src -d dist -w"
+    "build:lib:watch": "npm run build:lib -- -w"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "babel-env": "^2.4.1",
+    "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
@@ -66,9 +67,10 @@
     ]
   },
   "xo": {
+    "parser": "babel-eslint",
     "extends": [
       "prettier",
-      "xo-react"
+      "xo-react/space"
     ],
     "plugins": [
       "prettier"
@@ -76,6 +78,13 @@
     "env": [
       "browser",
       "node"
-    ]
+    ],
+    "rules": {
+      "react/jsx-tag-spacing": {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never"
+      }
+    }
   }
 }

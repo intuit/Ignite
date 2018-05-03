@@ -3,12 +3,11 @@ import { getOptions } from 'loader-utils';
 
 export default function(source) {
   const options = getOptions(this);
-  const ignite = `${__dirname}/index.js`;
-  const parentDir = path.dirname(this.resourcePath);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
+  const isIndex = this.resourcePath.includes(`${options.src}/${options.index}`);
 
   return `
-    import ignite from '${path.relative(parentDir, ignite)}';
+    import ignite from 'ignite';
 
     const markDownPage = () => (
       <div>
@@ -16,6 +15,6 @@ export default function(source) {
       </div>
     );
     
-    export default ignite('${pathToMarkdown}', markDownPage);
+    export default ignite('${pathToMarkdown}', markDownPage, ${isIndex});
   `;
 }

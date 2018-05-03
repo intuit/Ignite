@@ -19,7 +19,7 @@ module.exports = function(options = {}) {
   return {
     mode: 'development',
     entry: [...docs.map(doc => path.resolve(doc)), './src/index.js'],
-
+    devtool: 'source-map',
     output: {
       path: options.dst ? path.resolve(options.dst) : null,
       filename: 'bundle.js'
@@ -39,9 +39,7 @@ module.exports = function(options = {}) {
             },
             {
               loader: path.resolve('./dist/markdown-to-react.js'),
-              options: {
-                src: options.src
-              }
+              options
             },
             // Create loader to Render parsed markdown html as React Component and change above html-loader to babel-loader
             // Create loader to transform .md links to .html
@@ -92,6 +90,12 @@ module.exports = function(options = {}) {
           ]
         }
       ]
+    },
+
+    resolve: {
+      alias: {
+        ignite: path.resolve('./src/index.js')
+      }
     },
 
     plugins: [

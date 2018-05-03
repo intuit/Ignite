@@ -1,17 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const markdown = {};
+const noDocsFound = () => (
+  <div>Hmmmm, somethings wrong. No docs files found....</div>
+);
 
-const Index = props => {
-  console.log(props);
-  return <div>Hello React!</div>;
+const markdown = {
+  docRootIndexFile: noDocsFound
 };
 
-ReactDOM.render(<Index />, document.getElementById('index'));
+let updateCallback = () => {};
 
-export default function registerMarkdown(path, markdownInJS) {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = this.props;
+    updateCallback = this.onUpdate;
+  }
+
+  onUpdate = () => {
+    this.setState({
+      markdown
+    });
+  };
+
+  render() {
+    return this.state.markdown.docRootIndexFile();
+  }
+}
+
+ReactDOM.render(<App markdown={markdown} />, document.getElementById('index'));
+
+export default function registerMarkdown(path, markdownInJS, isIndex) {
   markdown[path] = markdownInJS;
-  console.log('registerMarkdown', path);
+
+  if (isIndex) {
+    markdown.docRootIndexFile = markdownInJS;
+  }
+
+  updateCallback();
+
   return markdownInJS;
 }
