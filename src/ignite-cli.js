@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
-import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
 import yargs from 'yargs';
-
-import config from '../webpack.config';
+import build from './ignite';
 
 const argv = yargs
   .describe('s', 'folder to look for markdown files in')
@@ -32,27 +29,4 @@ const argv = yargs
   .alias('h', 'help')
   .help().argv;
 
-const webpackConfig = config(argv);
-const compiler = webpack(webpackConfig);
-
-if (argv.watch) {
-  const devServerOptions = Object.assign({}, webpackConfig.devServer, {
-    stats: {
-      colors: true
-    }
-  });
-  const server = new WebpackDevServer(compiler, devServerOptions);
-  const port = argv.port || 8080;
-
-  server.listen(argv.port || 8080, '127.0.0.1', () => {
-    console.log(`Starting server on http://localhost:${port}`);
-  });
-} else {
-  compiler.run(err => {
-    if (err) {
-      throw err;
-    }
-
-    console.log('Documentation packaged!');
-  });
-}
+build(argv);
