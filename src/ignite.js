@@ -18,7 +18,7 @@ export default function build(argv) {
     const server = new WebpackDevServer(compiler, devServerOptions);
     const port = argv.port || 8080;
 
-    server.listen(argv.port || 8080, '127.0.0.1', () => {
+    server.listen(port, '127.0.0.1', () => {
       console.log(`Starting server on http://localhost:${port}`);
     });
   } else {
