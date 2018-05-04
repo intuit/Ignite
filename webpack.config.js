@@ -44,7 +44,10 @@ module.exports = function(options = {}) {
               }
             },
             {
-              loader: path.resolve(__dirname, './dist/html-to-react.js'),
+              loader: path.resolve(
+                __dirname,
+                './dist/loaders/html-to-react.js'
+              ),
               options
             },
             {
@@ -56,7 +59,7 @@ module.exports = function(options = {}) {
               }
             },
             {
-              loader: path.resolve(__dirname, './dist/hash-link.js'),
+              loader: path.resolve(__dirname, './dist/loaders/hash-link.js'),
               options
             }
           ]

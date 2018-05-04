@@ -1,4 +1,4 @@
-import { insertInString, sanitizeJSX } from '../src/html-to-react';
+import { insertInString, sanitizeJSX } from '../../src/loaders/html-to-react';
 
 test('insertString', () => {
   expect(insertInString('1245', '3', 2)).toBe('12345');
