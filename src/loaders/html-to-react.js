@@ -2,10 +2,6 @@ import path from 'path';
 import unescape from 'unescape';
 import { getOptions } from 'loader-utils';
 
-export function insertInString(a, b, position) {
-  return a.substr(0, position) + b + a.substr(position);
-}
-
 export function sanitizeJSX(source) {
   source = source.replace(new RegExp('`', 'g'), "'");
 
