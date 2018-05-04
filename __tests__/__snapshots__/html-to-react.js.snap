@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`injectPreTemplate 1`] = `
+"
+    <code>{\`
+      function foo() {
+        console.log('foo');
+      }
+   \`} </code>
+  "
+`;
+
+exports[`injectPreTemplate 2`] = `
+"
+    <code>{\`
+      function foo() {
+        console.log('foo');
+      }
+   \`} </code>
+    <code>{\`
+      function bar() {
+        console.log('bar');
+      }
+   \`} </code>
+"
+`;

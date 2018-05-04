@@ -1,29 +1,26 @@
 import path from 'path';
 import { getOptions } from 'loader-utils';
 
-function insertInString(a, b, position) {
+export function insertInString(a, b, position) {
   return a.substr(0, position) + b + a.substr(position);
 }
 
-function injectPreTemplate(source) {
+export function injectPreTemplate(source) {
   let codeTag = source.indexOf('<code')
 
   if (codeTag === -1) {
     return source;
   }
 
-  let count = 4
-  while(count--) {
+  while(codeTag !== -1) {
     const endCodeBracket = source.indexOf('>', codeTag)
     source = insertInString(source, '{`', endCodeBracket + 1)
   
-    const endCodeTag = source.indexOf('</code>')
+    const endCodeTag = source.indexOf('</code>', endCodeBracket)
     source = insertInString(source, '`}', endCodeTag - 1)
-    console.log(source)
 
     codeTag = source.indexOf('<code', endCodeTag)
   }
-
 
   return source;
 }

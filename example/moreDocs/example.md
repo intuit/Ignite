@@ -13,7 +13,6 @@ export default function({
 }){}
 ```
 
-
 ```javascript
 export default function({
     value,     // An asset to transform without the 'asset' wrapper

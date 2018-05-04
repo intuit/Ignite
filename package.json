@@ -9,7 +9,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "lint": "xo",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack-dev-server --open --env.src=example --env.dst=_ignite --env.index=index.md",
     "build": "webpack --mode production --env.src=example --env.dst=_ignite --env.index=index.md",
     "build:lib": "babel src -d dist",
@@ -76,11 +76,13 @@
       "xo-react/space"
     ],
     "plugins": [
-      "prettier"
+      "prettier",
+      "jest"
     ],
     "env": [
       "browser",
-      "node"
+      "node",
+      "jest"
     ],
     "rules": {
       "react/jsx-tag-spacing": {
@@ -89,5 +91,9 @@
         "afterOpening": "never"
       }
     }
+  },
+  "devDependencies": {
+    "eslint-plugin-jest": "^21.15.1",
+    "jest": "^22.4.3"
   }
 }
