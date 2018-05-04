@@ -42,9 +42,10 @@ if (argv.watch) {
     }
   });
   const server = new WebpackDevServer(compiler, devServerOptions);
+  const port = argv.port || 8080;
 
-  server.listen(8080, '127.0.0.1', () => {
-    console.log('Starting server on http://localhost:8080');
+  server.listen(argv.port || 8080, '127.0.0.1', () => {
+    console.log(`Starting server on http://localhost:${port}`);
   });
 } else {
   compiler.run(err => {
