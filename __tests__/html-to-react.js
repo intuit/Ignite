@@ -36,5 +36,5 @@ test('sanitizeJSX', () => {
       some: 'object
     }
   `)
-  ).toBe();
+  ).toMatchSnapshot();
 });

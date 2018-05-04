@@ -27,8 +27,8 @@ exports[`sanitizeJSX 2`] = `
 
 exports[`sanitizeJSX 3`] = `
 "
-    \\"{
+    {
       some: 'object
-    \\"}
+    }
   "
 `;

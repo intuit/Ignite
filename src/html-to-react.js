@@ -23,9 +23,11 @@ export default function(source) {
     import ignite from 'ignite';
 
     function markDownPage() {
-      return <div dangerouslySetInnerHTML={{  __html: \`${sanitizeJSX(
-        source
-      )}\`  }} />
+      return (
+        <div dangerouslySetInnerHTML={{
+          __html: \`${sanitizeJSX(source)}\`
+        }}/>
+      );
     };
     
     export default ignite('${pathToMarkdown}', markDownPage, ${isIndex});
