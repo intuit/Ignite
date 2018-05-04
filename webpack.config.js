@@ -22,7 +22,7 @@ module.exports = function(options = {}) {
 
     entry: [
       ...docs.map(doc => path.resolve(doc)),
-      path.resolve(__dirname, './dist/index.js')
+      path.resolve(__dirname, './dist/app/index.js')
     ],
 
     devtool: 'source-map',
@@ -105,7 +105,7 @@ module.exports = function(options = {}) {
 
     resolve: {
       alias: {
-        ignite: path.resolve(__dirname, './dist/index.js')
+        ignite: path.resolve(__dirname, './dist/app/index.js')
       }
     },
 
