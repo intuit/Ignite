@@ -16,10 +16,7 @@ renderer.code = (code, language) => {
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
-  console.log(
-    path.resolve(__dirname, './dist/index.js'),
-    path.resolve(__dirname, './src/index.html')
-  )
+
   return {
     mode: 'development',
 
