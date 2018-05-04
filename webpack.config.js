@@ -5,14 +5,14 @@ const MarkdownRenderer = require('marked').Renderer;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const highlightjs = require('highlight.js');
 
-// const renderer = new MarkdownRenderer();
-// renderer.code = (code, language) => {
-//   const validLang = Boolean(language && highlightjs.getLanguage(language));
-//   const highlighted = validLang
-//     ? highlightjs.highlight(language, code).value
-//     : code;
-//   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
-// };
+const renderer = new MarkdownRenderer();
+renderer.code = (code, language) => {
+  const validLang = Boolean(language && highlightjs.getLanguage(language));
+  const highlighted = validLang
+    ? highlightjs.highlight(language, code).value
+    : code;
+  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+};
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -51,7 +51,8 @@ module.exports = function(options = {}) {
               loader: 'markdown-loader',
               options: {
                 pedantic: true,
-                xhtml: true
+                xhtml: true,
+                renderer
               }
             },
             {
