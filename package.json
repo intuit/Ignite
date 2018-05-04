@@ -19,9 +19,8 @@
   "license": "ISC",
   "dependencies": {
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
-  },
-  "devDependencies": {
+    "react-dom": "^16.3.2",
+
     "babel-env": "^2.4.1",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",

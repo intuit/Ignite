@@ -16,11 +16,17 @@ renderer.code = (code, language) => {
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
-
+  console.log(
+    path.resolve(__dirname, './dist/index.js'),
+    path.resolve(__dirname, './src/index.html')
+  )
   return {
     mode: 'development',
 
-    entry: [...docs.map(doc => path.resolve(doc)), './src/index.js'],
+    entry: [
+      ...docs.map(doc => path.resolve(doc)),
+      path.resolve(__dirname, './dist/index.js')
+    ],
 
     devtool: 'source-map',
 
@@ -38,7 +44,7 @@ module.exports = function(options = {}) {
               loader: 'babel-loader'
             },
             {
-              loader: path.resolve('./dist/html-to-react.js'),
+              loader: path.resolve(__dirname, './dist/html-to-react.js'),
               options
             },
             {
@@ -50,7 +56,7 @@ module.exports = function(options = {}) {
               }
             },
             {
-              loader: path.resolve('./dist/hash-link.js'),
+              loader: path.resolve(__dirname, './dist/hash-link.js'),
               options
             }
           ]
@@ -96,7 +102,7 @@ module.exports = function(options = {}) {
 
     resolve: {
       alias: {
-        ignite: path.resolve('./src/index.js')
+        ignite: path.resolve(__dirname, './dist/index.js')
       }
     },
 
@@ -107,7 +113,7 @@ module.exports = function(options = {}) {
         }
       ]),
       new HtmlWebPackPlugin({
-        template: './src/index.html',
+        template: path.resolve(__dirname, './src/index.html'),
         filename: './index.html'
       })
     ]
