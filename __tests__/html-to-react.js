@@ -29,4 +29,12 @@ test('sanitizeJSX', () => {
     </code>
 `)
   ).toMatchSnapshot();
+
+  expect(
+    sanitizeJSX(`
+    {
+      some: 'object
+    }
+  `)
+  ).toBe();
 });

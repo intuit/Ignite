@@ -1,26 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`injectPreTemplate 1`] = `
+exports[`sanitizeJSX 1`] = `
 "
-    <code>{\`
+    <code>
       function foo() {
         console.log('foo');
       }
-   \`} </code>
+    </code>
   "
 `;
 
-exports[`injectPreTemplate 2`] = `
+exports[`sanitizeJSX 2`] = `
 "
-    <code>{\`
+    <code>
       function foo() {
         console.log('foo');
       }
-   \`} </code>
-    <code>{\`
+    </code>
+    <code>
       function bar() {
         console.log('bar');
       }
-   \`} </code>
+    </code>
 "
+`;
+
+exports[`sanitizeJSX 3`] = `
+"
+    \\"{
+      some: 'object
+    \\"}
+  "
 `;
