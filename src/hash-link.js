@@ -5,7 +5,7 @@ import transformLinks from 'transform-markdown-links';
 export default function(source) {
   const markdown = transformLinks(source, link => {
     if (path.extname(link) === '.md') {
-      return `#${link}`;
+      return path.join('#', link);
     }
 
     const [filePath, ...description] = link.split(' ');
