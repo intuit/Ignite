@@ -1,19 +1,22 @@
-import { insertInString, injectPreTemplate } from '../src/html-to-react';
+import { insertInString, sanitizeJSX } from '../src/html-to-react';
 
 test('insertString', () => {
-  expect(insertInString('1245', '3', 2)).toBe('12345')
+  expect(insertInString('1245', '3', 2)).toBe('12345');
 });
 
-test('injectPreTemplate', () => {
-  expect(injectPreTemplate(`
+test('sanitizeJSX', () => {
+  expect(
+    sanitizeJSX(`
     <code>
       function foo() {
         console.log('foo');
       }
     </code>
-  `)).toMatchSnapshot()
+  `)
+  ).toMatchSnapshot();
 
-  expect(injectPreTemplate(`
+  expect(
+    sanitizeJSX(`
     <code>
       function foo() {
         console.log('foo');
@@ -24,5 +27,6 @@ test('injectPreTemplate', () => {
         console.log('bar');
       }
     </code>
-`)).toMatchSnapshot()
+`)
+  ).toMatchSnapshot();
 });
