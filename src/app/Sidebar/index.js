@@ -13,7 +13,7 @@ const Sidebar = props => (
       props.className
     )}
   >
-    {props.content && <props.content />}
+    {props.content && <props.content className={styles.sidebar} />}
   </div>
 );
 

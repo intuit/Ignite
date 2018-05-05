@@ -1,3 +1,8 @@
 .root li {
   list-style: none;
 }
+
+.sidebar {
+  position: sticky;
+  top: 0px;
+}
