@@ -1,4 +1,4 @@
-import { insertInString, sanitizeJSX } from '../../src/loaders/html-to-react';
+import { sanitizeJSX } from '../../src/loaders/html-to-react';
 
 test('sanitizeJSX', () => {
   expect(
