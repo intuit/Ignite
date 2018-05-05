@@ -107,5 +107,14 @@
   "ignite": {
     "title": "Ignite",
     "githubURL": "https://github.intuit.com/Fuego/Ignite"
+  },
+  "jest": {
+    "testResultsProcessor": "jest-junit",
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "coverageReporters": ["cobertura", "html", "lcov"]
+  },
+  "jest-junit": {
+    "output": "./coverage/junit.xml"
   }
 }
