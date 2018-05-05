@@ -2,7 +2,7 @@ import path from 'path';
 import { getOptions } from 'loader-utils';
 
 export function sanitizeJSX(source) {
-  source = source.replace(new RegExp('`', 'g'), "'");
+  source = source.replace(new RegExp('`', 'g'), '\\`');
 
   return source;
 }
@@ -13,6 +13,17 @@ export default function(source) {
   const isIndex = this.resourcePath.includes(
     path.join(options.src, options.index)
   );
+
+  let firstLink;
+
+  if (isIndex) {
+    const firstLinkIndex = source.indexOf('<a ');
+    const hrefIndex = source.indexOf('href="', firstLinkIndex);
+    const startIndex = source.indexOf('/', hrefIndex) + 1;
+    const endIndex = source.indexOf('"', startIndex);
+
+    firstLink = source.substring(startIndex, endIndex);
+  }
 
   return `
     import ignite from 'ignite';
@@ -27,6 +38,6 @@ export default function(source) {
       </div>
     );
     
-    export default ignite('${pathToMarkdown}', markDownPage, ${isIndex});
+    export default ignite('${pathToMarkdown}', markDownPage, ${isIndex}, '${firstLink}');
   `;
 }
