@@ -12,7 +12,11 @@ const App = props => {
   const filePath = props.location.pathname.substring(1);
   let Page = props.markdown[filePath];
 
-  if (!Page) {
+  if (!Page && props.markdown.firstPagePath) {
+    Page =
+      props.markdown[props.markdown.firstPagePath] ||
+      props.markdown.docRootIndexFile;
+  } else if (!Page) {
     Page = props.markdown.docRootIndexFile;
   }
 
@@ -22,7 +26,10 @@ const App = props => {
 
       <div className="container">
         <div className={makeClass(styles.App, 'row')}>
-          <Sidebar className={makeClass('col', 'col-lg-3')} />
+          <Sidebar
+            className={makeClass('col', 'col-lg-3')}
+            content={props.markdown.docRootIndexFile}
+          />
           <Page className={makeClass('col', 'col-lg-9')} />
         </div>
       </div>

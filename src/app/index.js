@@ -50,11 +50,17 @@ ReactDOM.render(
   document.getElementById('index')
 );
 
-export default function registerMarkdown(path, markdownInJS, isIndex) {
+export default function registerMarkdown(
+  path,
+  markdownInJS,
+  isIndex,
+  firstLink
+) {
   markdown[path] = markdownInJS;
 
   if (isIndex) {
     markdown.docRootIndexFile = markdownInJS;
+    markdown.firstPagePath = firstLink;
   }
 
   updateCallback();
