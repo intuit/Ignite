@@ -21,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^8.4.1",
+    "babel-core": "^6.26.3",
     "babel-env": "^2.4.1",
     "babel-loader": "^7.1.4",
     "babel-preset-react": "^6.24.1",
