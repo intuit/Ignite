@@ -99,9 +99,16 @@ module.exports = function(options = {}) {
               }
             },
             {
-              loader: 'sass-loader',
+              loader: 'postcss-loader',
               options: {
-                data: '$APP_COLOR: ' + options.color + ';'
+                ident: 'postcss',
+                plugins: () => [
+                  require('postcss-simple-vars')({
+                    variables: {
+                      APP_COLOR: options.color
+                    }
+                  })
+                ]
               }
             }
           ]
