@@ -1,4 +1,4 @@
-# Ignite
+# Ignite [![CircleCI](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite.svg?style=svg)](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite)
 
 Modern markdown documentation generator
 
