@@ -11,13 +11,13 @@ const argv = yargs
   .default('s', defaults.src)
   .alias('s', 'src')
 
-  .describe('i', 'root index file used as sidebar')
-  .default('i', defaults.index)
-  .alias('i', 'index')
-
   .describe('d', 'folder to write built docs to')
   .default('d', defaults.dst)
   .alias('d', 'dst')
+
+  .describe('i', 'root index file used as sidebar')
+  .default('i', defaults.index)
+  .alias('i', 'index')
 
   .describe('w', 'watch documentation files for changes')
   .alias('w', 'watch')
