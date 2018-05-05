@@ -2,13 +2,16 @@ body {
   height: 100vh;
 }
 
-.root {
-  height: 100%;
+nav {
+  background-color: #f44336;
 }
 
-.App {
-  min-height: calc(100% - 173px);
-  display: grid;
+a {
+  color: #f44336;
+}
+
+nav a {
+  color: white;
 }
 
 footer {
@@ -19,12 +22,28 @@ img {
   max-width: 100%;
 }
 
-code {
+pre {
+  border-left: 4px solid #f44336;
+}
+
+p > code {
   padding: 0.5em;
   line-height: 40px;
+  font-size: 85%;
+  border-radius: 3px;
+  white-space: normal;
 }
 
 pre > code {
   display: block;
+  padding: 0.5em;
   line-height: initial;
+}
+
+.root {
+  height: 100%;
+}
+
+.App {
+  min-height: calc(100% - 173px);
 }

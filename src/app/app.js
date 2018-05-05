@@ -27,10 +27,10 @@ const App = props => {
       <div className={makeClass(styles.App, 'container')}>
         <div className="row">
           <Sidebar
-            className={makeClass('col', 'col-lg-3')}
+            className={makeClass('col', 'col-lg-2')}
             content={props.markdown.docRootIndexFile}
           />
-          <Page className={makeClass('col', 'col-lg-9')} />
+          <Page className={makeClass('col', 'col-lg-10')} />
         </div>
       </div>
 
