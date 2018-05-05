@@ -97,6 +97,12 @@ module.exports = function(options = {}) {
                 sourceMap: true,
                 minimize: true
               }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                data: '$APP_COLOR: ' + options.color + ';'
+              }
             }
           ]
         }

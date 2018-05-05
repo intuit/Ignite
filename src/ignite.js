@@ -11,7 +11,8 @@ export const defaults = {
   index: 'index.md',
   port: 8008,
   title: 'Documentation',
-  codeStyle: 'foundation'
+  codeStyle: 'foundation',
+  color: '#f44336'
 };
 
 export default function build(options) {
