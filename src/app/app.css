@@ -8,6 +8,7 @@ body {
 
 .App {
   min-height: calc(100% - 173px);
+  display: grid;
 }
 
 footer {

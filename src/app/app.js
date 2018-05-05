@@ -6,7 +6,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import Header from './header';
 import Footer from './footer';
 import Sidebar from './sidebar';
-import styles from './index.css';
+import styles from './app.css';
 
 const App = props => {
   const filePath = props.location.pathname.substring(1);
