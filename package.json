@@ -103,7 +103,6 @@
   },
   "ignite": {
     "title": "Ignite",
-    "githubURL": "https://github.intuit.com/Fuego/Ignite",
-    "src": "example"
+    "githubURL": "https://github.intuit.com/Fuego/Ignite"
   }
 }
