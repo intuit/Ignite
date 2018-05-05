@@ -2,18 +2,29 @@ import React from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 
+import styles from './sidebar.css';
+
 const Sidebar = props => (
-  <div className={makeClass('sidebar', 'sidebar-left', props.className)}>
+  <div
+    className={makeClass(
+      'sidebar',
+      'sidebar-left',
+      styles.root,
+      props.className
+    )}
+  >
     {props.content && <props.content />}
   </div>
 );
 
 Sidebar.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  content: PropTypes.func
 };
 
 Sidebar.defaultProps = {
-  className: null
+  className: null,
+  content: null
 };
 
 export default Sidebar;

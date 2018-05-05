@@ -5,7 +5,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Header from './header';
 import Footer from './footer';
-import Sidebar from './sidebar';
+import Sidebar from './Sidebar';
 import styles from './app.css';
 
 const App = props => {
