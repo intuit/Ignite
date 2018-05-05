@@ -35,6 +35,12 @@ const argv = yargs
   .describe('gh', 'url to github repository')
   .alias('gh', 'githubURL')
 
+  .describe(
+    'cs',
+    'what highlight style to use for code - see options: https://github.com/isagalaev/highlight.js/tree/master/src/styles'
+  )
+  .alias('cs', 'codeStyle')
+
   .alias('v', 'version')
   .alias('h', 'help')
   .help().argv;

@@ -10,7 +10,8 @@ export const defaults = {
   dst: '_ignite/',
   index: 'index.md',
   port: 8008,
-  title: 'Documentation'
+  title: 'Documentation',
+  codeStyle: 'foundation'
 };
 
 export default function build(options) {
