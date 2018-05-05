@@ -24,7 +24,7 @@ nav {
   a {
     color: white;
 
-    &::active {
+    &:active {
       color: $APP_COLOR;
       opacity: 0.8;
     }
