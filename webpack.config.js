@@ -13,7 +13,7 @@ renderer.code = (code, language) => {
   const highlighted = validLang
     ? highlightjs.highlight(language, code).value
     : code;
-  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+  return `<pre><code class="${language}">${highlighted}</code></pre>`;
 };
 
 module.exports = function(options = {}) {
