@@ -68,7 +68,7 @@ module.exports = function(options = {}) {
         },
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          exclude: /node_modules\/(?!.*ignite\/src)/,
           use: {
             loader: 'babel-loader'
           }
