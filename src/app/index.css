@@ -10,8 +10,3 @@ code {
   display: block;
   padding: 0.5em;
 }
-
-.noMargin {
-  margin-left: 0;
-  margin-right: 0;
-}

@@ -20,7 +20,7 @@ const App = props => {
     <div>
       <Header />
 
-      <div className={makeClass('container', styles.noMargin)}>
+      <div className="container">
         <div className={makeClass(styles.App, 'row')}>
           <Sidebar className={makeClass('col', 'col-lg-3')} />
           <Page className={makeClass('col', 'col-lg-9')} />
