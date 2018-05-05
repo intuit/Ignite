@@ -1,5 +1,4 @@
 import path from 'path';
-import unescape from 'unescape';
 import { getOptions } from 'loader-utils';
 
 export function sanitizeJSX(source) {
@@ -18,13 +17,15 @@ export default function(source) {
   return `
     import ignite from 'ignite';
 
-    function markDownPage() {
-      return (
-        <div dangerouslySetInnerHTML={{
-          __html: \`${sanitizeJSX(source)}\`
-        }}/>
-      );
-    };
+    const markDownPage = props => (
+      <div className={props.className}>
+        <section 
+          dangerouslySetInnerHTML={{
+            __html: \`${sanitizeJSX(source)}\`
+          }}
+        />
+      </div>
+    );
     
     export default ignite('${pathToMarkdown}', markDownPage, ${isIndex});
   `;

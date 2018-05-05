@@ -3,6 +3,7 @@ const globby = require('globby');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MarkdownRenderer = require('marked').Renderer;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 
 const renderer = new MarkdownRenderer();
@@ -22,7 +23,7 @@ module.exports = function(options = {}) {
 
     entry: [
       ...docs.map(doc => path.resolve(doc)),
-      path.resolve(__dirname, './dist/app/index.js')
+      path.resolve(__dirname, './src/app/index.js')
     ],
 
     devtool: 'source-map',
@@ -85,9 +86,7 @@ module.exports = function(options = {}) {
         {
           test: /\.css$/,
           use: [
-            {
-              loader: 'style-loader'
-            },
+            MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
@@ -105,11 +104,15 @@ module.exports = function(options = {}) {
 
     resolve: {
       alias: {
-        ignite: path.resolve(__dirname, './dist/app/index.js')
+        ignite: path.resolve(__dirname, './src/app/index.js')
       }
     },
 
     plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+        chunkFilename: '[id].css'
+      }),
       new CopyWebpackPlugin([
         {
           from: path.join(options.src, '**/*.{jpg,png,gif}')

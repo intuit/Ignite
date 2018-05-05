@@ -1,7 +1,11 @@
 import React from 'react';
+import makeClass from 'classnames';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
+
+import Sidebar from './sidebar';
+import styles from './index.css';
 
 const noDocsFound = () => (
   <div>Hmmmm, somethings wrong. No docs files found....</div>
@@ -36,13 +40,20 @@ class App extends React.Component {
 
   render() {
     const filePath = this.props.location.pathname.substring(1);
-    let page = this.state.markdown[filePath];
+    let Page = this.state.markdown[filePath];
 
-    if (!page) {
-      page = this.state.markdown.docRootIndexFile;
+    if (!Page) {
+      Page = this.state.markdown.docRootIndexFile;
     }
 
-    return page();
+    return (
+      <div className="container">
+        <div className={makeClass(styles.App, 'row')}>
+          <Sidebar className={makeClass('col', 'col-lg-3')} />
+          <Page className={makeClass('col', 'col-lg-9')} />
+        </div>
+      </div>
+    );
   }
 }
 
