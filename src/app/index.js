@@ -1,11 +1,9 @@
 import React from 'react';
-import makeClass from 'classnames';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import Sidebar from './sidebar';
-import styles from './index.css';
+import App from './app';
 
 const noDocsFound = () => (
   <div>Hmmmm, somethings wrong. No docs files found....</div>
@@ -17,7 +15,7 @@ const markdown = {
 
 let updateCallback = () => {};
 
-class App extends React.Component {
+class MarkdownProvider extends React.Component {
   static propTypes = {
     location: ReactRouterPropTypes.location.isRequired
   };
@@ -39,27 +37,15 @@ class App extends React.Component {
   };
 
   render() {
-    const filePath = this.props.location.pathname.substring(1);
-    let Page = this.state.markdown[filePath];
-
-    if (!Page) {
-      Page = this.state.markdown.docRootIndexFile;
-    }
-
     return (
-      <div className="container">
-        <div className={makeClass(styles.App, 'row')}>
-          <Sidebar className={makeClass('col', 'col-lg-3')} />
-          <Page className={makeClass('col', 'col-lg-9')} />
-        </div>
-      </div>
+      <App markdown={this.state.markdown} location={this.props.location} />
     );
   }
 }
 
 ReactDOM.render(
   <HashRouter>
-    <Route path="/" component={App} />
+    <Route path="/" component={MarkdownProvider} />
   </HashRouter>,
   document.getElementById('index')
 );
