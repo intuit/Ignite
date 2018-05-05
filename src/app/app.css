@@ -3,11 +3,11 @@ body {
 }
 
 nav {
-  background-color: #f44336;
+  background-color: $APP_COLOR;
 }
 
 a {
-  color: #f44336;
+  color: $APP_COLOR;
 }
 
 nav a {
@@ -28,7 +28,7 @@ img {
 }
 
 pre {
-  border-left: 4px solid #f44336;
+  border-left: 4px solid $APP_COLOR;
 }
 
 p > code {

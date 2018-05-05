@@ -39,7 +39,12 @@ const argv = yargs
     'cs',
     'what highlight style to use for code - see options: https://github.com/isagalaev/highlight.js/tree/master/src/styles'
   )
+  .default('cs', defaults.codeStyle)
   .alias('cs', 'codeStyle')
+
+  .describe('c', 'color to use for the app')
+  .default('c', defaults.color)
+  .alias('c', 'color')
 
   .alias('v', 'version')
   .alias('h', 'help')
