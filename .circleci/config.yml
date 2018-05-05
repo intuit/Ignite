@@ -59,9 +59,9 @@ jobs:
           path: coverage/target/surefire-reports/
       - store_artifacts:
           path: coverage/target/surefire-reports/
-      # - run:
-      #     name: Send CodeCov Results
-      #     command: bash <(curl -s https://codecov.tools.a.intuit.com/bash) -t $CODECOV_KEY
+      - run:
+          name: Send CodeCov Results
+          command: bash <(curl -s https://codecov.tools.a.intuit.com/bash) -t $CODECOV_KEY
 
 workflows:
   version: 2
