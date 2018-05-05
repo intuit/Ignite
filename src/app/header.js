@@ -4,7 +4,7 @@ const Header = () => (
   <nav>
     <div className="nav-container">
       <div className="nav-logo">
-        <a href="/">Ignite</a>
+        <a href="/">{process.env.title}</a>
       </div>
       <ul className="nav-links">
         <li>

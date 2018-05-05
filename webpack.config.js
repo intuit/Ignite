@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const globby = require('globby');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MarkdownRenderer = require('marked').Renderer;
@@ -121,6 +122,11 @@ module.exports = function(options = {}) {
       new HtmlWebPackPlugin({
         template: path.resolve(__dirname, './src/index.html'),
         filename: './index.html'
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          title: JSON.stringify(options.title)
+        }
       })
     ]
   };
