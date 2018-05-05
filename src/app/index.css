@@ -1,5 +1,13 @@
+body {
+  height: 100vh;
+}
+
+.root {
+  height: 100%;
+}
+
 .App {
-  display: flex;
+  min-height: calc(100% - 173px);
 }
 
 footer {

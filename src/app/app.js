@@ -21,11 +21,11 @@ const App = props => {
   }
 
   return (
-    <div>
+    <div className={styles.root}>
       <Header />
 
-      <div className="container">
-        <div className={makeClass(styles.App, 'row')}>
+      <div className={makeClass(styles.App, 'container')}>
+        <div className="row">
           <Sidebar
             className={makeClass('col', 'col-lg-3')}
             content={props.markdown.docRootIndexFile}
