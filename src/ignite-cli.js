@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
+import fs from 'fs';
 import yargs from 'yargs';
+import root from 'root-path';
+
 import build from './ignite';
 
 const argv = yargs
@@ -29,4 +32,11 @@ const argv = yargs
   .alias('h', 'help')
   .help().argv;
 
-build(argv);
+const rootJson = JSON.parse(fs.readFileSync(`${root()}/package.json`));
+let options = argv;
+
+if (rootJson.ignite) {
+  options = Object.assign({}, argv, rootJson.ignite);
+}
+
+build(options);
