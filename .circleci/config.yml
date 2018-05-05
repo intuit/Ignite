@@ -1,0 +1,85 @@
+version: 2
+
+general:
+  artifacts:
+    - coverage/
+
+defaults: &defaults
+  working_directory: ~/Ignite
+  docker:
+    - image: circleci/node:9.5.0
+    
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - run: mkdir ~/.ssh && ssh-keyscan -t rsa github.intuit.com >> ~/.ssh/known_hosts
+      - checkout
+      - restore_cache:
+          keys: 
+            # # Find a cache corresponding to this specific package.json checksum
+            # # when this file is changed, this key will fail
+            - ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+            - ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - ignite-{{ .Branch }}
+            # # Find the most recent cache used from any branch
+            - ignite-master
+            - ignite-
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+          paths:
+            - ~/.cache/yarn
+            - node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+              - .
+  lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/Ignite   
+      - run:
+          name: Lint
+          command: yarn lint
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/Ignite 
+      - run:
+          name: Test
+          command: yarn test --ci --testResultsProcessor="jest-junit"
+          environment:
+            JEST_JUNIT_OUTPUT: "coverage/target/surefire-reports/junit.xml"
+      - store_test_results:
+          path: coverage/target/surefire-reports/
+      - store_artifacts:
+          path: coverage/target/surefire-reports/
+      # - run:
+      #     name: Send CodeCov Results
+      #     command: bash <(curl -s https://codecov.tools.a.intuit.com/bash) -t $CODECOV_KEY
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - lint:
+          requires:
+              - build
+          filters:
+            tags:
+              only: /.*/
+      - test:
+          requires:
+              - build
+          filters:
+            tags:
+              only: /.*/
