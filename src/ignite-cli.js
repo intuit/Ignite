@@ -4,19 +4,19 @@ import fs from 'fs';
 import yargs from 'yargs';
 import root from 'root-path';
 
-import build from './ignite';
+import build, { defaults } from './ignite';
 
 const argv = yargs
   .describe('s', 'folder to look for markdown files in')
-  .default('s', 'docs/')
+  .default('s', defaults.src)
   .alias('s', 'src')
 
   .describe('i', 'root index file used as sidebar')
-  .default('i', 'index.md')
+  .default('i', defaults.index)
   .alias('i', 'index')
 
   .describe('d', 'folder to write built docs to')
-  .default('d', '_ignite/')
+  .default('d', defaults.dst)
   .alias('d', 'dst')
 
   .describe('w', 'watch documentation files for changes')
@@ -24,9 +24,13 @@ const argv = yargs
   .boolean('w')
 
   .describe('p', 'port to start docs server on')
-  .default('p', 8008)
+  .default('p', defaults.port)
   .alias('p', 'port')
   .number('p')
+
+  .describe('t', 'the title to put in the header of the docs')
+  .default('t', defaults.title)
+  .alias('t', 'title')
 
   .alias('v', 'version')
   .alias('h', 'help')

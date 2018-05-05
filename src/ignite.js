@@ -5,18 +5,27 @@ import WebpackDevServer from 'webpack-dev-server';
 
 import config from '../webpack.config';
 
-export default function build(argv) {
-  const webpackConfig = config(argv);
+export const defaults = {
+  src: 'docs/',
+  dst: '_ignite/',
+  index: 'index.md',
+  port: 8008,
+  title: 'Documentation'
+};
+
+export default function build(options) {
+  options = Object.assign({}, defaults, options);
+  const webpackConfig = config(options);
   const compiler = webpack(webpackConfig);
 
-  if (argv.watch) {
+  if (options.watch) {
     const devServerOptions = Object.assign({}, webpackConfig.devServer, {
       stats: {
         colors: true
       }
     });
     const server = new WebpackDevServer(compiler, devServerOptions);
-    const port = argv.port || 8080;
+    const port = options.port || 8080;
 
     server.listen(port, '127.0.0.1', () => {
       console.log(`Starting server on http://localhost:${port}`);
