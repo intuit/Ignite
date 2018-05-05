@@ -1,0 +1,52 @@
+.sidebar_root_KHwS-m_H8s2Z9sXRHGXDU li {
+  list-style: none;
+}
+.sidebar_sidebar_3rEaDBHSM34eFAox8KlMcN {
+  position: sticky;
+  top: 0;
+}
+body {
+  height: 100vh;
+}
+nav {
+  background-color: #f44336;
+}
+a {
+  color: #f44336;
+}
+nav a {
+  color: #fff;
+}
+nav a :active {
+  color: #f44336;
+  opacity: 0.8;
+}
+footer {
+  background-color: #b9b6b6;
+}
+img {
+  max-width: 100%;
+}
+pre {
+  border-left: 4px solid #f44336;
+}
+p > code {
+  padding: 0.5em;
+  line-height: 40px;
+  font-size: 85%;
+  border-radius: 3px;
+  white-space: normal;
+}
+pre > code {
+  display: block;
+  padding: 0.5em;
+  line-height: normal;
+}
+.app_root_MwuaPDJa_F2RPA3G5p0Az {
+  height: 100%;
+}
+.app_App_PNLDt1q0492hnUTd_Ag2w {
+  min-height: calc(100% - 173px);
+}
+
+/*# sourceMappingURL=main.css.map*/
