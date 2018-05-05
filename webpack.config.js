@@ -103,6 +103,11 @@ module.exports = function(options = {}) {
               options: {
                 ident: 'postcss',
                 plugins: () => [
+                  require('postcss-pseudoelements'),
+                  require('postcss-color-rgba-fallback'),
+                  require('postcss-initial'),
+                  require('postcss-nested'),
+                  require('autoprefixer'),
                   require('postcss-simple-vars')({
                     variables: {
                       APP_COLOR: options.color

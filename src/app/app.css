@@ -2,53 +2,53 @@ body {
   height: 100vh;
 }
 
-nav {
-  background-color: $APP_COLOR;
-}
-
-a {
-  color: $APP_COLOR;
-}
-
-nav a {
-  color: white;
-}
-
-nav a :active {
-  color: $APP_COLOR;
-  opacity: 0.8;
-}
-
-footer {
-  background-color: #b9b6b6;
-}
-
-img {
-  max-width: 100%;
-}
-
-pre {
-  border-left: 4px solid $APP_COLOR;
-}
-
-p > code {
-  padding: 0.5em;
-  line-height: 40px;
-  font-size: 85%;
-  border-radius: 3px;
-  white-space: normal;
-}
-
-pre > code {
-  display: block;
-  padding: 0.5em;
-  line-height: initial;
-}
-
 .root {
   height: 100%;
 }
 
 .App {
   min-height: calc(100% - 173px);
+}
+
+a {
+  color: $APP_COLOR;
+}
+
+img {
+  max-width: 100%;
+}
+
+nav {
+  background-color: $APP_COLOR;
+
+  a {
+    color: white;
+
+    &::active {
+      color: $APP_COLOR;
+      opacity: 0.8;
+    }
+  }
+}
+
+footer {
+  background-color: #b9b6b6;
+}
+
+pre {
+  border-left: 4px solid $APP_COLOR;
+
+  & > code {
+    display: block;
+    padding: 0.5em;
+    line-height: initial;
+  }
+}
+
+p > code {
+  padding: 0.5em;
+  font-size: 85%;
+  line-height: 40px;
+  border-radius: 3px;
+  white-space: normal;
 }
