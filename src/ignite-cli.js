@@ -32,6 +32,9 @@ const argv = yargs
   .default('t', defaults.title)
   .alias('t', 'title')
 
+  .describe('gh', 'url to github repository')
+  .alias('gh', 'githubURL')
+
   .alias('v', 'version')
   .alias('h', 'help')
   .help().argv;
