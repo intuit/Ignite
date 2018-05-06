@@ -48,6 +48,8 @@ export default function build(options, user) {
         return;
       }
 
+      console.log('Documentation built!');
+
       if (options.publish) {
         if (!options.githubURL) {
           console.log('Need to provide githubURL option to publish');
