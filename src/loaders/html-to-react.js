@@ -1,12 +1,6 @@
 import path from 'path';
 import { getOptions } from 'loader-utils';
 
-export function sanitizeJSX(source) {
-  source = source.replace(new RegExp('`', 'g'), '\\`');
-
-  return source;
-}
-
 export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
@@ -32,7 +26,10 @@ export default function(source) {
       <div className={props.className}>
         <section 
           dangerouslySetInnerHTML={{
-            __html: \`${sanitizeJSX(source)}\`
+            __html: '${source
+              .replace(/'/g, "\\'")
+              .split('\n')
+              .join("\\n' + '")}'
           }}
         />
       </div>
