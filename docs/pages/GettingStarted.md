@@ -2,7 +2,7 @@
 
 ## Installation
 
-```shell
+```bash
 yarn add -D ignite
 ```
 

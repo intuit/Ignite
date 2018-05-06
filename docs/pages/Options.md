@@ -14,7 +14,7 @@ All options can be used as CLI arguments or declared in the package.json.
 
 Source folder to search for markdown files in
 
-```shell
+```bash
 ignite --src docs
 ```
 
@@ -22,7 +22,7 @@ ignite --src docs
 
 Folder to output bundled documentation website.
 
-```shell
+```bash
 ignite --dst _ignite
 ```
 
@@ -30,7 +30,7 @@ ignite --dst _ignite
 
 Fill to be used as the index of your website. Is also used as the sidebar. This file should be located in the docs folder
 
-```shell
+```bash
 ignite --index index.md
 ```
 
@@ -38,7 +38,7 @@ ignite --index index.md
 
 Publish the docs to the githubURL. Must [setup](./pages/Publishing.md)
 
-```shell
+```bash
 ignite --publish
 ```
 
@@ -46,7 +46,7 @@ ignite --publish
 
 Build the documentation website and serve it on localhost. Default port is 8008.
 
-```shell
+```bash
 ignite --watch
 ```
 
@@ -54,7 +54,7 @@ ignite --watch
 
 Port to start the documentation website on.
 
-```shell
+```bash
 ignite --port 1337
 ```
 
@@ -62,7 +62,7 @@ ignite --port 1337
 
 Title of the docs. Usually what you are documenting. Used in the navigation bar.
 
-```shell
+```bash
 ignite --title 'My Cool Docs'
 ```
 
@@ -70,7 +70,7 @@ ignite --title 'My Cool Docs'
 
 If present includes a link to github. Usually where you store the source code for what you're documenting.
 
-```shell
+```bash
 ignite --githubURL https://github.com/Team/Project
 ```
 
@@ -78,7 +78,7 @@ ignite --githubURL https://github.com/Team/Project
 
 Code highlight style for code blocks. Can use any of [these](https://github.com/isagalaev/highlight.js/tree/master/src/styles) styles
 
-```shell
+```bash
 ignite --codeStyle foundation
 ```
 
@@ -86,7 +86,7 @@ ignite --codeStyle foundation
 
 Specify the color to use throughout the app.
 
-```shell
+```bash
 ignite --color 'cadetblue'
 ignite --color '#f44336'
 ```
@@ -97,7 +97,7 @@ ignite --color '#f44336'
 
 Current version of Ignite.
 
-```shell
+```bash
 ignite --version
 ```
 
@@ -105,6 +105,6 @@ ignite --version
 
 List all of these commands an their defaults.
 
-```shell
+```bash
 ignite --help
 ```
