@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders githubURL 1`] = `
+<nav>
+  <div
+    className="nav-container"
+  >
+    <div
+      className="nav-logo"
+    >
+      <a
+        href="/"
+      />
+    </div>
+    <ul
+      className="nav-links"
+    >
+      <li>
+        <a
+          href="https://github.com/sindresorhus/cows"
+        >
+          GitHub
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;
+
+exports[`renders title 1`] = `
+<nav>
+  <div
+    className="nav-container"
+  >
+    <div
+      className="nav-logo"
+    >
+      <a
+        href="/"
+      >
+        Super Cool Docs
+      </a>
+    </div>
+  </div>
+</nav>
+`;

@@ -1,4 +1,4 @@
-import haskLink from '../../src/loaders/hash-link';
+import haskLink from '../hash-link';
 
 test('haskLink', () => {
   expect(

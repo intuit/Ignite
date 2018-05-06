@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`only renders content if its there 1`] = `
+<div
+  className="sidebar sidebar-left"
+/>
+`;
+
+exports[`only renders content if its there 2`] = `
+<div
+  className="sidebar sidebar-left"
+>
+  <content
+    className={undefined}
+  />
+</div>
+`;

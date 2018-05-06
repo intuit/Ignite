@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer 1`] = `
+<footer>
+  <p
+    className="copyright align-center"
+  >
+    Made with 🌳🔥💨 by Intuit. Licensed under the MIT License.
+  </p>
+</footer>
+`;

@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders default page when there is not page match 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    title={undefined}
+  />
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <Sidebar
+        className="col col-lg-2"
+        content={[Function]}
+      />
+      <docRootIndexFile
+        className="col col-lg-10"
+      />
+    </div>
+  </div>
+  <Footer />
+</div>
+`;
+
+exports[`renders first page at index if found 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    title={undefined}
+  />
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <Sidebar
+        className="col col-lg-2"
+        content={[Function]}
+      />
+      <firstPage
+        className="col col-lg-10"
+      />
+    </div>
+  </div>
+  <Footer />
+</div>
+`;
+
+exports[`renders matched page 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    title={undefined}
+  />
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <Sidebar
+        className="col col-lg-2"
+        content={[Function]}
+      />
+      <foo
+        className="col col-lg-10"
+      />
+    </div>
+  </div>
+  <Footer />
+</div>
+`;
+
+exports[`renders renders index if firstPagePath specified but not actually in markdown map 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    title={undefined}
+  />
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <Sidebar
+        className="col col-lg-2"
+        content={[Function]}
+      />
+      <docRootIndexFile
+        className="col col-lg-10"
+      />
+    </div>
+  </div>
+  <Footer />
+</div>
+`;

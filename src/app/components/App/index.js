@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import Header from './header';
-import Footer from './footer';
-import Sidebar from './Sidebar';
+import Header from '../Header';
+import Footer from '../Footer';
+import Sidebar from '../Sidebar';
 import styles from './app.css';
 
 const App = props => {
