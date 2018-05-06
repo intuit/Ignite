@@ -1,5 +1,4 @@
 import haskLink from '../hash-link';
-
 test('haskLink', () => {
   expect(
     haskLink(`
@@ -12,10 +11,13 @@ test('haskLink', () => {
   `);
 
   expect(
-    haskLink.bind({ resourcePath: '/path/' })(`
+    haskLink.bind({ resourcePath: '/path/' })(
+      `
     [Image 1](./link/to/image.png)
     [Image 2](./link/to/another.png "With a description")
-  `)
+  `,
+      '/some/path'
+    )
   ).toBe(`
     [Image 1](../../../../link/to/image.png )
     [Image 2](../../../../link/to/another.png "With a description")
