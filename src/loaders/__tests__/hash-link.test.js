@@ -1,4 +1,5 @@
 import haskLink from '../hash-link';
+
 test('haskLink', () => {
   expect(
     haskLink(`
@@ -19,7 +20,7 @@ test('haskLink', () => {
       '/some/path'
     )
   ).toBe(`
-    [Image 1](../../../../link/to/image.png )
-    [Image 2](../../../../link/to/another.png "With a description")
+    [Image 1](../../link/to/image.png )
+    [Image 2](../../link/to/another.png "With a description")
   `);
 });
