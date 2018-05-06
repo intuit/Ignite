@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 
-import 'babel-polyfill';
-import util from 'util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
 
 import config from '../webpack.config';
-
-const exec = util.promisify(require('child_process').exec);
 
 export const defaults = {
   mode: 'production',
@@ -21,7 +17,7 @@ export const defaults = {
   color: '#f44336'
 };
 
-export default function build(options, author) {
+export default function build(options, user) {
   options = Object.assign({}, defaults, options);
 
   if (options.watch) {
@@ -58,12 +54,12 @@ export default function build(options, author) {
           return;
         }
 
-        if (!author.name) {
+        if (!user.name) {
           console.log('Need author.name in package.json to publish');
           return;
         }
 
-        if (!author.email) {
+        if (!user.email) {
           console.log('Need author.email in package.json to publish');
           return;
         }
@@ -72,16 +68,14 @@ export default function build(options, author) {
           options.githubURL = options.githubURL.split('//')[1];
         }
 
-        await exec(`git config user.email ${author.email}`);
-        await exec(`git config user.name ${author.name}`);
-
         ghpages.publish(
           options.dst,
           {
             message: ':memo: Update Documentation',
             repo: `https://username:${process.env.GITHUB_KEY}@${
               options.githubURL
-            }`
+            }`,
+            user
           },
           err => {
             if (err) {

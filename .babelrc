@@ -1,11 +1,6 @@
 {
   "presets": [
-    [
-      "env",
-      {
-        "useBuiltIns": true
-      }
-    ],
+    "env",
     "react",
     "stage-0"
   ],
