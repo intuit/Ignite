@@ -6,6 +6,7 @@ import WebpackDevServer from 'webpack-dev-server';
 import config from '../webpack.config';
 
 export const defaults = {
+  mode: 'production',
   src: 'docs/',
   dst: '_ignite/',
   index: 'index.md',
@@ -17,6 +18,13 @@ export const defaults = {
 
 export default function build(options) {
   options = Object.assign({}, defaults, options);
+
+  if (options.watch) {
+    options = Object.assign(options, {
+      mode: 'development'
+    });
+  }
+
   const webpackConfig = config(options);
   const compiler = webpack(webpackConfig);
 
