@@ -14,7 +14,7 @@
     "test": "jest",
     "start": "webpack-dev-server --open --env.src=example --env.dst=_ignite --env.index=index.md",
     "build": "webpack --mode production --env.src=example --env.dst=_ignite --env.index=index.md",
-    "build:lib": "babel src -d dist",
+    "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w"
   },
   "author": "",
