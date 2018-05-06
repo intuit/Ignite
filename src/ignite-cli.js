@@ -38,6 +38,9 @@ const argv = yargs
   .default('plugins', [])
   .array('plugins')
 
+  .describe('l', 'name of the logo file in your docs folder')
+  .default('l', defaults.logo)
+
   .describe('githubURL', 'url to github repository')
 
   .describe(

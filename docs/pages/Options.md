@@ -74,6 +74,14 @@ Title of the docs. Usually what you are documenting. Used in the navigation bar.
 ignite --title 'My Cool Docs'
 ```
 
+## Logo (--logo)
+
+Logo for app. Displayed in title bar.
+
+```bash
+ignite --title 'logo.svg'
+```
+
 ## GitHub URL (--githubURL)
 
 If present includes a link to github. Usually where you store the source code for what you're documenting.

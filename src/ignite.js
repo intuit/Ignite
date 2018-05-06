@@ -14,7 +14,8 @@ export const defaults = {
   port: 8008,
   title: 'Documentation',
   codeStyle: 'foundation',
-  color: '#f44336'
+  color: '#f44336',
+  logo: 'logo.svg'
 };
 
 export default function build(options, user) {
@@ -47,6 +48,8 @@ export default function build(options, user) {
         console.log(err);
         return;
       }
+
+      console.log('Documentation built!');
 
       if (options.publish) {
         if (!options.githubURL) {

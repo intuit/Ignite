@@ -6,6 +6,7 @@ exports[`renders default page when there is not page match 1`] = `
 >
   <Header
     githubURL={undefined}
+    logo={undefined}
     title={undefined}
   />
   <div
@@ -33,6 +34,7 @@ exports[`renders first page at index if found 1`] = `
 >
   <Header
     githubURL={undefined}
+    logo={undefined}
     title={undefined}
   />
   <div
@@ -60,6 +62,7 @@ exports[`renders matched page 1`] = `
 >
   <Header
     githubURL={undefined}
+    logo={undefined}
     title={undefined}
   />
   <div
@@ -87,6 +90,7 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
 >
   <Header
     githubURL={undefined}
+    logo={undefined}
     title={undefined}
   />
   <div

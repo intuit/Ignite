@@ -5,9 +5,12 @@ import Icon from '../Icon';
 import styles from './header.css';
 
 const Header = props => (
-  <nav>
+  <nav className={styles.nav}>
     <div className="nav-container">
       <div className="nav-logo">
+        {props.logo && (
+          <img src={props.logo} alt="logo" className={styles.logo} />
+        )}
         <a href="/">{props.title}</a>
       </div>
       {props.githubURL && (
@@ -24,11 +27,13 @@ const Header = props => (
 
 Header.propTypes = {
   title: PropTypes.string,
+  logo: PropTypes.string,
   githubURL: PropTypes.string
 };
 
 Header.defaultProps = {
   title: process.env.title,
+  logo: process.env.logo,
   githubURL: process.env.githubURL
 };
 

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders githubURL 1`] = `
-<nav>
+<nav
+  className={undefined}
+>
   <div
     className="nav-container"
   >
@@ -34,7 +36,9 @@ exports[`renders githubURL 1`] = `
 `;
 
 exports[`renders title 1`] = `
-<nav>
+<nav
+  className={undefined}
+>
   <div
     className="nav-container"
   >
