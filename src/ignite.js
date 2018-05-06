@@ -42,7 +42,7 @@ export default function build(options, user) {
       console.log(`Starting server on http://localhost:${port}`);
     });
   } else {
-    compiler.run(async err => {
+    compiler.run(err => {
       if (err) {
         console.log(err);
         return;
