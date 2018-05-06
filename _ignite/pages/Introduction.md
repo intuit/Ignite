@@ -2,28 +2,14 @@
 
 Modern markdown documentation generator.
 
-## Installation
+Ignite makes it super easy to get a documentation website running.
 
-```shell
-yarn add -D ignite
+## Project Structure
+
+The sidebar is the root of your app and is located in index.md. This file links to the rest of your documentation. Any linked `.md` files will be included in the docs website.
+
+```markdown
+* [Introduction](./Introduction.md)
+* [Page 1](./pages/Page1.md)
+* [Page 2](./pages/Page2.md)
 ```
-
-## Usage
-
-Add `docs` script to package.json
-
-```json
-{
-  "scripts": {
-    "docs": "ignite"
-  }
-}
-```
-
-If your docs are set up according to the default configuration a folder `_ignite` will contain a bundled documentation website.
-
-More information about configuration can be found at [Options](./pages/Options.md)
-
-## Publishing
-
-[UNDER CONSTRUCTION]
