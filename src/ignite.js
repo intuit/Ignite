@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import 'babel-polyfill';
 import util from 'util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
