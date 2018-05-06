@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo-react": "^0.16.0",
@@ -114,7 +115,8 @@
   },
   "jest": {
     "transform": {
-      ".*": "<rootDir>/node_modules/jest-css-modules"
+      ".*": "<rootDir>/node_modules/jest-css-modules",
+      "^.+\\.js?$": "babel-jest"
     },
     "testPathIgnorePatterns": [
       "/dist/",
