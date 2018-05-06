@@ -6,6 +6,10 @@
   "bin": {
     "ignite": "./dist/ignite-cli.js"
   },
+  "author": {
+    "name" : "Andrew Lisowski",
+    "email" : "andrew_lisowski@intuit.com"
+  },
   "scripts": {
     "precommit": "lint-staged",
     "lint": "npm run lint:js && npm run lint:css",
@@ -15,9 +19,9 @@
     "start": "npm run build -- -w",
     "build": "./dist/ignite-cli.js",
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
-    "build:lib:watch": "npm run build:lib -- -w"
+    "build:lib:watch": "npm run build:lib -- -w",
+    "publish:docs": "gh-pages -d _ignite -b gh-pages -r https://github.intuit.com/Fuego/Ignite -m 'Update Docs'"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^8.4.1",
@@ -29,6 +33,7 @@
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
+    "gh-pages": "^1.1.0",
     "globby": "^8.0.1",
     "highlight.js": "^9.12.0",
     "html-webpack-plugin": "^3.2.0",
@@ -110,9 +115,7 @@
   },
   "ignite": {
     "title": "Ignite",
-    "githubURL": "https://github.intuit.com/Fuego/Ignite",
-    "src": "_ignite",
-    "dst": "docs"
+    "githubURL": "https://github.intuit.com/Fuego/Ignite"
   },
   "jest": {
     "transform": {
