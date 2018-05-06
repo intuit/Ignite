@@ -152,6 +152,6 @@ module.exports = function(options = {}) {
       }),
       debug &&
         new OpenBrowserPlugin({ url: `http://localhost:${options.port}` })
-    ]
+    ].filter(Boolean)
   };
 };
