@@ -52,3 +52,14 @@ p > code {
   border-radius: 3px;
   white-space: normal;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &:not(:first-child) {
+    padding-top: 35px;
+  }
+}
