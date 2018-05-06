@@ -15,11 +15,11 @@ exports[`renders default page when there is not page match 1`] = `
       className="row"
     >
       <Sidebar
-        className="col col-lg-2"
+        className="col col-lg-3"
         content={[Function]}
       />
       <docRootIndexFile
-        className="col col-lg-10"
+        className="col col-lg-9"
       />
     </div>
   </div>
@@ -42,11 +42,11 @@ exports[`renders first page at index if found 1`] = `
       className="row"
     >
       <Sidebar
-        className="col col-lg-2"
+        className="col col-lg-3"
         content={[Function]}
       />
       <firstPage
-        className="col col-lg-10"
+        className="col col-lg-9"
       />
     </div>
   </div>
@@ -69,11 +69,11 @@ exports[`renders matched page 1`] = `
       className="row"
     >
       <Sidebar
-        className="col col-lg-2"
+        className="col col-lg-3"
         content={[Function]}
       />
       <foo
-        className="col col-lg-10"
+        className="col col-lg-9"
       />
     </div>
   </div>
@@ -96,11 +96,11 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
       className="row"
     >
       <Sidebar
-        className="col col-lg-2"
+        className="col col-lg-3"
         content={[Function]}
       />
       <docRootIndexFile
-        className="col col-lg-10"
+        className="col col-lg-9"
       />
     </div>
   </div>

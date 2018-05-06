@@ -15,12 +15,18 @@ exports[`renders githubURL 1`] = `
     <ul
       className="nav-links"
     >
-      <li>
+      <li
+        className={undefined}
+      >
         <a
           href="https://github.com/sindresorhus/cows"
         >
           GitHub
         </a>
+        <Icon
+          icon="github"
+          type="fab"
+        />
       </li>
     </ul>
   </div>

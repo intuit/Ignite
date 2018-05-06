@@ -7,6 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 
+// eslint-disable-next-line import/no-unresolved
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
 
 module.exports = function(options = {}) {
