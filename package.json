@@ -115,9 +115,7 @@
   },
   "ignite": {
     "title": "Ignite",
-    "githubURL": "https://github.intuit.com/Fuego/Ignite",
-    "dst": "_ignite",
-    "src": "docs"
+    "githubURL": "https://github.intuit.com/Fuego/Ignite"
   },
   "jest": {
     "transform": {
