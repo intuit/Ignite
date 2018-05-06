@@ -16,7 +16,7 @@
     "build": "./dist/ignite-cli.js",
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w",
-    "publish:docs": "git-update-ghpages Fuego/Ignite docs"
+    "publish:docs": "gh-pages -d _ignite -b gh-pages -r https://github.intuit.com/Fuego/Ignite -m 'Update Docs'"
   },
   "author": "",
   "license": "ISC",
@@ -30,7 +30,7 @@
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
-    "git-update-ghpages": "^1.3.0",
+    "gh-pages": "^1.1.0",
     "globby": "^8.0.1",
     "highlight.js": "^9.12.0",
     "html-webpack-plugin": "^3.2.0",
