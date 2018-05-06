@@ -20,7 +20,7 @@
     "build": "chmod 777 ./dist/ignite-cli.js && ./dist/ignite-cli.js",
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w",
-    "publish:docs": "git config user.name 'Andrew Lisowski' && git config user.email 'andrew_lisowski@intuit.com' && gh-pages -d _ignite -b gh-pages -r https://github.intuit.com/Fuego/Ignite -m 'Update Docs'"
+    "publish:docs": "./scripts/build-pages.sh"
   },
   "license": "ISC",
   "dependencies": {
