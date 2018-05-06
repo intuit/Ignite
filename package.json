@@ -6,6 +6,10 @@
   "bin": {
     "ignite": "./dist/ignite-cli.js"
   },
+  "author": {
+    "name" : "Andrew Lisowski",
+    "email" : "andrew_lisowski@intuit.com"
+  },
   "scripts": {
     "precommit": "lint-staged",
     "lint": "npm run lint:js && npm run lint:css",
@@ -18,7 +22,6 @@
     "build:lib:watch": "npm run build:lib -- -w",
     "publish:docs": "gh-pages -d _ignite -b gh-pages -r https://github.intuit.com/Fuego/Ignite -m 'Update Docs'"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^8.4.1",
