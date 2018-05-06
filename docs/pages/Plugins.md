@@ -26,7 +26,7 @@ or a local plugin
 }
 ```
 
-#### Local Plugin Example
+#### Plugin Example
 
 This is our implementation of a font-awesome 5 plugin. It matches tags in the markdown the look like `:far-flag:` and replaces them with the html representation.
 

@@ -9,4 +9,16 @@
 .sidebar {
   position: sticky;
   top: 0px;
+
+  ul ul {
+    padding-left: 15px;
+
+    li:before {
+      content: '\2501';
+    }
+  }
+
+  section > ul > li > ul > li:last-of-type {
+    padding-bottom: 15px;
+  }
 }

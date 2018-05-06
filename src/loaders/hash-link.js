@@ -8,7 +8,7 @@ export default function(source, rootPath = root()) {
       return link;
     }
 
-    if (path.extname(link) === '.md') {
+    if (path.extname(link).includes('.md')) {
       return path.join('#', link);
     }
 

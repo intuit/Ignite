@@ -50,7 +50,11 @@ module.exports = function(options = {}) {
               loader: path.resolve(__dirname, './dist/loaders/markdown-it.js'),
               options: {
                 xhtmlOut: true,
-                plugins: [fontAwesomeMarkdown, ...options.plugins],
+                plugins: [
+                  'markdown-it-anchor',
+                  fontAwesomeMarkdown,
+                  ...options.plugins
+                ],
                 highlight: (code, language) => {
                   const validLang = Boolean(
                     language && highlightjs.getLanguage(language)
