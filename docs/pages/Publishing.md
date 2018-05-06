@@ -16,12 +16,27 @@ $ git rm -rf .
 rm '.gitignore'
 ```
 
-## Setup Key
+## Setup Git
 
-To successfully publish you docs on a continuos integration service, or anything other than your local machine, you will need to set up a `GITHUB_KEY` environment variable.
+### Key
+
+To successfully publish your documentation on a continuos integration environment, or anything other than your local machine, you will need to set up a `GITHUB_KEY` environment variable.
 
 ```bash
 GITHUB_KEY={github key with write access}
+```
+
+### Name and Email
+
+Ignite also needs a git name and email set to publish. To ensure this works locally and in the CI environment these values are pulled from the package.json author.
+
+```json
+{
+  "author": {
+    "name": "Your Name",
+    "email": "your_github@email.com"
+  }
+}
 ```
 
 ## Setup Script
