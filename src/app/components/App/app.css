@@ -8,6 +8,7 @@ body {
 
 .App {
   min-height: calc(100% - 173px);
+  max-width: 1500px;
 }
 
 a {
@@ -41,7 +42,6 @@ pre {
   & > code {
     display: block;
     padding: 0.5em;
-    line-height: initial;
   }
 }
 

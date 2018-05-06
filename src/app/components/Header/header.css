@@ -1,0 +1,9 @@
+.github {
+  display: flex;
+  color: white;
+  align-items: center;
+
+  a {
+    padding: 0 15px;
+  }
+}

@@ -34,6 +34,10 @@ const argv = yargs
   .default('t', defaults.title)
   .alias('t', 'title')
 
+  .describe('plugins', 'plugins to build your docs with')
+  .default('plugins', [])
+  .array('plugins')
+
   .describe('githubURL', 'url to github repository')
 
   .describe(

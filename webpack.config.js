@@ -3,19 +3,12 @@ const webpack = require('webpack');
 const globby = require('globby');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const MarkdownRenderer = require('marked').Renderer;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 
-const renderer = new MarkdownRenderer();
-renderer.code = (code, language) => {
-  const validLang = Boolean(language && highlightjs.getLanguage(language));
-  const highlighted = validLang
-    ? highlightjs.highlight(language, code).value
-    : code;
-  return `<pre><code class="${language}">${highlighted}</code></pre>`;
-};
+// eslint-disable-next-line import/no-unresolved
+const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
 
 module.exports = function(options = {}) {
   const debug = options.mode === 'development';
@@ -55,11 +48,19 @@ module.exports = function(options = {}) {
               options
             },
             {
-              loader: 'markdown-loader',
+              loader: path.resolve(__dirname, './dist/loaders/markdown-it.js'),
               options: {
-                pedantic: true,
-                xhtml: true,
-                renderer
+                xhtmlOut: true,
+                plugins: [fontAwesomeMarkdown, ...options.plugins],
+                highlight: (code, language) => {
+                  const validLang = Boolean(
+                    language && highlightjs.getLanguage(language)
+                  );
+                  const highlighted = validLang
+                    ? highlightjs.highlight(language, code).value
+                    : code;
+                  return `<pre><code class="${language}">${highlighted}</code></pre>`;
+                }
               }
             },
             {

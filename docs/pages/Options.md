@@ -34,6 +34,14 @@ Fill to be used as the index of your website. Is also used as the sidebar. This 
 ignite --index index.md
 ```
 
+## Plugins (--plugins)
+
+A list of plugins (package names or functions) to render your documentation with.
+
+```bash
+ignite --plugins markdown-it-emoji markdown-it-video
+```
+
 ## Publish (--publish)
 
 Publish the docs to the githubURL. Must [setup](./pages/Publishing.md)
