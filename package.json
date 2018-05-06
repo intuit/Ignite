@@ -7,8 +7,8 @@
     "ignite": "./dist/ignite-cli.js"
   },
   "author": {
-    "name" : "Andrew Lisowski",
-    "email" : "andrew_lisowski@intuit.com"
+    "name": "Andrew Lisowski",
+    "email": "andrew_lisowski@intuit.com"
   },
   "scripts": {
     "precommit": "lint-staged",
@@ -54,6 +54,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-prop-types": "^1.0.3",
     "root-path": "^0.2.1",
+    "simple-git": "^1.92.0",
     "stylelint": "^9.2.0",
     "transform-markdown-links": "^2.0.0",
     "webpack": "^4.6.0",

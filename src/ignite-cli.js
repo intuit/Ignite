@@ -51,10 +51,12 @@ const argv = yargs
   .help().argv;
 
 const rootJson = JSON.parse(fs.readFileSync(`${root()}/package.json`));
+const author = rootJson ? rootJson.author : {};
+
 let options = argv;
 
 if (rootJson.ignite) {
   options = Object.assign({}, argv, rootJson.ignite);
 }
 
-build(options);
+build(options, author);

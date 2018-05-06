@@ -3,6 +3,7 @@
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
+import git from 'simple-git';
 
 import config from '../webpack.config';
 
@@ -17,7 +18,7 @@ export const defaults = {
   color: '#f44336'
 };
 
-export default function build(options) {
+export default function build(options, author) {
   options = Object.assign({}, defaults, options);
 
   if (options.watch) {
@@ -54,9 +55,23 @@ export default function build(options) {
           return;
         }
 
+        if (!author.name) {
+          console.log('Need author.name in package.json to publish');
+          return;
+        }
+
+        if (!author.email) {
+          console.log('Need author.email in package.json to publish');
+          return;
+        }
+
         if (options.githubURL.includes('http')) {
           options.githubURL = options.githubURL.split('//')[1];
         }
+
+        git()
+          .addConfig('user.name', author.name)
+          .addConfig('user.email', author.email);
 
         ghpages.publish(
           options.dst,
