@@ -1,4 +1,4 @@
-# Ignite
+# :fire: Ignite :fire:
 
 Modern markdown documentation generator.
 

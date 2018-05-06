@@ -41,6 +41,7 @@
     "html-webpack-plugin": "^3.2.0",
     "loader-utils": "^1.1.0",
     "markdown-it": "^8.4.1",
+    "markdown-it-emoji": "^1.4.0",
     "mini-css-extract-plugin": "^0.4.0",
     "open-browser-webpack-plugin": "^0.0.5",
     "postcss-color-rgba-fallback": "^3.0.0",

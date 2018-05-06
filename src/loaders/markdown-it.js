@@ -1,7 +1,19 @@
 import { getOptions } from 'loader-utils';
-import markdownRenderer from 'markdown-it';
+import MarkdownIt from 'markdown-it';
 
 export default function(source) {
   const options = getOptions(this);
-  return markdownRenderer(options).render(source);
+  const renderer = new MarkdownIt(options);
+
+  if (options.plugins) {
+    options.plugins.forEach(plugin => {
+      if (typeof plugin === 'string') {
+        plugin = require(plugin);
+      }
+
+      renderer.use(plugin);
+    });
+  }
+
+  return renderer.render(source);
 }
