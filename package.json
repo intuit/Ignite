@@ -136,6 +136,6 @@
     ]
   },
   "jest-junit": {
-    "output": "./coverage/junit.xml"
+    "output": "./coverage/junit/junit.xml"
   }
 }
