@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const MarkdownRenderer = require('marked').Renderer;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -17,10 +18,11 @@ renderer.code = (code, language) => {
 };
 
 module.exports = function(options = {}) {
+  const debug = options.mode === 'development';
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
 
   return {
-    mode: 'development',
+    mode: options.mode,
 
     entry: [
       ...docs.map(doc => path.resolve(doc)),
@@ -147,7 +149,9 @@ module.exports = function(options = {}) {
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL)
         }
-      })
+      }),
+      debug &&
+        new OpenBrowserPlugin({ url: `http://localhost:${options.port}` })
     ]
   };
 };

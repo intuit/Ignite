@@ -12,8 +12,8 @@
     "lint:js": "xo",
     "lint:css": "stylelint 'src/**/*.css'",
     "test": "jest",
-    "start": "webpack-dev-server --open --env.src=example --env.dst=_ignite --env.index=index.md",
-    "build": "webpack --mode production --env.src=example --env.dst=_ignite --env.index=index.md",
+    "start": "npm run build -- -w",
+    "build": "./dist/ignite-cli.js",
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w"
   },
@@ -36,6 +36,7 @@
     "markdown-loader": "^2.0.2",
     "marked": "^0.3.19",
     "mini-css-extract-plugin": "^0.4.0",
+    "open-browser-webpack-plugin": "^0.0.5",
     "postcss-color-rgba-fallback": "^3.0.0",
     "postcss-initial": "^2.0.0",
     "postcss-loader": "^2.1.5",
