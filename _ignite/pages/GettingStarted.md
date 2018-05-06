@@ -13,7 +13,8 @@ Add `docs` script to package.json
 ```json
 {
   "scripts": {
-    "docs": "ignite"
+    "docs": "ignite",
+    "docs:watch": "ignite -w"
   }
 }
 ```
