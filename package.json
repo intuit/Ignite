@@ -14,7 +14,7 @@
     "test": "jest",
     "start": "webpack-dev-server --open --env.src=example --env.dst=_ignite --env.index=index.md",
     "build": "webpack --mode production --env.src=example --env.dst=_ignite --env.index=index.md",
-    "build:lib": "babel src -d dist",
+    "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w"
   },
   "author": "",
@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-xo-react": "^0.16.0",
@@ -63,9 +64,11 @@
     "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
+    "jest-css-modules": "^1.1.0",
     "jest-junit": "^3.7.0",
     "lint-staged": "^7.0.5",
     "prettier": "^1.12.1",
+    "react-test-renderer": "^16.3.2",
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-scss": "^3.1.0",
     "webpack-cli": "^2.1.2",
@@ -106,15 +109,33 @@
   },
   "ignite": {
     "title": "Ignite",
-    "githubURL": "https://github.intuit.com/Fuego/Ignite"
+    "githubURL": "https://github.intuit.com/Fuego/Ignite",
+    "src": "_ignite",
+    "dst": "docs"
   },
   "jest": {
+    "transform": {
+      ".*": "<rootDir>/node_modules/jest-css-modules",
+      "^.+\\.js?$": "babel-jest"
+    },
+    "testPathIgnorePatterns": [
+      "/dist/",
+      "/node_modules/",
+      "/__tests__/util.js"
+    ],
     "testResultsProcessor": "jest-junit",
     "collectCoverage": true,
     "coverageDirectory": "./coverage",
-    "coverageReporters": ["cobertura", "html", "lcov"]
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageReporters": [
+      "cobertura",
+      "html",
+      "lcov"
+    ]
   },
   "jest-junit": {
-    "output": "./coverage/junit.xml"
+    "output": "./coverage/junit/junit.xml"
   }
 }

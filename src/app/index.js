@@ -1,47 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
-import ReactRouterPropTypes from 'react-router-prop-types';
 
-import App from './app';
-
-const noDocsFound = () => (
-  <div>Hmmmm, somethings wrong. No docs files found....</div>
-);
-
-const markdown = {
-  docRootIndexFile: noDocsFound
-};
-
-let updateCallback = () => {};
-
-class MarkdownProvider extends React.Component {
-  static propTypes = {
-    location: ReactRouterPropTypes.location.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      markdown
-    };
-
-    updateCallback = this.onUpdate;
-  }
-
-  onUpdate = () => {
-    this.setState({
-      markdown
-    });
-  };
-
-  render() {
-    return (
-      <App markdown={this.state.markdown} location={this.props.location} />
-    );
-  }
-}
+import MarkdownProvider, { update } from './components/MarkdownProvider';
 
 ReactDOM.render(
   <HashRouter>
@@ -50,20 +11,7 @@ ReactDOM.render(
   document.getElementById('index')
 );
 
-export default function registerMarkdown(
-  path,
-  markdownInJS,
-  isIndex,
-  firstLink
-) {
-  markdown[path] = markdownInJS;
+const registerMarkdown = (path, markdownInJS, isIndex, firstLink) =>
+  update(path, markdownInJS, isIndex, firstLink);
 
-  if (isIndex) {
-    markdown.docRootIndexFile = markdownInJS;
-    markdown.firstPagePath = firstLink;
-  }
-
-  updateCallback();
-
-  return markdownInJS;
-}
+export default registerMarkdown;

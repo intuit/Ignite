@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Has default route 1`] = `
+<App
+  location={undefined}
+  markdown={
+    Object {
+      "docRootIndexFile": [Function],
+    }
+  }
+/>
+`;
+
+exports[`sets first page and root from index file 1`] = `
+<App
+  location={undefined}
+  markdown={
+    Object {
+      "/foo/bar": [Function],
+      "docRootIndexFile": [Function],
+      "firstPagePath": "/first/page",
+    }
+  }
+/>
+`;
+
+exports[`update markdown provided 1`] = `
+<App
+  location={undefined}
+  markdown={
+    Object {
+      "/foo/bar": [Function],
+      "docRootIndexFile": [Function],
+    }
+  }
+/>
+`;

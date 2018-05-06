@@ -52,13 +52,13 @@ jobs:
           at: ~/Ignite 
       - run:
           name: Test
-          command: yarn test --ci --testResultsProcessor="jest-junit"
+          command: yarn test --ci
           environment:
-            JEST_JUNIT_OUTPUT: "coverage/junit.xml"
+            JEST_JUNIT_OUTPUT: "coverage/junitjunit.xml"
       - store_test_results:
-          path: coverage/
+          path: coverage/junit
       - store_artifacts:
-          path: coverage/
+          path: coverage/junit
       - run:
           name: Send CodeCov Results
           command: bash <(curl -s https://codecov.tools.a.intuit.com/bash) -t $CODECOV_KEY
