@@ -2,6 +2,7 @@
 
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
+import ghpages from 'gh-pages';
 
 import config from '../webpack.config';
 
@@ -43,10 +44,38 @@ export default function build(options) {
   } else {
     compiler.run(err => {
       if (err) {
-        throw err;
+        console.log(err);
+        return;
       }
 
-      console.log('Documentation packaged!');
+      if (options.publish) {
+        if (!options.githubURL) {
+          console.log('Need to provide githubURL option to publish');
+          return;
+        }
+
+        if (options.githubURL.includes('http')) {
+          options.githubURL = options.githubURL.split('//')[1];
+        }
+
+        ghpages.publish(
+          options.dst,
+          {
+            message: ':memo: Update Documentation',
+            repo: `https://username:${process.env.GITHUB_KEY}@${
+              options.githubURL
+            }`
+          },
+          err => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+
+            console.log('Documentation publish to github-pages!');
+          }
+        );
+      }
     });
   }
 }

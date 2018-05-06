@@ -34,6 +34,14 @@ Fill to be used as the index of your website. Is also used as the sidebar. This 
 ignite --index index.md
 ```
 
+## Publish (--publish)
+
+Publish the docs to the githubURL. Must [setup](./pages/Publishing.md)
+
+```shell
+ignite --publish
+```
+
 ## Watch (--watch, -w)
 
 Build the documentation website and serve it on localhost. Default port is 8008.
@@ -55,10 +63,10 @@ ignite --port 1337
 Title of the docs. Usually what you are documenting. Used in the navigation bar.
 
 ```shell
-ignite --title My Cool Docs
+ignite --title 'My Cool Docs'
 ```
 
-## GitHub URL (--githubURL, -gh)
+## GitHub URL (--githubURL)
 
 If present includes a link to github. Usually where you store the source code for what you're documenting.
 
@@ -66,7 +74,7 @@ If present includes a link to github. Usually where you store the source code fo
 ignite --githubURL https://github.com/Team/Project
 ```
 
-## Code Highlight Style (--codeStyle, -cs)
+## Code Highlight Style (--codeStyle)
 
 Code highlight style for code blocks. Can use any of [these](https://github.com/isagalaev/highlight.js/tree/master/src/styles) styles
 

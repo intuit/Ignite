@@ -20,7 +20,7 @@
     "build": "chmod 777 ./dist/ignite-cli.js && ./dist/ignite-cli.js",
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w",
-    "publish:docs": "./scripts/build-pages.sh"
+    "publish:docs": "npm run build -- --publish"
   },
   "license": "ISC",
   "dependencies": {

@@ -19,6 +19,8 @@ const argv = yargs
   .default('i', defaults.index)
   .alias('i', 'index')
 
+  .describe('publish', 'publish the docs to the githubURL')
+
   .describe('w', 'watch documentation files for changes')
   .alias('w', 'watch')
   .boolean('w')
@@ -32,15 +34,13 @@ const argv = yargs
   .default('t', defaults.title)
   .alias('t', 'title')
 
-  .describe('gh', 'url to github repository')
-  .alias('gh', 'githubURL')
+  .describe('githubURL', 'url to github repository')
 
   .describe(
-    'cs',
+    'codeStyle',
     'what highlight style to use for code - see options: https://github.com/isagalaev/highlight.js/tree/master/src/styles'
   )
-  .default('cs', defaults.codeStyle)
-  .alias('cs', 'codeStyle')
+  .default('codeStyle', defaults.codeStyle)
 
   .describe('c', 'color to use for the app')
   .default('c', defaults.color)
