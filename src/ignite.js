@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
+import util from 'util';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
-import git from 'simple-git';
 
 import config from '../webpack.config';
+
+const exec = util.promisify(require('child_process').exec);
 
 export const defaults = {
   mode: 'production',
@@ -43,7 +45,7 @@ export default function build(options, author) {
       console.log(`Starting server on http://localhost:${port}`);
     });
   } else {
-    compiler.run(err => {
+    compiler.run(async err => {
       if (err) {
         console.log(err);
         return;
@@ -69,9 +71,8 @@ export default function build(options, author) {
           options.githubURL = options.githubURL.split('//')[1];
         }
 
-        git()
-          .addConfig('user.name', author.name)
-          .addConfig('user.email', author.email);
+        await exec(`git config user.email ${author.email}`);
+        await exec(`git config user.name ${author.name}`);
 
         ghpages.publish(
           options.dst,
