@@ -7,6 +7,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 
+const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
+
 module.exports = function(options = {}) {
   const debug = options.mode === 'development';
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -48,6 +50,7 @@ module.exports = function(options = {}) {
               loader: path.resolve(__dirname, './dist/loaders/markdown-it.js'),
               options: {
                 xhtmlOut: true,
+                plugins: ['markdown-it-emoji', fontAwesomeMarkdown],
                 highlight: (code, language) => {
                   const validLang = Boolean(
                     language && highlightjs.getLanguage(language)
