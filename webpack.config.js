@@ -13,11 +13,15 @@ const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
 module.exports = function(options = {}) {
   const debug = options.mode === 'development';
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
+  const logoPath = path.resolve(
+    path.join(options.dst, options.src, options.logo)
+  );
 
   return {
     mode: options.mode,
 
     entry: [
+      logoPath,
       ...docs.map(doc => path.resolve(doc)),
       path.resolve(__dirname, './src/app/index.js')
     ],
@@ -34,12 +38,7 @@ module.exports = function(options = {}) {
         {
           test: /\.md$/,
           use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['react']
-              }
-            },
+            'babel-loader',
             {
               loader: path.resolve(
                 __dirname,
@@ -72,9 +71,7 @@ module.exports = function(options = {}) {
         {
           test: /\.js$/,
           exclude: /node_modules\/(?!.*ignite\/src)/,
-          use: {
-            loader: 'babel-loader'
-          }
+          use: 'babel-loader'
         },
         {
           test: /\.(gif|png|jpe?g|svg)$/i,
@@ -148,7 +145,10 @@ module.exports = function(options = {}) {
       new webpack.DefinePlugin({
         'process.env': {
           title: JSON.stringify(options.title),
-          githubURL: JSON.stringify(options.githubURL)
+          githubURL: JSON.stringify(options.githubURL),
+          logo: JSON.stringify(
+            path.join(options.dst, options.src, options.logo)
+          )
         }
       }),
       debug &&
