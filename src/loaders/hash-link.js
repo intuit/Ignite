@@ -4,6 +4,10 @@ import transformLinks from 'transform-markdown-links';
 
 export default function(source, rootPath = root()) {
   const markdown = transformLinks(source, link => {
+    if (link.includes('http')) {
+      return link;
+    }
+
     if (path.extname(link) === '.md') {
       return path.join('#', link);
     }
