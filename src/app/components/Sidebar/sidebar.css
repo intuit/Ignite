@@ -1,5 +1,9 @@
 .root li {
   list-style: none;
+
+  a {
+    padding: 10px;
+  }
 }
 
 .sidebar {
