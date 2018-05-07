@@ -68,7 +68,8 @@
     "stylelint": "^9.2.0",
     "transform-markdown-links": "^2.0.0",
     "webpack": "^4.6.0",
-    "webpack-dev-server": "^3.1.3"
+    "webpack-dev-server": "^3.1.3",
+    "webpack-messages": "^1.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -156,5 +157,19 @@
   },
   "jest-junit": {
     "output": "./coverage/junit/junit.xml"
-  }
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-decorators",
+      "transform-react-constant-elements",
+      "transform-react-inline-elements",
+      "add-module-exports"
+    ]
+  }  
 }
