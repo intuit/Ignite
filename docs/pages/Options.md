@@ -10,6 +10,8 @@ All options can be used as CLI arguments or declared in the package.json.
 }
 ```
 
+---
+
 ## Source (--src, -s)
 
 Source folder to search for markdown files in
@@ -106,6 +108,8 @@ Specify the color to use throughout the app.
 ignite --color 'cadetblue'
 ignite --color '#f44336'
 ```
+
+---
 
 ## Utility Commands
 
