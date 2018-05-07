@@ -32,16 +32,12 @@ export default function build(options, user) {
 
   if (options.watch) {
     const devServerOptions = Object.assign({}, webpackConfig.devServer, {
-      quiet: true,
-      stats: {
-        colors: true
-      }
+      quiet: true
     });
     const server = new WebpackDevServer(compiler, devServerOptions);
-    const port = options.port || 8080;
 
-    server.listen(port, '127.0.0.1', () => {
-      console.log(`Starting server on http://localhost:${port}`);
+    server.listen(options.port, '127.0.0.1', () => {
+      console.log(`Starting server on http://localhost:${options.port}`);
     });
   } else {
     compiler.run((err, stats) => {

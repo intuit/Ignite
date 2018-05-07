@@ -52,7 +52,6 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "mini-css-extract-plugin": "^0.4.0",
-    "open-browser-webpack-plugin": "^0.0.5",
     "postcss-color-rgba-fallback": "^3.0.0",
     "postcss-initial": "^2.0.0",
     "postcss-loader": "^2.1.5",

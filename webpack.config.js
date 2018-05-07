@@ -2,17 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
-var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // eslint-disable-next-line import/no-unresolved
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
 
 module.exports = function(options = {}) {
-  const debug = options.mode === 'development';
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = path.resolve(path.join(options.src, options.logo));
 
@@ -170,9 +168,7 @@ module.exports = function(options = {}) {
             `You application is running here http://localhost:${options.port}`
           ]
         }
-      }),
-      debug &&
-        new OpenBrowserPlugin({ url: `http://localhost:${options.port}` })
-    ].filter(Boolean)
+      })
+    ]
   };
 };
