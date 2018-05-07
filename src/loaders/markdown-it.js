@@ -16,7 +16,6 @@ export default function(source) {
       if (Array.isArray(plugin)) {
         options = plugin[1];
         plugin = require(plugin[0]);
-        console.log(plugin, options);
       }
 
       renderer.use(plugin, options);

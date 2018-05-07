@@ -45,7 +45,7 @@ function index(source, pathToMarkdown) {
 
     function markDownPage(props) {
       const atIndex = props.currentPage === '/';
-      console.log(props.currentPage, '${firstLink}');
+
       return (
         <div className={props.className}>
           <section>
