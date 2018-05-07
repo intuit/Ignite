@@ -13,17 +13,24 @@ const Sidebar = props => (
       props.className
     )}
   >
-    {props.content && <props.content className={styles.sidebar} />}
+    {props.content && (
+      <props.content
+        className={styles.sidebar}
+        currentPage={props.currentPage}
+      />
+    )}
   </div>
 );
 
 Sidebar.propTypes = {
   className: PropTypes.string,
+  currentPage: PropTypes.string,
   content: PropTypes.func
 };
 
 Sidebar.defaultProps = {
   className: null,
+  currentPage: null,
   content: null
 };
 
