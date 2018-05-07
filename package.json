@@ -26,11 +26,10 @@
   "dependencies": {
     "autoprefixer": "^8.4.1",
     "babel-core": "^6.26.3",
-    "babel-env": "^2.4.1",
     "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.5.1",
@@ -160,7 +159,7 @@
   },
   "babel": {
     "presets": [
-      "env",
+      "babel-preset-env",
       "react",
       "stage-0"
     ],
