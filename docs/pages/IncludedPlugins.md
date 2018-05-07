@@ -50,3 +50,11 @@ Add characters printed above the line.
 ```
 
 OUTPUT: 29^th^
+
+## Underline
+
+```
+\+\+underline\+\+
+```
+
+OUTPUT: ++underline++
