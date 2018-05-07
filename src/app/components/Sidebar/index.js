@@ -5,14 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './sidebar.css';
 
 const Sidebar = props => (
-  <div
-    className={makeClass(
-      'sidebar',
-      'sidebar-left',
-      styles.root,
-      props.className
-    )}
-  >
+  <div className={makeClass(styles.root, props.className)}>
     {props.content && (
       <props.content
         className={styles.sidebar}

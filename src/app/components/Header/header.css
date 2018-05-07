@@ -1,7 +1,14 @@
 .nav {
-  :global .nav-container {
-    max-width: 1500px;
-  }
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .github {
@@ -15,6 +22,10 @@
 }
 
 .logo {
-  height: 40px;
-  padding-right: 15px;
+  height: 52px;
+  padding: 10px 0px;
+}
+
+.title {
+  font-size: 23px;
 }

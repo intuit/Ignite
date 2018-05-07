@@ -1,16 +1,29 @@
-.root li {
-  list-style: none;
-  margin: 10px;
-  white-space: nowrap;
+.root {
+  padding: 0;
 
-  a {
-    padding: 7px;
+  li {
+    list-style: none;
+    margin: 10px 0;
+    white-space: nowrap;
+
+    a {
+      padding: 7px;
+    }
   }
 }
 
 .sidebar {
+  border-right: 1px solid #e0e0e0;
   position: sticky;
   top: 0px;
+
+  section {
+    padding-left: 0;
+  }
+
+  ul {
+    margin: 0;
+  }
 
   ul ul {
     padding-left: 15px;

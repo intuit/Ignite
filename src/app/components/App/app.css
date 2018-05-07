@@ -7,8 +7,18 @@ body {
 }
 
 .App {
-  min-height: calc(100% - 173px);
-  max-width: 1500px;
+  display: flex;
+  justify-content: center;
+
+  &:global(.columns) {
+    padding-top: 35px;
+    padding-bottom: 45px;
+    margin: 0;
+  }
+}
+
+section {
+  padding: 15px 30px;
 }
 
 a {
@@ -19,21 +29,18 @@ img {
   max-width: 100%;
 }
 
-nav {
+:global .navbar {
   background-color: $APP_COLOR;
 
   a {
     color: white;
 
+    &:hover,
     &:active {
-      color: $APP_COLOR;
-      opacity: 0.8;
+      color: grey;
+      opacity: 0.4;
     }
   }
-}
-
-footer {
-  background-color: #b9b6b6;
 }
 
 pre {
@@ -60,6 +67,6 @@ h4,
 h5,
 h6 {
   &:not(:first-child) {
-    padding-top: 35px;
+    padding-top: 25px;
   }
 }
