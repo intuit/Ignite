@@ -91,4 +91,4 @@ class Plugin {
 * [markdown-it-abbr](https://www.npmjs.com/package/markdown-it-abbr) - Abbreviation (\<abbr\>) tag plugin
 * [markdown-it-checkbox](https://www.npmjs.com/package/markdown-it-checkbox) - Plugin to create checkboxes
 * [markdown-it-video](https://www.npmjs.com/package/markdown-it-video) - markdown-it plugin for embedding hosted videos.
-* [markdown-it-emoji](https://www.npmjs.com/package/markdown-it-emoji) - Adds emoji & emoticon syntax support
+* [markdown-it-mentions](https://www.npmjs.com/package/markdown-it-mentions) - Support Twitter like mentions
