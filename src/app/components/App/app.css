@@ -43,6 +43,15 @@ img {
   }
 }
 
+:global .checkbox {
+  display: block;
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    margin-right: 10px;
+  }
+}
+
 pre {
   border-left: 4px solid $APP_COLOR;
 
