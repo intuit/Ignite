@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
@@ -72,7 +73,7 @@ export default function build(options, user) {
         }
 
         ghpages.publish(
-          options.dst,
+          path.relative(options.dst),
           {
             message: ':memo: Update Documentation',
             repo: `https://username:${process.env.GITHUB_KEY}@${
