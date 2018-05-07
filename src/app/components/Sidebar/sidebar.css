@@ -1,12 +1,32 @@
 .root li {
   list-style: none;
+  margin: 10px;
+  white-space: nowrap;
 
   a {
-    padding: 10px;
+    padding: 7px;
   }
 }
 
 .sidebar {
   position: sticky;
   top: 0px;
+
+  ul ul {
+    padding-left: 15px;
+
+    li:before {
+      content: '\2501';
+    }
+  }
+
+  section > ul > li > ul > li:last-of-type {
+    padding-bottom: 15px;
+  }
+}
+
+:global .activeSidebar {
+  background-color: $APP_COLOR;
+  color: white;
+  border-radius: 3px;
 }

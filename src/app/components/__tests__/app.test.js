@@ -1,7 +1,7 @@
 import React from 'react';
 
 import App from '../App';
-import renderToJson from './util';
+import renderToJson from './utils/render-to-json';
 
 const markdown = {
   docRootIndexFile: () => <h1>Nothing to see here...</h1>

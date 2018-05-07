@@ -7,11 +7,19 @@ export default function(source) {
 
   if (options.plugins) {
     options.plugins.forEach(plugin => {
+      let options = {};
+
       if (typeof plugin === 'string') {
         plugin = require(plugin);
       }
 
-      renderer.use(plugin);
+      if (Array.isArray(plugin)) {
+        options = plugin[1];
+        plugin = require(plugin[0]);
+        console.log(plugin, options);
+      }
+
+      renderer.use(plugin, options);
     });
   }
 

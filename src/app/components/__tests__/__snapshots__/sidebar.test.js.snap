@@ -12,6 +12,7 @@ exports[`only renders content if its there 2`] = `
 >
   <content
     className={undefined}
+    currentPage={null}
   />
 </div>
 `;
