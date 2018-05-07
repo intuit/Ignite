@@ -41,12 +41,12 @@ Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlig
 
 Highlight style can be configured via [options](./pages/Options.md#code-highlight-style-codestyle)
 
-## Table of Contents
+## Superscript
 
-Easily add a Table of Contents to any page More docs [here](https://github.com/CenterForOpenScience/markdown-it-toc).
+Add characters printed above the line.
 
 ```
-\@\[toc\]
+29\^th\^
 ```
 
-OUTPUT: See Top of Page
+OUTPUT: 29^th^
