@@ -9,6 +9,7 @@
   * [Configuration](./pages/Plugins.md#configuration)
   * [Plugin Example](./pages/Plugins.md#plugin-example)
   * [Useful Plugins](./pages/Plugins.md#useful-plugins)
+  * [Included Plugins](./pages/IncludedPlugins.md)
 * [:package: Publishing](./pages/Publishing.md)
   * [Setup](./pages/Publishing.md#setup-branch)
   * [Continuous Integration](./pages/Publishing.md#Continuous-integration)

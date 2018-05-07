@@ -50,6 +50,7 @@ module.exports = function(options = {}) {
                 xhtmlOut: true,
                 plugins: [
                   'markdown-it-anchor',
+                  'markdown-it-emoji',
                   fontAwesomeMarkdown,
                   ...options.plugins
                 ],
