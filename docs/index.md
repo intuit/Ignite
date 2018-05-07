@@ -10,4 +10,6 @@
   * [Plugin Example](./pages/Plugins.md#plugin-example)
   * [Useful Plugins](./pages/Plugins.md#useful-plugins)
 * [:package: Publishing](./pages/Publishing.md)
+  * [Setup](./pages/Publishing.md#setup-branch)
+  * [Continuous Integration](./pages/Publishing.md#Continuous-integration)
 * [:wrench: Options](./pages/Options.md)
