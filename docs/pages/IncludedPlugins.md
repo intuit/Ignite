@@ -66,3 +66,14 @@ OUTPUT: ++underline++
 ```
 
 OUTPUT: ==highlight==
+
+## Check Boxes and Task Lists
+
+```markdown
+\[ \] unchecked
+\[x\] checked
+```
+
+OUTPUT:
+[ ] unchecked
+[x] checked
