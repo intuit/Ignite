@@ -60,6 +60,7 @@
 
 :global .activeSidebar {
   background-color: $APP_COLOR;
+  background-color: $SELECTED_COLOR;
   color: white;
   border-radius: 3px;
 }

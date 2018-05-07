@@ -122,7 +122,8 @@ module.exports = function(options = {}) {
                   require('autoprefixer'),
                   require('postcss-simple-vars')({
                     variables: {
-                      APP_COLOR: options.color
+                      APP_COLOR: options.color,
+                      SELECTED_COLOR: options.selectedColor
                     }
                   })
                 ]

@@ -7,7 +7,7 @@ import styles from './header.css';
 
 const Header = props => (
   <nav
-    className={makeClass(styles.nav, 'navbar')}
+    className={makeClass(styles.nav, 'navbar', 'is-primary')}
     role="navigation"
     aria-label="main navigation"
   >
