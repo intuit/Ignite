@@ -58,3 +58,11 @@ OUTPUT: 29^th^
 ```
 
 OUTPUT: ++underline++
+
+## Highlight
+
+```
+\=\=highlight\=\=
+```
+
+OUTPUT: ==highlight==
