@@ -44,9 +44,24 @@ export default function build(options, user) {
       console.log(`Starting server on http://localhost:${port}`);
     });
   } else {
-    compiler.run(err => {
+    compiler.run((err, stats) => {
       if (err) {
-        console.log(err);
+        console.error(err.stack || err);
+        if (err.details) {
+          console.error(err.details);
+        }
+        return;
+      }
+
+      const info = stats.toJson();
+
+      if (stats.hasErrors()) {
+        console.error(info.errors);
+        return;
+      }
+
+      if (stats.hasWarnings()) {
+        console.warn(info.warnings);
         return;
       }
 
