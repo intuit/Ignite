@@ -49,6 +49,7 @@ module.exports = function(options = {}) {
               options: {
                 xhtmlOut: true,
                 plugins: [
+                  'markdown-it-sub',
                   'markdown-it-mark',
                   'markdown-it-ins',
                   'markdown-it-sup',

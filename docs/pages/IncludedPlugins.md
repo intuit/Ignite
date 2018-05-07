@@ -34,26 +34,26 @@ OUTPUT:
 
 Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlight.js). You must provide a language like this:
 
-````
+````markdown
 \```javascript
 \```
 ````
 
 Highlight style can be configured via [options](./pages/Options.md#code-highlight-style-codestyle)
 
-## Superscript
+## (Super|Sub)script
 
-Add characters printed above the line.
+Add characters printed above or below the line.
 
+```markdown
+29\^th\^ H\~2\~0
 ```
-29\^th\^
-```
 
-OUTPUT: 29^th^
+OUTPUT: 29^th^ H~2~0
 
 ## Underline
 
-```
+```markdown
 \+\+underline\+\+
 ```
 
@@ -61,7 +61,7 @@ OUTPUT: ++underline++
 
 ## Highlight
 
-```
+```markdown
 \=\=highlight\=\=
 ```
 
