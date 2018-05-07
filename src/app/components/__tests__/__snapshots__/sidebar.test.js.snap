@@ -2,13 +2,13 @@
 
 exports[`only renders content if its there 1`] = `
 <div
-  className="sidebar sidebar-left"
+  className=""
 />
 `;
 
 exports[`only renders content if its there 2`] = `
 <div
-  className="sidebar sidebar-left"
+  className=""
 >
   <content
     className={undefined}

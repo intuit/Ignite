@@ -14,8 +14,10 @@ export const defaults = {
   port: 8008,
   title: 'Documentation',
   codeStyle: 'foundation',
-  color: '#f44336',
-  logo: 'logo.svg'
+  color: 'auto',
+  selectedColor: '#f44336',
+  logo: 'logo.svg',
+  bulmaTheme: 'simplex'
 };
 
 export default function build(options, user) {

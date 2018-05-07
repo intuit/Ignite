@@ -46,16 +46,16 @@ class App extends Component {
       <div className={styles.root}>
         <Header />
 
-        <div className={makeClass(styles.App, 'container')}>
-          <div className="row">
+        <div className={makeClass('container')}>
+          <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
-              className={makeClass('col', 'col-lg-3')}
+              className="column is-one-quarter"
               content={markdown.docRootIndexFile}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
               }`}
             />
-            <Page className={makeClass('col', 'col-lg-9')} />
+            <Page className="column" />
           </div>
         </div>
 

@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer 1`] = `
-<footer>
+<footer
+  className="footer"
+>
   <p
-    className="copyright align-center"
+    className="has-text-centered"
   >
     Made with 🌳🔥💨 by Intuit. Licensed under the MIT License.
   </p>

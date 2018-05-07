@@ -84,6 +84,8 @@ class Plugin {
 }
 ```
 
+---
+
 ## Useful Plugins
 
 * [markdown-it-footnote](https://www.npmjs.com/package/markdown-it-footnote) - Footnotes with anchors

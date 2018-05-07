@@ -1,16 +1,49 @@
-.root li {
-  list-style: none;
-  margin: 10px;
-  white-space: nowrap;
+.root {
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin: 10px 0;
+    white-space: nowrap;
+
+    a {
+      padding: 7px;
+    }
+  }
+}
+
+:global .navbar {
+  background-color: $APP_COLOR;
+
+  .navbar-item {
+    border: none;
+  }
 
   a {
-    padding: 7px;
+    color: white;
+
+    &:hover,
+    &:active {
+      color: grey;
+      opacity: 0.4;
+    }
   }
 }
 
 .sidebar {
+  border-right: 1px solid #e0e0e0;
   position: sticky;
-  top: 0px;
+  top: 35px;
+
+  section {
+    padding: 0;
+    margin: 30px;
+    margin-left: 0;
+  }
+
+  ul {
+    margin: 0;
+  }
 
   ul ul {
     padding-left: 15px;
@@ -27,6 +60,7 @@
 
 :global .activeSidebar {
   background-color: $APP_COLOR;
+  background-color: $SELECTED_COLOR;
   color: white;
   border-radius: 3px;
 }

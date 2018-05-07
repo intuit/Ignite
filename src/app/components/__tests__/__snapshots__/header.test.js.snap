@@ -2,54 +2,71 @@
 
 exports[`renders githubURL 1`] = `
 <nav
-  className={undefined}
+  aria-label="main navigation"
+  className="navbar is-primary"
+  role="navigation"
 >
   <div
-    className="nav-container"
+    className="container"
   >
     <div
-      className="nav-logo"
+      className="navbar-brand"
     >
       <a
+        className="navbar-item"
         href="/"
       />
     </div>
-    <ul
-      className="nav-links"
+    <div
+      className="navbar-end"
     >
-      <li
-        className={undefined}
+      <a
+        className="navbar-item"
+        href="https://github.com/sindresorhus/cows"
       >
-        <a
-          href="https://github.com/sindresorhus/cows"
-        >
-          GitHub
-        </a>
-        <Icon
-          icon="github"
-          type="fab"
-        />
-      </li>
-    </ul>
+        GitHub
+      </a>
+      <Icon
+        icon="github"
+        type="fab"
+      />
+    </div>
   </div>
 </nav>
 `;
 
 exports[`renders title 1`] = `
 <nav
-  className={undefined}
+  aria-label="main navigation"
+  className="navbar is-primary"
+  role="navigation"
 >
   <div
-    className="nav-container"
+    className="container"
   >
     <div
-      className="nav-logo"
+      className="navbar-brand"
     >
       <a
+        className="navbar-item"
         href="/"
       >
         Super Cool Docs
       </a>
+    </div>
+    <div
+      className="navbar-end"
+    >
+      <a
+        className="navbar-item"
+        href={undefined}
+      >
+        GitHub
+      </a>
+      <Icon
+        icon="github"
+        type="fab"
+      />
     </div>
   </div>
 </nav>

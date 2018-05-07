@@ -51,6 +51,8 @@ Now all you need to do is setup up a `script` in package.json to publish the doc
 }
 ```
 
+Now all that's left to do is to publish to github-pages! Run the publish docs command and if everything goes well your 'gh-pages' branch should be updated with the new documentation bundle. A little more setup is needed for a Continuos Integration environment.
+
 ## Continuous Integration
 
 ### Circle CI

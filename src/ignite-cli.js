@@ -53,6 +53,14 @@ const argv = yargs
   .default('c', defaults.color)
   .alias('c', 'color')
 
+  .describe('sc', 'color for selected routing in sidebar')
+  .default('sc', defaults.selectedColor)
+  .alias('sc', 'selectedColor')
+
+  .describe('b', 'color for selected routing in sidebar')
+  .default('b', defaults.bulmaTheme)
+  .alias('b', 'bulmaTheme')
+
   .alias('v', 'version')
   .alias('h', 'help')
   .help().argv;

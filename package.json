@@ -132,7 +132,8 @@
   },
   "ignite": {
     "title": "Ignite",
-    "githubURL": "https://github.intuit.com/Fuego/Ignite"
+    "githubURL": "https://github.intuit.com/Fuego/Ignite",
+    "color": "#f44336"
   },
   "jest": {
     "transform": {

@@ -122,7 +122,8 @@ module.exports = function(options = {}) {
                   require('autoprefixer'),
                   require('postcss-simple-vars')({
                     variables: {
-                      APP_COLOR: options.color
+                      APP_COLOR: options.color,
+                      SELECTED_COLOR: options.selectedColor
                     }
                   })
                 ]
@@ -151,6 +152,7 @@ module.exports = function(options = {}) {
       ]),
       new HtmlWebPackPlugin({
         codeStyle: options.codeStyle,
+        bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, './src/index.html'),
         filename: './index.html'
       }),
