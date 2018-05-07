@@ -17,7 +17,7 @@ export const defaults = {
   color: 'auto',
   selectedColor: '#f44336',
   logo: 'logo.svg',
-  bulmaStyle: 'simplex'
+  bulmaTheme: 'simplex'
 };
 
 export default function build(options, user) {
