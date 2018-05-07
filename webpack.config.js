@@ -6,6 +6,7 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
+var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // eslint-disable-next-line import/no-unresolved
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
@@ -162,6 +163,7 @@ module.exports = function(options = {}) {
           logo: JSON.stringify(path.join(options.src, options.logo))
         }
       }),
+      new FriendlyErrorsWebpackPlugin(),
       debug &&
         new OpenBrowserPlugin({ url: `http://localhost:${options.port}` })
     ].filter(Boolean)

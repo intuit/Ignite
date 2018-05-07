@@ -32,6 +32,7 @@ export default function build(options, user) {
 
   if (options.watch) {
     const devServerOptions = Object.assign({}, webpackConfig.devServer, {
+      quiet: true,
       stats: {
         colors: true
       }
@@ -52,15 +53,7 @@ export default function build(options, user) {
         return;
       }
 
-      const info = stats.toJson();
-
-      if (stats.hasErrors()) {
-        console.error(info.errors);
-        return;
-      }
-
-      if (stats.hasWarnings()) {
-        console.warn(info.warnings);
+      if (stats.hasErrors() || stats.hasWarnings()) {
         return;
       }
 
