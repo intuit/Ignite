@@ -13,9 +13,7 @@ const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
 module.exports = function(options = {}) {
   const debug = options.mode === 'development';
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
-  const logoPath = path.resolve(
-    path.join(options.dst, options.src, options.logo)
-  );
+  const logoPath = path.resolve(path.join(options.src, options.logo));
 
   return {
     mode: options.mode,
