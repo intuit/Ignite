@@ -1,7 +1,5 @@
 # Included Plugins
 
-@[toc]
-
 ## Font awesome
 
 All icons listed [here](https://fontawesome.com/icons/bomb?style=solid).
