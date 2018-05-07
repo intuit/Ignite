@@ -29,20 +29,6 @@ img {
   max-width: 100%;
 }
 
-:global .navbar {
-  background-color: $APP_COLOR;
-
-  a {
-    color: white;
-
-    &:hover,
-    &:active {
-      color: grey;
-      opacity: 0.4;
-    }
-  }
-}
-
 :global .checkbox {
   display: block;
 

@@ -151,6 +151,7 @@ module.exports = function(options = {}) {
       ]),
       new HtmlWebPackPlugin({
         codeStyle: options.codeStyle,
+        bulmaStyle: options.bulmaStyle,
         template: path.resolve(__dirname, './src/index.html'),
         filename: './index.html'
       }),

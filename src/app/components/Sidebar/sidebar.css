@@ -12,6 +12,24 @@
   }
 }
 
+:global .navbar {
+  background-color: $APP_COLOR;
+
+  .navbar-item {
+    border: none;
+  }
+
+  a {
+    color: white;
+
+    &:hover,
+    &:active {
+      color: grey;
+      opacity: 0.4;
+    }
+  }
+}
+
 .sidebar {
   border-right: 1px solid #e0e0e0;
   position: sticky;
