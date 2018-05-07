@@ -148,9 +148,7 @@ module.exports = function(options = {}) {
         'process.env': {
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
-          logo: JSON.stringify(
-            path.join(options.dst, options.src, options.logo)
-          )
+          logo: logoPath
         }
       }),
       debug &&
