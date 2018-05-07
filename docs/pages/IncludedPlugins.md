@@ -37,7 +37,20 @@ Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlig
 \```
 ````
 
-Highlight style can be configured via [options](./pages/Options.md#code-highlight-style-codestyle)
+## Image Captions
+
+Adds a caption to an image and centers it within the page.
+
+**_Must have 'caption' alt text for styles to work_**
+
+```markdown
+![caption](https://media.tenor.com/images/cb12bc24511449db821768715e85b0d9/tenor.gif)
+_image caption_
+```
+
+OUTPUT:
+![caption](https://media.tenor.com/images/cb12bc24511449db821768715e85b0d9/tenor.gif)
+_image caption_
 
 ## (Super|Sub)script
 

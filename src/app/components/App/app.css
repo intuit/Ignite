@@ -65,3 +65,16 @@ h6 {
     padding-top: 25px;
   }
 }
+
+p {
+  img[alt='caption'] {
+    display: block;
+    margin: auto;
+  }
+
+  img + em {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+}
