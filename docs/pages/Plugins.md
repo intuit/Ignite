@@ -89,6 +89,5 @@ class Plugin {
 * [markdown-it-footnote](https://www.npmjs.com/package/markdown-it-footnote) - Footnotes with anchors
 * [markdown-it-container](https://www.npmjs.com/package/markdown-it-container) - Plugin for creating block-level custom containers (a good starting place for a plugin)
 * [markdown-it-abbr](https://www.npmjs.com/package/markdown-it-abbr) - Abbreviation (\<abbr\>) tag plugin
-* [markdown-it-checkbox](https://www.npmjs.com/package/markdown-it-checkbox) - Plugin to create checkboxes
 * [markdown-it-video](https://www.npmjs.com/package/markdown-it-video) - markdown-it plugin for embedding hosted videos.
-* [markdown-it-emoji](https://www.npmjs.com/package/markdown-it-emoji) - Adds emoji & emoticon syntax support
+* [markdown-it-mentions](https://www.npmjs.com/package/markdown-it-mentions) - Support Twitter like mentions

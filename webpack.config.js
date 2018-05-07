@@ -49,7 +49,18 @@ module.exports = function(options = {}) {
               options: {
                 xhtmlOut: true,
                 plugins: [
+                  [
+                    'markdown-it-checkbox',
+                    {
+                      divWrap: true
+                    }
+                  ],
+                  'markdown-it-sub',
+                  'markdown-it-mark',
+                  'markdown-it-ins',
+                  'markdown-it-sup',
                   'markdown-it-anchor',
+                  'markdown-it-emoji',
                   fontAwesomeMarkdown,
                   ...options.plugins
                 ],

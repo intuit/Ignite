@@ -20,7 +20,7 @@ rm '.gitignore'
 
 ### Key
 
-To successfully publish your documentation on a continuos integration environment, or anything other than your local machine, you will need to set up a `GITHUB_KEY` environment variable.
+To successfully publish your documentation on a Continuous integration environment, or anything other than your local machine, you will need to set up a `GITHUB_KEY` environment variable.
 
 ```bash
 GITHUB_KEY={github key with write access}
@@ -51,7 +51,7 @@ Now all you need to do is setup up a `script` in package.json to publish the doc
 }
 ```
 
-## Continuos Integration
+## Continuous Integration
 
 ### Circle CI
 
