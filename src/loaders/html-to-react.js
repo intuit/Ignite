@@ -15,17 +15,10 @@ function getLink(source, index = 0) {
   return source.substring(startIndex, endIndex);
 }
 
-const activeStyles = {
-  backgroundColor: 'coral',
-  color: 'white'
-};
-
 function addActive(source, link, firstLink) {
   source = source.replace(
     new RegExp('<a h'),
-    `<a style={'/${link}' === props.currentPage || '${firstLink}' === '${link}' && '/' === props.currentPage ? ${JSON.stringify(
-      activeStyles
-    )} : {}} h`
+    `<a className={'/${link}' === props.currentPage || '${firstLink}' === '${link}' && '/' === props.currentPage ? 'activeSidebar' : null} h`
   );
 
   return source;

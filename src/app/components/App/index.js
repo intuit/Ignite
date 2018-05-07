@@ -53,7 +53,6 @@ class App extends Component {
               content={markdown.docRootIndexFile}
               currentPage={`${location.pathname}${location.hash}`}
             />
-            />
             <Page className={makeClass('col', 'col-lg-9')} />
           </div>
         </div>

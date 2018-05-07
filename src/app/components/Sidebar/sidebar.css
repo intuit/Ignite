@@ -24,3 +24,9 @@
     padding-bottom: 15px;
   }
 }
+
+:global .activeSidebar {
+  background-color: $APP_COLOR;
+  color: white;
+  border-radius: 3px;
+}
