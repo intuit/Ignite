@@ -163,7 +163,14 @@ module.exports = function(options = {}) {
           logo: JSON.stringify(path.join(options.src, options.logo))
         }
       }),
-      new FriendlyErrorsWebpackPlugin(),
+      new FriendlyErrorsWebpackPlugin({
+        compilationSuccessInfo: {
+          clearConsole: true,
+          messages: [
+            `You application is running here http://localhost:${options.port}`
+          ]
+        }
+      }),
       debug &&
         new OpenBrowserPlugin({ url: `http://localhost:${options.port}` })
     ].filter(Boolean)
