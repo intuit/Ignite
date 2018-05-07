@@ -71,11 +71,6 @@ jobs:
           name: Build Library
           command: yarn build:lib
       - run:
-          name: Build Docs
-          command: yarn build
-      - store_artifacts:
-          path: _ignite
-      - run:
           name: Publish Docs
           command: yarn publish:docs
 
