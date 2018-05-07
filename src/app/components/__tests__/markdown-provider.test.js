@@ -1,7 +1,7 @@
 import React from 'react';
 
 import MarkdownProvider, { update } from '../MarkdownProvider';
-import renderToJson from './util';
+import renderToJson from './utils/renderToJson';
 
 test('Has default route', () => {
   expect(renderToJson(<MarkdownProvider />)).toMatchSnapshot();

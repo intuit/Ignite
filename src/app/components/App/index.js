@@ -51,7 +51,9 @@ class App extends Component {
             <Sidebar
               className={makeClass('col', 'col-lg-3')}
               content={markdown.docRootIndexFile}
-              currentPage={`${location.pathname}${location.hash}`}
+              currentPage={`${location.pathname}${
+                location.hash ? location.hash : ''
+              }`}
             />
             <Page className={makeClass('col', 'col-lg-9')} />
           </div>

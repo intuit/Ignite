@@ -135,7 +135,7 @@
     "testPathIgnorePatterns": [
       "/dist/",
       "/node_modules/",
-      "/__tests__/util.js"
+      "/__tests__/utils/"
     ],
     "testResultsProcessor": "jest-junit",
     "collectCoverage": true,
@@ -147,7 +147,10 @@
       "cobertura",
       "html",
       "lcov"
-    ]
+    ],
+    "moduleNameMapper": {
+      "scroll-to-element": "<rootDir>/src/app/components/__tests__/utils/test-stub.js"
+    }
   },
   "jest-junit": {
     "output": "./coverage/junit/junit.xml"
