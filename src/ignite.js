@@ -23,7 +23,22 @@ export default function build(options, user) {
 
   if (options.watch) {
     options = Object.assign(options, {
-      mode: 'development'
+      mode: 'development',
+      compilationSuccessInfo: {
+        messages: [
+          `You documentation is running here http://localhost:${options.port}`
+        ]
+      }
+    });
+  } else {
+    options = Object.assign(options, {
+      compilationSuccessInfo: {
+        messages: ['Documentation built!'],
+        notes: [
+          `Bundled documentation stored in '${options.dst}'.`,
+          'Run `ignite --publish` to publish documentation to github-pages.'
+        ]
+      }
     });
   }
 
@@ -52,8 +67,6 @@ export default function build(options, user) {
       if (stats.hasErrors() || stats.hasWarnings()) {
         return;
       }
-
-      console.log('Documentation built!');
 
       if (options.publish) {
         if (!options.githubURL) {

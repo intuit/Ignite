@@ -162,12 +162,8 @@ module.exports = function(options = {}) {
         }
       }),
       new FriendlyErrorsWebpackPlugin({
-        compilationSuccessInfo: {
-          clearConsole: true,
-          messages: [
-            `You application is running here http://localhost:${options.port}`
-          ]
-        }
+        clearConsole: options.mode === 'development',
+        compilationSuccessInfo: options.compilationSuccessInfo
       })
     ]
   };
