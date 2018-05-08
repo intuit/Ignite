@@ -8,12 +8,14 @@ Ignite is build upon Bulma and exposes some of the elements and components as ma
 
 Small tag labels to insert anywhere
 
-Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)]
+Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)] {YOUR_STRING}
+
+Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)]:[[SIZE](https://bulma.io/documentation/elements/tag/#sizes)] {YOUR_STRING}
 
 ```markdown
-#:is-info useful information #:is-success extension
+#:is-info useful information #:is-success:is-large extension
 ```
 
 OUTPUT:
 
-#:is-info useful information #:is-success extension
+#:is-info useful information #:is-success:is-medium extension extension

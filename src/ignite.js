@@ -17,7 +17,7 @@ export const defaults = {
   color: 'auto',
   selectedColor: 'auto',
   logo: 'logo.svg',
-  bulmaTheme: 'yeti'
+  bulmaTheme: 'materia'
 };
 
 export default function build(options, user) {
