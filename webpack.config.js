@@ -7,6 +7,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
+const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
@@ -25,11 +26,7 @@ module.exports = function(options = {}) {
   return {
     mode: options.mode,
 
-    entry: [
-      logoPath,
-      ...docs.map(doc => path.resolve(doc)),
-      path.resolve(__dirname, './src/app/index.js')
-    ],
+    entry: [logoPath, path.resolve(__dirname, './src/app/index.js')],
 
     devtool: 'source-map',
 
@@ -158,6 +155,9 @@ module.exports = function(options = {}) {
     },
 
     plugins: [
+      new LazyLoadPlugin({
+        entries: docs.map(doc => path.resolve(doc))
+      }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css'
