@@ -1,7 +1,7 @@
 Intro
 
 * [:page_facing_up: Introduction](./pages/Introduction.md)
-  * [Project Structure](./pages/Introduction.md#project-structure)
+  * [Project Structure](./pages/ProjectStructure.md)
 * [:tada: Getting Started](./pages/GettingStarted.md)
   * [Installation](./pages/GettingStarted.md#installation)
   * [Usage](./pages/GettingStarted.md#usage)
@@ -15,9 +15,8 @@ Customizations
   * [Plugin Example](./pages/Plugins.md#plugin-example)
   * [Useful Plugins](./pages/Plugins.md#useful-plugins)
   * [Included Plugins](./pages/IncludedPlugins.md)
-
-Usage
-
+  *
+  Usage
 * [:package: Publishing](./pages/Publishing.md)
   * [Setup](./pages/Publishing.md#setup-branch)
   * [Continuous Integration](./pages/Publishing.md#Continuous-integration)
