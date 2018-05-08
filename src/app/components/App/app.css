@@ -6,6 +6,10 @@ body {
   height: 100%;
 }
 
+.contentArea {
+  min-height: calc(100% - 64px - 104px);
+}
+
 h1,
 h2,
 h3,

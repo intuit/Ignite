@@ -46,7 +46,7 @@ class App extends Component {
       <div className={styles.root}>
         <Header />
 
-        <div className={makeClass('container')}>
+        <div className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
               className="column is-one-quarter"
