@@ -5,17 +5,13 @@ const withOptions = /message [\S ]+/;
 
 const message = {
   validate(params) {
-    console.log(params);
-
     return params.trim().match(withOptions) || params.trim().match(regExp);
   },
 
   render(tokens, idx) {
     const match = tokens[idx].info;
 
-    const [, title, ...options] = match.split(' ');
-    console.log(title);
-    console.log(options);
+    const [, , ...options] = match.split(' ');
 
     const classList = [];
 

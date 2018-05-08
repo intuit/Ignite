@@ -14,6 +14,8 @@ const bulmaTagMarkdown = require('./dist/extensions/bulma-tag');
 const bulmaProgressMarkdown = require('./dist/extensions/bulma-progress');
 const bulmaHeroMarkdown = require('./dist/extensions/bulma-hero');
 const bulmaMessageMarkdown = require('./dist/extensions/bulma-message');
+const bulmaBoxMarkdown = require('./dist/extensions/bulma-box');
+const bulmaRowMarkdown = require('./dist/extensions/bulma-row');
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -72,6 +74,8 @@ module.exports = function(options = {}) {
                   bulmaProgressMarkdown,
                   bulmaHeroMarkdown,
                   bulmaMessageMarkdown,
+                  bulmaBoxMarkdown,
+                  bulmaRowMarkdown,
                   ...options.plugins
                 ],
                 highlight: (code, language) => {

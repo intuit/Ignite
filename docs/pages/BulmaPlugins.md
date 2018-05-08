@@ -4,6 +4,73 @@ Ignite is build upon Bulma and exposes some of the elements and components as ma
 
 ## Elements
 
+### [Box](https://bulma.io/documentation/elements/box/)
+
+The .box element is simply a container with a shadow, a border, a radius, and some padding.
+For example, you can include a media object.
+
+```markdown
+::: box
+
+# Title
+
+I can contain various combinations of elements.
+:::
+```
+
+OUTPUT:
+
+::: box
+
+# Title
+
+I can contain various combinations of elements.
+:::
+
+### Row
+
+An element to organize a bunch of boxes into equal columns.
+
+```markdown
+||| row
+
+::: box
+
+# Title
+
+I can contain various combinations of elements.
+:::
+
+::: box
+
+# Title
+
+I can contain various combinations of elements.
+:::
+
+|||
+```
+
+OUTPUT:
+
+||| row
+
+::: box
+
+# Title
+
+I can contain various combinations of elements.
+:::
+
+::: box
+
+# Title
+
+I can contain various combinations of elements.
+:::
+
+|||
+
 ### [Tags](https://bulma.io/documentation/elements/tag/)
 
 Small tag labels to insert anywhere
@@ -20,7 +87,7 @@ OUTPUT:
 
 #:is-info useful information #:is-success:is-medium extension extension
 
-## [Progress](https://bulma.io/documentation/elements/progress/)
+### [Progress](https://bulma.io/documentation/elements/progress/)
 
 Native HTML progress bars
 
@@ -36,7 +103,7 @@ OUTPUT:
 
 %% 75 is-primary is-large Look at all this progress! %%
 
-## [Hero](https://bulma.io/documentation/layout/hero/)
+### [Hero](https://bulma.io/documentation/layout/hero/)
 
 The hero component allows you to add a full width banner to your webpage, which can optionally cover the full height of the page as well.
 
@@ -61,9 +128,9 @@ OUTPUT:
 
 :::
 
-## [Message](https://bulma.io/documentation/components/message/)
+### [Message](https://bulma.io/documentation/components/message/)
 
-Colored message blocks, to emphasize part of your page
+Colored message blocks, to emphasize part of your page. Supports color, size, w/o Title
 
 ```markdown
 ::: message is-warning
@@ -81,6 +148,6 @@ OUTPUT:
 :warning: Body of the message
 :::
 
-::: message is-danger is-large Message with a Title
+::: message is-danger Message with a Title
 Body of the message
 :::
