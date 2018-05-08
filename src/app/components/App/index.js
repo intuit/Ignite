@@ -20,7 +20,7 @@ class App extends Component {
 
       if (hash && document.querySelector(hash)) {
         scrollToElement(hash, {
-          duration: 800
+          duration: 500
         });
       } else if (!hash) {
         scrollToElement('h1', {
@@ -55,7 +55,7 @@ class App extends Component {
                 location.hash ? location.hash : ''
               }`}
             />
-            <Page className="column" />
+            <Page className={makeClass('column', 'content')} />
           </div>
         </div>
 

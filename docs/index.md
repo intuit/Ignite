@@ -1,8 +1,13 @@
+Intro
+
 * [:page_facing_up: Introduction](./pages/Introduction.md)
   * [Project Structure](./pages/Introduction.md#project-structure)
 * [:tada: Getting Started](./pages/GettingStarted.md)
   * [Installation](./pages/GettingStarted.md#installation)
   * [Usage](./pages/GettingStarted.md#usage)
+
+Customizations
+
 * [:nail_care: Theming](./pages/Theming.md)
 * [:cake: Plugins](./pages/Plugins.md)
   * [Markdown-it Plugins](./pages/Plugins.md#markdown-it-plugins)
@@ -10,6 +15,9 @@
   * [Plugin Example](./pages/Plugins.md#plugin-example)
   * [Useful Plugins](./pages/Plugins.md#useful-plugins)
   * [Included Plugins](./pages/IncludedPlugins.md)
+
+Usage
+
 * [:package: Publishing](./pages/Publishing.md)
   * [Setup](./pages/Publishing.md#setup-branch)
   * [Continuous Integration](./pages/Publishing.md#Continuous-integration)
