@@ -7,13 +7,11 @@ const value = makePlugin(/%% [\d]+ %%/, match => {
 });
 
 const valueOptions = makePlugin(/%% [\d]+ is-[\S]+ [\S ]+ %%/, match => {
-  const [, ...options] = match[0].split(' ');
+  const [, value, ...options] = match[0].split(' ');
+  const classList = [];
 
   // Don't care about the last %%
   options.pop();
-
-  const value = options.shift();
-  const classList = [];
 
   while (options[0] && options[0].includes('is-')) {
     classList.push(options.shift());

@@ -60,3 +60,27 @@ OUTPUT:
 ## ...really cool
 
 :::
+
+## [Message](https://bulma.io/documentation/components/message/)
+
+Colored message blocks, to emphasize part of your page
+
+```markdown
+::: message is-warning
+:warning: Body of the message
+:::
+
+::: message is-danger Message with a Title
+Body of the message
+:::
+```
+
+OUTPUT:
+
+::: message is-warning
+:warning: Body of the message
+:::
+
+::: message is-danger is-large Message with a Title
+Body of the message
+:::

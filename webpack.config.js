@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
@@ -7,14 +9,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-// eslint-disable-next-line import/no-unresolved
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
-// eslint-disable-next-line import/no-unresolved
 const bulmaTagMarkdown = require('./dist/extensions/bulma-tag');
-// eslint-disable-next-line import/no-unresolved
 const bulmaProgressMarkdown = require('./dist/extensions/bulma-progress');
-// eslint-disable-next-line import/no-unresolved
 const bulmaHeroMarkdown = require('./dist/extensions/bulma-hero');
+const bulmaMessageMarkdown = require('./dist/extensions/bulma-message');
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -72,6 +71,7 @@ module.exports = function(options = {}) {
                   bulmaTagMarkdown,
                   bulmaProgressMarkdown,
                   bulmaHeroMarkdown,
+                  bulmaMessageMarkdown,
                   ...options.plugins
                 ],
                 highlight: (code, language) => {
