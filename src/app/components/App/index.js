@@ -17,14 +17,13 @@ class App extends Component {
   jumpToHash = () => {
     setImmediate(() => {
       const { hash } = this.props.location;
-
       if (hash && document.querySelector(hash)) {
         scrollToElement(hash, {
           duration: 500
         });
       } else if (!hash) {
         scrollToElement('h1', {
-          duration: 0
+          duration: 1
         });
       }
     });
