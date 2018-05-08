@@ -24,20 +24,63 @@ OUTPUT:
 
 Native HTML progress bars
 
-STRUCTURE: %% [VALUE] %%
+STRUCTURE: %% [VALUE COLOR SIZE] Message %%
 
-STRUCTURE: %% [VALUE:COLOR] %%
-
-STRUCTURE: %% [VALUE:COLOR:SIZE] %%
-
-STRUCTURE: %% [VALUE|VALUE:COLOR|VALUE:COLOR:SIZE][message] %%
-
-Message can accept any combination of the above structures as well.
+Value is required.
 
 ```markdown
-%% 75:is-primary:is-large message %%
+%% 75 is-primary is-large message %%
 ```
 
 OUTPUT:
 
-%% 75:is-primary:is-large Look at all this progress! %%
+%% 75 is-primary is-large Look at all this progress! %%
+
+## [Hero](https://bulma.io/documentation/layout/hero/)
+
+The hero component allows you to add a full width banner to your webpage, which can optionally cover the full height of the page as well.
+
+Support color, gradient, and size. Full height hero unsupported.
+
+```markdown
+::: hero is-primary is-bold is-medium
+
+# This is getting cool
+
+...really cool
+:::
+```
+
+OUTPUT:
+
+::: hero is-primary is-bold is-medium
+
+# This is getting cool
+
+## ...really cool
+
+:::
+
+## [Message](https://bulma.io/documentation/components/message/)
+
+Colored message blocks, to emphasize part of your page
+
+```markdown
+::: message is-warning
+:warning: Body of the message
+:::
+
+::: message is-danger Message with a Title
+Body of the message
+:::
+```
+
+OUTPUT:
+
+::: message is-warning
+:warning: Body of the message
+:::
+
+::: message is-danger is-large Message with a Title
+Body of the message
+:::

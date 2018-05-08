@@ -6,70 +6,30 @@ const value = makePlugin(/%% [\d]+ %%/, match => {
   return `<progress class="progress" value="${value}" max="100">${value}%</progress>`;
 });
 
-const valueColor = makePlugin(/%% [\d]+:(?=\S)[^: ]+ %%/, match => {
-  const [value, color] = match[0].split(' ')[1].split(':');
+const valueOptions = makePlugin(/%% [\d]+ is-[\S]+ [\S ]+ %%/, match => {
+  const [, value, ...options] = match[0].split(' ');
+  const classList = [];
 
-  return `<progress class="progress ${color}" value="${value}" max="100">${value}%</progress>`;
-});
+  // Don't care about the last %%
+  options.pop();
 
-const valueColorSize = makePlugin(/%% [\d]+:(?=\S)[^:]+:[\S]+ %%/, match => {
-  const [value, color, size] = match[0].split(' ')[1].split(':');
-
-  return `<progress class="progress ${color} ${size}" value="${value}" max="100">${value}%</progress>`;
-});
-
-const valueMessage = makePlugin(/%% [\d]+ [\S ]+ %%/, match => {
-  const [, value, ...message] = match[0].split(' ');
-
-  message.splice(-1, 1);
-
-  return `<div class="progress-with-message">
-    <progress class="progress" value="${value}" max="100">
-      ${value}%
-    </progress>
-    <span class="progress-message">${message.join(' ')}</span>
-  </div>`;
-});
-
-const valueColorMessage = makePlugin(
-  /%% [\d]+:(?=\S)[^:]+ [\S ]+ %%/,
-  match => {
-    const [, progressOptions, ...message] = match[0].split(' ');
-    const [value, color] = progressOptions.split(':');
-
-    message.splice(-1, 1);
-
-    return `<div class="progress-with-message">
-    <progress class="progress ${color}" value="${value}" max="100">
-      ${value}%
-    </progress>
-    <span class="progress-message">${message.join(' ')}</span>
-  </div>`;
+  while (options[0] && options[0].includes('is-')) {
+    classList.push(options.shift());
   }
-);
 
-const valueColorSizeMessage = makePlugin(
-  /%% [\d]+:(?=\S)[^:]+:[\S]+ [\S ]+ %%/,
-  match => {
-    const [, progressOptions, ...message] = match[0].split(' ');
-    const [value, color, size] = progressOptions.split(':');
-
-    message.splice(-1, 1);
-
-    return `<div class="progress-with-message">
-    <progress class="progress ${color} ${size}" value="${value}" max="100">
-      ${value}%
-    </progress>
-    <span class="progress-message">${message.join(' ')}</span>
-  </div>`;
-  }
-);
+  return `
+    <div class="progress-with-message">
+      <progress class="progress ${classList.join(
+        ' '
+      )}" value="${value}" max="100">
+        ${value}%
+      </progress>
+      <span class="progress-message">${options.join(' ')}</span>
+    </div>
+  `;
+});
 
 export default function bulmaProgress(md) {
   md.use(value);
-  md.use(valueColor);
-  md.use(valueColorSize);
-  md.use(valueMessage);
-  md.use(valueColorSizeMessage);
-  md.use(valueColorMessage);
+  md.use(valueOptions);
 }
