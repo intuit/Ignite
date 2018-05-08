@@ -51,6 +51,7 @@
     "markdown-it-br": "^1.0.0",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-emoji": "^1.4.0",
+    "markdown-it-highlight-lines": "^1.0.0",
     "markdown-it-ins": "^2.0.0",
     "markdown-it-mark": "^2.0.0",
     "markdown-it-regexp": "^0.4.0",
@@ -133,8 +134,7 @@
   },
   "ignite": {
     "title": "Ignite",
-    "githubURL": "https://github.intuit.com/Fuego/Ignite",
-    "color": "#f44336"
+    "githubURL": "https://github.intuit.com/Fuego/Ignite"
   },
   "jest": {
     "transform": {

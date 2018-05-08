@@ -17,14 +17,13 @@ class App extends Component {
   jumpToHash = () => {
     setImmediate(() => {
       const { hash } = this.props.location;
-
       if (hash && document.querySelector(hash)) {
         scrollToElement(hash, {
           duration: 500
         });
       } else if (!hash) {
         scrollToElement('h1', {
-          duration: 0
+          duration: 1
         });
       }
     });
@@ -46,10 +45,10 @@ class App extends Component {
       <div className={styles.root}>
         <Header />
 
-        <div className={makeClass('container')}>
+        <div className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
-              className="column is-one-quarter"
+              className="column is-one-third-tablet is-one-quarter-desktop"
               content={markdown.docRootIndexFile}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''

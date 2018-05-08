@@ -16,7 +16,7 @@ exports[`renders default page when there is not page match 1`] = `
       className="columns"
     >
       <Sidebar
-        className="column is-one-quarter"
+        className="column is-one-third-tablet is-one-quarter-desktop"
         content={[Function]}
         currentPage="/"
       />
@@ -45,7 +45,7 @@ exports[`renders first page at index if found 1`] = `
       className="columns"
     >
       <Sidebar
-        className="column is-one-quarter"
+        className="column is-one-third-tablet is-one-quarter-desktop"
         content={[Function]}
         currentPage="/"
       />
@@ -74,7 +74,7 @@ exports[`renders matched page 1`] = `
       className="columns"
     >
       <Sidebar
-        className="column is-one-quarter"
+        className="column is-one-third-tablet is-one-quarter-desktop"
         content={[Function]}
         currentPage="/foo"
       />
@@ -103,7 +103,7 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
       className="columns"
     >
       <Sidebar
-        className="column is-one-quarter"
+        className="column is-one-third-tablet is-one-quarter-desktop"
         content={[Function]}
         currentPage="/"
       />
