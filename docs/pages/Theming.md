@@ -20,7 +20,7 @@ ignite --selectedColor '#fff'
 
 ## Bulma Theme
 
-Sets the bulma theme for the app. Defalult and Selected colors both override the bulma theme.
+Sets the bulma theme for the app. Defalult and Selected colors both override the bulma theme. All available [Bulma Themes](https://jenil.github.io/bulmaswatch/).
 
 ```bash
 ignite --bulmaTheme nuclear

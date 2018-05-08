@@ -18,7 +18,14 @@ function getLink(source, index = 0) {
 function addActive(source, link, firstLink) {
   source = source.replace(
     new RegExp('<a h'),
-    `<a className={'/${link}' === props.currentPage || '${firstLink}' === '${link}' && '/' === props.currentPage ? 'activeSidebar' : null} h`
+    `<a
+      className={
+        '/${link}' === props.currentPage ||
+        ('${firstLink}' === '${link}' && '/' === props.currentPage)
+          ? 'is-active'
+          : null
+      }
+      h`
   );
 
   return source;
@@ -39,19 +46,21 @@ function index(source, pathToMarkdown) {
   const firstLink = getLink(source);
 
   source = addActiveAll(source, firstLink);
+  source = source.replace(
+    new RegExp('<ul>', 'g'),
+    '<ul className="menu-list">'
+  );
+  source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
 
   return `
     import ignite from 'ignite';
+    import makeClass from 'classnames';
 
     function markDownPage(props) {
-      const atIndex = props.currentPage === '/';
-
       return (
-        <div className={props.className}>
-          <section>
-            ${source}
-          </section>
-        </div>
+        <aside className={makeClass('menu', props.className)}>
+          ${source}
+        </aside>
       );
     }
     

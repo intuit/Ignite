@@ -9,6 +9,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 // eslint-disable-next-line import/no-unresolved
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
+// eslint-disable-next-line import/no-unresolved
+const bulmaTagMarkdown = require('./dist/extensions/bulma-tag');
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -54,6 +56,7 @@ module.exports = function(options = {}) {
                       divWrap: true
                     }
                   ],
+                  'markdown-it-br',
                   'markdown-it-sub',
                   'markdown-it-mark',
                   'markdown-it-ins',
@@ -61,6 +64,7 @@ module.exports = function(options = {}) {
                   'markdown-it-anchor',
                   'markdown-it-emoji',
                   fontAwesomeMarkdown,
+                  bulmaTagMarkdown,
                   ...options.plugins
                 ],
                 highlight: (code, language) => {

@@ -6,14 +6,41 @@ body {
   height: 100%;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: flex;
+  align-items: center;
+
+  &:not(:first-child) {
+    padding-top: 25px;
+  }
+}
+
 .App {
   display: flex;
   justify-content: center;
 
   &:global(.columns) {
-    padding-top: 35px;
-    padding-bottom: 45px;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
     margin: 0;
+  }
+
+  h2:not(:last-child),
+  h1:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  :global .tag {
+    margin-left: 5px;
+
+    &:first-of-type {
+      margin-left: 15px;
+    }
   }
 }
 
@@ -53,17 +80,6 @@ p > code {
   line-height: 40px;
   border-radius: 3px;
   white-space: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  &:not(:first-child) {
-    padding-top: 25px;
-  }
 }
 
 p {

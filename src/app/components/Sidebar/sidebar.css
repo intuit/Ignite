@@ -1,10 +1,8 @@
 .root {
-  padding: 0;
+  border-right: 1px solid #e0e0e0;
 
   li {
     list-style: none;
-    margin: 10px 0;
-    white-space: nowrap;
 
     a {
       padding: 7px;
@@ -12,55 +10,7 @@
   }
 }
 
-:global .navbar {
-  background-color: $APP_COLOR;
-
-  .navbar-item {
-    border: none;
-  }
-
-  a {
-    color: white;
-
-    &:hover,
-    &:active {
-      color: grey;
-      opacity: 0.4;
-    }
-  }
-}
-
 .sidebar {
-  border-right: 1px solid #e0e0e0;
   position: sticky;
-  top: 35px;
-
-  section {
-    padding: 0;
-    margin: 30px;
-    margin-left: 0;
-  }
-
-  ul {
-    margin: 0;
-  }
-
-  ul ul {
-    padding-left: 15px;
-
-    li:before {
-      content: '\2501';
-    }
-  }
-
-  section > ul > li > ul > li:last-of-type {
-    padding-bottom: 15px;
-  }
-}
-
-:global .activeSidebar {
-  background-color: $APP_COLOR;
-  background-color: $SELECTED_COLOR;
-  color: white;
-  border-radius: 3px;
+  top: 20px;
 }

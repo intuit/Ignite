@@ -21,7 +21,7 @@ exports[`renders default page when there is not page match 1`] = `
         currentPage="/"
       />
       <docRootIndexFile
-        className="column"
+        className="column content"
       />
     </div>
   </div>
@@ -50,7 +50,7 @@ exports[`renders first page at index if found 1`] = `
         currentPage="/"
       />
       <firstPage
-        className="column"
+        className="column content"
       />
     </div>
   </div>
@@ -79,7 +79,7 @@ exports[`renders matched page 1`] = `
         currentPage="/foo"
       />
       <foo
-        className="column"
+        className="column content"
       />
     </div>
   </div>
@@ -108,7 +108,7 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
         currentPage="/"
       />
       <docRootIndexFile
-        className="column"
+        className="column content"
       />
     </div>
   </div>

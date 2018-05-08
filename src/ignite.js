@@ -15,9 +15,9 @@ export const defaults = {
   title: 'Documentation',
   codeStyle: 'foundation',
   color: 'auto',
-  selectedColor: '#f44336',
+  selectedColor: 'auto',
   logo: 'logo.svg',
-  bulmaTheme: 'simplex'
+  bulmaTheme: 'yeti'
 };
 
 export default function build(options, user) {
