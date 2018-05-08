@@ -11,6 +11,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
 // eslint-disable-next-line import/no-unresolved
 const bulmaTagMarkdown = require('./dist/extensions/bulma-tag');
+// eslint-disable-next-line import/no-unresolved
+const bulmaProgressMarkdown = require('./dist/extensions/bulma-progress');
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -66,6 +68,7 @@ module.exports = function(options = {}) {
                   'markdown-it-emoji',
                   fontAwesomeMarkdown,
                   bulmaTagMarkdown,
+                  bulmaProgressMarkdown,
                   ...options.plugins
                 ],
                 highlight: (code, language) => {

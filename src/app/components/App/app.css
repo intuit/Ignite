@@ -106,3 +106,13 @@ p {
     color: white;
   }
 }
+
+:global .progress-message {
+  width: 100%;
+  text-align: center;
+}
+
+:global .progress-with-message {
+  display: flex;
+  flex-direction: column;
+}

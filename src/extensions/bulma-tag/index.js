@@ -11,7 +11,7 @@ const typeString = makePlugin(/#:(?=\S)[^:]+ (?=\S)[^#]+/, match => {
   `;
 });
 
-const typeStringSize = makePlugin(/#:[(?=\S)[^:]+:[\S]+ (?=\S)[^#]+/, match => {
+const typeStringSize = makePlugin(/#:(?=\S)[^:]+:[\S]+ (?=\S)[^#]+/, match => {
   match = match[0].substring(match[0].indexOf(':') + 1);
   const [classes, ...string] = match.split(' ');
   const [type, size] = classes.split(':');

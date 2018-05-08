@@ -19,3 +19,51 @@ Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)]:[[
 OUTPUT:
 
 #:is-info useful information #:is-success:is-medium extension extension
+
+## [Progress](https://bulma.io/documentation/elements/progress/)
+
+Native HTML progress bars
+
+#### Amount:
+
+```markdown
+%% 75 %%
+```
+
+OUTPUT:
+
+%% 75 %%
+
+#### Color
+
+```markdown
+%% 75:is-primary %%
+```
+
+OUTPUT:
+
+%% 75:is-primary %%
+
+#### Size
+
+```markdown
+%% 75:is-primary:is-large %%
+```
+
+OUTPUT:
+
+%% 75:is-primary:is-large %%
+
+**_Note: Their is no value:size_**
+
+#### Message
+
+Message can accept any combination of the above structures.
+
+```markdown
+%% 75:is-primary:is-large message %%
+```
+
+OUTPUT:
+
+%% 75:is-primary:is-large Look at all this progress! %%
