@@ -79,6 +79,11 @@ export default function(source) {
     return index(source, pathToMarkdown);
   }
 
+  source = source.replace(
+    new RegExp('highlighted-line', 'g'),
+    'highlighted-line hero is-primary'
+  );
+
   return `
     import ignite from 'ignite';
 

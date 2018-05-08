@@ -94,3 +94,15 @@ p {
     margin: auto;
   }
 }
+
+:global .highlighted-line {
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  color: white;
+
+  .hljs-title,
+  .hljs-keyword {
+    color: white;
+  }
+}

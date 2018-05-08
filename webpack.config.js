@@ -56,6 +56,7 @@ module.exports = function(options = {}) {
                       divWrap: true
                     }
                   ],
+                  'markdown-it-highlight-lines',
                   'markdown-it-br',
                   'markdown-it-sub',
                   'markdown-it-mark',
@@ -74,7 +75,7 @@ module.exports = function(options = {}) {
                   const highlighted = validLang
                     ? highlightjs.highlight(language, code).value
                     : code;
-                  return `<pre><code class="${language}">${highlighted}</code></pre>`;
+                  return `${highlighted}`;
                 }
               }
             },

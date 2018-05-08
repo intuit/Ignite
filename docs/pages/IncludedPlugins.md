@@ -37,6 +37,32 @@ Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlig
 ```
 ````
 
+## Highlight Specific lines
+
+You can call attention to specific lines in your code by including the lines in the block definition.
+
+````markdown
+```js{2}
+function foo() {
+  return bar()
+    .then(res => {
+      return res.doSomething()
+    })
+  }
+```
+````
+
+OUTPUT:
+
+```js{2}
+function foo() {
+  return bar()
+    .then(res => {
+      return res.doSomething()
+    })
+}
+```
+
 ## Image Captions
 
 Adds a caption to an image and centers it within the page.
