@@ -7,7 +7,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
-const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
@@ -18,6 +17,7 @@ const bulmaMessageMarkdown = require('./dist/extensions/bulma-message');
 const bulmaBoxMarkdown = require('./dist/extensions/bulma-box');
 const bulmaRowMarkdown = require('./dist/extensions/bulma-row');
 const bulmaTileMarkdown = require('./dist/extensions/bulma-tile');
+const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
