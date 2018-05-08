@@ -15,8 +15,10 @@ Customizations
   * [Plugin Example](./pages/Plugins.md#plugin-example)
   * [Useful Plugins](./pages/Plugins.md#useful-plugins)
   * [Included Plugins](./pages/IncludedPlugins.md)
-  *
-  Usage
+  * [Bulma Plugins](./pages/BulmaPlugins.md)
+
+Usage
+
 * [:package: Publishing](./pages/Publishing.md)
   * [Setup](./pages/Publishing.md#setup-branch)
   * [Continuous Integration](./pages/Publishing.md#Continuous-integration)
