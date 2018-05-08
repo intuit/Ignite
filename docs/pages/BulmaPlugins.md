@@ -24,41 +24,15 @@ OUTPUT:
 
 Native HTML progress bars
 
-#### Amount:
+STRUCTURE: %% [VALUE] %%
 
-```markdown
-%% 75 %%
-```
+STRUCTURE: %% [VALUE:COLOR] %%
 
-OUTPUT:
+STRUCTURE: %% [VALUE:COLOR:SIZE] %%
 
-%% 75 %%
+STRUCTURE: %% [VALUE|VALUE:COLOR|VALUE:COLOR:SIZE][message] %%
 
-#### Color
-
-```markdown
-%% 75:is-primary %%
-```
-
-OUTPUT:
-
-%% 75:is-primary %%
-
-#### Size
-
-```markdown
-%% 75:is-primary:is-large %%
-```
-
-OUTPUT:
-
-%% 75:is-primary:is-large %%
-
-**_Note: Their is no value:size_**
-
-#### Message
-
-Message can accept any combination of the above structures.
+Message can accept any combination of the above structures as well.
 
 ```markdown
 %% 75:is-primary:is-large message %%

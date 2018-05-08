@@ -49,7 +49,7 @@ class App extends Component {
         <div className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
-              className="column is-one-quarter"
+              className="column is-one-third-tablet is-one-quarter-desktop"
               content={markdown.docRootIndexFile}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
