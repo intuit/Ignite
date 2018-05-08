@@ -33,8 +33,8 @@ OUTPUT:
 Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlight.js). You must provide a language like this:
 
 ````markdown
-\```javascript
-\```
+```javascript
+```
 ````
 
 ## Image Captions
@@ -57,7 +57,7 @@ _image caption_
 Add characters printed above or below the line.
 
 ```markdown
-29\^th\^ H\~2\~0
+29^th^ H~2~0
 ```
 
 OUTPUT: 29^th^ H~2~0
@@ -65,7 +65,7 @@ OUTPUT: 29^th^ H~2~0
 ## Underline
 
 ```markdown
-\+\+underline\+\+
+++underline++
 ```
 
 OUTPUT: ++underline++
@@ -73,7 +73,7 @@ OUTPUT: ++underline++
 ## Highlight
 
 ```markdown
-\=\=highlight\=\=
+==highlight==
 ```
 
 OUTPUT: ==highlight==
@@ -81,10 +81,30 @@ OUTPUT: ==highlight==
 ## Check Boxes and Task Lists
 
 ```markdown
-\[ \] unchecked
-\[x\] checked
+[ ] unchecked
+[x] checked
 ```
 
 OUTPUT:
 [ ] unchecked
 [x] checked
+
+## Breaks
+
+Some times you just need a break.
+
+```markdown
+paragraph 1
+
+<br>
+
+paragraph 1
+```
+
+OUTPUT:
+
+paragraph 1
+
+<br>
+
+paragraph 1

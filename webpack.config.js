@@ -54,6 +54,7 @@ module.exports = function(options = {}) {
                       divWrap: true
                     }
                   ],
+                  'markdown-it-br',
                   'markdown-it-sub',
                   'markdown-it-mark',
                   'markdown-it-ins',
