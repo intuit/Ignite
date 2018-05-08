@@ -13,6 +13,8 @@ const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
 const bulmaTagMarkdown = require('./dist/extensions/bulma-tag');
 // eslint-disable-next-line import/no-unresolved
 const bulmaProgressMarkdown = require('./dist/extensions/bulma-progress');
+// eslint-disable-next-line import/no-unresolved
+const bulmaHeroMarkdown = require('./dist/extensions/bulma-hero');
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -69,6 +71,7 @@ module.exports = function(options = {}) {
                   fontAwesomeMarkdown,
                   bulmaTagMarkdown,
                   bulmaProgressMarkdown,
+                  bulmaHeroMarkdown,
                   ...options.plugins
                 ],
                 highlight: (code, language) => {

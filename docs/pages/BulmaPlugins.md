@@ -41,3 +41,28 @@ Message can accept any combination of the above structures as well.
 OUTPUT:
 
 %% 75:is-primary:is-large Look at all this progress! %%
+
+## [Hero](https://bulma.io/documentation/layout/hero/)
+
+The hero component allows you to add a full width banner to your webpage, which can optionally cover the full height of the page as well.
+
+Support color, gradient, and size. Full height hero unsupported.
+
+```markdown
+::: hero is-primary is-bold is-medium
+
+# This is getting cool
+
+...really cool
+:::
+```
+
+OUTPUT:
+
+::: hero is-primary is-bold is-medium
+
+# This is getting cool
+
+## ...really cool
+
+:::
