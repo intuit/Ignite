@@ -1,12 +1,3 @@
 .footer {
-  padding: 30px;
-  width: 100%;
-
-  .copyright {
-    margin: 0;
-    padding-top: 30px;
-    font-size: 14px;
-    color: #fff;
-    border-top: 1px solid #9e9e9e;
-  }
+  padding: 2rem 1.5rem 3rem;
 }
