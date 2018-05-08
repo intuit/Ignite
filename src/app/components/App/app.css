@@ -11,8 +11,8 @@ body {
   justify-content: center;
 
   &:global(.columns) {
-    padding-top: 35px;
-    padding-bottom: 45px;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
     margin: 0;
   }
 
