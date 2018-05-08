@@ -24,23 +24,17 @@ OUTPUT:
 
 Native HTML progress bars
 
-STRUCTURE: %% [VALUE] %%
+STRUCTURE: %% [VALUE COLOR SIZE] Message %%
 
-STRUCTURE: %% [VALUE:COLOR] %%
-
-STRUCTURE: %% [VALUE:COLOR:SIZE] %%
-
-STRUCTURE: %% [VALUE|VALUE:COLOR|VALUE:COLOR:SIZE][message] %%
-
-Message can accept any combination of the above structures as well.
+Value is required.
 
 ```markdown
-%% 75:is-primary:is-large message %%
+%% 75 is-primary is-large message %%
 ```
 
 OUTPUT:
 
-%% 75:is-primary:is-large Look at all this progress! %%
+%% 75 is-primary is-large Look at all this progress! %%
 
 ## [Hero](https://bulma.io/documentation/layout/hero/)
 
