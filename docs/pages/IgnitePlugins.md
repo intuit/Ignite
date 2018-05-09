@@ -2,7 +2,7 @@
 
 Ignite plugins are incredibly easy to write. If you know how to write a react component, then you already know how to write an Ignite plugin.
 
-Ignite works by parsing all of you markdown files into react components and loading them into a single page documentaion app. Since we are already building the app in react, it just made sense to have the plugins just be react components.
+Ignite works by parsing all of you markdown files into react components and loading them into a single page documentation app. Since we are already building the app in react, it just made sense to have the plugins just be react components.
 
 ## Define your plugin
 
@@ -61,14 +61,60 @@ Will render this to the dom
 
 ## Options
 
+Any single token arguments following the keyword become an array of `options` passed to the component as a prop.
+
+```
+::: boom these are individual props
+
+## Anything inside
+
+## is passed in as props.children
+
+:::
+```
+
 ## Properties
+
+Any token after the arg with an equal sign in it is treated as a property. All matching tokens fill an object the is spread onto the component.
+
+```
+::: boom first=string second=2 third=["Array", "of, "Things"] fourth={ "some": "JSON Structure" }
+
+# Anything inside
+
+## is passed in as props.children
+
+:::
+```
+
+::: message is-warning is-three-fifths is-offset-one-fifth
+:warning:
+Properties with arrays or objects must be valid JSON
+:::
 
 ## Style
 
+CSS Modules is supported for all plugins. To style your component simply import your styles and use them.
+
+```javascript
+import React from 'react';
+import styles from './styles.css';
+
+const myPlugin = props => (
+  <div className={styles.unicorn}>
+    <h1>This is pretty awesome.</h1>
+    {props.children}
+  </div>
+);
+
+export default {
+  name: 'boom',
+  componenet: myPlugin
+};
+```
+
 ## Using Any React Component
 
-::: test tagLine="with some args"
+Since we can render a react component as a plugin that means something cool. We can use _ANY_ react component as plugin to our docs. If the component doesn't require state to be handled by the parent, using it is as simple as giving it a name!
 
-This is my test
-
-:::
+[UNDER CONSTRUCTION]

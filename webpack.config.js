@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 
 const makePlugin = require('./dist/extensions/ignite-plugin').default;
 
@@ -56,7 +57,6 @@ module.exports = function(options = {}) {
                       divWrap: true
                     }
                   ],
-                  'markdown-it-highlight-lines',
                   'markdown-it-br',
                   'markdown-it-sub',
                   'markdown-it-mark',
@@ -72,6 +72,7 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-box'),
                   require('./dist/extensions/bulma-row'),
                   require('./dist/extensions/bulma-tile'),
+
                   makePlugin('test'), // then register the name
                   ...options.plugins
                 ],
