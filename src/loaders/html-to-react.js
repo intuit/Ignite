@@ -104,7 +104,7 @@ export default function(source) {
     import React from 'react';
     import { registerMarkdown } from 'ignite';
 
-    const PluginProvider = ({plugins, name, options}) => {
+    const PluginProvider = ({plugins, name, options, children}) => {
       console.log(plugins, name)
       let Plugin = plugins[name];
     
@@ -114,7 +114,7 @@ export default function(source) {
     
       Plugin = Plugin.component;
 
-      return <Plugin {...options} />;
+      return <Plugin options={options} children={children} />;
     };
 
     const markDownPage = props => (
