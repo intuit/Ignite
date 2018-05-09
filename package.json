@@ -42,6 +42,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.5.1",
+    "cosmiconfig": "5.0.2",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
@@ -138,13 +139,6 @@
         "afterOpening": "never"
       }
     }
-  },
-  "ignite": {
-    "title": "Ignite",
-    "githubURL": "https://github.intuit.com/Fuego/Ignite",
-    "plugins": [
-      ["test", "./src/extensions/testExtension"]
-    ]
   },
   "jest": {
     "transform": {

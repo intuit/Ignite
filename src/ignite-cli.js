@@ -3,6 +3,7 @@
 import fs from 'fs';
 import yargs from 'yargs';
 import root from 'root-path';
+import cosmiconfig from 'cosmiconfig';
 
 import build, { defaults } from './ignite';
 
@@ -67,11 +68,13 @@ const argv = yargs
 
 const rootJson = JSON.parse(fs.readFileSync(`${root()}/package.json`));
 const author = rootJson ? rootJson.author : {};
+const explorer = cosmiconfig('ignite');
+const igniteRc = explorer.searchSync();
 
 let options = argv;
 
-if (rootJson.ignite) {
-  options = Object.assign({}, argv, rootJson.ignite);
+if (igniteRc) {
+  options = Object.assign({}, argv, igniteRc.config);
 }
 
 build(options, author);
