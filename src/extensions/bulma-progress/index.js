@@ -13,7 +13,10 @@ const valueOptions = makePlugin(/%% [\d]+ is-[\S]+ [\S ]+ %%/, match => {
   // Don't care about the last %%
   options.pop();
 
-  while (options[0] && options[0].includes('is-')) {
+  while (
+    options[0] &&
+    (options[0].includes('is-') || options[0].includes('has-'))
+  ) {
     classList.push(options.shift());
   }
 

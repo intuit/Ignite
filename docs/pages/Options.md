@@ -44,6 +44,10 @@ A list of plugins (package names or functions) to render your documentation with
 ignite --plugins markdown-it-emoji markdown-it-video
 ```
 
+::: message is-success is-three-fifths is-offset-one-fifth has-text-centered
+More on including Ignite plugins [here](./pages/IgnitePlugins.md#register-plugin)
+:::
+
 ## Publish (--publish)
 
 Publish the docs to the githubURL. Must [setup](./pages/Publishing.md)

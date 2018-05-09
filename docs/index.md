@@ -14,6 +14,7 @@ Customizations
   * [Configuration](./pages/Plugins.md#configuration)
   * [Plugin Example](./pages/Plugins.md#plugin-example)
   * [Useful Plugins](./pages/Plugins.md#useful-plugins)
+  * [Ignite Plugins](./pages/IgnitePlugins.md)
   * [Included Plugins](./pages/IncludedPlugins.md)
   * [Bulma Plugins](./pages/BulmaPlugins.md)
 

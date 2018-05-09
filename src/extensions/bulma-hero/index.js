@@ -1,29 +1,31 @@
 import container from 'markdown-it-container';
+import parseClasses from '../utils/parse-classes';
 
 const regExp = /hero/;
-const withOptions = /hero [\S ]+/;
 
 const hero = {
   validate(params) {
-    return params.trim().match(withOptions) || params.trim().match(regExp);
+    return params.trim().match(regExp);
   },
 
   render(tokens, idx) {
-    const options = tokens[idx].info;
-
-    let classList = [];
-
-    if (options.trim().match(withOptions)) {
-      const [, ...userOptions] = options
-        .trim()
-        .match(withOptions)[0]
-        .split(' ');
-      classList = [...userOptions];
-    }
+    const classList = parseClasses(tokens[idx].info);
 
     if (tokens[idx].nesting === 1) {
-      tokens[idx + 1].attrs = [...tokens[idx + 1].attrs, ['class', 'title']];
-      tokens[idx + 4].attrs = [...tokens[idx + 4].attrs, ['class', 'subtitle']];
+      if (tokens[idx + 1].attrs) {
+        tokens[idx + 1].attrs = [...tokens[idx + 1].attrs, ['class', 'title']];
+      } else {
+        tokens[idx + 1].attrs = [['class', 'title']];
+      }
+
+      if (tokens[idx + 4].attrs) {
+        tokens[idx + 4].attrs = [
+          ...tokens[idx + 4].attrs,
+          ['class', 'subtitle']
+        ];
+      } else {
+        tokens[idx + 4].attrs = [['class', 'subtitle']];
+      }
 
       return `
         <section class="hero ${classList.join(' ')}">
@@ -38,6 +40,6 @@ const hero = {
   }
 };
 
-export default function bulmaProgress(md) {
+export default function bulmaHero(md) {
   md.use(container, 'hero', hero);
 }

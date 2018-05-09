@@ -22,7 +22,7 @@ class App extends Component {
           duration: 500
         });
       } else if (!hash) {
-        scrollToElement('h1', {
+        scrollToElement('#root', {
           duration: 1
         });
       }
@@ -45,7 +45,7 @@ class App extends Component {
       <div className={styles.root}>
         <Header />
 
-        <div className={makeClass('container', styles.contentArea)}>
+        <div id="root" className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop"
@@ -54,7 +54,10 @@ class App extends Component {
                 location.hash ? location.hash : ''
               }`}
             />
-            <Page className={makeClass('column', 'content')} />
+            <Page
+              className={makeClass('column', 'content')}
+              plugins={this.props.plugins}
+            />
           </div>
         </div>
 
@@ -67,7 +70,12 @@ class App extends Component {
 App.propTypes = {
   markdown: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-typos
-  location: ReactRouterPropTypes.location.isRequired
+  location: ReactRouterPropTypes.location.isRequired,
+  plugins: PropTypes.array
+};
+
+App.defaultProps = {
+  plugins: []
 };
 
 export default App;

@@ -3,30 +3,49 @@
 const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
+
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-
-const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
-const bulmaTagMarkdown = require('./dist/extensions/bulma-tag');
-const bulmaProgressMarkdown = require('./dist/extensions/bulma-progress');
-const bulmaHeroMarkdown = require('./dist/extensions/bulma-hero');
-const bulmaMessageMarkdown = require('./dist/extensions/bulma-message');
-const bulmaBoxMarkdown = require('./dist/extensions/bulma-box');
-const bulmaRowMarkdown = require('./dist/extensions/bulma-row');
-const bulmaTileMarkdown = require('./dist/extensions/bulma-tile');
 const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 
+const makePlugin = require('./dist/extensions/ignite-plugin').default;
+
+const splitPlugins = plugins => {
+  const markdownPlugins = [];
+  const ignitePlugins = [];
+
+  plugins.forEach(plugin => {
+    if (Array.isArray(plugin)) {
+      ignitePlugins.push(plugin);
+    } else {
+      markdownPlugins.push(plugin);
+    }
+  });
+
+  return {
+    markdownPlugins,
+    ignitePlugins
+  };
+};
+
 module.exports = function(options = {}) {
+  const { markdownPlugins, ignitePlugins } = splitPlugins(options.plugins);
+  const pluginPaths = ignitePlugins.map(plugin => path.resolve(plugin[1]));
+  const pluginTokens = ignitePlugins.map(plugin => makePlugin(plugin[0]));
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
-  const logoPath = path.resolve(path.join(options.src, options.logo));
+  const logoPath = path.join(options.src, options.logo);
 
   return {
     mode: options.mode,
 
-    entry: [logoPath, path.resolve(__dirname, './src/app/index.js')],
+    entry: [
+      path.resolve(logoPath),
+      path.resolve(__dirname, './src/app/index.js'),
+      ...pluginPaths
+    ],
 
     devtool: 'source-map',
 
@@ -59,7 +78,6 @@ module.exports = function(options = {}) {
                       divWrap: true
                     }
                   ],
-                  'markdown-it-highlight-lines',
                   'markdown-it-br',
                   'markdown-it-sub',
                   'markdown-it-mark',
@@ -67,15 +85,16 @@ module.exports = function(options = {}) {
                   'markdown-it-sup',
                   'markdown-it-anchor',
                   'markdown-it-emoji',
-                  fontAwesomeMarkdown,
-                  bulmaTagMarkdown,
-                  bulmaProgressMarkdown,
-                  bulmaHeroMarkdown,
-                  bulmaMessageMarkdown,
-                  bulmaBoxMarkdown,
-                  bulmaRowMarkdown,
-                  bulmaTileMarkdown,
-                  ...options.plugins
+                  require('./dist/extensions/font-awesome'),
+                  require('./dist/extensions/bulma-tag'),
+                  require('./dist/extensions/bulma-progress'),
+                  require('./dist/extensions/bulma-hero'),
+                  require('./dist/extensions/bulma-message'),
+                  require('./dist/extensions/bulma-box'),
+                  require('./dist/extensions/bulma-row'),
+                  require('./dist/extensions/bulma-tile'),
+                  ...pluginTokens,
+                  ...markdownPlugins
                 ],
                 highlight: (code, language) => {
                   const validLang = Boolean(
@@ -96,9 +115,23 @@ module.exports = function(options = {}) {
         },
         {
           test: /\.js$/,
-          exclude: /node_modules\/(?!.*ignite\/src)/,
+          exclude: /node_modules\/(?!.*ignite\/src)|extensions/,
           use: 'babel-loader'
         },
+        {
+          test: /\.js$/,
+          include: /extensions/,
+          use: [
+            'babel-loader',
+            {
+              loader: path.resolve(__dirname, './dist/loaders/load-plugin.js'),
+              options: {
+                plugins: ignitePlugins
+              }
+            }
+          ]
+        },
+        // Might not be needed
         {
           test: /\.(gif|png|jpe?g|svg)$/i,
           use: [
@@ -177,7 +210,7 @@ module.exports = function(options = {}) {
         'process.env': {
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
-          logo: JSON.stringify(path.join(options.src, options.logo))
+          logo: JSON.stringify(logoPath)
         }
       }),
       new FriendlyErrorsWebpackPlugin({

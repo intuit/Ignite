@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bulma - hero 1`] = `
+"
+        <section class=\\"hero \\">
+          <div class=\\"hero-body\\">
+      <h1 class=\\"title\\">Title</h1>
+<h2 class=\\"subtitle\\">I can contain various combinations of elements.</h2>
+
+        </div>
+      </section>
+    "
+`;

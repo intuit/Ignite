@@ -27,6 +27,89 @@ OUTPUT:
 I can contain various combinations of elements.
 :::
 
+### [Message](https://bulma.io/documentation/components/message/)
+
+Colored message blocks, to emphasize part of your page. Supports color, size, w/o Title
+
+```markdown
+::: message is-warning
+:warning: Body of the message
+:::
+
+::: message is-danger Message with a Title
+Body of the message
+:::
+```
+
+OUTPUT:
+
+::: message is-warning
+:warning: Body of the message
+:::
+
+::: message is-danger Message with a Title
+Body of the message
+:::
+
+### [Progress](https://bulma.io/documentation/elements/progress/)
+
+Native HTML progress bars
+
+STRUCTURE: %% [VALUE COLOR SIZE] Message %%
+
+Value is required.
+
+```markdown
+%% 75 is-primary is-large message %%
+```
+
+OUTPUT:
+
+%% 75 is-primary is-large Look at all this progress! %%
+
+### [Tags](https://bulma.io/documentation/elements/tag/)
+
+Small tag labels to insert anywhere
+
+Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)] {YOUR_STRING}
+
+Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)]:[[SIZE](https://bulma.io/documentation/elements/tag/#sizes)] {YOUR_STRING}
+
+```markdown
+#:is-info useful information #:is-success:is-large extension
+```
+
+OUTPUT:
+
+#:is-info useful information #:is-success:is-medium extension extension
+
+## Layout
+
+### [Hero](https://bulma.io/documentation/layout/hero/)
+
+The hero component allows you to add a full width banner to your webpage, which can optionally cover the full height of the page as well.
+
+Support color, gradient, and size. Full height hero unsupported.
+
+```markdown
+::: hero is-primary is-bold is-medium
+
+# This is getting cool
+
+...really cool
+:::
+```
+
+OUTPUT:
+
+::: hero is-primary is-bold is-medium
+
+# This is getting cool
+
+## ...really cool
+
+:::
+
 ### Row
 
 An element to organize a bunch of boxes into equal columns.
@@ -147,83 +230,28 @@ Integer sollicitudin, tortor a mattis commodo, velit urna rhoncus erat, vitae co
 ::::::
 :::::::
 
-### [Tags](https://bulma.io/documentation/elements/tag/)
+## [Useful Helpers](https://bulma.io/documentation/modifiers/)
 
-Small tag labels to insert anywhere
+Many of the Bulma plugins above can take bulma helper classes as arguments. These are applied to the html. These helpers can be used to change the color of text or backgrounds, to change the size of components, and to layout the components in a specific pattern.
 
-Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)] {YOUR_STRING}
+The following are used throughout ignite and can be used to easily theme your plugins to match Bulma.
 
-Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)]:[[SIZE](https://bulma.io/documentation/elements/tag/#sizes)] {YOUR_STRING}
+### [Color](https://bulma.io/documentation/modifiers/color-helpers/)
 
-```markdown
-#:is-info useful information #:is-success:is-large extension
-```
+| Class                  | Effect                                                                                            |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| is-primary             | in combination with an element changes its color to whatever the theme sets for the primary color |
+| has-background-[COLOR] | changes the background to one of the defined color values                                         |
+| has-text-[COLOR]       | changes the text color to one of the defined color values                                         |
 
-OUTPUT:
+### [Size](https://bulma.io/documentation/columns/sizes/)
 
-#:is-info useful information #:is-success:is-medium extension extension
+| Class            | Effect                                                                                                     |
+| ---------------- | ---------------------------------------------------------------------------------------------------------- |
+| is-[SIZE]        | Set a columns width [three-quarters, two-thirds, half, one-third, one-quarter, one-fifth, two-fifths, ...] |
+| is-[NUMBER]      | Set a columns width to 1-12                                                                                |
+| is-offset-[SIZE] | Set a columns offset (same values as size above)                                                           |
 
-### [Progress](https://bulma.io/documentation/elements/progress/)
-
-Native HTML progress bars
-
-STRUCTURE: %% [VALUE COLOR SIZE] Message %%
-
-Value is required.
-
-```markdown
-%% 75 is-primary is-large message %%
-```
-
-OUTPUT:
-
-%% 75 is-primary is-large Look at all this progress! %%
-
-### [Hero](https://bulma.io/documentation/layout/hero/)
-
-The hero component allows you to add a full width banner to your webpage, which can optionally cover the full height of the page as well.
-
-Support color, gradient, and size. Full height hero unsupported.
-
-```markdown
-::: hero is-primary is-bold is-medium
-
-# This is getting cool
-
-...really cool
-:::
-```
-
-OUTPUT:
-
-::: hero is-primary is-bold is-medium
-
-# This is getting cool
-
-## ...really cool
-
-:::
-
-### [Message](https://bulma.io/documentation/components/message/)
-
-Colored message blocks, to emphasize part of your page. Supports color, size, w/o Title
-
-```markdown
-::: message is-warning
-:warning: Body of the message
-:::
-
-::: message is-danger Message with a Title
-Body of the message
-:::
-```
-
-OUTPUT:
-
-::: message is-warning
-:warning: Body of the message
-:::
-
-::: message is-danger Message with a Title
-Body of the message
+::: message is-success is-three-fifths is-offset-one-fifth has-text-centered
+TIP: Use size and offset to narrow and center any bulma element
 :::

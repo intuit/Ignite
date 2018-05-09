@@ -1,7 +1,7 @@
 import container from 'markdown-it-container';
+import parseClasses from '../utils/parse-classes';
 
 const regExp = /tile/;
-const withOptions = /tile [\S ]+/;
 
 const tile = {
   validate(params) {
@@ -9,17 +9,7 @@ const tile = {
   },
 
   render(tokens, idx) {
-    const options = tokens[idx].info;
-
-    let classList = [];
-
-    if (options.trim().match(withOptions)) {
-      const [, ...userOptions] = options
-        .trim()
-        .match(withOptions)[0]
-        .split(' ');
-      classList = [...userOptions];
-    }
+    const classList = parseClasses(tokens[idx].info);
 
     if (tokens[idx].nesting === 1) {
       return `

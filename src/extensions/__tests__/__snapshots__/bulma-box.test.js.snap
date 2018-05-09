@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bulma - box 1`] = `
+"
+        <div class=\\"column \\">
+          <div class=\\"box\\">
+      <h1>Title</h1>
+<p>I can contain various combinations of elements.</p>
+
+        </div>
+      </div>
+    "
+`;
