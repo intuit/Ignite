@@ -5,7 +5,7 @@ exports[`makePlugin 1`] = `
           <pluginprovider
             name='test'
             plugins=!{props.plugins!}
-            options=!{{\\"options\\":[],\\"properties\\":{}}!}
+            options=!{!{\\"options\\":[],\\"properties\\":!{!}!}!}
           >
         </pluginprovider>"
 `;
@@ -15,7 +15,7 @@ exports[`makePlugin 2`] = `
           <pluginprovider
             name='test'
             plugins=!{props.plugins!}
-            options=!{{\\"options\\":[\\"with\\",\\"some\\",\\"options\\"],\\"properties\\":{}}!}
+            options=!{!{\\"options\\":[\\"with\\",\\"some\\",\\"options\\"],\\"properties\\":!{!}!}!}
           >
         </pluginprovider>"
 `;
@@ -25,7 +25,7 @@ exports[`makePlugin 3`] = `
           <pluginprovider
             name='test'
             plugins=!{props.plugins!}
-            options=!{{\\"options\\":[],\\"properties\\":{\\"with\\":\\"some\\",\\"properties\\":10}}!}
+            options=!{!{\\"options\\":[],\\"properties\\":!{\\"with\\":\\"some\\",\\"properties\\":10!}!}!}
           >
         </pluginprovider>"
 `;
@@ -35,7 +35,7 @@ exports[`makePlugin 4`] = `
           <pluginprovider
             name='test'
             plugins=!{props.plugins!}
-            options=!{{\\"options\\":[\\"with\\",\\"both\\"],\\"properties\\":{\\"properties\\":\\"options\\"}}!}
+            options=!{!{\\"options\\":[\\"with\\",\\"both\\"],\\"properties\\":!{\\"properties\\":\\"options\\"!}!}!}
           >
         </pluginprovider>"
 `;

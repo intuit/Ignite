@@ -2,7 +2,7 @@
 
 exports[`bulma - row 1`] = `
 "
-        <div class=\\"columns\\">
+        <div class=\\"columns \\">
       <h1>Title</h1>
 <h2>I can contain various combinations of elements.</h2>
 

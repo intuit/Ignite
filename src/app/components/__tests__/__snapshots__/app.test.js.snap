@@ -23,7 +23,7 @@ exports[`renders default page when there is not page match 1`] = `
       />
       <docRootIndexFile
         className="column content"
-        plugins={undefined}
+        plugins={Array []}
       />
     </div>
   </div>
@@ -54,7 +54,7 @@ exports[`renders first page at index if found 1`] = `
       />
       <firstPage
         className="column content"
-        plugins={undefined}
+        plugins={Array []}
       />
     </div>
   </div>
@@ -85,7 +85,7 @@ exports[`renders matched page 1`] = `
       />
       <foo
         className="column content"
-        plugins={undefined}
+        plugins={Array []}
       />
     </div>
   </div>
@@ -116,7 +116,7 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
       />
       <docRootIndexFile
         className="column content"
-        plugins={undefined}
+        plugins={Array []}
       />
     </div>
   </div>
