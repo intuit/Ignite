@@ -19,7 +19,7 @@ const bulmaRowMarkdown = require('./dist/extensions/bulma-row');
 const bulmaTileMarkdown = require('./dist/extensions/bulma-tile');
 const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 
-const testExtension = require('./dist/extensions/testExtension').default;
+const makePlugin = require('./dist/extensions/ignite-plugin');
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
@@ -31,7 +31,7 @@ module.exports = function(options = {}) {
     entry: [
       logoPath,
       path.resolve(__dirname, './src/app/index.js'),
-      path.resolve('./dist/extensions/testExtension')
+      path.resolve('./src/extensions/testExtension') // First resolve the component
     ],
 
     devtool: 'source-map',
@@ -81,7 +81,7 @@ module.exports = function(options = {}) {
                   bulmaBoxMarkdown,
                   bulmaRowMarkdown,
                   bulmaTileMarkdown,
-                  testExtension,
+                  makePlugin('test'), // then register the name
                   ...options.plugins
                 ],
                 highlight: (code, language) => {

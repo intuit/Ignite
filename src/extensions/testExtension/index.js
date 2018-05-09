@@ -1,18 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import makePlugin from '../ignite-plugin';
 
-const testExtension = props => {
+import styles from './test.css';
+
+const TestExtension = props => {
   return (
     <div>
-      <h1> What a useful plugin I am! </h1>
+      <h1 className={styles.header}> What a useful plugin I am! </h1>
       {props.children}
     </div>
   );
 };
 
-export const extension = {
-  name: 'test',
-  component: testExtension
+TestExtension.propTypes = {
+  children: PropTypes.node
 };
 
-export default makePlugin('test', testExtension);
+TestExtension.defaultProps = {
+  children: null
+};
+
+export const extension = {
+  name: 'test',
+  component: TestExtension
+};
