@@ -22,12 +22,24 @@ const hero = {
     }
 
     if (tokens[idx].nesting === 1) {
-      tokens[idx + 1].attrs = [...tokens[idx + 1].attrs, ['class', 'title']];
-      tokens[idx + 4].attrs = [...tokens[idx + 4].attrs, ['class', 'subtitle']];
+      if (tokens[idx + 1].attrs) {
+        tokens[idx + 1].attrs = [...tokens[idx + 1].attrs, ['class', 'title']];
+      } else {
+        tokens[idx + 1].attrs = [['class', 'title']];
+      }
+
+      if (tokens[idx + 4].attrs) {
+        tokens[idx + 4].attrs = [
+          ...tokens[idx + 4].attrs,
+          ['class', 'subtitle']
+        ];
+      } else {
+        tokens[idx + 4].attrs = [['class', 'subtitle']];
+      }
 
       return `
-        <section class="hero ${classList.join(' ')}">
-          <div class="hero-body">
+      <section class="hero ${classList.join(' ')}">
+      <div class="hero-body">
       `;
     }
 
@@ -38,6 +50,6 @@ const hero = {
   }
 };
 
-export default function bulmaProgress(md) {
+export default function bulmaHero(md) {
   md.use(container, 'hero', hero);
 }

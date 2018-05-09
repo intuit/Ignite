@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`font-awesome - tag 1`] = `
+"<p><i class=\\"fas fa-bomb\\"></i></p>
+"
+`;
+
+exports[`font-awesome - tag 2`] = `
+"<p><i class=\\"far fa-bomb\\"></i></p>
+"
+`;

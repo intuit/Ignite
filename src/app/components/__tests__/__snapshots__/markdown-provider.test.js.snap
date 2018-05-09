@@ -8,6 +8,7 @@ exports[`Has default route 1`] = `
       "docRootIndexFile": [Function],
     }
   }
+  plugins={Object {}}
 />
 `;
 
@@ -21,6 +22,7 @@ exports[`sets first page and root from index file 1`] = `
       "firstPagePath": "/first/page",
     }
   }
+  plugins={Object {}}
 />
 `;
 
@@ -33,5 +35,6 @@ exports[`update markdown provided 1`] = `
       "docRootIndexFile": [Function],
     }
   }
+  plugins={Object {}}
 />
 `;

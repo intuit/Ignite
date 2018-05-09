@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bulma - tile 1`] = `
+"
+        <div class=\\"tile \\">
+      <h1>Title</h1>
+<h2>I can contain various combinations of elements.</h2>
+
+      </div>
+    "
+`;
+
+exports[`bulma - tile 2`] = `
+"
+        <div class=\\"tile is-warning notification\\">
+      <h1>Title</h1>
+<h2>I can contain various combinations of elements.</h2>
+
+      </div>
+    "
+`;

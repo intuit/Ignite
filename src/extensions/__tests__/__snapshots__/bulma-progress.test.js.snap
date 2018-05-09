@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bulma - progress 1`] = `
+"<p>'
+    <div class=\\"progress-with-message\\">
+      <progress class=\\"progress is-primary is-large\\" value=\\"75\\" max=\\"100\\">
+        75%
+      </progress>
+      <span class=\\"progress-message\\">Look at all this progress!</span>
+    </div>
+  </p>
+"
+`;

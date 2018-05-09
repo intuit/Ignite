@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bulma - tag 1`] = `
+"<p>
+    <span class=\\"tag is-info\\">
+      useful information
+    </span>
+  </p>
+"
+`;
+
+exports[`bulma - tag 2`] = `
+"<p>
+    <span class=\\"tag is-success is-large\\">
+      extension
+    </span>
+  </p>
+"
+`;
