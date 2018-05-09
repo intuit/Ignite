@@ -54,7 +54,10 @@ class App extends Component {
                 location.hash ? location.hash : ''
               }`}
             />
-            <Page className={makeClass('column', 'content')} />
+            <Page
+              className={makeClass('column', 'content')}
+              plugins={this.props.plugins}
+            />
           </div>
         </div>
 

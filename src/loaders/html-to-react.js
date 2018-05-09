@@ -53,7 +53,7 @@ function index(source, pathToMarkdown) {
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
 
   return `
-    import ignite from 'ignite';
+    import { registerMarkdown } from 'ignite';
     import makeClass from 'classnames';
 
     function markDownPage(props) {
@@ -64,8 +64,24 @@ function index(source, pathToMarkdown) {
       );
     }
     
-    export default ignite('${pathToMarkdown}', markDownPage, true, '${firstLink}');
+    export default registerMarkdown('${pathToMarkdown}', markDownPage, true, '${firstLink}');
   `;
+}
+
+export function sanitizeJSX(source) {
+  source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
+  source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
+
+  source = source.replace(new RegExp('`', 'g'), '\\`');
+  source = source.replace(new RegExp('{', 'g'), '&#123;');
+  source = source.replace(new RegExp('}', 'g'), '&#125;');
+  source = source.replace(new RegExp('<br>', 'g'), '<br/>');
+
+  source = source.replace(new RegExp('__CURLY_LEFT__', 'g'), '{');
+  source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
+  source = source.replace(new RegExp('pluginprovider', 'g'), 'PluginProvider');
+
+  return source;
 }
 
 export default function(source) {
@@ -85,21 +101,30 @@ export default function(source) {
   );
 
   return `
-    import ignite from 'ignite';
+    import React from 'react';
+    import { registerMarkdown } from 'ignite';
+
+    const PluginProvider = ({plugins, name, options}) => {
+      console.log(plugins, name)
+      let Plugin = plugins[name];
+    
+      if (!Plugin) {
+        return <div />;
+      }
+    
+      Plugin = Plugin.component;
+
+      return <Plugin {...options} />;
+    };
 
     const markDownPage = props => (
       <div className={props.className}>
-        <section 
-          dangerouslySetInnerHTML={{
-            __html: '${source
-              .replace(/'/g, "\\'")
-              .split('\n')
-              .join("\\n' + '")}'
-          }}
-        />
+        <section >
+          ${sanitizeJSX(source)}
+        </section>
       </div>
     );
     
-    export default ignite('${pathToMarkdown}', markDownPage);
+    export default registerMarkdown('${pathToMarkdown}', markDownPage);
   `;
 }

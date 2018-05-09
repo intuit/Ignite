@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
 
-import MarkdownProvider, { update } from './components/MarkdownProvider';
+import MarkdownProvider, {
+  update,
+  updatePlugins
+} from './components/MarkdownProvider';
 
 ReactDOM.render(
   <HashRouter>
@@ -11,7 +14,8 @@ ReactDOM.render(
   document.getElementById('index')
 );
 
-const registerMarkdown = (path, markdownInJS, isIndex, firstLink) =>
-  update(path, markdownInJS, isIndex, firstLink);
+export const registerPlugin = ({ name, component }) =>
+  updatePlugins({ name, component });
 
-export default registerMarkdown;
+export const registerMarkdown = (path, markdownInJS, isIndex, firstLink) =>
+  update(path, markdownInJS, isIndex, firstLink);

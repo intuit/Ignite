@@ -19,6 +19,8 @@ const bulmaRowMarkdown = require('./dist/extensions/bulma-row');
 const bulmaTileMarkdown = require('./dist/extensions/bulma-tile');
 const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 
+const testExtension = require('./dist/extensions/testExtension').default;
+
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = path.resolve(path.join(options.src, options.logo));
@@ -26,7 +28,11 @@ module.exports = function(options = {}) {
   return {
     mode: options.mode,
 
-    entry: [logoPath, path.resolve(__dirname, './src/app/index.js')],
+    entry: [
+      logoPath,
+      path.resolve(__dirname, './src/app/index.js'),
+      path.resolve('./dist/extensions/testExtension')
+    ],
 
     devtool: 'source-map',
 
@@ -75,6 +81,7 @@ module.exports = function(options = {}) {
                   bulmaBoxMarkdown,
                   bulmaRowMarkdown,
                   bulmaTileMarkdown,
+                  testExtension,
                   ...options.plugins
                 ],
                 highlight: (code, language) => {
@@ -96,8 +103,18 @@ module.exports = function(options = {}) {
         },
         {
           test: /\.js$/,
-          exclude: /node_modules\/(?!.*ignite\/src)/,
+          exclude: /node_modules\/(?!.*ignite\/src)|extensions/,
           use: 'babel-loader'
+        },
+        {
+          test: /\.js$/,
+          include: /extensions/,
+          use: [
+            'babel-loader',
+            {
+              loader: path.resolve(__dirname, './dist/loaders/load-plugin.js')
+            }
+          ]
         },
         {
           test: /\.(gif|png|jpe?g|svg)$/i,
