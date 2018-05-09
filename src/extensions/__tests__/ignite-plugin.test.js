@@ -1,12 +1,6 @@
 import MarkdownIt from 'markdown-it';
-import { parseArgs } from '../ignite-plugin';
 
-// const md = new MarkdownIt().use(tag);
-
-// test('bulma - tag', () => {
-//   expect(md.render('#:is-info useful information')).toMatchSnapshot();
-//   expect(md.render('#:is-success:is-large extension')).toMatchSnapshot();
-// });
+import makePlugin, { parseArgs } from '../ignite-plugin';
 
 describe('parseArgs', () => {
   test('should parse options', () => {
@@ -24,6 +18,13 @@ describe('parseArgs', () => {
   describe('propertiesd', () => {
     test('should parse strings', () => {
       expect(parseArgs('somePlugin name=Andrew')).toEqual({
+        options: [],
+        properties: {
+          name: 'Andrew'
+        }
+      });
+
+      expect(parseArgs('somePlugin name="Andrew"')).toEqual({
         options: [],
         properties: {
           name: 'Andrew'
@@ -49,5 +50,46 @@ describe('parseArgs', () => {
         }
       });
     });
+
+    test('should parse arrays', () => {
+      expect(
+        parseArgs('somePlugin array=["Some string", "Some Other String"]')
+      ).toEqual({
+        options: [],
+        properties: {
+          array: ['Some string', 'Some Other String']
+        }
+      });
+
+      expect(parseArgs('somePlugin array=[1, 5, true, false]')).toEqual({
+        options: [],
+        properties: {
+          array: [1, 5, true, false]
+        }
+      });
+    });
+
+    test('should parse object', () => {
+      expect(
+        parseArgs(
+          'somePlugin object={ "foo": ["Some string", "Some Other String"] }'
+        )
+      ).toEqual({
+        options: [],
+        properties: {
+          object: { foo: ['Some string', 'Some Other String'] }
+        }
+      });
+    });
   });
+});
+
+test('makePlugin', () => {
+  const plugin = makePlugin('test');
+  const md = new MarkdownIt().use(plugin);
+
+  expect(md.render('::: test')).toMatchSnapshot();
+  expect(md.render('::: test with some options')).toMatchSnapshot();
+  expect(md.render('::: test with=some properties=10')).toMatchSnapshot();
+  expect(md.render('::: test with both properties=options')).toMatchSnapshot();
 });
