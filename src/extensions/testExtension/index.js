@@ -47,7 +47,7 @@ TestExtension.defaultProps = {
   children: null
 };
 
-export const extension = {
+export default {
   name: 'test',
   component: TestExtension
 };

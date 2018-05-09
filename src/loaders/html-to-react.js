@@ -68,17 +68,58 @@ function index(source, pathToMarkdown) {
   `;
 }
 
+function replaceAt(input, search, replace, start) {
+  return (
+    input.slice(0, start) +
+    input.slice(start, start + search.length).replace(search, replace) +
+    input.slice(start + search.length)
+  );
+}
+
+function insertBreaks(source) {
+  let preTeg = source.indexOf('<pre>');
+
+  while (preTeg !== -1) {
+    let endPreTag = source.indexOf('</pre>', preTeg);
+    let newLine = source.indexOf('\n', preTeg);
+
+    do {
+      newLine = source.indexOf('\n', preTeg);
+      endPreTag = source.indexOf('</pre>', preTeg);
+      source = replaceAt(source, '\n', '<br />', newLine);
+    } while (
+      newLine < endPreTag &&
+      newLine !== source.indexOf('\n', preTeg) &&
+      newLine !== -1
+    );
+
+    preTeg = source.indexOf('<pre>', endPreTag);
+  }
+
+  return source;
+}
+
 export function sanitizeJSX(source) {
+  if (source.includes('<pre>')) {
+    source = insertBreaks(source);
+  }
+
+  // Some of the curlies need to stay to pass props to the plugin component
   source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
   source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
 
-  source = source.replace(new RegExp('`', 'g'), '\\`');
+  // Don't break the JSX
+  // source = source.replace(new RegExp('`', 'g'), '\\`');
   source = source.replace(new RegExp('{', 'g'), '&#123;');
   source = source.replace(new RegExp('}', 'g'), '&#125;');
+
+  // Need to escape br for jsx
   source = source.replace(new RegExp('<br>', 'g'), '<br/>');
 
   source = source.replace(new RegExp('__CURLY_LEFT__', 'g'), '{');
   source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
+
+  // Uppercase to use as react component
   source = source.replace(new RegExp('pluginprovider', 'g'), 'PluginProvider');
 
   return source;
@@ -95,9 +136,11 @@ export default function(source) {
     return index(source, pathToMarkdown);
   }
 
-  source = source.replace(
-    new RegExp('highlighted-line', 'g'),
-    'highlighted-line hero is-primary'
+  source = sanitizeJSX(
+    source.replace(
+      new RegExp('highlighted-line', 'g'),
+      'highlighted-line hero is-primary'
+    )
   );
 
   return `
@@ -120,7 +163,7 @@ export default function(source) {
     const markDownPage = props => (
       <div className={props.className}>
         <section >
-          ${sanitizeJSX(source)}
+          ${source}
         </section>
       </div>
     );

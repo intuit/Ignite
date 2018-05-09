@@ -4,6 +4,6 @@ export default function(source) {
 
     ${source}
 
-    exports.extension && registerPlugin(exports.extension)
+    exports.default && registerPlugin(exports.default)
   `;
 }
