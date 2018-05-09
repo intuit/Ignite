@@ -22,7 +22,7 @@ export default {
 };
 ```
 
-::: message is-warning is-three-fifths is-offset-one-fifth
+::: message is-warning is-three-fifths is-offset-one-fifth has-text-centered
 :warning:
 You have to give the default export a unique name and the plugin must be exported under component.
 :::
@@ -87,7 +87,7 @@ Any token after the arg with an equal sign in it is treated as a property. All m
 :::
 ```
 
-::: message is-warning is-three-fifths is-offset-one-fifth
+::: message is-warning is-three-fifths is-offset-one-fifth has-text-centered
 :warning:
 Properties with arrays or objects must be valid JSON
 :::
