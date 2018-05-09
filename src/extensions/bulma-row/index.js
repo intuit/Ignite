@@ -1,4 +1,5 @@
 import container from 'markdown-it-container';
+import parseClasses from '../utils/parse-classes';
 
 const regExp = /row/;
 
@@ -10,9 +11,11 @@ const row = {
   },
 
   render(tokens, idx) {
+    const classList = parseClasses(tokens[idx].info);
+
     if (tokens[idx].nesting === 1) {
       return `
-        <div class="columns">
+        <div class="columns ${classList.join(' ')}">
       `;
     }
 

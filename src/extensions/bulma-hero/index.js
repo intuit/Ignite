@@ -1,25 +1,15 @@
 import container from 'markdown-it-container';
+import parseClasses from '../utils/parse-classes';
 
 const regExp = /hero/;
-const withOptions = /hero [\S ]+/;
 
 const hero = {
   validate(params) {
-    return params.trim().match(withOptions) || params.trim().match(regExp);
+    return params.trim().match(regExp);
   },
 
   render(tokens, idx) {
-    const options = tokens[idx].info;
-
-    let classList = [];
-
-    if (options.trim().match(withOptions)) {
-      const [, ...userOptions] = options
-        .trim()
-        .match(withOptions)[0]
-        .split(' ');
-      classList = [...userOptions];
-    }
+    const classList = parseClasses(tokens[idx].info);
 
     if (tokens[idx].nesting === 1) {
       if (tokens[idx + 1].attrs) {
@@ -38,8 +28,8 @@ const hero = {
       }
 
       return `
-      <section class="hero ${classList.join(' ')}">
-      <div class="hero-body">
+        <section class="hero ${classList.join(' ')}">
+          <div class="hero-body">
       `;
     }
 
