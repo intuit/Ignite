@@ -40,3 +40,7 @@
   -webkit-text-fill-color: transparent;
   font-size: 20vw;
 }
+
+.addButton {
+  margin-left: 15px;
+}
