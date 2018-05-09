@@ -1,11 +1,10 @@
 import container from 'markdown-it-container';
 
-const regExp = /message/;
-const withOptions = /message [\S ]+/;
+const regExp = 'Gmessage(?!=)';
 
 const message = {
   validate(params) {
-    return params.trim().match(withOptions) || params.trim().match(regExp);
+    return params.trim().match(regExp);
   },
 
   render(tokens, idx) {
