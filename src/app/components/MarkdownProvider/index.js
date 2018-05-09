@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import App from '../App';
@@ -14,7 +14,7 @@ export const update = (...args) => internalUpdateCallback(...args);
 export const updatePlugins = (...args) =>
   internalUpdatePluginsCallback(...args);
 
-export default class MarkdownProvider extends React.Component {
+export default class MarkdownProvider extends Component {
   static propTypes = {
     location: ReactRouterPropTypes.location.isRequired
   };

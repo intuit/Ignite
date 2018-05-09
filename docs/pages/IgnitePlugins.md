@@ -16,20 +16,22 @@ const myPlugin = props => (
   </div>
 );
 
-export default {
-  name: 'boom',
-  componenet: myPlugin
-};
+export default myPlugin;
 ```
-
-::: message is-warning is-three-fifths is-offset-one-fifth has-text-centered
-:warning:
-You have to give the default export a unique name and the plugin must be exported under component.
-:::
 
 ## Register Plugin
 
-[UNDER CONSTRUCTION]
+To register a component just add an entry to the plugins array defined in your config.
+
+Ignite will load strings as markdown-it plugins. If entry in plugin array is an array, then the first element of that array is used as the plugin name and the second is used to load it. This can be either a path or a package name.
+
+```json
+{
+  "ignite": {
+    "plugins": [["boom", "/path/to/myPlugin.js"], "some-markdown-plugin"]
+  }
+}
+```
 
 ## Use your plugins
 
@@ -118,3 +120,7 @@ export default {
 Since we can render a react component as a plugin that means something cool. We can use _ANY_ react component as plugin to our docs. If the component doesn't require state to be handled by the parent, using it is as simple as giving it a name!
 
 [UNDER CONSTRUCTION]
+
+::: test with both properties=options
+end tests
+:::

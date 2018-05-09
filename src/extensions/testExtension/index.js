@@ -52,7 +52,4 @@ TestExtension.defaultProps = {
   tagLine: null
 };
 
-export default {
-  name: 'test',
-  component: TestExtension
-};
+export default TestExtension;

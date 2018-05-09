@@ -153,7 +153,7 @@ export default function(source) {
       if (!Plugin) {
         return <div />;
       }
-    
+
       Plugin = Plugin.component;
 
       return <Plugin options={options.options} children={children} {...options.properties} />;

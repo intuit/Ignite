@@ -13,7 +13,28 @@ const LazyLoadPlugin = require('./dist/plugins/lazy-load');
 
 const makePlugin = require('./dist/extensions/ignite-plugin').default;
 
+const splitPlugins = plugins => {
+  const markdownPlugins = [];
+  const ignitePlugins = [];
+
+  plugins.forEach(plugin => {
+    if (Array.isArray(plugin)) {
+      ignitePlugins.push(plugin);
+    } else {
+      markdownPlugins.push(plugin);
+    }
+  });
+
+  return {
+    markdownPlugins,
+    ignitePlugins
+  };
+};
+
 module.exports = function(options = {}) {
+  const { markdownPlugins, ignitePlugins } = splitPlugins(options.plugins);
+  const pluginPaths = ignitePlugins.map(plugin => path.resolve(plugin[1]));
+  const pluginTokens = ignitePlugins.map(plugin => makePlugin(plugin[0]));
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = path.join(options.src, options.logo);
 
@@ -23,7 +44,7 @@ module.exports = function(options = {}) {
     entry: [
       path.resolve(logoPath),
       path.resolve(__dirname, './src/app/index.js'),
-      path.resolve('./src/extensions/testExtension') // First resolve the component
+      ...pluginPaths
     ],
 
     devtool: 'source-map',
@@ -72,9 +93,8 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-box'),
                   require('./dist/extensions/bulma-row'),
                   require('./dist/extensions/bulma-tile'),
-
-                  makePlugin('test'), // Then register the name
-                  ...options.plugins
+                  ...pluginTokens,
+                  ...markdownPlugins
                 ],
                 highlight: (code, language) => {
                   const validLang = Boolean(
@@ -103,7 +123,12 @@ module.exports = function(options = {}) {
           include: /extensions/,
           use: [
             'babel-loader',
-            path.resolve(__dirname, './dist/loaders/load-plugin.js')
+            {
+              loader: path.resolve(__dirname, './dist/loaders/load-plugin.js'),
+              options: {
+                plugins: ignitePlugins
+              }
+            }
           ]
         },
         // Might not be needed
