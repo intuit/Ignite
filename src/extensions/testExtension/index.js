@@ -11,11 +11,13 @@ class TestExtension extends Component {
 
   render() {
     const { count } = this.state;
-    const { children } = this.props;
-
+    const { children, tagLine } = this.props;
     return (
       <div>
         <h1 className={styles.header}> What a useful plugin I am! </h1>
+
+        {tagLine && <h3>{tagLine}</h3>}
+
         {children}
 
         <h2>Count</h2>

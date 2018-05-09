@@ -148,7 +148,6 @@ export default function(source) {
     import { registerMarkdown } from 'ignite';
 
     const PluginProvider = ({plugins, name, options, children}) => {
-      console.log(plugins, name)
       let Plugin = plugins[name];
     
       if (!Plugin) {
@@ -157,7 +156,7 @@ export default function(source) {
     
       Plugin = Plugin.component;
 
-      return <Plugin options={options} children={children} />;
+      return <Plugin options={options.options} children={children} {...options.properties} />;
     };
 
     const markDownPage = props => (
