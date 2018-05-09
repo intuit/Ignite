@@ -73,11 +73,26 @@ jobs:
       - run:
           name: Publish Docs
           command: yarn publish:docs
+  pr-check:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/Ignite
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run:
+          name: PR Check
+          command: scripts/pr-check.sh
 
 workflows:
   version: 2
   build_and_test:
     jobs:
+      - pr-check:
+          requires:
+              - build
+          filters:
+            tags:
+              only: /.*/
       - build:
           filters:
             tags:
