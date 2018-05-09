@@ -1,10 +1,14 @@
 {
-  "name": "ignite",
+  "name": "@fuego/ignite",
   "version": "0.0.0",
   "description": "Modern markdown documentation generator",
   "main": "dist/ignite.js",
   "bin": {
     "ignite": "./dist/ignite-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.intuit.com/Fuego/Ignite.git"
   },
   "author": {
     "name": "Andrew Lisowski",
@@ -80,6 +84,7 @@
     "webpack-messages": "^1.0.1"
   },
   "devDependencies": {
+    "@fuego/github-release": "^1.9.2",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.3",
