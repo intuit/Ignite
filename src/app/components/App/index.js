@@ -22,7 +22,7 @@ class App extends Component {
           duration: 500
         });
       } else if (!hash) {
-        scrollToElement('h1', {
+        scrollToElement('#root', {
           duration: 1
         });
       }
@@ -45,7 +45,7 @@ class App extends Component {
       <div className={styles.root}>
         <Header />
 
-        <div className={makeClass('container', styles.contentArea)}>
+        <div id="root" className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop"
