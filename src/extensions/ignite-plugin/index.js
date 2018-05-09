@@ -104,12 +104,16 @@ const makePlugin = name => {
       let options = tokens[idx].info;
       options = parseArgs(options);
 
+      const safeOptions = JSON.stringify(options)
+        .replace(new RegExp('{', 'g'), '!{')
+        .replace(new RegExp('}', 'g'), '!}');
+
       if (tokens[idx].nesting === 1) {
         return `
           <pluginprovider
             name='${name}'
             plugins=!{props.plugins!}
-            options=!{${JSON.stringify(options)}!}
+            options=!{${safeOptions}!}
           >
         `;
       }

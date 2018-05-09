@@ -3,33 +3,24 @@
 const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
+
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-const fontAwesomeMarkdown = require('./dist/extensions/font-awesome');
-const bulmaTagMarkdown = require('./dist/extensions/bulma-tag');
-const bulmaProgressMarkdown = require('./dist/extensions/bulma-progress');
-const bulmaHeroMarkdown = require('./dist/extensions/bulma-hero');
-const bulmaMessageMarkdown = require('./dist/extensions/bulma-message');
-const bulmaBoxMarkdown = require('./dist/extensions/bulma-box');
-const bulmaRowMarkdown = require('./dist/extensions/bulma-row');
-const bulmaTileMarkdown = require('./dist/extensions/bulma-tile');
-const LazyLoadPlugin = require('./dist/plugins/lazy-load');
-
-const makePlugin = require('./dist/extensions/ignite-plugin');
+const makePlugin = require('./dist/extensions/ignite-plugin').default;
 
 module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
-  const logoPath = path.resolve(path.join(options.src, options.logo));
+  const logoPath = path.join(options.src, options.logo);
 
   return {
     mode: options.mode,
 
     entry: [
-      logoPath,
+      path.resolve(logoPath),
       path.resolve(__dirname, './src/app/index.js'),
       path.resolve('./src/extensions/testExtension') // First resolve the component
     ],
@@ -73,14 +64,14 @@ module.exports = function(options = {}) {
                   'markdown-it-sup',
                   'markdown-it-anchor',
                   'markdown-it-emoji',
-                  fontAwesomeMarkdown,
-                  bulmaTagMarkdown,
-                  bulmaProgressMarkdown,
-                  bulmaHeroMarkdown,
-                  bulmaMessageMarkdown,
-                  bulmaBoxMarkdown,
-                  bulmaRowMarkdown,
-                  bulmaTileMarkdown,
+                  require('./dist/extensions/font-awesome'),
+                  require('./dist/extensions/bulma-tag'),
+                  require('./dist/extensions/bulma-progress'),
+                  require('./dist/extensions/bulma-hero'),
+                  require('./dist/extensions/bulma-message'),
+                  require('./dist/extensions/bulma-box'),
+                  require('./dist/extensions/bulma-row'),
+                  require('./dist/extensions/bulma-tile'),
                   makePlugin('test'), // then register the name
                   ...options.plugins
                 ],
@@ -111,11 +102,10 @@ module.exports = function(options = {}) {
           include: /extensions/,
           use: [
             'babel-loader',
-            {
-              loader: path.resolve(__dirname, './dist/loaders/load-plugin.js')
-            }
+            path.resolve(__dirname, './dist/loaders/load-plugin.js')
           ]
         },
+        // Might not be needed
         {
           test: /\.(gif|png|jpe?g|svg)$/i,
           use: [
@@ -194,7 +184,7 @@ module.exports = function(options = {}) {
         'process.env': {
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
-          logo: JSON.stringify(path.join(options.src, options.logo))
+          logo: JSON.stringify(logoPath)
         }
       }),
       new FriendlyErrorsWebpackPlugin({
