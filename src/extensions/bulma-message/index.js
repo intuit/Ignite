@@ -23,7 +23,7 @@ const message = {
 
     if (tokens[idx].nesting === 1) {
       return `
-        <article class="message ${classList.join(' ')}">
+        <article class="message column ${classList.join(' ')}">
           ${
             message
               ? `
