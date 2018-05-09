@@ -73,7 +73,7 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-row'),
                   require('./dist/extensions/bulma-tile'),
 
-                  makePlugin('test'), // then register the name
+                  makePlugin('test'), // Then register the name
                   ...options.plugins
                 ],
                 highlight: (code, language) => {

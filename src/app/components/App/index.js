@@ -70,7 +70,12 @@ class App extends Component {
 App.propTypes = {
   markdown: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-typos
-  location: ReactRouterPropTypes.location.isRequired
+  location: ReactRouterPropTypes.location.isRequired,
+  plugins: PropTypes.array
+};
+
+App.defaultProps = {
+  plugins: []
 };
 
 export default App;

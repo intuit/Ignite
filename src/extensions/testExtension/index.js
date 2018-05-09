@@ -12,6 +12,7 @@ class TestExtension extends Component {
   render() {
     const { count } = this.state;
     const { children, tagLine } = this.props;
+
     return (
       <div>
         <h1 className={styles.header}> What a useful plugin I am! </h1>
@@ -42,11 +43,13 @@ class TestExtension extends Component {
 }
 
 TestExtension.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  tagLine: PropTypes.string
 };
 
 TestExtension.defaultProps = {
-  children: null
+  children: null,
+  tagLine: null
 };
 
 export default {
