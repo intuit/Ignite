@@ -153,9 +153,9 @@ Add an entry to your configuration's plugin section. The first item in the entry
 }
 ```
 
-## All Done!
+## All Done
 
-Now you can use the component anywhere in your docs!
+Now you can use the new component anywhere! The possibilities for new components in your app is endless.
 
 ```markdown
 ::: pell
