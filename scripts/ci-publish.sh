@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+export PATH=$PATH:`npm bin`
+
 echo 'CI build - Publishing'
 npm version `github-version` -m '%s [skip ci]'
 
