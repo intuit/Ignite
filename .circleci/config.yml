@@ -70,6 +70,7 @@ jobs:
       - run:
           name: Build Library
           command: yarn build:lib
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run:
           name: Publish Library
           command: scripts/ci-publish.sh
