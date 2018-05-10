@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MarkdownProvider, { update } from '../MarkdownProvider';
+import MarkdownProvider, { update, updatePlugins } from '../MarkdownProvider';
 import renderToJson from './utils/render-to-json';
 
 test('Has default route', () => {
@@ -14,5 +14,10 @@ test('update markdown provided', () => {
 
 test('sets first page and root from index file', () => {
   update('/foo/bar', () => <h1> Simple Component </h1>, true, '/first/page');
+  expect(renderToJson(<MarkdownProvider />)).toMatchSnapshot();
+});
+
+test('uses plugins', () => {
+  updatePlugins({ name: 'test', component: () => <h1> Simple Component </h1> });
   expect(renderToJson(<MarkdownProvider />)).toMatchSnapshot();
 });

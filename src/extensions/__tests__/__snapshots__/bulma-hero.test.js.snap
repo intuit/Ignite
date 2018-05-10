@@ -11,3 +11,15 @@ exports[`bulma - hero 1`] = `
       </section>
     "
 `;
+
+exports[`bulma - hero 2`] = `
+"
+        <section class=\\"hero \\">
+          <div class=\\"hero-body\\">
+      <h1 id=\\"title\\" class=\\"title\\">Title</h1>
+<h2 id=\\"i-can-contain-various-combinations-of-elements\\" class=\\"subtitle\\">I can contain various combinations of elements.</h2>
+
+        </div>
+      </section>
+    "
+`;
