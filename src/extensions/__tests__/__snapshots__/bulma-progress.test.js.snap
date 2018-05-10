@@ -1,6 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`bulma - progress 1`] = `
+"<p>'<progress class=\\"progress\\" value=\\"22\\" max=\\"100\\">22%</progress></p>
+"
+`;
+
+exports[`bulma - progress 2`] = `
 "<p>'
     <div class=\\"progress-with-message\\">
       <progress class=\\"progress is-primary is-large\\" value=\\"75\\" max=\\"100\\">

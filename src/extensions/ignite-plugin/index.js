@@ -94,7 +94,6 @@ export const parseArgs = rawOptions => {
 
 const makePlugin = name => {
   const regExp = new RegExp(name);
-
   const plugin = {
     validate(params) {
       return params.trim().match(regExp);
@@ -123,7 +122,7 @@ const makePlugin = name => {
   };
 
   return md => {
-    container(md, 'plugin', plugin);
+    container(md, name, plugin);
   };
 };
 

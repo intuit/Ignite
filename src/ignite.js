@@ -87,7 +87,7 @@ export default function build(options, user) {
         }
 
         if (options.githubURL.includes('http')) {
-          options.githubURL = options.githubURL.split('//')[1];
+          [, options.githubURL] = options.githubURL.split('//');
         }
 
         ghpages.publish(

@@ -38,3 +38,24 @@ exports[`update markdown provided 1`] = `
   plugins={Object {}}
 />
 `;
+
+exports[`uses plugins 1`] = `
+<App
+  location={undefined}
+  markdown={
+    Object {
+      "/foo/bar": [Function],
+      "docRootIndexFile": [Function],
+      "firstPagePath": "/first/page",
+    }
+  }
+  plugins={
+    Object {
+      "test": Object {
+        "component": [Function],
+        "name": "test",
+      },
+    }
+  }
+/>
+`;

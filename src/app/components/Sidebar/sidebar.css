@@ -1,4 +1,8 @@
 .root {
+  max-height: 100vh;
+  overflow-y: scroll;
+  position: sticky;
+  top: 0px;
   border-right: 1px solid #e0e0e0;
 
   li {
@@ -8,9 +12,4 @@
       padding: 7px;
     }
   }
-}
-
-.sidebar {
-  position: sticky;
-  top: 20px;
 }

@@ -14,7 +14,7 @@ export default function(source) {
       }
 
       if (Array.isArray(plugin)) {
-        options = plugin[1];
+        [, options] = plugin;
         plugin = require(plugin[0]);
       }
 

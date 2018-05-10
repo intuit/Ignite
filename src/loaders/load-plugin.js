@@ -9,7 +9,7 @@ export default function(source) {
       const partialPath = option[1].slice(3);
 
       if (this.resourcePath.includes(partialPath)) {
-        name = option[0];
+        [name] = option;
       }
     });
   }

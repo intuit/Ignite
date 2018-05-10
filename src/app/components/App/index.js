@@ -55,7 +55,12 @@ class App extends Component {
               }`}
             />
             <Page
-              className={makeClass('column', 'content')}
+              className={makeClass(
+                'column',
+                'content',
+                'is-two-thirds-tablet',
+                'is-three-quarters-desktop'
+              )}
               plugins={this.props.plugins}
             />
           </div>
