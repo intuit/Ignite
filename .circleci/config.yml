@@ -73,10 +73,10 @@ jobs:
       - run:
           name: Publish Library
           command: yarn publish:library
-      - persist_to_workspace:
-          root: .
-          paths:
-              - dist/
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #         - dist/
   publishDocs:
     <<: *defaults
     steps:
