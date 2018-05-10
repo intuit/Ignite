@@ -162,5 +162,5 @@ Now you can use the new component anywhere! The possibilities for new components
 :::
 ```
 
-::: pell
+::: pell {.has-background-white}
 :::
