@@ -115,15 +115,52 @@ export default {
 };
 ```
 
+## Use It
+
+Now you can use the component anywhere in your docs!
+
+```markdown
+::: test
+:fas-bomb: :fas-bomb: :fas-bomb:
+:::
+```
+
+OUTPUT:
+
+::: test
+:fas-bomb: :fas-bomb: :fas-bomb:
+:::
+
 ## Using Any React Component
 
 Since we can render a react component as a plugin that means something cool. We can use _ANY_ react component as plugin to our docs. If the component doesn't require state to be handled by the parent, using it is as simple as giving it a name!
 
-[UNDER CONSTRUCTION]
+## Download
 
-::: test with both properties=options
-end tests
+Find some random react component you would like to use in your docs. Here we are gonna use [react-pell](https://github.com/ControlGap/react-pell) a wysiwyg editor for HTML and Markdown.
+
+```bash
+yarn add react-pell
+```
+
+## Definition
+
+Add an entry to your configuration's plugin section. The first item in the entry should be the name you want to give the plugin and the second is just the package name.
+
+```json
+{
+  "plugins": [["pell", "react-pell"]]
+}
+```
+
+## All Done!
+
+Now you can use the component anywhere in your docs!
+
+```markdown
+::: pell
 :::
+```
 
 ::: pell
 :::

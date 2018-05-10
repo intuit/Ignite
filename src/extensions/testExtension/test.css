@@ -1,4 +1,4 @@
-.header {
+.unicorn {
   background: red;
   background: -webkit-linear-gradient(
     left,
@@ -37,8 +37,10 @@
     violet
   );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 20vw;
+
+  h1 {
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .addButton {

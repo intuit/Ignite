@@ -1,55 +1,20 @@
-import React, { Component } from 'react';
-import makeClass from 'classnames';
+import React from 'react';
 import PropTypes from 'prop-types';
-
 import styles from './test.css';
 
-class TestExtension extends Component {
-  state = {
-    count: 0
-  };
+const myPlugin = props => (
+  <div className={styles.unicorn}>
+    <h1>This is pretty awesome.</h1>
+    {props.children}
+  </div>
+);
 
-  render() {
-    const { count } = this.state;
-    const { children, tagLine } = this.props;
-
-    return (
-      <div>
-        <h1 className={styles.header}> What a useful plugin I am! </h1>
-
-        {tagLine && <h3>{tagLine}</h3>}
-
-        {children}
-
-        <h2>Count</h2>
-        <p>{this.state.count}</p>
-        <button
-          className="button is-success"
-          type="button"
-          onClick={() => this.setState({ count: count - 1 })}
-        >
-          -
-        </button>
-        <button
-          className={makeClass('button', 'is-success', styles.addButton)}
-          type="button"
-          onClick={() => this.setState({ count: count + 1 })}
-        >
-          +
-        </button>
-      </div>
-    );
-  }
-}
-
-TestExtension.propTypes = {
-  children: PropTypes.node,
-  tagLine: PropTypes.string
+myPlugin.propTypes = {
+  children: PropTypes.node
 };
 
-TestExtension.defaultProps = {
-  children: null,
-  tagLine: null
+myPlugin.defaultProps = {
+  children: null
 };
 
-export default TestExtension;
+export default myPlugin;
