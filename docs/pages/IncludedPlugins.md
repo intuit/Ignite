@@ -39,27 +39,27 @@ Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlig
 
 ## Highlight Specific lines
 
+_NOT WORKING_
+
 You can call attention to specific lines in your code by including the lines in the block definition.
 
 ````markdown
-```js{2}
+```javascript
 function foo() {
-  return bar()
-    .then(res => {
-      return res.doSomething()
-    })
-  }
+  return bar().then(res => {
+    return res.doSomething();
+  });
+}
 ```
 ````
 
 OUTPUT:
 
-```js{2}
+```javascript
 function foo() {
-  return bar()
-    .then(res => {
-      return res.doSomething()
-    })
+  return bar().then(res => {
+    return res.doSomething();
+  });
 }
 ```
 
@@ -134,3 +134,21 @@ paragraph 1
 <br>
 
 paragraph 1
+
+## HTML Attributes
+
+Add a class, id, or attribute to an element.
+
+More documentation [here](https://www.npmjs.com/package/markdown-it-attrs).
+
+```markdown
+# Title {.has-text-danger}
+```
+
+OUTPUT:
+
+# Title {.has-text-danger}
+
+::: message is-success is-8 is-offset-2 has-text-centered
+TIP: Use with [Bulma Helpers](./pages/BulmaPlugins.md#useful-helpers) to style your page perfectly!
+:::

@@ -2,40 +2,56 @@
 
 exports[`makePlugin 1`] = `
 "
-          <pluginprovider
-            name='test'
-            plugins=!{props.plugins!}
-            options=!{!{\\"options\\":[],\\"properties\\":!{!}!}!}
-          >
-        </pluginprovider>"
+          <div className=\\"\\">
+            <pluginprovider
+              name='test'
+              plugins=!{props.plugins!}
+              options=!{!{\\"options\\":[],\\"properties\\":!{!}!}!}
+            >
+        
+          </pluginprovider>
+        </div>
+      "
 `;
 
 exports[`makePlugin 2`] = `
 "
-          <pluginprovider
-            name='test'
-            plugins=!{props.plugins!}
-            options=!{!{\\"options\\":[\\"with\\",\\"some\\",\\"options\\"],\\"properties\\":!{!}!}!}
-          >
-        </pluginprovider>"
+          <div className=\\"\\">
+            <pluginprovider
+              name='test'
+              plugins=!{props.plugins!}
+              options=!{!{\\"options\\":[\\"with\\",\\"some\\",\\"options\\"],\\"properties\\":!{!}!}!}
+            >
+        
+          </pluginprovider>
+        </div>
+      "
 `;
 
 exports[`makePlugin 3`] = `
 "
-          <pluginprovider
-            name='test'
-            plugins=!{props.plugins!}
-            options=!{!{\\"options\\":[],\\"properties\\":!{\\"with\\":\\"some\\",\\"properties\\":10!}!}!}
-          >
-        </pluginprovider>"
+          <div className=\\"\\">
+            <pluginprovider
+              name='test'
+              plugins=!{props.plugins!}
+              options=!{!{\\"options\\":[],\\"properties\\":!{\\"with\\":\\"some\\",\\"properties\\":10!}!}!}
+            >
+        
+          </pluginprovider>
+        </div>
+      "
 `;
 
 exports[`makePlugin 4`] = `
 "
-          <pluginprovider
-            name='test'
-            plugins=!{props.plugins!}
-            options=!{!{\\"options\\":[\\"with\\",\\"both\\"],\\"properties\\":!{\\"properties\\":\\"options\\"!}!}!}
-          >
-        </pluginprovider>"
+          <div className=\\"\\">
+            <pluginprovider
+              name='test'
+              plugins=!{props.plugins!}
+              options=!{!{\\"options\\":[\\"with\\",\\"both\\"],\\"properties\\":!{\\"properties\\":\\"options\\"!}!}!}
+            >
+        
+          </pluginprovider>
+        </div>
+      "
 `;
