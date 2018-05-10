@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bulma - message 1`] = `
+"
+        <article class=\\"message column is-danger\\">
+          
+            <div class=\\"message-header\\">
+              <p>Message with a Title</p>
+            </div>
+          
+          <div class=\\"message-body\\">
+      <p>Body of the message</p>
+
+        </div>
+      </article>
+    "
+`;
