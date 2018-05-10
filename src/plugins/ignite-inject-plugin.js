@@ -2,26 +2,28 @@ import InjectPlugin from 'webpack-inject-plugin';
 
 function generate(entries = [], plugins = []) {
   return () => {
-    const markdown = entries
+    let generated = entries
       .map(
         e => `
-      import('${e}',);
-    `
+          import('${e}',);
+        `
       )
       .join('\n');
 
-    const pluginsComponents = plugins
-      .map(
-        e => `
-      import { registerPlugin } from 'ignite';
-      import plugin from '${e[1]}';
+    if (plugins.length > 0) {
+      generated += "import { registerPlugin } from 'ignite';";
+      generated += plugins
+        .map(
+          e => `
+            import ${e[0]} from '${e[1]}';
 
-      registerPlugin('${e[0]}', plugin);
-    `
-      )
-      .join('\n');
+            registerPlugin('${e[0]}', ${e[0]});
+          `
+        )
+        .join('\n');
+    }
 
-    return markdown + pluginsComponents;
+    return generated;
   };
 }
 

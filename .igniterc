@@ -2,6 +2,7 @@
   "title": "Ignite",
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
   "plugins": [
-    ["test", "./src/extensions/testExtension"]
+    ["test", "./src/extensions/testExtension"],
+    ["pell", "react-pell"]
   ]
 }
