@@ -85,9 +85,6 @@ jobs:
       - attach_workspace:
           at: ~/Ignite 
       - run:
-          name: Build Library
-          command: yarn build:lib
-      - run:
           name: Publish Docs
           command: yarn publish:docs
   pr-check:
