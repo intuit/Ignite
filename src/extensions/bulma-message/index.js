@@ -1,6 +1,6 @@
 import container from 'markdown-it-container';
 
-const regExp = 'Gmessage(?!=)';
+const regExp = /^message(?!=)/;
 
 const message = {
   validate(params) {
