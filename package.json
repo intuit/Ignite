@@ -73,6 +73,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-pell": "0.4.0",
     "react-router-dom": "^4.2.2",
     "react-router-prop-types": "^1.0.3",
     "root-path": "^0.2.1",
