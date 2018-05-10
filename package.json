@@ -8,7 +8,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "webpack.config.js"
   ],
   "repository": {
     "type": "git",
@@ -86,8 +87,7 @@
     "transform-markdown-links": "^2.0.0",
     "webpack": "^4.8.1",
     "webpack-dev-server": "^3.1.4",
-    "webpack-inject-plugin": "~0.4.0",
-    "webpack-messages": "^1.0.1"
+    "webpack-inject-plugin": "~0.4.0"
   },
   "devDependencies": {
     "@fuego/github-release": "^1.9.2",
