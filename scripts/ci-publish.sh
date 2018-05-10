@@ -20,4 +20,3 @@ git commit -m 'Adding CHANGELOG.md [skip ci]'
 npm publish
 git push --follow-tags --set-upstream origin $branch
 ./github-release
-
