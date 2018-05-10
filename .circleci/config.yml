@@ -70,6 +70,7 @@ jobs:
       - run:
           name: Build Library
           command: yarn build:lib
+      - run: mkdir ~/.ssh && ssh-keyscan -t rsa github.intuit.com >> ~/.ssh/known_hosts
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run:
           name: Publish Library
