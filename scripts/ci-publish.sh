@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+git config --global user.email "andrew_lisowski@intuit.com"
+git config --global user.name "Andrew Lisowski"
+
 export PATH=$PATH:`npm bin`
 
 echo 'CI build - Publishing'
