@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+git config --global push.default simple
 git config --global user.email "andrew_lisowski@intuit.com"
 git config --global user.name "Andrew Lisowski"
 
@@ -22,5 +23,4 @@ git commit -m 'Adding CHANGELOG.md [skip ci]'
 
 npm publish
 git push --follow-tags --set-upstream origin $branch
-./github-release
-
+github-release
