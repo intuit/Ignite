@@ -94,6 +94,7 @@ module.exports = function(options = {}) {
                   'markdown-it-sup',
                   'markdown-it-anchor',
                   'markdown-it-emoji',
+                  'markdown-it-attrs',
                   require('./dist/extensions/font-awesome'),
                   require('./dist/extensions/bulma-tag'),
                   require('./dist/extensions/bulma-progress'),

@@ -108,16 +108,25 @@ const makePlugin = name => {
         .replace(new RegExp('}', 'g'), '!}');
 
       if (tokens[idx].nesting === 1) {
+        const htmlAttrs = tokens[idx].attrs || [];
+        const classNames = htmlAttrs
+          .filter(([key]) => key === 'class')
+          .map(([, value]) => value);
+
         return `
-          <pluginprovider
-            name='${name}'
-            plugins=!{props.plugins!}
-            options=!{${safeOptions}!}
-          >
+          <div className="${classNames.join(' ')}">
+            <pluginprovider
+              name='${name}'
+              plugins=!{props.plugins!}
+              options=!{${safeOptions}!}
+            >
         `;
       }
 
-      return '</pluginprovider>';
+      return `
+          </pluginprovider>
+        </div>
+      `;
     }
   };
 

@@ -134,3 +134,21 @@ paragraph 1
 <br>
 
 paragraph 1
+
+## HTML Attributes
+
+Add a class, id, or attribute to an element.
+
+More documentation [here](https://www.npmjs.com/package/markdown-it-attrs).
+
+```markdown
+# Title {.has-text-danger}
+```
+
+OUTPUT:
+
+# Title {.has-text-danger}
+
+::: message is-success is-8 is-offset-2 has-text-centered
+TIP: Use with [Bulma Helpers](./pages/BulmaPlugins.md#useful-helpers) to style your page perfectly!
+:::
