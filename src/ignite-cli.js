@@ -7,7 +7,7 @@ import cosmiconfig from 'cosmiconfig';
 
 import build, { defaults } from './ignite';
 
-const argv = yargs
+const { argv } = yargs
   .describe('s', 'folder to look for markdown files in')
   .default('s', defaults.src)
   .alias('s', 'src')
@@ -64,7 +64,7 @@ const argv = yargs
 
   .alias('v', 'version')
   .alias('h', 'help')
-  .help().argv;
+  .help();
 
 const rootJson = JSON.parse(fs.readFileSync(`${root()}/package.json`));
 const author = rootJson ? rootJson.author : {};

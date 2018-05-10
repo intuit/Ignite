@@ -1,7 +1,7 @@
 import makePlugin from 'markdown-it-regexp';
 
 const value = makePlugin(/%% [\d]+ %%/, match => {
-  const value = match[0].split(' ')[1];
+  const [, value] = match[0].split(' ');
 
   return `<progress class="progress" value="${value}" max="100">${value}%</progress>`;
 });

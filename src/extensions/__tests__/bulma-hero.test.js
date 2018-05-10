@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it';
-import hero from '../bulma-hero';
 import anchors from 'markdown-it-anchor';
+
+import hero from '../bulma-hero';
 
 const md = new MarkdownIt().use(hero);
 
