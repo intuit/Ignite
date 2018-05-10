@@ -2180,10 +2180,6 @@ cloneable-readable@^1.0.0:
     process-nextick-args "^2.0.0"
     readable-stream "^2.3.5"
 
-clorox@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/clorox/-/clorox-1.0.3.tgz#6fa63653f280c33d69f548fb14d239ddcfa1590d"
-
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -2372,10 +2368,6 @@ console-browserify@^1.1.0:
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.1.0.tgz#f0241c45730a9fc6323b206dbf38edc741d0bb10"
   dependencies:
     date-now "^0.1.4"
-
-console-clear@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/console-clear/-/console-clear-1.1.0.tgz#d5d381b813c80d14d2cce169449585639d31325a"
 
 console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
@@ -9850,12 +9842,6 @@ webpack-dev-server@^3.1.4:
     webpack-log "^1.1.2"
     yargs "11.0.0"
 
-webpack-format-messages@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/webpack-format-messages/-/webpack-format-messages-1.0.2.tgz#875dba643e4a59af7183413ed79dea3949b51655"
-  dependencies:
-    clorox "^1.0.3"
-
 webpack-inject-plugin@~0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.intuit.net/w/webpack-inject-plugin/_attachments/webpack-inject-plugin-0.4.0.tgz#bd8368e417d4d56ee1c4151807dc99c29bea856f"
@@ -9871,14 +9857,6 @@ webpack-log@^1.0.1, webpack-log@^1.1.2:
     log-symbols "^2.1.0"
     loglevelnext "^1.0.1"
     uuid "^3.1.0"
-
-webpack-messages@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/webpack-messages/-/webpack-messages-1.0.1.tgz#f49078833a2947270786f67719a4b5f49b4587b5"
-  dependencies:
-    chalk "^2.0.1"
-    console-clear "^1.0.0"
-    webpack-format-messages "^1.0.0"
 
 webpack-sources@^1.0.1, webpack-sources@^1.1.0:
   version "1.1.0"

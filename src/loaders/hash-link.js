@@ -1,8 +1,7 @@
 import path from 'path';
-import root from 'root-path';
 import transformLinks from 'transform-markdown-links';
 
-export default function(source, rootPath = root()) {
+export default function(source) {
   const markdown = transformLinks(source, link => {
     if (link.includes('http')) {
       return link;
@@ -15,7 +14,7 @@ export default function(source, rootPath = root()) {
     const [filePath, ...description] = link.split(' ');
     const pathToThisSource = path.dirname(path.resolve(this.resourcePath));
     const pathToLink = path.join(pathToThisSource, filePath);
-    const correctPath = path.relative(rootPath, pathToLink);
+    const correctPath = path.relative(process.cwd(), pathToLink);
 
     return `${correctPath} ${description.join(' ')}`;
   });
