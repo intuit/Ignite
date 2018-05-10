@@ -25,7 +25,8 @@
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w",
     "publish:docs": "npm run build -- --publish",
-    "publish:library": "ci-publish"
+    "publish:library": "ci-publish",
+    "postpublish": "github-release"
   },
   "license": "ISC",
   "dependencies": {
