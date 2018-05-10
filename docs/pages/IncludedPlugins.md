@@ -39,27 +39,27 @@ Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlig
 
 ## Highlight Specific lines
 
+_NOT WORKING_
+
 You can call attention to specific lines in your code by including the lines in the block definition.
 
 ````markdown
-```js{2}
+```javascript
 function foo() {
-  return bar()
-    .then(res => {
-      return res.doSomething()
-    })
-  }
+  return bar().then(res => {
+    return res.doSomething();
+  });
+}
 ```
 ````
 
 OUTPUT:
 
-```js{2}
+```javascript
 function foo() {
-  return bar()
-    .then(res => {
-      return res.doSomething()
-    })
+  return bar().then(res => {
+    return res.doSomething();
+  });
 }
 ```
 
