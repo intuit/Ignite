@@ -148,7 +148,8 @@
     "testPathIgnorePatterns": [
       "/dist/",
       "/node_modules/",
-      "/__tests__/utils/"
+      "/__tests__/utils/",
+      "/testExtension/"
     ],
     "testResultsProcessor": "jest-junit",
     "collectCoverage": true,
