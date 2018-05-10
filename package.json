@@ -6,6 +6,10 @@
   "bin": {
     "ignite": "./dist/ignite-cli.js"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.intuit.com/Fuego/Ignite.git"
