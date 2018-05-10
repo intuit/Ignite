@@ -62,6 +62,17 @@ jobs:
       - run:
           name: Send CodeCov Results
           command: bash <(curl -s https://codecov.tools.a.intuit.com/bash) -t $CODECOV_KEY
+  publishLibrary:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/Ignite 
+      - run:
+          name: Build Library
+          command: yarn build:lib
+      - run:
+          name: Publish Library
+          command: yarn publish:library
   publishDocs:
     <<: *defaults
     steps:
@@ -110,6 +121,14 @@ workflows:
             tags:
               only: /.*/
       - publishDocs:
+          requires:
+              - lint
+              - test
+          filters:
+            branches:
+              only:
+                - master
+      - publishLibrary:
           requires:
               - lint
               - test
