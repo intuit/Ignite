@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
 
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
@@ -45,15 +46,16 @@ module.exports = function(options = {}) {
 
   const pluginTokens = ignitePlugins.map(plugin => makePlugin(plugin[0]));
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
-  const logoPath = path.join(options.src, options.logo);
+  const logoPath = options.logo ? path.join(options.src, options.logo) : null;
+  const logoExists = fs.existsSync(path.resolve(logoPath));
 
   return {
     mode: options.mode,
 
     entry: [
-      path.resolve(logoPath),
+      logoExists ? path.resolve(logoPath) : null,
       path.resolve(__dirname, './src/app/index.js')
-    ],
+    ].filter(Boolean),
 
     devtool: 'source-map',
 
@@ -210,7 +212,7 @@ module.exports = function(options = {}) {
         'process.env': {
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
-          logo: JSON.stringify(logoPath)
+          logo: JSON.stringify(logoExists ? logoPath : '')
         }
       }),
       new FriendlyErrorsWebpackPlugin({
