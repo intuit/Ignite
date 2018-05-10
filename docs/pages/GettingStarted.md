@@ -21,4 +21,4 @@ Add `docs` script to package.json
 
 If your docs are set up according to the default configuration a folder `_ignite` will contain a bundled documentation website.
 
-More information about configuration can be found at [Options](./pages/Options.md)
+More information about configuration can be found at [Options](./Options.md)

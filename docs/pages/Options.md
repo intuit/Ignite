@@ -45,12 +45,12 @@ ignite --plugins markdown-it-emoji markdown-it-video
 ```
 
 ::: message is-success is-three-fifths is-offset-one-fifth has-text-centered
-More on including Ignite plugins [here](./pages/IgnitePlugins.md#register-plugin)
+More on including Ignite plugins [here](./IgnitePlugins.md#register-plugin)
 :::
 
 ## Publish (--publish)
 
-Publish the docs to the githubURL. Must [setup](./pages/Publishing.md)
+Publish the docs to the githubURL. Must [setup](./Publishing.md)
 
 ```bash
 ignite --publish

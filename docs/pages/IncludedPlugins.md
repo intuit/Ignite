@@ -150,5 +150,5 @@ OUTPUT:
 # Title {.has-text-danger}
 
 ::: message is-success is-8 is-offset-2 has-text-centered
-TIP: Use with [Bulma Helpers](./pages/BulmaPlugins.md#useful-helpers) to style your page perfectly!
+TIP: Use with [Bulma Helpers](./BulmaPlugins.md#useful-helpers) to style your page perfectly!
 :::

@@ -6,7 +6,7 @@ Ignite builds the app from your side bar. Here is where your organize your docum
 
 The default configuration looks for a file named `index.md` in your `docs/` directory. This file links to the rest of your documentation. Any linked `.md` files will be included in the docs website.
 
-**_Changing the [default configuration](./pages/Options.md#source-src-s)_**
+**_Changing the [default configuration](./Options.md#source-src-s)_**
 
 ```markdown
 * [Introduction](./Introduction.md)
