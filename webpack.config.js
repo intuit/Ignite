@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const LazyLoadPlugin = require('./dist/plugins/lazy-load');
+const IgnitePlugin = require('./dist/plugins/ignite-inject-plugin');
 
 const makePlugin = require('./dist/extensions/ignite-plugin').default;
 
@@ -32,8 +32,17 @@ const splitPlugins = plugins => {
 };
 
 module.exports = function(options = {}) {
-  const { markdownPlugins, ignitePlugins } = splitPlugins(options.plugins);
-  const pluginPaths = ignitePlugins.map(plugin => path.resolve(plugin[1]));
+  let { markdownPlugins, ignitePlugins } = splitPlugins(options.plugins);
+
+  ignitePlugins = ignitePlugins.map(plugin => {
+    if (plugin[1][0] === '.' || plugin[1][0] === '/') {
+      plugin[1] = path.resolve(plugin[1]);
+      return plugin;
+    }
+
+    return plugin;
+  });
+
   const pluginTokens = ignitePlugins.map(plugin => makePlugin(plugin[0]));
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = path.join(options.src, options.logo);
@@ -43,8 +52,7 @@ module.exports = function(options = {}) {
 
     entry: [
       path.resolve(logoPath),
-      path.resolve(__dirname, './src/app/index.js'),
-      ...pluginPaths
+      path.resolve(__dirname, './src/app/index.js')
     ],
 
     devtool: 'source-map',
@@ -56,6 +64,7 @@ module.exports = function(options = {}) {
 
     module: {
       rules: [
+        // Markdown
         {
           test: /\.md$/,
           use: [
@@ -113,25 +122,13 @@ module.exports = function(options = {}) {
             }
           ]
         },
+        // Javascript
         {
           test: /\.js$/,
-          exclude: /node_modules\/(?!.*ignite\/src)|extensions/,
+          exclude: /node_modules\/(?!.*ignite\/src)/,
           use: 'babel-loader'
         },
-        {
-          test: /\.js$/,
-          include: /extensions/,
-          use: [
-            'babel-loader',
-            {
-              loader: path.resolve(__dirname, './dist/loaders/load-plugin.js'),
-              options: {
-                plugins: ignitePlugins
-              }
-            }
-          ]
-        },
-        // Might not be needed
+        // Images - Might not be needed
         {
           test: /\.(gif|png|jpe?g|svg)$/i,
           use: [
@@ -143,6 +140,7 @@ module.exports = function(options = {}) {
             }
           ]
         },
+        // CSS
         {
           test: /\.css$/,
           use: [
@@ -188,8 +186,9 @@ module.exports = function(options = {}) {
     },
 
     plugins: [
-      new LazyLoadPlugin({
-        entries: docs.map(doc => path.resolve(doc))
+      new IgnitePlugin({
+        entries: docs.map(doc => path.resolve(doc)),
+        plugins: ignitePlugins
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
