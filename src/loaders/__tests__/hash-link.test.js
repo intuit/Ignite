@@ -1,6 +1,14 @@
 import { transformLink } from '../hash-link';
 
 describe('transformLink', () => {
+  beforeAll(() => {
+    jest.spyOn(process, 'cwd').mockReturnValue('/project');
+  });
+
+  afterAll(() => {
+    process.cwd.mockRestore();
+  });
+
   test('should leave http links alone', () => {
     expect(
       transformLink(
@@ -12,20 +20,20 @@ describe('transformLink', () => {
     );
   });
 
-  test('should hasg link', () => {
+  test('should hash link', () => {
     expect(
       transformLink('/docs/example.md', './markdown.md', { src: 'docs/' })
-    ).toBe('../../../../docs/markdown.md');
+    ).toBe('../docs/markdown.md');
   });
 
   test('should make relative paths to images', () => {
     expect(
       transformLink('/path/', './link/to/image.png', { src: 'docs/' })
-    ).toBe('../../../../link/to/image.png ');
+    ).toBe('../link/to/image.png ');
     expect(
       transformLink('/path/', './link/to/image.png "With a description"', {
         src: 'docs/'
       })
-    ).toBe('../../../../link/to/image.png "With a description"');
+    ).toBe('../link/to/image.png "With a description"');
   });
 });
