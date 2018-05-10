@@ -72,11 +72,11 @@ jobs:
           command: yarn build:lib
       - run:
           name: Publish Library
-          command: yarn publish:library
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #         - dist/
+          command: scripts/ci-publish.sh
+      - persist_to_workspace:
+          root: .
+          paths:
+              - dist/
   publishDocs:
     <<: *defaults
     steps:
