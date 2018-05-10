@@ -122,6 +122,9 @@ export function sanitizeJSX(source) {
   // Uppercase to use as react component
   source = source.replace(new RegExp('pluginprovider', 'g'), 'PluginProvider');
 
+  // React uses className
+  source = source.replace(new RegExp('class=', 'g'), 'className=');
+
   return source;
 }
 
