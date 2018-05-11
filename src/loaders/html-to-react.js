@@ -99,6 +99,29 @@ function insertBreaks(source) {
   return source;
 }
 
+const regexIndexOf = function(string, regex, startpos) {
+  const indexOf = string.substring(startpos || 0).search(regex);
+  return indexOf >= 0 ? indexOf + (startpos || 0) : indexOf;
+};
+
+const replaceIdLinks = source => {
+  const isTag = /<a href="#(?!\/)[\S]+/;
+  let linkOnPage = regexIndexOf(source, isTag);
+
+  while (linkOnPage !== -1) {
+    source = replaceAt(source, '<a href="#', '<Link to="#', linkOnPage);
+    source = replaceAt(
+      source,
+      '</a>',
+      '</Link>',
+      source.indexOf('</a>', linkOnPage)
+    );
+    linkOnPage = regexIndexOf(source, isTag, linkOnPage);
+  }
+
+  return source;
+};
+
 export function sanitizeJSX(source) {
   if (source.includes('<pre>')) {
     source = insertBreaks(source);
@@ -124,9 +147,7 @@ export function sanitizeJSX(source) {
 
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
-
-  source = source.replace(new RegExp('<a href=', 'g'), '<Link to=');
-  source = source.replace(new RegExp('</a>', 'g'), '</Link>');
+  source = replaceIdLinks(source);
 
   return source;
 }
