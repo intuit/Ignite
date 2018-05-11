@@ -125,6 +125,9 @@ export function sanitizeJSX(source) {
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
 
+  source = source.replace(new RegExp('<a href=', 'g'), '<Link to=');
+  source = source.replace(new RegExp('</a>', 'g'), '</Link>');
+
   return source;
 }
 
@@ -149,6 +152,7 @@ export default function(source) {
   return `
     import React from 'react';
     import { registerMarkdown } from 'ignite';
+    import { Link } from 'react-router-dom';
 
     const PluginProvider = ({plugins, name, options, children}) => {
       let Plugin = plugins[name];
@@ -164,7 +168,7 @@ export default function(source) {
 
     const markDownPage = props => (
       <div className={props.className}>
-        <section >
+        <section>
           ${source}
         </section>
       </div>

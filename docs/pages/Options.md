@@ -10,6 +10,8 @@ All options can be used as CLI arguments or declared in the package.json.
 }
 ```
 
+[[toc]]
+
 ---
 
 ## Source (--src, -s)

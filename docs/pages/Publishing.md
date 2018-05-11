@@ -2,9 +2,7 @@
 
 Publishing to github pages is easy.
 
-1.  [Setup Branch](#setup-branch)
-2.  [Setup Git](#setup-git)
-3.  [Setup Script](#setup-script)
+[[toc]]
 
 ## Setup Branch
 
