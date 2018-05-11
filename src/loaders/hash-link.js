@@ -9,6 +9,10 @@ export function transformLink(resourcePath, link, options) {
 
   const pathToThisSource = path.dirname(path.resolve(resourcePath));
 
+  if (link[0] === '#') {
+    return link;
+  }
+
   if (path.extname(link).includes('.md')) {
     const pathToLink = path.join(pathToThisSource, link);
     const pathToDocs = path.join(process.cwd(), options.src);
