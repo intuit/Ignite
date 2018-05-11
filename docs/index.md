@@ -1,10 +1,10 @@
-Intro
-
 * [:page_facing_up: Introduction](./pages/Introduction.md)
   * [Project Structure](./pages/ProjectStructure.md)
 * [:tada: Getting Started](./pages/GettingStarted.md)
   * [Installation](./pages/GettingStarted.md#installation)
   * [Usage](./pages/GettingStarted.md#usage)
+
+---
 
 Customizations
 
@@ -17,6 +17,8 @@ Customizations
   * [Ignite Plugins](./pages/IgnitePlugins.md)
   * [Included Plugins](./pages/IncludedPlugins.md)
   * [Bulma Plugins](./pages/BulmaPlugins.md)
+
+---
 
 Usage
 
