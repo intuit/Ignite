@@ -34,3 +34,7 @@
  0.0.9
 
 - Table Of Contents #77
+
+ 0.0.10
+
+- Fix links, enables TOC #78
