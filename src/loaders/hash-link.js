@@ -3,11 +3,19 @@ import transformLinks from 'transform-markdown-links';
 import { getOptions } from 'loader-utils';
 
 export function transformLink(resourcePath, link, options) {
-  if (link.includes('http')) {
+  if (!link || link === '' || link.includes('http')) {
     return link;
   }
 
   const pathToThisSource = path.dirname(path.resolve(resourcePath));
+
+  if (link[0] === '#') {
+    const pathToLink = path.resolve(resourcePath);
+    const pathToDocs = path.join(process.cwd(), options.src);
+    const correctPath = path.relative(pathToDocs, pathToLink);
+
+    return path.join('#', `${correctPath}${link}`);
+  }
 
   if (path.extname(link).includes('.md')) {
     const pathToLink = path.join(pathToThisSource, link);

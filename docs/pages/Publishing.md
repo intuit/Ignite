@@ -2,6 +2,10 @@
 
 Publishing to github pages is easy.
 
+1.  [Setup Branch](#setup-branch)
+2.  [Setup Git](#setup-git)
+3.  [Setup Script](#setup-script)
+
 ## Setup Branch
 
 To publish your docs first setup a clean `gh-pages` branch.
