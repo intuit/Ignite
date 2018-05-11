@@ -3,7 +3,7 @@ import transformLinks from 'transform-markdown-links';
 import { getOptions } from 'loader-utils';
 
 export function transformLink(resourcePath, link, options) {
-  if (link.includes('http')) {
+  if (!link || link === '' || link.includes('http')) {
     return link;
   }
 

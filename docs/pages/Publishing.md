@@ -2,6 +2,8 @@
 
 Publishing to github pages is easy.
 
+[[toc]]
+
 ## Setup Branch
 
 To publish your docs first setup a clean `gh-pages` branch.

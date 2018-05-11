@@ -97,6 +97,12 @@ module.exports = function(options = {}) {
                   'markdown-it-anchor',
                   'markdown-it-emoji',
                   'markdown-it-attrs',
+                  [
+                    'markdown-it-table-of-contents',
+                    {
+                      includeLevel: [2, 3]
+                    }
+                  ],
                   require('./dist/extensions/font-awesome'),
                   require('./dist/extensions/bulma-tag'),
                   require('./dist/extensions/bulma-progress'),
