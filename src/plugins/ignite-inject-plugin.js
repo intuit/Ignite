@@ -23,7 +23,7 @@ function generate(entries = [], plugins = []) {
             import * as ${e[0]} from '${e[1]}';
             options = ${e[2] ? JSON.stringify(e[2]) : '{}'};
 
-            registerPlugin('${e[0]}', ${e[0]}, options);
+            registerPlugin('${e[0]}', ${e[0]}.default, options);
           `
         )
         .join('\n');

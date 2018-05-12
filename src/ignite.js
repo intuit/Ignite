@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
+import fs from 'fs';
+import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
+import 'babel-register';
 
 import config from '../webpack.config';
 
@@ -20,11 +23,30 @@ export const defaults = {
   bulmaTheme: 'nuclear'
 };
 
-export default function build(options, user) {
+async function initPlugins(options) {
+  options.plugins.forEach(async plugin => {
+    const [, pluginPath, pluginOptions] = plugin;
+    const initFile = path.join(pluginPath, 'init.js');
+
+    if (fs.existsSync(initFile)) {
+      pluginOptions._initData = await require(path.resolve(initFile))(
+        pluginOptions
+      );
+    }
+  });
+
+  return options;
+}
+
+export default async function build(options, user) {
   options = Object.assign({}, defaults, options);
 
+  if (options.plugins) {
+    options = await initPlugins(options);
+  }
+
   if (options.watch) {
-    options = Object.assign(options, {
+    options = Object.assign({}, options, {
       mode: 'development',
       compilationSuccessInfo: {
         messages: [
