@@ -5,9 +5,12 @@ import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
-import 'babel-register';
+import register from 'babel-register';
 
 import config from '../webpack.config';
+import packageJSON from '../package';
+
+register(packageJSON.babel || {});
 
 export const defaults = {
   mode: 'production',
@@ -27,11 +30,14 @@ async function initPlugins(options) {
   options.plugins.forEach(async plugin => {
     const [, pluginPath, pluginOptions] = plugin;
     const initFile = path.join(pluginPath, 'init.js');
-
     if (fs.existsSync(initFile)) {
-      pluginOptions._initData = await require(path.resolve(initFile))(
-        pluginOptions
-      );
+      try {
+        pluginOptions._initData = await require(path.resolve(initFile))(
+          pluginOptions
+        );
+      } catch (err) {
+        console.log(err);
+      }
     }
   });
 
