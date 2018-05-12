@@ -14,8 +14,8 @@ ReactDOM.render(
   document.getElementById('index')
 );
 
-export const registerPlugin = (name, component) =>
-  updatePlugins({ name, component });
+export const registerPlugin = (name, component, options) =>
+  updatePlugins({ name, component, options });
 
 export const registerMarkdown = (path, markdownInJS, isIndex, firstLink) =>
   update(path, markdownInJS, isIndex, firstLink);
