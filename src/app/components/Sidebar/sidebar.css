@@ -20,7 +20,7 @@
 
     summary:after {
       content: '\f0fe';
-      font-family: Font Awesome\ 5 Free;
+      font-family: Font Awesome\ 5 Free, sans-serif;
       -webkit-font-smoothing: antialiased;
       display: inline-block;
       font-style: normal;
