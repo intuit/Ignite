@@ -45,12 +45,17 @@ function addActiveAll(source, firstLink) {
 function index(source, pathToMarkdown) {
   const firstLink = getLink(source);
 
+  // Some of the curlies need to stay to pass props to the plugin component
+  source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
+  source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
   source = addActiveAll(source, firstLink);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
   );
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
+  source = source.replace(new RegExp('__CURLY_LEFT__', 'g'), '{');
+  source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
 
   return `
     import { registerMarkdown } from 'ignite';

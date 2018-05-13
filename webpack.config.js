@@ -120,6 +120,7 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-box'),
                   require('./dist/extensions/bulma-row'),
                   require('./dist/extensions/bulma-tile'),
+                  require('./dist/extensions/collapse'),
                   ...pluginTokens,
                   ...markdownPlugins
                 ],

@@ -12,4 +12,42 @@
       padding: 7px;
     }
   }
+
+  details {
+    summary:before {
+      display: none;
+    }
+
+    summary:after {
+      content: '\f0fe';
+      font-family: Font Awesome\ 5 Free;
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      font-weight: 900;
+
+      position: absolute;
+      right: 10px;
+    }
+  }
+
+  details[open] summary:before {
+    display: none;
+  }
+
+  details[open] summary:after {
+    content: '\f146';
+  }
+
+  :global .checkbox {
+    display: block;
+
+    input[type='checkbox'],
+    input[type='radio'] {
+      margin-right: 10px;
+    }
+  }
 }
