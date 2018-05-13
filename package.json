@@ -45,6 +45,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "6.26.0",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.5.1",
     "cosmiconfig": "5.0.2",
@@ -63,6 +64,7 @@
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-container": "^2.0.0",
     "markdown-it-emoji": "^1.4.0",
+    "markdown-it-external-links": "0.0.6",
     "markdown-it-highlight-lines": "^1.0.0",
     "markdown-it-ins": "^2.0.0",
     "markdown-it-mark": "^2.0.0",
@@ -178,7 +180,14 @@
   },
   "babel": {
     "presets": [
-      "babel-preset-env",
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
       "react",
       "stage-0"
     ],

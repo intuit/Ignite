@@ -45,12 +45,17 @@ function addActiveAll(source, firstLink) {
 function index(source, pathToMarkdown) {
   const firstLink = getLink(source);
 
+  // Some of the curlies need to stay to pass props to the plugin component
+  source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
+  source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
   source = addActiveAll(source, firstLink);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
   );
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
+  source = source.replace(new RegExp('__CURLY_LEFT__', 'g'), '{');
+  source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
 
   return `
     import { registerMarkdown } from 'ignite';
@@ -105,11 +110,30 @@ const regexIndexOf = function(string, regex, startpos) {
 };
 
 const replaceIdLinks = source => {
-  const isTag = /<a href="#(?!\/)[\S]+/;
+  let isTag = /<a href="#(?!\/)[\S]+/;
   let linkOnPage = regexIndexOf(source, isTag);
 
   while (linkOnPage !== -1) {
     source = replaceAt(source, '<a href="#', '<Link to="#', linkOnPage);
+    source = replaceAt(
+      source,
+      '</a>',
+      '</Link>',
+      source.indexOf('</a>', linkOnPage)
+    );
+    linkOnPage = regexIndexOf(source, isTag, linkOnPage);
+  }
+
+  isTag = /<a className="fas fa-hashtag headerLink" href="#(?!\/)[\S]+/;
+  linkOnPage = regexIndexOf(source, isTag);
+
+  while (linkOnPage !== -1) {
+    source = replaceAt(
+      source,
+      '<a className="fas fa-hashtag headerLink" href="#',
+      '<Link className="fas fa-hashtag headerLink" to="#',
+      linkOnPage
+    );
     source = replaceAt(
       source,
       '</a>',
@@ -147,7 +171,7 @@ export function sanitizeJSX(source) {
 
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
-  source = replaceIdLinks(source);
+  source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
 
   return source;
 }

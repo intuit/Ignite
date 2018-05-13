@@ -94,9 +94,18 @@ module.exports = function(options = {}) {
                   'markdown-it-mark',
                   'markdown-it-ins',
                   'markdown-it-sup',
-                  'markdown-it-anchor',
+                  [
+                    'markdown-it-anchor',
+                    {
+                      permalink: true,
+                      permalinkSymbol: '',
+                      permalinkClass: 'fas fa-hashtag headerLink',
+                      level: 2
+                    }
+                  ],
                   'markdown-it-emoji',
                   'markdown-it-attrs',
+                  'markdown-it-external-links',
                   [
                     'markdown-it-table-of-contents',
                     {
@@ -111,6 +120,7 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-box'),
                   require('./dist/extensions/bulma-row'),
                   require('./dist/extensions/bulma-tile'),
+                  require('./dist/extensions/collapse'),
                   ...pluginTokens,
                   ...markdownPlugins
                 ],

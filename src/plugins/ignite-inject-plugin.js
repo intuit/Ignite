@@ -11,13 +11,19 @@ function generate(entries = [], plugins = []) {
       .join('\n');
 
     if (plugins.length > 0) {
-      generated += "import { registerPlugin } from 'ignite';";
+      generated += "import { registerPlugin } from 'ignite';\n";
+      generated += 'let options;\n';
+
+      // E0: Name of plugin
+      // E1: Path to plugin (can be npm module name)
+      // E2: Options for plugin
       generated += plugins
         .map(
           e => `
-            import ${e[0]} from '${e[1]}';
+            import * as ${e[0]} from '${e[1]}';
+            options = ${e[2] ? JSON.stringify(e[2]) : '{}'};
 
-            registerPlugin('${e[0]}', ${e[0]});
+            registerPlugin('${e[0]}', ${e[0]}.default, options);
           `
         )
         .join('\n');

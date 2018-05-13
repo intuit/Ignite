@@ -60,6 +60,33 @@ img {
   max-width: 100%;
 }
 
+details {
+  summary {
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  summary:before {
+    content: '\f0fe';
+    font-family: Font Awesome\ 5 Free, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-weight: 900;
+    padding-right: 10px;
+  }
+}
+
+details[open] summary:before {
+  content: '\f146';
+}
+
 :global .checkbox {
   display: block;
 
@@ -126,4 +153,24 @@ p {
   h2 {
     color: currentColor;
   }
+}
+
+:global .external-link {
+  &::after {
+    content: '\f14d';
+    font-family: Font Awesome\ 5 Free, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-weight: 900;
+    padding-left: 5px;
+  }
+}
+
+:global .headerLink {
+  padding-left: 10px;
+  opacity: 0.5;
 }
