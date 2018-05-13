@@ -142,3 +142,8 @@ p {
     padding-left: 5px;
   }
 }
+
+:global .headerLink {
+  padding-left: 10px;
+  opacity: 0.5;
+}

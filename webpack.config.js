@@ -94,7 +94,15 @@ module.exports = function(options = {}) {
                   'markdown-it-mark',
                   'markdown-it-ins',
                   'markdown-it-sup',
-                  'markdown-it-anchor',
+                  [
+                    'markdown-it-anchor',
+                    {
+                      permalink: true,
+                      permalinkSymbol: '',
+                      permalinkClass: 'fas fa-hashtag headerLink',
+                      level: 2
+                    }
+                  ],
                   'markdown-it-emoji',
                   'markdown-it-attrs',
                   'markdown-it-external-links',

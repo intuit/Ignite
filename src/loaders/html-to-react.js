@@ -105,11 +105,30 @@ const regexIndexOf = function(string, regex, startpos) {
 };
 
 const replaceIdLinks = source => {
-  const isTag = /<a href="#(?!\/)[\S]+/;
+  let isTag = /<a href="#(?!\/)[\S]+/;
   let linkOnPage = regexIndexOf(source, isTag);
 
   while (linkOnPage !== -1) {
     source = replaceAt(source, '<a href="#', '<Link to="#', linkOnPage);
+    source = replaceAt(
+      source,
+      '</a>',
+      '</Link>',
+      source.indexOf('</a>', linkOnPage)
+    );
+    linkOnPage = regexIndexOf(source, isTag, linkOnPage);
+  }
+
+  isTag = /<a className="fas fa-hashtag headerLink" href="#(?!\/)[\S]+/;
+  linkOnPage = regexIndexOf(source, isTag);
+  console.log(linkOnPage);
+  while (linkOnPage !== -1) {
+    source = replaceAt(
+      source,
+      '<a className="fas fa-hashtag headerLink" href="#',
+      '<Link className="fas fa-hashtag headerLink" to="#',
+      linkOnPage
+    );
     source = replaceAt(
       source,
       '</a>',
@@ -147,7 +166,7 @@ export function sanitizeJSX(source) {
 
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
-  source = replaceIdLinks(source);
+  source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
 
   return source;
 }
