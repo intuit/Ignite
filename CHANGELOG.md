@@ -38,3 +38,7 @@
  0.0.10
 
 - Fix links, enables TOC #78
+
+ 0.0.11
+
+- Markdown #79
