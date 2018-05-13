@@ -131,6 +131,14 @@ p {
 :global .external-link {
   &::after {
     content: '\f14d';
-    padding-left: 15px;
+    font-family: Font Awesome\ 5 Free;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-weight: 900;
+    padding-left: 5px;
   }
 }

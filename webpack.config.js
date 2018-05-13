@@ -97,12 +97,7 @@ module.exports = function(options = {}) {
                   'markdown-it-anchor',
                   'markdown-it-emoji',
                   'markdown-it-attrs',
-                  [
-                    'markdown-it-external-links',
-                    {
-                      externalClassName: 'external-link fas'
-                    }
-                  ],
+                  'markdown-it-external-links',
                   [
                     'markdown-it-table-of-contents',
                     {
