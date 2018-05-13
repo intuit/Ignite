@@ -1,5 +1,4 @@
 import container from 'markdown-it-container';
-import parseClasses from '../utils/parse-classes';
 
 const regExp = /collapse/;
 
@@ -12,10 +11,20 @@ const collapse = md => ({
     const m = tokens[idx].info.trim().match(/^collapse\s+(.*)$/);
 
     if (tokens[idx].nesting === 1) {
+      const isOpen = m[1].split(' ')[0] === 'open';
+      let [, rest] = m;
+
+      if (isOpen) {
+        rest = m[1]
+          .split(' ')
+          .slice(1)
+          .join(' ');
+      }
+
       return `
-        <details open>
+        <details ${isOpen ? 'open' : ''}>
           <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative'!}!} className="menu-label">
-            ${md.renderInline(m[1])}
+            ${md.renderInline(rest)}
           </summary>
       `;
     }
