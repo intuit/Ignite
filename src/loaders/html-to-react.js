@@ -126,7 +126,7 @@ const replaceIdLinks = source => {
 
   isTag = /<a className="fas fa-hashtag headerLink" href="#(?!\/)[\S]+/;
   linkOnPage = regexIndexOf(source, isTag);
-  console.log(linkOnPage);
+
   while (linkOnPage !== -1) {
     source = replaceAt(
       source,
