@@ -127,3 +127,10 @@ p {
     color: currentColor;
   }
 }
+
+:global .external-link {
+  &::after {
+    content: '\f14d';
+    padding-left: 15px;
+  }
+}
