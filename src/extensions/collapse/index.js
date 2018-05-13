@@ -14,7 +14,7 @@ const collapse = md => ({
       let isOpen;
       let children = '';
 
-      if (m[1]) {
+      if (m && m[1]) {
         isOpen = m[1].split(' ')[0] === 'open';
         let [, rest] = m;
 
@@ -30,7 +30,7 @@ const collapse = md => ({
 
       return `
         <details ${isOpen ? 'open' : ''}>
-          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative'!}!} className="menu-label">
+          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
             ${children}
           </summary>
       `;

@@ -1,5 +1,31 @@
 # Included Plugins
 
+## Collapse
+
+Make a set of elements collapsible. If first word is 'open' the elements will default to being shown.
+
+```markdown
+::: collapse Title For Collapse Area
+Some text
+:::
+```
+
+OUTPUT:
+
+::: collapse Title For Collapse Area
+Some text
+:::
+
+Collapse in the sidebar defaults to open.
+
+It is possible to make a list or sublist collapsible too. The ending `:::` is not needed in this case.
+
+```
+* ::: collapse [:package: Publishing](./pages/Publishing.md)
+  * [Setup](./pages/Publishing.md#setup-branch)
+  * [Continuous Integration](./pages/Publishing.md#Continuous-integration)
+```
+
 ## Font awesome
 
 All icons listed [here](https://fontawesome.com/icons/bomb?style=solid).

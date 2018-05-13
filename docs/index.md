@@ -6,7 +6,7 @@
 
 ---
 
-Customizations
+::: collapse Customizations
 
 * [:nail_care: Theming](./pages/Theming.md)
 * [:cake: Plugins](./pages/Plugins.md)
@@ -18,11 +18,15 @@ Customizations
   * [Included Plugins](./pages/IncludedPlugins.md)
   * [Bulma Plugins](./pages/BulmaPlugins.md)
 
+:::
+
 ---
 
-Usage
+::: collapse Usage
 
 * [:package: Publishing](./pages/Publishing.md)
   * [Setup](./pages/Publishing.md#setup-branch)
   * [Continuous Integration](./pages/Publishing.md#Continuous-integration)
 * [:wrench: Options](./pages/Options.md)
+
+:::
