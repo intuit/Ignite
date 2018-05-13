@@ -11,20 +11,27 @@ const collapse = md => ({
     const m = tokens[idx].info.trim().match(/^collapse\s+(.*)$/);
 
     if (tokens[idx].nesting === 1) {
-      const isOpen = m[1].split(' ')[0] === 'open';
-      let [, rest] = m;
+      let isOpen;
+      let children = '';
 
-      if (isOpen) {
-        rest = m[1]
-          .split(' ')
-          .slice(1)
-          .join(' ');
+      if (m[1]) {
+        isOpen = m[1].split(' ')[0] === 'open';
+        let [, rest] = m;
+
+        if (isOpen) {
+          rest = m[1]
+            .split(' ')
+            .slice(1)
+            .join(' ');
+        }
+
+        children = md.renderInline(rest);
       }
 
       return `
         <details ${isOpen ? 'open' : ''}>
           <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative'!}!} className="menu-label">
-            ${md.renderInline(rest)}
+            ${children}
           </summary>
       `;
     }
