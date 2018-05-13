@@ -1,3 +1,3 @@
-export default function init(options) {
+export default function init() {
   return 'foo';
 }
