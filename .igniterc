@@ -3,7 +3,11 @@
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
   "plugins": [
     ["test", "./src/extensions/testExtension", {
-      "url": "google.com"
+      "url": "google.com",
+      "array": [
+        'one',
+        'two'
+      ]
     }],
     ["pell", "react-pell"]
   ]

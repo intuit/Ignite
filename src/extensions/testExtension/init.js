@@ -1,3 +1,11 @@
 export default function init() {
-  return 'foo';
+  return {
+    data: 'foo',
+    nested: {
+      deeply: {
+        value: 'foo',
+        func: () => 'deep func'
+      }
+    }
+  };
 }

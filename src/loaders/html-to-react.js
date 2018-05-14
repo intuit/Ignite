@@ -201,14 +201,14 @@ export default function(source) {
 
     const PluginProvider = ({plugins, name, options, children}) => {
       let Plugin = plugins[name];
+      const pluginOptions = Plugin.options;
     
       if (!Plugin) {
         return <div />;
       }
 
       Plugin = Plugin.component;
-
-      return <Plugin options={options.options} children={children} {...options.properties} />;
+      return <Plugin {...pluginOptions}  children={children} {...options} />;
     };
 
     const markDownPage = props => (
