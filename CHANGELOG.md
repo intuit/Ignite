@@ -42,3 +42,7 @@
  0.0.11
 
 - Markdown #79
+
+ 0.0.12
+
+- pass init options to plugin #80
