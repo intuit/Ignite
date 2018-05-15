@@ -61,17 +61,18 @@ folder2/
 ```json
 {
   "navItems": {
+    "root": "path/to/folder",
     "Name to Display in NavBar": "path/to/folder"
   }
 }
 ```
 
-::: message is-warning is-three-fifths is-offset-one-fifth has-text-centered
-:warning:
-All index files must have the same name specified in [configuration](Options.md#index-index-i).
-:::
+::: message is-warning is-three-fifths is-offset-one-fifth
 
-::: message is-warning is-three-fifths is-offset-one-fifth has-text-centered
-:warning:
-All paths to NavItems use [source folder](Options.md#source-src-s) as root.
+:warning: Root should point to the default folder.
+
+:warning: All index files must have the same name specified in [configuration](Options.md#index-index-i).
+
+:warning: All paths to NavItems use [source folder](Options.md#source-src-s) as root.
+
 :::
