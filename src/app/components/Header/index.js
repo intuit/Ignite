@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
@@ -42,8 +41,7 @@ const Header = props => (
       <div className="navbar-end">
         {process.env.navItems &&
           Object.entries(process.env.navItems).map(([key, item]) => {
-            const otherPaths = _.filter(
-              Object.values(process.env.navItems),
+            const otherPaths = Object.values(process.env.navItems).filter(
               val => val !== '/'
             );
 
