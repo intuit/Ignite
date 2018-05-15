@@ -23,7 +23,7 @@ export const defaults = {
   color: 'auto',
   selectedColor: 'auto',
   logo: 'logo.svg',
-  bulmaTheme: 'nuclear'
+  bulmaTheme: 'flatly'
 };
 
 async function initPlugins(options) {

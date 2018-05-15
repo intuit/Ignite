@@ -33,19 +33,22 @@ export default class MarkdownProvider extends Component {
     internalUpdatePluginsCallback = this.onPluginUpdate;
   }
 
-  onUpdate = (path, component, isIndex, firstLink) => {
+  onUpdate = (pathToMarkdown, component, isIndex, firstLink) => {
     const { markdown } = this.state;
 
-    markdown[path] = component;
+    markdown[pathToMarkdown] = component;
 
     if (isIndex) {
-      markdown.docRootIndexFile = component;
-      markdown.firstPagePath = firstLink;
+      markdown.indexFiles = {
+        ...markdown.indexFiles,
+        [pathToMarkdown]: firstLink
+      };
     }
 
     this.setState({
       markdown
     });
+
     return component;
   };
 

@@ -1,3 +1,4 @@
+import path from 'path';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
@@ -30,32 +31,59 @@ class App extends Component {
   };
 
   render() {
-    const { markdown, location } = this.props;
+    const { markdown, location, index } = this.props;
     const filePath = location.pathname.substring(1);
 
     let Page = markdown[filePath];
+    let sidebarComponent = markdown[index];
 
-    if (!Page && markdown.firstPagePath && markdown[markdown.firstPagePath]) {
-      Page = markdown[markdown.firstPagePath];
-    } else if (!Page) {
-      Page = markdown.docRootIndexFile;
+    if (markdown.indexFiles && filePath.includes(index)) {
+      Page = markdown[markdown.indexFiles[filePath]];
+    }
+
+    if (!Page && markdown.indexFiles) {
+      Page = markdown[markdown.indexFiles[index]];
+    }
+
+    if (process.env.navItems) {
+      if (!Page && markdown.indexFiles) {
+        const rootIndex = path.join(process.env.navItems.root, index);
+        sidebarComponent = markdown[rootIndex];
+        Page = markdown[markdown.indexFiles[rootIndex]];
+      }
+
+      const parent =
+        markdown.indexFiles &&
+        Object.entries(markdown.indexFiles).find(
+          ([key]) => path.dirname(key) === path.dirname(filePath)
+        );
+
+      if (parent) {
+        sidebarComponent = markdown[parent[0]];
+      }
+    }
+
+    if (!Page) {
+      Page = () => null;
     }
 
     return (
       <div className={styles.root}>
-        <Header />
+        <Header location={this.props.location} />
 
         <div id="root" className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop"
-              content={markdown.docRootIndexFile}
+              content={sidebarComponent}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
               }`}
             />
+
             <Page
               className={makeClass(
+                styles.contentWidth,
                 'column',
                 'content',
                 'is-two-thirds-tablet',
@@ -76,11 +104,13 @@ App.propTypes = {
   markdown: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired,
-  plugins: PropTypes.array
+  plugins: PropTypes.array,
+  index: PropTypes.string
 };
 
 App.defaultProps = {
-  plugins: []
+  plugins: [],
+  index: process.env.index
 };
 
 export default App;

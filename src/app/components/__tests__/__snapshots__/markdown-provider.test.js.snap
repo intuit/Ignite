@@ -2,6 +2,7 @@
 
 exports[`Has default route 1`] = `
 <App
+  index={undefined}
   location={undefined}
   markdown={
     Object {
@@ -14,12 +15,15 @@ exports[`Has default route 1`] = `
 
 exports[`sets first page and root from index file 1`] = `
 <App
+  index={undefined}
   location={undefined}
   markdown={
     Object {
       "/foo/bar": [Function],
       "docRootIndexFile": [Function],
-      "firstPagePath": "/first/page",
+      "indexFiles": Object {
+        "/foo/bar": "/first/page",
+      },
     }
   }
   plugins={Object {}}
@@ -28,6 +32,7 @@ exports[`sets first page and root from index file 1`] = `
 
 exports[`update markdown provided 1`] = `
 <App
+  index={undefined}
   location={undefined}
   markdown={
     Object {
@@ -41,12 +46,15 @@ exports[`update markdown provided 1`] = `
 
 exports[`uses plugins 1`] = `
 <App
+  index={undefined}
   location={undefined}
   markdown={
     Object {
       "/foo/bar": [Function],
       "docRootIndexFile": [Function],
-      "firstPagePath": "/first/page",
+      "indexFiles": Object {
+        "/foo/bar": "/first/page",
+      },
     }
   }
   plugins={

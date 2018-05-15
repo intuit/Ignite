@@ -1,24 +1,5 @@
-.nav {
-  display: flex;
-  justify-content: center;
-}
-
-.container {
-  width: 100%;
-  max-width: 1300px;
-  padding: 0 30px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.github {
-  display: flex;
-  color: white;
-  align-items: center;
-
-  a {
-    padding: 0 15px;
-  }
+.githubIcon {
+  padding-left: 15px;
 }
 
 .logo {
@@ -28,23 +9,10 @@
 }
 
 .title {
-  font-size: 23px;
+  font-size: 20px;
 }
 
 :global .navbar {
   background-color: $APP_COLOR;
-
-  .navbar-item {
-    border: none;
-  }
-
-  a {
-    color: white;
-
-    &:hover,
-    &:active {
-      color: grey;
-      opacity: 0.4;
-    }
-  }
+  border-radius: 0;
 }

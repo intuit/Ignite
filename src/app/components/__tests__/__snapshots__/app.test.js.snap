@@ -6,6 +6,11 @@ exports[`renders default page when there is not page match 1`] = `
 >
   <Header
     githubURL={undefined}
+    location={
+      Object {
+        "pathname": "/",
+      }
+    }
     logo={undefined}
     title={undefined}
   />
@@ -21,7 +26,7 @@ exports[`renders default page when there is not page match 1`] = `
         content={[Function]}
         currentPage="/"
       />
-      <docRootIndexFile
+      <Page
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
         plugins={Array []}
       />
@@ -37,6 +42,11 @@ exports[`renders first page at index if found 1`] = `
 >
   <Header
     githubURL={undefined}
+    location={
+      Object {
+        "pathname": "/",
+      }
+    }
     logo={undefined}
     title={undefined}
   />
@@ -52,7 +62,7 @@ exports[`renders first page at index if found 1`] = `
         content={[Function]}
         currentPage="/"
       />
-      <firstPage
+      <Page
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
         plugins={Array []}
       />
@@ -68,6 +78,11 @@ exports[`renders matched page 1`] = `
 >
   <Header
     githubURL={undefined}
+    location={
+      Object {
+        "pathname": "/foo",
+      }
+    }
     logo={undefined}
     title={undefined}
   />
@@ -99,6 +114,11 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
 >
   <Header
     githubURL={undefined}
+    location={
+      Object {
+        "pathname": "/",
+      }
+    }
     logo={undefined}
     title={undefined}
   />
@@ -114,7 +134,7 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
         content={[Function]}
         currentPage="/"
       />
-      <docRootIndexFile
+      <Page
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
         plugins={Array []}
       />

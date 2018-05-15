@@ -7,7 +7,7 @@ body {
 }
 
 .contentArea {
-  min-height: calc(100% - 64px - 104px);
+  min-height: calc(100% - 60px - 97px);
 }
 
 h1,
@@ -173,4 +173,10 @@ p {
 :global .headerLink {
   padding-left: 10px;
   opacity: 0.5;
+}
+
+.contentWidth {
+  margin: 0 auto 15px;
+  max-width: 950px;
+  padding-top: 0;
 }

@@ -15,13 +15,14 @@ function getLink(source, index = 0) {
   return source.substring(startIndex, endIndex);
 }
 
-function addActive(source, link, firstLink) {
+function addActive(source, link, firstLink, indexFile) {
   source = source.replace(
     new RegExp('<a h'),
     `<a
       className={
         '/${link}' === props.currentPage ||
-        ('${firstLink}' === '${link}' && '/' === props.currentPage)
+        ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
+        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
           ? 'is-active'
           : null
       }
@@ -31,24 +32,24 @@ function addActive(source, link, firstLink) {
   return source;
 }
 
-function addActiveAll(source, firstLink) {
+function addActiveAll(source, firstLink, indexFile) {
   let nextLink = getLink(source);
 
   while (nextLink !== '') {
-    source = addActive(source, nextLink, firstLink);
+    source = addActive(source, nextLink, firstLink, indexFile);
     nextLink = getLink(source);
   }
 
   return source;
 }
 
-function index(source, pathToMarkdown) {
+function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
   // Some of the curlies need to stay to pass props to the plugin component
   source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
   source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
-  source = addActiveAll(source, firstLink);
+  source = addActiveAll(source, firstLink, options.index);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
@@ -179,9 +180,7 @@ export function sanitizeJSX(source) {
 export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
-  const isIndex = this.resourcePath.includes(
-    path.join(options.src, options.index)
-  );
+  const isIndex = this.resourcePath.includes(options.index);
 
   if (isIndex) {
     return index(source, pathToMarkdown);
