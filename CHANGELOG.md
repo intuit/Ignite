@@ -46,3 +46,7 @@
  0.0.12
 
 - pass init options to plugin #80
+
+ 0.0.13
+
+- Multiple Nav Items #81
