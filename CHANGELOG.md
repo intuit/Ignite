@@ -54,3 +54,7 @@
  0.0.14
 
 - Nav actaully works with vulcan now #82
+
+ 0.0.15
+
+- more Bugs #83
