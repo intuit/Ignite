@@ -49,6 +49,8 @@ const Header = props => (
 
             if (
               (item !== '/' && props.location.pathname.includes(item)) ||
+              (props.location.pathname === '/' &&
+                process.env.navItems.root === item) ||
               (item === '/' &&
                 !otherPaths.find(path =>
                   props.location.pathname.includes(path)
