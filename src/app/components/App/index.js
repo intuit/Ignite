@@ -58,7 +58,10 @@ class App extends Component {
       }
 
       if (!Page && markdown.indexFiles) {
-        const rootIndex = path.join(process.env.navItems.root, index);
+        const rootIndex =
+          process.env.navItems.root === '/'
+            ? index
+            : path.join(process.env.navItems.root, index);
         sidebarComponent = markdown[rootIndex];
         Page = markdown[markdown.indexFiles[rootIndex]];
       }
