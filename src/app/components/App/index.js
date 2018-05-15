@@ -57,11 +57,11 @@ class App extends Component {
         }
       }
 
-      // if (!Page && markdown.indexFiles) {
-      //   const rootIndex = path.join(process.env.navItems.root, index);
-      //   sidebarComponent = markdown[rootIndex];
-      //   Page = markdown[markdown.indexFiles[rootIndex]];
-      // }
+      if (!Page && markdown.indexFiles) {
+        const rootIndex = path.join(process.env.navItems.root, index);
+        sidebarComponent = markdown[rootIndex];
+        Page = markdown[markdown.indexFiles[rootIndex]];
+      }
     }
 
     if (markdown.indexFiles && filePath.includes(index)) {

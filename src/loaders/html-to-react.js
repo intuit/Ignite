@@ -46,7 +46,7 @@ function addActiveAll(source, firstLink, indexFile) {
 function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
-  source = addActiveAll(source, firstLink, options);
+  source = addActiveAll(source, firstLink, options.index);
   // Some of the curlies need to stay to pass props to the plugin component
   source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
   source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
