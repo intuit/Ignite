@@ -1,7 +1,10 @@
 import React from 'react';
+import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 
-const Icon = ({ type, icon }) => <i className={`${type} fa-${icon}`} />;
+const Icon = ({ type, icon, className }) => (
+  <i className={makeClass(type, `fa-${icon}`, className)} />
+);
 
 Icon.propTypes = {
   type: PropTypes.string,

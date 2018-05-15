@@ -34,14 +34,14 @@ const Header = props => (
         </a>
       </div>
 
-      {props.items &&
-        Object.entries(props.items).map(([key, item]) => (
-          <a key={key} className="navbar-item" href={makeRouterLink(item)}>
-            {key}
-          </a>
-        ))}
-
       <div className="navbar-end">
+        {props.items &&
+          Object.entries(props.items).map(([key, item]) => (
+            <a key={key} className="navbar-item" href={makeRouterLink(item)}>
+              {key}
+            </a>
+          ))}
+
         <a className="navbar-item" href={props.githubURL}>
           GitHub
           <Icon className={styles.githubIcon} type="fab" icon="github" />

@@ -174,3 +174,9 @@ p {
   padding-left: 10px;
   opacity: 0.5;
 }
+
+.contentWidth {
+  margin: 0 auto 15px;
+  max-width: 950px;
+  padding-top: 0;
+}
