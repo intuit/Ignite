@@ -7,7 +7,7 @@ body {
 }
 
 .contentArea {
-  min-height: calc(100% - 64px - 104px);
+  min-height: calc(100% - 60px - 97px);
 }
 
 h1,
