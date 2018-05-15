@@ -7,8 +7,8 @@ import Icon from '../Icon';
 import styles from './header.css';
 
 const makeRouterLink = link => {
-  if (!link.includes('index.md')) {
-    return `#/${link}/index.md`;
+  if (!link.includes(process.env.index)) {
+    return `#/${link}/${process.env.index}`;
   }
 
   return `#/${link}`;
