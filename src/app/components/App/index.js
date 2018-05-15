@@ -35,29 +35,32 @@ class App extends Component {
     const filePath = location.pathname.substring(1);
 
     let Page = markdown[filePath];
-    let sidebarComponent;
+    let sidebarComponent = markdown['index.md'];
 
     if (markdown.indexFiles && filePath.includes('index.md')) {
       Page = markdown[markdown.indexFiles[filePath]];
     }
 
-    if (!Page && markdown.indexFiles && filePath === '') {
-      console.log(markdown);
-      const rootIndex = process.env.navItems
-        ? path.join(process.env.navItems.root, 'index.md')
-        : 'index.md';
-      sidebarComponent = markdown[rootIndex];
-      Page = markdown[markdown.indexFiles[rootIndex]];
+    if (!Page && markdown.indexFiles) {
+      Page = markdown[markdown.indexFiles['index.md']];
     }
 
-    const parent =
-      markdown.indexFiles &&
-      Object.entries(markdown.indexFiles).find(
-        ([key]) => path.dirname(key) === path.dirname(filePath)
-      );
+    if (process.env.navItems) {
+      if (!Page && markdown.indexFiles) {
+        const rootIndex = path.join(process.env.navItems.root, 'index.md');
+        sidebarComponent = markdown[rootIndex];
+        Page = markdown[markdown.indexFiles[rootIndex]];
+      }
 
-    if (parent) {
-      sidebarComponent = markdown[parent[0]];
+      const parent =
+        markdown.indexFiles &&
+        Object.entries(markdown.indexFiles).find(
+          ([key]) => path.dirname(key) === path.dirname(filePath)
+        );
+
+      if (parent) {
+        sidebarComponent = markdown[parent[0]];
+      }
     }
 
     if (!Page) {
