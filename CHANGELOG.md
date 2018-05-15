@@ -50,3 +50,7 @@
  0.0.13
 
 - Multiple Nav Items #81
+
+ 0.0.14
+
+- Nav actaully works with vulcan now #82
