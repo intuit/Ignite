@@ -182,7 +182,13 @@ export function sanitizeJSX(source) {
 export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
-  const isIndex = this.resourcePath.includes(options.index);
+  const isIndex =
+    this.resourcePath.includes(options.index) &&
+    Object.values(options.navItems)
+      .map(item => {
+        return item === '/' ? options.index : path.join(item, options.index);
+      })
+      .includes(pathToMarkdown);
 
   if (isIndex) {
     return index(source, pathToMarkdown, options);
