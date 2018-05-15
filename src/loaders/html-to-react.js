@@ -19,13 +19,13 @@ function addActive(source, link, firstLink, indexFile) {
   source = source.replace(
     new RegExp('<a h'),
     `<a
-      className={
+      className=!{
         '/${link}' === props.currentPage ||
         ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
         ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
           ? 'is-active'
           : null
-      }
+      !}
       h`
   );
 
@@ -46,15 +46,17 @@ function addActiveAll(source, firstLink, indexFile) {
 function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
+  source = addActiveAll(source, firstLink, options);
   // Some of the curlies need to stay to pass props to the plugin component
   source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
   source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
-  source = addActiveAll(source, firstLink, options.index);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
   );
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
+  source = source.replace(new RegExp('{', 'g'), '&#123;');
+  source = source.replace(new RegExp('}', 'g'), '&#125;');
   source = source.replace(new RegExp('__CURLY_LEFT__', 'g'), '{');
   source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
 
