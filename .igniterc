@@ -1,6 +1,12 @@
 {
   "title": "Ignite",
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
+
+  "navItems": {
+    "Other": "otherDocs",
+    "Pages": "pages",
+  },
+
   "plugins": [
     ["test", "./src/extensions/testExtension", {
       "url": "google.com",

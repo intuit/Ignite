@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import path from 'path';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -34,6 +35,23 @@ class App extends Component {
     const filePath = location.pathname.substring(1);
 
     let Page = markdown[filePath];
+    let sidebarComponent = markdown.docRootIndexFile;
+
+    const parent =
+      markdown.indexFiles &&
+      Object.entries(markdown.indexFiles).find(
+        ([key, val]) => path.dirname(key) === path.dirname(filePath)
+      );
+
+    if (parent) {
+      sidebarComponent = markdown[parent[0]];
+    }
+
+    if (filePath.includes('index.md') && markdown.indexFiles) {
+      const index = markdown.indexFiles[filePath];
+      Page = markdown[index];
+      sidebarComponent = markdown[filePath];
+    }
 
     if (!Page && markdown.firstPagePath && markdown[markdown.firstPagePath]) {
       Page = markdown[markdown.firstPagePath];
@@ -43,19 +61,21 @@ class App extends Component {
 
     return (
       <div className={styles.root}>
-        <Header />
+        <Header items={this.props.navItems} />
 
         <div id="root" className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop"
-              content={markdown.docRootIndexFile}
+              content={sidebarComponent}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
               }`}
             />
+
             <Page
               className={makeClass(
+                styles.contentWidth,
                 'column',
                 'content',
                 'is-two-thirds-tablet',

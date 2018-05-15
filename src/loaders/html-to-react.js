@@ -179,9 +179,7 @@ export function sanitizeJSX(source) {
 export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
-  const isIndex = this.resourcePath.includes(
-    path.join(options.src, options.index)
-  );
+  const isIndex = this.resourcePath.includes(options.index);
 
   if (isIndex) {
     return index(source, pathToMarkdown);

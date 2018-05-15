@@ -1,13 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 import styles from './header.css';
 
+const makeRouterLink = link => {
+  if (!link.includes('index.md')) {
+    return `#/${link}/index.md`;
+  }
+
+  return `#/${link}`;
+};
+
 const Header = props => (
   <nav
-    className={makeClass(styles.nav, 'navbar', 'is-primary')}
+    className={makeClass('navbar')}
     role="navigation"
     aria-label="main navigation"
   >
@@ -25,11 +34,18 @@ const Header = props => (
         </a>
       </div>
 
-      <div className={makeClass(styles.github, 'navbar-end')}>
+      {props.items &&
+        Object.entries(props.items).map(([key, item]) => (
+          <a key={key} className="navbar-item" href={makeRouterLink(item)}>
+            {key}
+          </a>
+        ))}
+
+      <div className="navbar-end">
         <a className="navbar-item" href={props.githubURL}>
           GitHub
+          <Icon className={styles.githubIcon} type="fab" icon="github" />
         </a>
-        <Icon type="fab" icon="github" />
       </div>
     </div>
   </nav>
@@ -38,13 +54,15 @@ const Header = props => (
 Header.propTypes = {
   title: PropTypes.string,
   logo: PropTypes.string,
-  githubURL: PropTypes.string
+  githubURL: PropTypes.string,
+  items: PropTypes.object
 };
 
 Header.defaultProps = {
   title: process.env.title,
   logo: process.env.logo,
-  githubURL: process.env.githubURL
+  githubURL: process.env.githubURL,
+  items: process.env.navItems
 };
 
 export default Header;

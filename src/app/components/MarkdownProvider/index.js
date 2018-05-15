@@ -41,6 +41,11 @@ export default class MarkdownProvider extends Component {
     if (isIndex) {
       markdown.docRootIndexFile = component;
       markdown.firstPagePath = firstLink;
+
+      markdown.indexFiles = {
+        ...markdown.indexFiles,
+        [path]: firstLink
+      };
     }
 
     this.setState({

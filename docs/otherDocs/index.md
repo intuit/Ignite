@@ -1,0 +1,1 @@
+* [Click Me](./another.md)
