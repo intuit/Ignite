@@ -53,9 +53,12 @@ class App extends Component {
       sidebarComponent = markdown[filePath];
     }
 
-    if (!Page && markdown.firstPagePath && markdown[markdown.firstPagePath]) {
-      Page = markdown[markdown.firstPagePath];
-    } else if (!Page) {
+    if (!Page && markdown.indexFiles) {
+      const index = markdown.indexFiles[filePath] || markdown.firstPagePath;
+      Page = markdown[index];
+    }
+
+    if (!Page) {
       Page = markdown.docRootIndexFile;
     }
 
