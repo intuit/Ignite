@@ -2,11 +2,7 @@
   "title": "Ignite",
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
 
-  "navItems": {
-    "root": "pages",
-    "Pages": "pages",
-    "Other": "otherDocs",
-  },
+
 
   "plugins": [
     ["test", "./src/extensions/testExtension", {

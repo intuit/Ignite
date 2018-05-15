@@ -42,3 +42,36 @@ Some Other Nav Section
 * [Something Else](./Bees.md)
   ...
 ```
+
+## Multiple Top Level Tags
+
+You can split your documentation up into multiple top level sections. To have multiple top level headings you will need to also have multiple index files in multiple folders.
+
+Each index file will used as the sidebar and the first link in the sidebar as it's default page.
+
+```text
+folder1/
+  index.md
+  other.md
+folder2/
+  index.md
+  another.md
+```
+
+```json
+{
+  "navItems": {
+    "Name to Display in NavBar": "path/to/folder"
+  }
+}
+```
+
+::: message is-warning is-three-fifths is-offset-one-fifth has-text-centered
+:warning:
+All index files must have the same name specified in [configuration](Options.md#index-index-i).
+:::
+
+::: message is-warning is-three-fifths is-offset-one-fifth has-text-centered
+:warning:
+All paths to NavItems use [source folder](Options.md#source-src-s) as root.
+:::

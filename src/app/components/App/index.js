@@ -42,7 +42,10 @@ class App extends Component {
     }
 
     if (!Page && markdown.indexFiles && filePath === '') {
-      const rootIndex = path.join(process.env.navItems.root, 'index.md');
+      console.log(markdown);
+      const rootIndex = process.env.navItems
+        ? path.join(process.env.navItems.root, 'index.md')
+        : 'index.md';
       sidebarComponent = markdown[rootIndex];
       Page = markdown[markdown.indexFiles[rootIndex]];
     }
