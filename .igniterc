@@ -3,8 +3,9 @@
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
 
   "navItems": {
-    "Other": "otherDocs",
+    "root": "pages",
     "Pages": "pages",
+    "Other": "otherDocs",
   },
 
   "plugins": [

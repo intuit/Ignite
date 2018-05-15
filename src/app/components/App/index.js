@@ -40,17 +40,12 @@ class App extends Component {
     const parent =
       markdown.indexFiles &&
       Object.entries(markdown.indexFiles).find(
-        ([key, val]) => path.dirname(key) === path.dirname(filePath)
+        ([key]) => path.dirname(key) === path.dirname(filePath)
       );
 
     if (parent) {
       sidebarComponent = markdown[parent[0]];
-    }
-
-    if (filePath.includes('index.md') && markdown.indexFiles) {
-      const index = markdown.indexFiles[filePath];
-      Page = markdown[index];
-      sidebarComponent = markdown[filePath];
+      Page = markdown[parent[1]];
     }
 
     if (!Page && markdown.indexFiles) {

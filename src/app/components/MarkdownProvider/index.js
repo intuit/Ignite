@@ -1,3 +1,4 @@
+import path from 'path';
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
@@ -33,18 +34,27 @@ export default class MarkdownProvider extends Component {
     internalUpdatePluginsCallback = this.onPluginUpdate;
   }
 
-  onUpdate = (path, component, isIndex, firstLink) => {
+  onUpdate = (pathToMarkdown, component, isIndex, firstLink) => {
     const { markdown } = this.state;
 
-    markdown[path] = component;
+    markdown[pathToMarkdown] = component;
 
     if (isIndex) {
       markdown.indexFiles = {
         ...markdown.indexFiles,
-        [path]: firstLink
+        [pathToMarkdown]: firstLink
       };
 
-      if (!markdown.firstPagePath) {
+      if (!markdown.firstPagePath && !process.env.navItems) {
+        markdown.docRootIndexFile = component;
+        markdown.firstPagePath = firstLink;
+      }
+
+      if (
+        process.env.navItems &&
+        process.env.navItems.root &&
+        pathToMarkdown === path.join(process.env.navItems.root, 'index.md')
+      ) {
         markdown.docRootIndexFile = component;
         markdown.firstPagePath = firstLink;
       }

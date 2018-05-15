@@ -36,11 +36,18 @@ const Header = props => (
 
       <div className="navbar-end">
         {props.items &&
-          Object.entries(props.items).map(([key, item]) => (
-            <a key={key} className="navbar-item" href={makeRouterLink(item)}>
-              {key}
-            </a>
-          ))}
+          Object.entries(props.items).map(
+            ([key, item]) =>
+              key !== 'root' && (
+                <a
+                  key={key}
+                  className="navbar-item"
+                  href={makeRouterLink(item)}
+                >
+                  {key}
+                </a>
+              )
+          )}
 
         <a className="navbar-item" href={props.githubURL}>
           GitHub
