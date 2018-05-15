@@ -48,7 +48,6 @@ const Header = props => (
                 </a>
               )
           )}
-
         <a className="navbar-item" href={props.githubURL}>
           GitHub
           <Icon className={styles.githubIcon} type="fab" icon="github" />

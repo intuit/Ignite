@@ -21,7 +21,8 @@ function addActive(source, link, firstLink) {
     `<a
       className={
         '/${link}' === props.currentPage ||
-        ('${firstLink}' === '${link}' && '/' === props.currentPage)
+        ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
+        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('index.md')) 
           ? 'is-active'
           : null
       }

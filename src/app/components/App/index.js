@@ -35,7 +35,17 @@ class App extends Component {
     const filePath = location.pathname.substring(1);
 
     let Page = markdown[filePath];
-    let sidebarComponent = markdown.docRootIndexFile;
+    let sidebarComponent;
+
+    if (markdown.indexFiles && filePath.includes('index.md')) {
+      Page = markdown[markdown.indexFiles[filePath]];
+    }
+
+    if (!Page && markdown.indexFiles && filePath === '') {
+      const rootIndex = path.join(process.env.navItems.root, 'index.md');
+      sidebarComponent = markdown[rootIndex];
+      Page = markdown[markdown.indexFiles[rootIndex]];
+    }
 
     const parent =
       markdown.indexFiles &&
@@ -45,16 +55,10 @@ class App extends Component {
 
     if (parent) {
       sidebarComponent = markdown[parent[0]];
-      Page = markdown[parent[1]];
-    }
-
-    if (!Page && markdown.indexFiles) {
-      const index = markdown.indexFiles[filePath] || markdown.firstPagePath;
-      Page = markdown[index];
     }
 
     if (!Page) {
-      Page = markdown.docRootIndexFile;
+      Page = () => null;
     }
 
     return (
