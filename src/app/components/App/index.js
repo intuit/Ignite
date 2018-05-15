@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import path from 'path';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -69,7 +69,7 @@ class App extends Component {
 
     return (
       <div className={styles.root}>
-        <Header items={this.props.navItems} />
+        <Header />
 
         <div id="root" className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>

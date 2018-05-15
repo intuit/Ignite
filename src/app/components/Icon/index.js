@@ -8,12 +8,14 @@ const Icon = ({ type, icon, className }) => (
 
 Icon.propTypes = {
   type: PropTypes.string,
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  className: PropTypes.string
 };
 
 Icon.defaultProps = {
   type: 'far',
-  icon: 'question-circle'
+  icon: 'question-circle',
+  className: null
 };
 
 export default Icon;

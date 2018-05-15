@@ -1,4 +1,3 @@
-import path from 'path';
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 

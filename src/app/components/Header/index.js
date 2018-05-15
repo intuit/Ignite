@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -35,8 +34,8 @@ const Header = props => (
       </div>
 
       <div className="navbar-end">
-        {props.items &&
-          Object.entries(props.items).map(
+        {process.env.navItems &&
+          Object.entries(process.env.navItems).map(
             ([key, item]) =>
               key !== 'root' && (
                 <a
@@ -60,15 +59,13 @@ const Header = props => (
 Header.propTypes = {
   title: PropTypes.string,
   logo: PropTypes.string,
-  githubURL: PropTypes.string,
-  items: PropTypes.object
+  githubURL: PropTypes.string
 };
 
 Header.defaultProps = {
   title: process.env.title,
   logo: process.env.logo,
-  githubURL: process.env.githubURL,
-  items: process.env.navItems
+  githubURL: process.env.githubURL
 };
 
 export default Header;
