@@ -3,7 +3,7 @@
 exports[`renders githubURL 1`] = `
 <nav
   aria-label="main navigation"
-  className="navbar is-primary"
+  className="navbar"
   role="navigation"
 >
   <div
@@ -25,11 +25,12 @@ exports[`renders githubURL 1`] = `
         href="https://github.com/sindresorhus/cows"
       >
         GitHub
+        <Icon
+          className={null}
+          icon="github"
+          type="fab"
+        />
       </a>
-      <Icon
-        icon="github"
-        type="fab"
-      />
     </div>
   </div>
 </nav>
@@ -38,7 +39,7 @@ exports[`renders githubURL 1`] = `
 exports[`renders title 1`] = `
 <nav
   aria-label="main navigation"
-  className="navbar is-primary"
+  className="navbar"
   role="navigation"
 >
   <div
@@ -62,11 +63,12 @@ exports[`renders title 1`] = `
         href={undefined}
       >
         GitHub
+        <Icon
+          className={null}
+          icon="github"
+          type="fab"
+        />
       </a>
-      <Icon
-        icon="github"
-        type="fab"
-      />
     </div>
   </div>
 </nav>

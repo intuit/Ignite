@@ -4,12 +4,15 @@ import App from '../App';
 import renderToJson from './utils/render-to-json';
 
 const markdown = {
-  docRootIndexFile: () => <h1>Nothing to see here...</h1>
+  docRootIndexFile: () => <h1>Nothing to see here...</h1>,
+  index: () => <h1>Index</h1>
 };
 
 test('renders default page when there is not page match', () => {
   expect(
-    renderToJson(<App markdown={markdown} location={{ pathname: '/' }} />)
+    renderToJson(
+      <App markdown={markdown} index="index" location={{ pathname: '/' }} />
+    )
   ).toMatchSnapshot();
 });
 
@@ -18,7 +21,9 @@ test('renders matched page', () => {
   markdown.foo = foo;
 
   expect(
-    renderToJson(<App markdown={markdown} location={{ pathname: '/foo' }} />)
+    renderToJson(
+      <App markdown={markdown} index="index" location={{ pathname: '/foo' }} />
+    )
   ).toMatchSnapshot();
 });
 
@@ -26,7 +31,9 @@ test('renders renders index if firstPagePath specified but not actually in markd
   markdown.firstPagePath = 'firstPage';
 
   expect(
-    renderToJson(<App markdown={markdown} location={{ pathname: '/' }} />)
+    renderToJson(
+      <App markdown={markdown} index="index" location={{ pathname: '/' }} />
+    )
   ).toMatchSnapshot();
 });
 test('renders first page at index if found', () => {
@@ -35,6 +42,8 @@ test('renders first page at index if found', () => {
   markdown.firstPagePath = 'firstPage';
 
   expect(
-    renderToJson(<App markdown={markdown} location={{ pathname: '/' }} />)
+    renderToJson(
+      <App markdown={markdown} index="index" location={{ pathname: '/' }} />
+    )
   ).toMatchSnapshot();
 });

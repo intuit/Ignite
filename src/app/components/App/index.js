@@ -31,26 +31,23 @@ class App extends Component {
   };
 
   render() {
-    const { markdown, location } = this.props;
+    const { markdown, location, index } = this.props;
     const filePath = location.pathname.substring(1);
 
     let Page = markdown[filePath];
-    let sidebarComponent = markdown[process.env.index];
+    let sidebarComponent = markdown[index];
 
-    if (markdown.indexFiles && filePath.includes(process.env.index)) {
+    if (markdown.indexFiles && filePath.includes(index)) {
       Page = markdown[markdown.indexFiles[filePath]];
     }
 
     if (!Page && markdown.indexFiles) {
-      Page = markdown[markdown.indexFiles[process.env.index]];
+      Page = markdown[markdown.indexFiles[index]];
     }
 
     if (process.env.navItems) {
       if (!Page && markdown.indexFiles) {
-        const rootIndex = path.join(
-          process.env.navItems.root,
-          process.env.index
-        );
+        const rootIndex = path.join(process.env.navItems.root, index);
         sidebarComponent = markdown[rootIndex];
         Page = markdown[markdown.indexFiles[rootIndex]];
       }
@@ -107,11 +104,13 @@ App.propTypes = {
   markdown: PropTypes.object.isRequired,
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired,
-  plugins: PropTypes.array
+  plugins: PropTypes.array,
+  index: PropTypes.string
 };
 
 App.defaultProps = {
-  plugins: []
+  plugins: [],
+  index: process.env.index
 };
 
 export default App;
