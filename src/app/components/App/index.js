@@ -69,7 +69,7 @@ class App extends Component {
 
     return (
       <div className={styles.root}>
-        <Header />
+        <Header location={this.props.location} />
 
         <div id="root" className={makeClass('container', styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Icon from '../Icon';
 import styles from './header.css';
@@ -35,18 +36,29 @@ const Header = props => (
 
       <div className="navbar-end">
         {process.env.navItems &&
-          Object.entries(process.env.navItems).map(
-            ([key, item]) =>
+          Object.entries(process.env.navItems).map(([key, item]) => {
+            let isActive;
+
+            if (
+              props.location.pathname.includes(item) ||
+              (props.location.pathname === '/' &&
+                process.env.navItems.root === item)
+            ) {
+              isActive = true;
+            }
+
+            return (
               key !== 'root' && (
                 <a
                   key={key}
-                  className="navbar-item"
+                  className={makeClass('navbar-item', isActive && 'is-active')}
                   href={makeRouterLink(item)}
                 >
                   {key}
                 </a>
               )
-          )}
+            );
+          })}
         <a className="navbar-item" href={props.githubURL}>
           GitHub
           <Icon className={styles.githubIcon} type="fab" icon="github" />
@@ -59,7 +71,9 @@ const Header = props => (
 Header.propTypes = {
   title: PropTypes.string,
   logo: PropTypes.string,
-  githubURL: PropTypes.string
+  githubURL: PropTypes.string,
+  // eslint-disable-next-line react/no-typos
+  location: ReactRouterPropTypes.location.isRequired
 };
 
 Header.defaultProps = {
