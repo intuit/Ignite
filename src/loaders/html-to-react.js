@@ -19,13 +19,13 @@ function addActive(source, link, firstLink, indexFile) {
   source = source.replace(
     new RegExp('<a h'),
     `<a
-      className={
+      className=!{
         '/${link}' === props.currentPage ||
         ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
         ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
           ? 'is-active'
           : null
-      }
+      !}
       h`
   );
 
@@ -46,15 +46,17 @@ function addActiveAll(source, firstLink, indexFile) {
 function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
+  source = addActiveAll(source, firstLink, options.index);
   // Some of the curlies need to stay to pass props to the plugin component
   source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
   source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
-  source = addActiveAll(source, firstLink, options.index);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
   );
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
+  source = source.replace(new RegExp('{', 'g'), '&#123;');
+  source = source.replace(new RegExp('}', 'g'), '&#125;');
   source = source.replace(new RegExp('__CURLY_LEFT__', 'g'), '{');
   source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
 
@@ -180,10 +182,16 @@ export function sanitizeJSX(source) {
 export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
-  const isIndex = this.resourcePath.includes(options.index);
+  const isIndex =
+    this.resourcePath.includes(options.index) &&
+    Object.values(options.navItems)
+      .map(item => {
+        return item === '/' ? options.index : path.join(item, options.index);
+      })
+      .includes(pathToMarkdown);
 
   if (isIndex) {
-    return index(source, pathToMarkdown);
+    return index(source, pathToMarkdown, options);
   }
 
   source = sanitizeJSX(

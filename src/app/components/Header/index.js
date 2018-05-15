@@ -7,6 +7,10 @@ import Icon from '../Icon';
 import styles from './header.css';
 
 const makeRouterLink = link => {
+  if (link === '/') {
+    return `#/${process.env.index}`;
+  }
+
   if (!link.includes(process.env.index)) {
     return `#/${link}/${process.env.index}`;
   }
@@ -37,12 +41,18 @@ const Header = props => (
       <div className="navbar-end">
         {process.env.navItems &&
           Object.entries(process.env.navItems).map(([key, item]) => {
+            const otherPaths = Object.values(process.env.navItems).filter(
+              val => val !== '/'
+            );
+
             let isActive;
 
             if (
-              props.location.pathname.includes(item) ||
-              (props.location.pathname === '/' &&
-                process.env.navItems.root === item)
+              (item !== '/' && props.location.pathname.includes(item)) ||
+              (item === '/' &&
+                !otherPaths.find(path =>
+                  props.location.pathname.includes(path)
+                ))
             ) {
               isActive = true;
             }
