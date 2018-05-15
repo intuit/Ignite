@@ -183,7 +183,7 @@ export default function(source) {
   const isIndex = this.resourcePath.includes(options.index);
 
   if (isIndex) {
-    return index(source, pathToMarkdown);
+    return index(source, pathToMarkdown, options);
   }
 
   source = sanitizeJSX(
