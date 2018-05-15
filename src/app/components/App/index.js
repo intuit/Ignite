@@ -64,9 +64,9 @@ class App extends Component {
       // }
     }
 
-    // if (markdown.indexFiles && filePath.includes(index)) {
-    //   Page = markdown[markdown.indexFiles[filePath]];
-    // }
+    if (markdown.indexFiles && filePath.includes(index)) {
+      Page = markdown[markdown.indexFiles[filePath]];
+    }
 
     if (!Page && markdown.indexFiles) {
       Page = markdown[markdown.indexFiles[index]];
