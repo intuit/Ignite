@@ -37,30 +37,39 @@ class App extends Component {
     let Page = markdown[filePath];
     let sidebarComponent = markdown[index];
 
-    if (markdown.indexFiles && filePath.includes(index)) {
-      Page = markdown[markdown.indexFiles[filePath]];
-    }
-
-    if (!Page && markdown.indexFiles) {
-      Page = markdown[markdown.indexFiles[index]];
-    }
-
     if (process.env.navItems) {
-      if (!Page && markdown.indexFiles) {
-        const rootIndex = path.join(process.env.navItems.root, index);
-        sidebarComponent = markdown[rootIndex];
-        Page = markdown[markdown.indexFiles[rootIndex]];
-      }
-
       const parent =
         markdown.indexFiles &&
-        Object.entries(markdown.indexFiles).find(
-          ([key]) => path.dirname(key) === path.dirname(filePath)
-        );
+        Object.entries(markdown.indexFiles).find(([key]) => {
+          return (
+            Object.values(process.env.navItems).includes(path.dirname(key)) &&
+            path.dirname(key) === path.dirname(filePath)
+          );
+        });
 
       if (parent) {
         sidebarComponent = markdown[parent[0]];
+
+        console.log(filePath);
+        if (!Page || filePath.includes(index)) {
+          Page = markdown[parent[1]];
+          console.log(markdown, parent[1], Page);
+        }
       }
+
+      // if (!Page && markdown.indexFiles) {
+      //   const rootIndex = path.join(process.env.navItems.root, index);
+      //   sidebarComponent = markdown[rootIndex];
+      //   Page = markdown[markdown.indexFiles[rootIndex]];
+      // }
+    }
+
+    // if (markdown.indexFiles && filePath.includes(index)) {
+    //   Page = markdown[markdown.indexFiles[filePath]];
+    // }
+
+    if (!Page && markdown.indexFiles) {
+      Page = markdown[markdown.indexFiles[index]];
     }
 
     if (!Page) {
