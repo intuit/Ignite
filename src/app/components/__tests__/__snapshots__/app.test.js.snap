@@ -15,16 +15,26 @@ exports[`renders default page when there is not page match 1`] = `
     title={undefined}
   />
   <div
-    className="container"
+    className=""
     id="root"
   >
     <div
       className="columns"
     >
-      <Sidebar
-        className="column is-one-third-tablet is-one-quarter-desktop"
+      <OnClickOutside(Sidebar)
+        className="column is-one-third-tablet is-one-quarter-desktop box"
         content={[Function]}
         currentPage="/"
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        excludeScrollbar={false}
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
       />
       <Page
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
@@ -32,7 +42,6 @@ exports[`renders default page when there is not page match 1`] = `
       />
     </div>
   </div>
-  <Footer />
 </div>
 `;
 
@@ -51,16 +60,26 @@ exports[`renders first page at index if found 1`] = `
     title={undefined}
   />
   <div
-    className="container"
+    className=""
     id="root"
   >
     <div
       className="columns"
     >
-      <Sidebar
-        className="column is-one-third-tablet is-one-quarter-desktop"
+      <OnClickOutside(Sidebar)
+        className="column is-one-third-tablet is-one-quarter-desktop box"
         content={[Function]}
         currentPage="/"
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        excludeScrollbar={false}
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
       />
       <Page
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
@@ -68,7 +87,6 @@ exports[`renders first page at index if found 1`] = `
       />
     </div>
   </div>
-  <Footer />
 </div>
 `;
 
@@ -87,16 +105,26 @@ exports[`renders matched page 1`] = `
     title={undefined}
   />
   <div
-    className="container"
+    className=""
     id="root"
   >
     <div
       className="columns"
     >
-      <Sidebar
-        className="column is-one-third-tablet is-one-quarter-desktop"
+      <OnClickOutside(Sidebar)
+        className="column is-one-third-tablet is-one-quarter-desktop box"
         content={[Function]}
         currentPage="/foo"
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        excludeScrollbar={false}
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
       />
       <foo
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
@@ -104,7 +132,6 @@ exports[`renders matched page 1`] = `
       />
     </div>
   </div>
-  <Footer />
 </div>
 `;
 
@@ -123,16 +150,26 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
     title={undefined}
   />
   <div
-    className="container"
+    className=""
     id="root"
   >
     <div
       className="columns"
     >
-      <Sidebar
-        className="column is-one-third-tablet is-one-quarter-desktop"
+      <OnClickOutside(Sidebar)
+        className="column is-one-third-tablet is-one-quarter-desktop box"
         content={[Function]}
         currentPage="/"
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        excludeScrollbar={false}
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
       />
       <Page
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
@@ -140,6 +177,5 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
       />
     </div>
   </div>
-  <Footer />
 </div>
 `;
