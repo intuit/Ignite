@@ -58,3 +58,7 @@
  0.0.15
 
 - more Bugs #83
+
+ 0.0.16
+
+- support no navitems #84
