@@ -1,13 +1,27 @@
 .root {
-  padding-top: 2rem;
-  margin-top: 2rem;
-  padding-bottom: 3rem;
-  padding-right: 35px;
-  max-height: calc(100vh - 5px);
-  overflow-y: scroll;
-  position: sticky;
-  top: 0px;
+  z-index: 10;
+  padding: 0;
+  height: calc(100vh - 60px);
+  overflow-x: visible;
   border-right: 1px solid #e0e0e0;
+
+  width: 75%;
+  position: absolute;
+  left: -75%;
+  transition: left 0.25s;
+  transition-timing-function: ease-in-out;
+
+  .sidebar {
+    height: 100%;
+    padding: 4rem 20px 3rem;
+    overflow-y: scroll;
+  }
+
+  @media screen and (min-width: 769px) {
+    position: sticky;
+    top: 0px;
+    left: 0;
+  }
 
   li {
     list-style: none;
@@ -53,5 +67,11 @@
     input[type='radio'] {
       margin-right: 10px;
     }
+  }
+
+  details,
+  :global(.menu-list) {
+    max-width: 300px;
+    margin: auto;
   }
 }

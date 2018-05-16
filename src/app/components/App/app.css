@@ -46,6 +46,20 @@ h6 {
   }
 }
 
+.sidebarToggle {
+  position: absolute;
+  top: 0;
+  right: -25px;
+  padding-top: 10px;
+  padding-left: 10px;
+  border: none;
+  background: none;
+}
+
+.sidebarOpen {
+  left: 0;
+}
+
 section {
   padding: 15px 30px;
 }
@@ -178,13 +192,17 @@ p {
 }
 
 .content {
+  max-width: 100%;
   margin: 0 auto 15px;
-  max-width: 950px;
   padding-top: 0;
   padding-top: 3rem;
   padding-bottom: 5rem;
 
   details {
     padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 769px) {
+    max-width: 950px;
   }
 }

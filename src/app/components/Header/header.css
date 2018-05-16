@@ -19,4 +19,8 @@
   .navbar-menu {
     border-radius: 0px;
   }
+
+  .navbar-menu.is-active .navbar-item {
+    text-align: right;
+  }
 }

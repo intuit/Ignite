@@ -6,6 +6,7 @@ import styles from './sidebar.css';
 
 const Sidebar = props => (
   <div className={makeClass(styles.root, props.className)}>
+    {props.children}
     {props.content && (
       <props.content
         className={styles.sidebar}
