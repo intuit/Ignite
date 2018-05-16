@@ -138,6 +138,7 @@ OUTPUT: ==highlight==
 ```
 
 OUTPUT:
+
 [ ] unchecked
 [x] checked
 

@@ -171,6 +171,20 @@ export function sanitizeJSX(source) {
   // Uppercase to use as react component
   source = source.replace(new RegExp('pluginprovider', 'g'), 'PluginProvider');
 
+  // Use Bulma Checkboxes
+  source = source.replace(
+    new RegExp('<div class="checkbox', 'g'),
+    '<div class="field'
+  );
+  source = source.replace(
+    new RegExp('<label for="checkbox', 'g'),
+    '<label htmlFor="field'
+  );
+  source = source.replace(
+    new RegExp('<input type="checkbox"', 'g'),
+    '<input type="checkbox" readOnly class="is-checkradio"'
+  );
+
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
