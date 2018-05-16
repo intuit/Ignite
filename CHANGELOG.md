@@ -82,3 +82,7 @@
  0.0.21
 
 - Lazily fetch and render things #90
+
+ 0.0.22
+
+- fix sidebar height #91
