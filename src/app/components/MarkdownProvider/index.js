@@ -1,74 +1,69 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import App from '../App';
 
-const noDocsFound = () => (
-  <div>Hmmmm, somethings wrong. No docs files found....</div>
-);
+const setMarkdown = (markdown = []) => {
+  return markdown.reduce(
+    (markdownMap, [pathToMarkdown, component, isIndex, firstLink]) => {
+      markdownMap[pathToMarkdown] = component;
 
-let internalUpdateCallback = () => {};
-let internalUpdatePluginsCallback = () => {};
+      if (isIndex) {
+        markdownMap.indexFiles = {
+          ...markdownMap.indexFiles,
+          [pathToMarkdown]: firstLink
+        };
+      }
 
-export const update = (...args) => internalUpdateCallback(...args);
-export const updatePlugins = (...args) =>
-  internalUpdatePluginsCallback(...args);
+      return markdownMap;
+    },
+    {}
+  );
+};
 
-export default class MarkdownProvider extends Component {
+const setPlugins = plugins => {
+  return plugins.reduce(
+    (pluginMap, [name, component, options]) =>
+      Object.assign({}, pluginMap, {
+        [name]: {
+          name,
+          component,
+          options
+        }
+      }),
+    {}
+  );
+};
+
+class MarkdownProvider extends Component {
   static propTypes = {
-    location: ReactRouterPropTypes.location.isRequired
+    location: ReactRouterPropTypes.location.isRequired,
+    markdown: PropTypes.array,
+    plugins: PropTypes.array
+  };
+
+  static defaultProps = {
+    markdown: [],
+    plugins: []
   };
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      markdown: {
-        docRootIndexFile: noDocsFound
-      },
-      plugins: {}
-    };
-
-    internalUpdateCallback = this.onUpdate;
-    internalUpdatePluginsCallback = this.onPluginUpdate;
+    this.markdown = setMarkdown(props.markdown);
+    this.plugins = setPlugins(props.plugins);
   }
-
-  onUpdate = (pathToMarkdown, component, isIndex, firstLink) => {
-    const { markdown } = this.state;
-
-    markdown[pathToMarkdown] = component;
-
-    if (isIndex) {
-      markdown.indexFiles = {
-        ...markdown.indexFiles,
-        [pathToMarkdown]: firstLink
-      };
-    }
-
-    this.setState({
-      markdown
-    });
-
-    return component;
-  };
-
-  onPluginUpdate = newPlugin => {
-    const { plugins } = this.state;
-
-    this.setState({
-      plugins: Object.assign({}, plugins, {
-        [newPlugin.name]: newPlugin
-      })
-    });
-  };
 
   render() {
     return (
       <App
-        markdown={this.state.markdown}
+        markdown={this.markdown}
         location={this.props.location}
-        plugins={this.state.plugins}
+        plugins={this.plugins}
       />
     );
   }
 }
+
+export default MarkdownProvider;

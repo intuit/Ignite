@@ -4,11 +4,7 @@ exports[`Has default route 1`] = `
 <App
   index={undefined}
   location={undefined}
-  markdown={
-    Object {
-      "docRootIndexFile": [Function],
-    }
-  }
+  markdown={Object {}}
   plugins={Object {}}
 />
 `;
@@ -20,7 +16,6 @@ exports[`sets first page and root from index file 1`] = `
   markdown={
     Object {
       "/foo/bar": [Function],
-      "docRootIndexFile": [Function],
       "indexFiles": Object {
         "/foo/bar": "/first/page",
       },
@@ -37,7 +32,6 @@ exports[`update markdown provided 1`] = `
   markdown={
     Object {
       "/foo/bar": [Function],
-      "docRootIndexFile": [Function],
     }
   }
   plugins={Object {}}
@@ -51,7 +45,6 @@ exports[`uses plugins 1`] = `
   markdown={
     Object {
       "/foo/bar": [Function],
-      "docRootIndexFile": [Function],
       "indexFiles": Object {
         "/foo/bar": "/first/page",
       },
@@ -62,6 +55,7 @@ exports[`uses plugins 1`] = `
       "test": Object {
         "component": [Function],
         "name": "test",
+        "options": undefined,
       },
     }
   }

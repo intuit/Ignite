@@ -4,7 +4,6 @@ import App from '../App';
 import renderToJson from './utils/render-to-json';
 
 const markdown = {
-  docRootIndexFile: () => <h1>Nothing to see here...</h1>,
   index: () => <h1>Index</h1>
 };
 

@@ -61,7 +61,6 @@ function index(source, pathToMarkdown, options) {
   source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
 
   return `
-    import { registerMarkdown } from 'ignite';
     import makeClass from 'classnames';
 
     function markDownPage(props) {
@@ -72,7 +71,7 @@ function index(source, pathToMarkdown, options) {
       );
     }
     
-    export default registerMarkdown('${pathToMarkdown}', markDownPage, true, '${firstLink}');
+    window.configuration.markdown.push(['${pathToMarkdown}', markDownPage, true, '${firstLink}']);
   `;
 }
 
@@ -204,7 +203,6 @@ export default function(source) {
 
   return `
     import React from 'react';
-    import { registerMarkdown } from 'ignite';
     import { Link } from 'react-router-dom';
 
     const PluginProvider = ({plugins, name, options, children}) => {
@@ -227,6 +225,6 @@ export default function(source) {
       </div>
     );
     
-    export default registerMarkdown('${pathToMarkdown}', markDownPage);
+    window.configuration.markdown.push(['${pathToMarkdown}', markDownPage]);
   `;
 }
