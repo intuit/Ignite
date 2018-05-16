@@ -1,26 +1,33 @@
 .root {
   z-index: 10;
   padding: 0;
-  height: calc(100vh - 60px);
+  height: calc(100vh + 60px - 4em);
   overflow-x: visible;
   border-right: 1px solid #e0e0e0;
 
-  width: 75%;
-  position: absolute;
-  left: -75%;
+  top: 0;
+  width: 350px;
+  position: fixed;
+  left: -350px;
   transition: left 0.25s;
   transition-timing-function: ease-in-out;
 
   .sidebar {
     height: 100%;
-    padding: 4rem 20px 3rem;
+    padding: 5.5rem 20px 3rem;
     overflow-y: scroll;
   }
 
   @media screen and (min-width: 769px) {
+    height: calc(100vh + 100px - 4em);
+    min-height: calc(100vh - 60px);
     position: sticky;
-    top: 0px;
+    top: -40px;
     left: 0;
+
+    .sidebar {
+      padding: 4rem 20px 3rem;
+    }
   }
 
   li {
@@ -78,7 +85,7 @@
 
 .toggle {
   position: absolute;
-  top: 0;
+  top: 60px;
   right: -25px;
   padding-top: 10px;
   padding-left: 10px;
