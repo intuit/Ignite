@@ -76,9 +76,9 @@ class Header extends Component {
             )}
           >
             <div className="navbar-end">
-              {process.env.navItems &&
-                Object.entries(process.env.navItems).map(([key, item]) => {
-                  const otherPaths = Object.values(process.env.navItems).filter(
+              {this.props.navItems &&
+                Object.entries(this.props.navItems).map(([key, item]) => {
+                  const otherPaths = Object.values(this.props.navItems).filter(
                     val => val !== '/'
                   );
 
@@ -88,7 +88,7 @@ class Header extends Component {
                     (item !== '/' &&
                       this.props.location.pathname.includes(item)) ||
                     (this.props.location.pathname === '/' &&
-                      process.env.navItems.root === item) ||
+                      this.props.navItems.root === item) ||
                     (item === '/' &&
                       !otherPaths.find(path =>
                         this.props.location.pathname.includes(path)
@@ -128,6 +128,7 @@ Header.propTypes = {
   title: PropTypes.string,
   logo: PropTypes.string,
   githubURL: PropTypes.string,
+  navItems: PropTypes.array,
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired
 };
@@ -135,6 +136,7 @@ Header.propTypes = {
 Header.defaultProps = {
   title: process.env.title,
   logo: process.env.logo,
+  navItems: process.env.navItems,
   githubURL: process.env.githubURL
 };
 

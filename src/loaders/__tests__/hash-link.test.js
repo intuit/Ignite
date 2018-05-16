@@ -9,6 +9,10 @@ describe('transformLink', () => {
     process.cwd.mockRestore();
   });
 
+  test('should leave id links alone', () => {
+    expect(transformLink('/path/', '#link')).toBe('#link');
+  });
+
   test('should leave http links alone', () => {
     expect(
       transformLink(

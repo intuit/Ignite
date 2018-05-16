@@ -157,7 +157,7 @@
   },
   "jest": {
     "transform": {
-      "\\.(css)$": "<rootDir>/node_modules/jest-css-modules",
+      "\\.(css)$": "jest-css-modules",
       "^.+\\.jsx?$": "babel-jest"
     },
     "testPathIgnorePatterns": [

@@ -12,6 +12,7 @@ exports[`renders default page when there is not page match 1`] = `
       }
     }
     logo={undefined}
+    navItems={undefined}
     title={undefined}
   />
   <div
@@ -60,6 +61,7 @@ exports[`renders first page at index if found 1`] = `
       }
     }
     logo={undefined}
+    navItems={undefined}
     title={undefined}
   />
   <div
@@ -96,6 +98,104 @@ exports[`renders first page at index if found 1`] = `
 </div>
 `;
 
+exports[`renders index if no page matched 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    location={
+      Object {
+        "pathname": "/bar",
+      }
+    }
+    logo={undefined}
+    navItems={undefined}
+    title={undefined}
+  />
+  <div
+    className=""
+    id="root"
+  >
+    <div
+      className="columns"
+    >
+      <OnClickOutside(Sidebar)
+        className="column is-one-third-tablet is-one-quarter-desktop box"
+        content={[Function]}
+        currentPage="/bar"
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        excludeScrollbar={false}
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
+      />
+      <div
+        className="column content is-two-thirds-tablet is-three-quarters-desktop"
+      >
+        <Page
+          plugins={Array []}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders index if no page matched 2`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    location={
+      Object {
+        "pathname": "/index.md",
+      }
+    }
+    logo={undefined}
+    navItems={undefined}
+    title={undefined}
+  />
+  <div
+    className=""
+    id="root"
+  >
+    <div
+      className="columns"
+    >
+      <OnClickOutside(Sidebar)
+        className="column is-one-third-tablet is-one-quarter-desktop box"
+        content={[Function]}
+        currentPage="/index.md"
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        excludeScrollbar={false}
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
+      />
+      <div
+        className="column content is-two-thirds-tablet is-three-quarters-desktop"
+      >
+        <Page
+          plugins={Array []}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders matched page 1`] = `
 <div
   className={undefined}
@@ -108,6 +208,7 @@ exports[`renders matched page 1`] = `
       }
     }
     logo={undefined}
+    navItems={undefined}
     title={undefined}
   />
   <div
@@ -156,6 +257,7 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
       }
     }
     logo={undefined}
+    navItems={undefined}
     title={undefined}
   />
   <div

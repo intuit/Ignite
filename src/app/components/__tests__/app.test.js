@@ -35,6 +35,7 @@ test('renders renders index if firstPagePath specified but not actually in markd
     )
   ).toMatchSnapshot();
 });
+
 test('renders first page at index if found', () => {
   const firstPage = () => <h1>I am the Intro</h1>;
   markdown.firstPage = firstPage;
@@ -42,7 +43,11 @@ test('renders first page at index if found', () => {
 
   expect(
     renderToJson(
-      <App markdown={markdown} index="index" location={{ pathname: '/' }} />
+      <App
+        markdown={markdown}
+        index="index"
+        location={{ pathname: '/', hash: '#foo' }}
+      />
     )
   ).toMatchSnapshot();
 });
