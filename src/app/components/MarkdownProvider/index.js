@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import App from '../App';
@@ -11,7 +12,7 @@ const setMarkdown = (markdown = []) => {
       if (isIndex) {
         markdownMap.indexFiles = {
           ...markdownMap.indexFiles,
-          [markdownMap]: firstLink
+          [pathToMarkdown]: firstLink
         };
       }
 
@@ -37,14 +38,21 @@ const setPlugins = plugins => {
 
 class MarkdownProvider extends Component {
   static propTypes = {
-    location: ReactRouterPropTypes.location.isRequired
+    location: ReactRouterPropTypes.location.isRequired,
+    markdown: PropTypes.array,
+    plugins: PropTypes.array
+  };
+
+  static defaultProps = {
+    markdown: [],
+    plugins: []
   };
 
   constructor(props) {
     super(props);
 
-    this.markdown = setMarkdown(window.configuration.markdown);
-    this.plugins = setPlugins(window.configuration.plugins);
+    this.markdown = setMarkdown(props.markdown);
+    this.plugins = setPlugins(props.plugins);
   }
 
   render() {

@@ -6,7 +6,16 @@ import MarkdownProvider from './components/MarkdownProvider';
 
 ReactDOM.render(
   <HashRouter>
-    <Route path="/" component={MarkdownProvider} />
+    <Route
+      path="/"
+      component={props => (
+        <MarkdownProvider
+          {...props}
+          markdown={window.configuration.markdown}
+          plugins={window.configuration.plugins}
+        />
+      )}
+    />
   </HashRouter>,
   document.getElementById('index')
 );
