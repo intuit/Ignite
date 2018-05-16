@@ -207,7 +207,8 @@ module.exports = function(options = {}) {
     plugins: [
       new IgnitePlugin({
         entries: docs.map(doc => path.resolve(doc)),
-        plugins: ignitePlugins
+        plugins: ignitePlugins,
+        options
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',

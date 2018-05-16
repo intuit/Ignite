@@ -63,15 +63,17 @@ function index(source, pathToMarkdown, options) {
   return `
     import makeClass from 'classnames';
 
-    function markDownPage(props) {
+    export default function markDownPage(props) {
       return (
         <aside className={makeClass('menu', props.className)}>
           ${source}
         </aside>
       );
     }
-    
-    window.configuration.markdown.push(['${pathToMarkdown}', markDownPage, true, '${firstLink}']);
+
+    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink}');
+
+    // window.configuration.markdown.push(['${pathToMarkdown}', markDownPage, true, '${firstLink}']);
   `;
 }
 
@@ -238,7 +240,7 @@ export default function(source) {
         </section>
       </div>
     );
-    
-    window.configuration.markdown.push(['${pathToMarkdown}', markDownPage]);
+    export default markDownPage;
+    // window.configuration.markdown.push(['${pathToMarkdown}', markDownPage]);
   `;
 }
