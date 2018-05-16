@@ -48,7 +48,9 @@ class Header extends Component {
                   className={makeClass(styles.logo, 'navbar-item')}
                 />
               )}
-              <span className="is-hidden-mobile">{this.props.title}</span>
+              <span className={makeClass('is-hidden-mobile', styles.titleText)}>
+                {this.props.title}
+              </span>
             </a>
 
             <a
