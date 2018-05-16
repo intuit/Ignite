@@ -36,10 +36,13 @@ exports[`renders default page when there is not page match 1`] = `
         preventDefault={false}
         stopPropagation={false}
       />
-      <Page
+      <div
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
-        plugins={Array []}
-      />
+      >
+        <Page
+          plugins={Array []}
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -81,10 +84,13 @@ exports[`renders first page at index if found 1`] = `
         preventDefault={false}
         stopPropagation={false}
       />
-      <Page
+      <div
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
-        plugins={Array []}
-      />
+      >
+        <Page
+          plugins={Array []}
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -126,10 +132,13 @@ exports[`renders matched page 1`] = `
         preventDefault={false}
         stopPropagation={false}
       />
-      <foo
+      <div
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
-        plugins={Array []}
-      />
+      >
+        <foo
+          plugins={Array []}
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -171,10 +180,13 @@ exports[`renders renders index if firstPagePath specified but not actually in ma
         preventDefault={false}
         stopPropagation={false}
       />
-      <Page
+      <div
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
-        plugins={Array []}
-      />
+      >
+        <Page
+          plugins={Array []}
+        />
+      </div>
     </div>
   </div>
 </div>
