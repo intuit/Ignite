@@ -1,5 +1,5 @@
-import InjectPlugin from 'webpack-inject-plugin';
 import path from 'path';
+import InjectPlugin from 'webpack-inject-plugin';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';

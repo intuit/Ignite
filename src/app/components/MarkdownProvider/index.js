@@ -55,7 +55,8 @@ class MarkdownProvider extends Component {
     this.plugins = setPlugins(props.plugins);
   }
 
-  componentWillReceiveProps(newProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(newProps) {
     this.markdown = setMarkdown(newProps.markdown);
   }
 

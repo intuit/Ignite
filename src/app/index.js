@@ -17,7 +17,8 @@ function withGlobalConfig(Comp) {
     }
 
     setFirstLink(pathToMarkdown, firstLink) {
-      const markdown = this.state.markdown.map(m => {
+      const oldMarkdown = this.state.markdown;
+      const markdown = oldMarkdown.map(m => {
         if (m[0] === pathToMarkdown) {
           m[3] = firstLink;
         }
