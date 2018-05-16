@@ -55,6 +55,10 @@ class MarkdownProvider extends Component {
     this.plugins = setPlugins(props.plugins);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.markdown = setMarkdown(newProps.markdown);
+  }
+
   render() {
     return (
       <App
