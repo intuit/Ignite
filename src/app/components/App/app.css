@@ -29,8 +29,6 @@ h6 {
   justify-content: center;
 
   &:global(.columns) {
-    padding-top: 3rem;
-    padding-bottom: 5rem;
     margin: 0;
   }
 
@@ -175,8 +173,10 @@ p {
   opacity: 0.5;
 }
 
-.contentWidth {
+.content {
   margin: 0 auto 15px;
   max-width: 950px;
   padding-top: 0;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
 }

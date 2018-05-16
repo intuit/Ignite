@@ -1,6 +1,9 @@
 .root {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 3rem;
   padding-right: 35px;
-  max-height: 100vh;
+  max-height: calc(100vh - 5px);
   overflow-y: scroll;
   position: sticky;
   top: 0px;

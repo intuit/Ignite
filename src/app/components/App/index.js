@@ -6,7 +6,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
 import Header from '../Header';
-import Footer from '../Footer';
 import Sidebar from '../Sidebar';
 import styles from './app.css';
 
@@ -95,7 +94,7 @@ class App extends Component {
 
             <Page
               className={makeClass(
-                styles.contentWidth,
+                styles.content,
                 'column',
                 'content',
                 'is-two-thirds-tablet',
@@ -105,8 +104,6 @@ class App extends Component {
             />
           </div>
         </div>
-
-        <Footer />
       </div>
     );
   }
