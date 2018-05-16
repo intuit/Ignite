@@ -72,8 +72,6 @@ function index(source, pathToMarkdown, options) {
     }
 
     window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink}');
-
-    // window.configuration.markdown.push(['${pathToMarkdown}', markDownPage, true, '${firstLink}']);
   `;
 }
 
@@ -240,7 +238,7 @@ export default function(source) {
         </section>
       </div>
     );
+
     export default markDownPage;
-    // window.configuration.markdown.push(['${pathToMarkdown}', markDownPage]);
   `;
 }

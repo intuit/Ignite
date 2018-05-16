@@ -22,7 +22,7 @@
   }
 
   @media screen and (min-width: 769px) {
-    height: calc(100vh + 65px + 40px - 4em);
+    height: calc(100vh - 7rem + 45px);
     position: sticky;
     top: -40px;
   }
