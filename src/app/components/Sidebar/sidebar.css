@@ -1,9 +1,11 @@
 .root {
   z-index: 10;
   padding: 0;
-  height: calc(100vh + 60px - 4em);
+  height: calc(100vh + 65px - 4em);
   overflow-x: visible;
+  border: none;
   border-right: 1px solid #e0e0e0;
+  border-radius: 0;
 
   top: 0;
   width: 350px;
@@ -85,10 +87,8 @@
 
 .toggle {
   position: absolute;
-  top: 60px;
-  right: -25px;
-  padding-top: 10px;
-  padding-left: 10px;
+  top: 62px;
+  right: -35px;
   border: none;
   background: none;
 }

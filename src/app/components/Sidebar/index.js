@@ -47,7 +47,12 @@ class Sidebar extends Component {
         )}
       >
         <button
-          className={makeClass('is-hidden-tablet', styles.toggle)}
+          className={makeClass(
+            'is-hidden-tablet',
+            'button',
+            'is-white',
+            styles.toggle
+          )}
           type="button"
           onClick={this.toggleSidebar}
         >

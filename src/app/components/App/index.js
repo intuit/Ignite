@@ -85,7 +85,7 @@ class App extends Component {
         <div id="root" className={makeClass(styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
-              className="column is-one-third-tablet is-one-quarter-desktop has-background-light"
+              className="column is-one-third-tablet is-one-quarter-desktop box"
               content={sidebarComponent}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
