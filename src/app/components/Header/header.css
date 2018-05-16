@@ -2,17 +2,41 @@
   padding-left: 15px;
 }
 
+.container {
+  z-index: 2;
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1500px) {
+    max-width: 1344px;
+    width: 1344px;
+    margin: auto;
+  }
+}
+
 .logo {
   height: 52px;
-  padding: 10px 0px;
   margin: auto;
 }
 
 .title {
   font-size: 20px;
+  padding: 0;
 }
 
 :global .navbar {
   background-color: $APP_COLOR;
   border-radius: 0;
+
+  .navbar-menu {
+    border-radius: 0;
+  }
+
+  .navbar-menu.is-active .navbar-item {
+    text-align: center;
+  }
 }

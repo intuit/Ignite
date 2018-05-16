@@ -1,10 +1,33 @@
 .root {
-  padding-right: 35px;
-  max-height: 100vh;
-  overflow-y: scroll;
-  position: sticky;
-  top: 0px;
+  z-index: 1;
+  padding: 0;
+  height: calc(100vh + 65px - 4em);
+  overflow-x: visible;
+  border: none;
   border-right: 1px solid #e0e0e0;
+  border-radius: 0;
+  margin-bottom: 0 !important;
+
+  top: 0;
+  width: 350px;
+  position: fixed;
+  left: -350px;
+  transition: left 0.25s;
+  transition-timing-function: ease-in-out;
+
+  .sidebar {
+    height: 100%;
+    padding: 4rem 20px 3rem;
+    overflow-y: scroll;
+  }
+
+  @media screen and (min-width: 769px) {
+    height: calc(100vh + 100px - 4em);
+    min-height: calc(100vh - 60px);
+    position: sticky;
+    top: -40px;
+    left: 0;
+  }
 
   li {
     list-style: none;
@@ -51,4 +74,20 @@
       margin-right: 10px;
     }
   }
+
+  details,
+  :global(.menu-list) {
+    max-width: 300px;
+    margin: auto;
+  }
+}
+
+.toggle {
+  position: absolute;
+  top: 62px;
+  right: -35px;
+}
+
+.open {
+  left: 0;
 }

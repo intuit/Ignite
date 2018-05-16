@@ -8,6 +8,12 @@ body {
 
 .contentArea {
   min-height: calc(100% - 60px - 97px);
+
+  @media screen and (min-width: 1500px) {
+    max-width: 1344px;
+    width: 1344px;
+    margin: auto;
+  }
 }
 
 h1,
@@ -18,6 +24,7 @@ h5,
 h6 {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 
   &:not(:first-child) {
     padding-top: 25px;
@@ -29,8 +36,6 @@ h6 {
   justify-content: center;
 
   &:global(.columns) {
-    padding-top: 3rem;
-    padding-bottom: 5rem;
     margin: 0;
   }
 
@@ -41,6 +46,8 @@ h6 {
 
   :global .tag {
     margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
     &:first-of-type {
       margin-left: 15px;
@@ -170,13 +177,27 @@ p {
   }
 }
 
+:global .navbar-item img {
+  max-height: 3rem;
+}
+
 :global .headerLink {
   padding-left: 10px;
   opacity: 0.5;
 }
 
-.contentWidth {
+.content {
+  max-width: 100%;
   margin: 0 auto 15px;
-  max-width: 950px;
   padding-top: 0;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+
+  details {
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 769px) {
+    max-width: 950px;
+  }
 }

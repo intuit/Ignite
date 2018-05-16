@@ -6,7 +6,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
 import Header from '../Header';
-import Footer from '../Footer';
 import Sidebar from '../Sidebar';
 import styles from './app.css';
 
@@ -83,10 +82,10 @@ class App extends Component {
       <div className={styles.root}>
         <Header location={this.props.location} />
 
-        <div id="root" className={makeClass('container', styles.contentArea)}>
+        <div id="root" className={makeClass(styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
-              className="column is-one-third-tablet is-one-quarter-desktop"
+              className="column is-one-third-tablet is-one-quarter-desktop box"
               content={sidebarComponent}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
@@ -95,7 +94,7 @@ class App extends Component {
 
             <Page
               className={makeClass(
-                styles.contentWidth,
+                styles.content,
                 'column',
                 'content',
                 'is-two-thirds-tablet',
@@ -105,8 +104,6 @@ class App extends Component {
             />
           </div>
         </div>
-
-        <Footer />
       </div>
     );
   }

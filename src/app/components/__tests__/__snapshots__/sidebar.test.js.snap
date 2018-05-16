@@ -1,18 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`only renders content if its there 1`] = `
-<div
-  className=""
+<Sidebar
+  className={null}
+  content={null}
+  currentPage={null}
+  disableOnClickOutside={[Function]}
+  enableOnClickOutside={[Function]}
+  eventTypes={
+    Array [
+      "mousedown",
+      "touchstart",
+    ]
+  }
+  outsideClickIgnoreClass="ignore-react-onclickoutside"
+  preventDefault={false}
+  stopPropagation={false}
 />
 `;
 
 exports[`only renders content if its there 2`] = `
-<div
-  className=""
->
-  <content
-    className={undefined}
-    currentPage={null}
-  />
-</div>
+<Sidebar
+  className={null}
+  content={[Function]}
+  currentPage={null}
+  disableOnClickOutside={[Function]}
+  enableOnClickOutside={[Function]}
+  eventTypes={
+    Array [
+      "mousedown",
+      "touchstart",
+    ]
+  }
+  outsideClickIgnoreClass="ignore-react-onclickoutside"
+  preventDefault={false}
+  stopPropagation={false}
+/>
 `;
