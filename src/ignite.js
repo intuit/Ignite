@@ -94,7 +94,9 @@ export default async function build(options, user) {
         return;
       }
 
-      if (stats.hasErrors() || stats.hasWarnings()) {
+      stats.hasWarnings();
+
+      if (stats.hasErrors()) {
         return;
       }
 
