@@ -66,3 +66,7 @@
  0.0.17
 
 - Load everything before render #85
+
+ 0.0.18
+
+
