@@ -22,11 +22,9 @@
   }
 
   @media screen and (min-width: 769px) {
-    height: calc(100vh + 100px - 4em);
-    min-height: calc(100vh - 60px);
+    height: calc(100vh + 65px + 40px - 4em);
     position: sticky;
     top: -40px;
-    left: 0;
   }
 
   li {
