@@ -1,4 +1,4 @@
-# Plugins #:is-info useful information #:is-success extension
+# Plugins #:is-info:is-medium useful information #:is-success:is-medium extension
 
 ## Markdown-it Plugins
 
