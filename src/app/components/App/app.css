@@ -168,6 +168,10 @@ p {
   }
 }
 
+:global .navbar-item img {
+  max-height: 3rem;
+}
+
 :global .headerLink {
   padding-left: 10px;
   opacity: 0.5;

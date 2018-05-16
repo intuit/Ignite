@@ -15,4 +15,8 @@
 :global .navbar {
   background-color: $APP_COLOR;
   border-radius: 0;
+
+  .navbar-menu {
+    border-radius: 0px;
+  }
 }
