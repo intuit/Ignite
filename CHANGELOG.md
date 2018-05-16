@@ -86,3 +86,7 @@
  0.0.22
 
 - fix sidebar height #91
+
+ 0.0.23
+
+- Changin' #92
