@@ -74,3 +74,7 @@
  0.0.19
 
 - Layout #87
+
+ 0.0.20
+
+- update dependancies #89
