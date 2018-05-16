@@ -38,7 +38,7 @@ class Header extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <div className="container">
+        <div className={styles.container}>
           <div className="navbar-brand">
             <a href="/" className={makeClass(styles.title, 'navbar-item')}>
               {this.props.logo && (

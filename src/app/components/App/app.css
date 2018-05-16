@@ -8,6 +8,12 @@ body {
 
 .contentArea {
   min-height: calc(100% - 60px - 97px);
+
+  @media screen and (min-width: 1500px) {
+    max-width: 1344px;
+    width: 1344px;
+    margin: auto;
+  }
 }
 
 h1,
