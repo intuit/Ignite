@@ -43,17 +43,22 @@ const stringify = code => {
 
 function generate(entries = [], plugins = []) {
   return () => {
-    let generated = entries
+    let generated = `
+      window.configuration = {
+        markdown: [],
+        plugins: [],
+      };
+    `;
+
+    generated += entries
       .map(
         e => `
-          import('${e}',);
+          require('${e}');
         `
       )
       .join('\n');
 
     if (plugins.length > 0) {
-      generated += "import { registerPlugin } from 'ignite';\n";
-
       // E0: Name of plugin
       // E1: Path to plugin (can be npm module name)
       // E2: Options for plugin
@@ -63,11 +68,12 @@ function generate(entries = [], plugins = []) {
 
           return `
               import * as ${e[0]} from '${e[1]}';
-              ${options};
               
-              console.log('INJECT', options)
+              ${options};
   
-              registerPlugin('${e[0]}', ${e[0]}.default, options);
+              window.configuration.plugins.push(['${e[0]}', ${
+            e[0]
+          }.default, options]);
             `;
         })
         .join('\n');
