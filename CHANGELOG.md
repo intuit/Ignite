@@ -78,3 +78,7 @@
  0.0.20
 
 - update dependancies #89
+
+ 0.0.21
+
+- Lazily fetch and render things #90
