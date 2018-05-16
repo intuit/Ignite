@@ -62,3 +62,7 @@
  0.0.16
 
 - support no navitems #84
+
+ 0.0.17
+
+- Load everything before render #85
