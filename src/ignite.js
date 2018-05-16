@@ -75,6 +75,23 @@ export default async function build(options, user) {
   const webpackConfig = config(options);
   const compiler = webpack(webpackConfig);
 
+  if (options.publish) {
+    if (!options.githubURL) {
+      console.log('Need to provide githubURL option to publish');
+      return;
+    }
+
+    if (!user.name) {
+      console.log('Need author.name in package.json to publish');
+      return;
+    }
+
+    if (!user.email) {
+      console.log('Need author.email in package.json to publish');
+      return;
+    }
+  }
+
   if (options.watch) {
     const devServerOptions = Object.assign({}, webpackConfig.devServer, {
       quiet: true
@@ -101,21 +118,6 @@ export default async function build(options, user) {
       }
 
       if (options.publish) {
-        if (!options.githubURL) {
-          console.log('Need to provide githubURL option to publish');
-          return;
-        }
-
-        if (!user.name) {
-          console.log('Need author.name in package.json to publish');
-          return;
-        }
-
-        if (!user.email) {
-          console.log('Need author.email in package.json to publish');
-          return;
-        }
-
         if (options.githubURL.includes('http')) {
           [, options.githubURL] = options.githubURL.split('//');
         }
@@ -135,7 +137,7 @@ export default async function build(options, user) {
               return;
             }
 
-            console.log('Documentation publish to github-pages!');
+            console.log('Documentation published to github-pages!');
           }
         );
       }

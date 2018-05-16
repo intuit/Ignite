@@ -28,6 +28,10 @@
   padding: 0;
 }
 
+.titleText:only-child {
+  padding-left: 1rem;
+}
+
 :global .navbar {
   background-color: $APP_COLOR;
   border-radius: 0;
