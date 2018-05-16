@@ -5,24 +5,11 @@ import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
-import Icon from '../Icon';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import styles from './app.css';
 
 class App extends Component {
-  state = {
-    sidebarOpen: false
-  };
-
-  toggleSidebar = () => {
-    const { sidebarOpen } = this.state;
-
-    this.setState({
-      sidebarOpen: !sidebarOpen
-    });
-  };
-
   componentDidUpdate() {
     this.jumpToHash();
   }
@@ -98,27 +85,12 @@ class App extends Component {
         <div id="root" className={makeClass(styles.contentArea)}>
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
-              className={makeClass(
-                'column is-one-third-tablet is-one-quarter-desktop has-background-light',
-                this.state.sidebarOpen && styles.sidebarOpen
-              )}
+              className="column is-one-third-tablet is-one-quarter-desktop has-background-light"
               content={sidebarComponent}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
               }`}
-            >
-              <button
-                className={makeClass('is-hidden-tablet', styles.sidebarToggle)}
-                type="button"
-                onClick={this.toggleSidebar}
-              >
-                {this.state.sidebarOpen ? (
-                  <Icon type="fas" icon="angle-left" />
-                ) : (
-                  <Icon type="fas" icon="angle-right" />
-                )}
-              </button>
-            </Sidebar>
+            />
 
             <Page
               className={makeClass(

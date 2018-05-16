@@ -46,20 +46,6 @@ h6 {
   }
 }
 
-.sidebarToggle {
-  position: absolute;
-  top: 0;
-  right: -25px;
-  padding-top: 10px;
-  padding-left: 10px;
-  border: none;
-  background: none;
-}
-
-.sidebarOpen {
-  left: 0;
-}
-
 section {
   padding: 15px 30px;
 }

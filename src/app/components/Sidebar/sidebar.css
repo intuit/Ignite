@@ -75,3 +75,17 @@
     margin: auto;
   }
 }
+
+.toggle {
+  position: absolute;
+  top: 0;
+  right: -25px;
+  padding-top: 10px;
+  padding-left: 10px;
+  border: none;
+  background: none;
+}
+
+.open {
+  left: 0;
+}
