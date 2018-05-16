@@ -31,7 +31,7 @@ const collapse = md => ({
       return `
         <details ${isOpen ? 'open' : ''}>
           <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
-            ${children}
+            <p>${children}</p>
           </summary>
       `;
     }

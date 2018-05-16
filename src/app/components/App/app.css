@@ -179,4 +179,8 @@ p {
   padding-top: 0;
   padding-top: 3rem;
   padding-bottom: 5rem;
+
+  details {
+    padding-bottom: 20px;
+  }
 }
