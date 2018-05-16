@@ -3,6 +3,8 @@
 }
 
 .container {
+  z-index: 2;
+
   @media screen and (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
@@ -18,12 +20,12 @@
 
 .logo {
   height: 52px;
-  padding: 10px 0;
   margin: auto;
 }
 
 .title {
   font-size: 20px;
+  padding: 0;
 }
 
 :global .navbar {

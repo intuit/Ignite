@@ -1,11 +1,12 @@
 .root {
-  z-index: 10;
+  z-index: 1;
   padding: 0;
   height: calc(100vh + 65px - 4em);
   overflow-x: visible;
   border: none;
   border-right: 1px solid #e0e0e0;
   border-radius: 0;
+  margin-bottom: 0 !important;
 
   top: 0;
   width: 350px;
@@ -16,7 +17,7 @@
 
   .sidebar {
     height: 100%;
-    padding: 5.5rem 20px 3rem;
+    padding: 4rem 20px 3rem;
     overflow-y: scroll;
   }
 
@@ -26,10 +27,6 @@
     position: sticky;
     top: -40px;
     left: 0;
-
-    .sidebar {
-      padding: 4rem 20px 3rem;
-    }
   }
 
   li {
@@ -89,8 +86,6 @@
   position: absolute;
   top: 62px;
   right: -35px;
-  border: none;
-  background: none;
 }
 
 .open {
