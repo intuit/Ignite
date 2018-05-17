@@ -38,6 +38,10 @@ export class Sidebar extends Component {
   };
 
   render() {
+    if (!this.props.content) {
+      return null;
+    }
+
     return (
       <div
         className={makeClass(
