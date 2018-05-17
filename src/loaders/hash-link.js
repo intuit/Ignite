@@ -27,11 +27,15 @@ export function transformLink(resourcePath, link, options) {
   return `${correctPath} ${description.join(' ')}`;
 }
 
-export default function(source) {
-  const options = getOptions(this);
+export function transform(source, resourcePath, options) {
   const markdown = transformLinks(source, link =>
-    transformLink(this.resourcePath, link, options)
+    transformLink(resourcePath, link, options)
   );
 
   return markdown;
+}
+
+export default function(source) {
+  const options = getOptions(this);
+  return transform(source, this.resourcePath, options);
 }

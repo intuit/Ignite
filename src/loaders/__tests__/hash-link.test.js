@@ -1,4 +1,4 @@
-import { transformLink } from '../hash-link';
+import { transformLink, transform } from '../hash-link';
 
 describe('transformLink', () => {
   beforeAll(() => {
@@ -40,4 +40,21 @@ describe('transformLink', () => {
       })
     ).toBe('../link/to/image.png "With a description"');
   });
+});
+
+describe('transform', () => {
+  const options = {
+    src: '/'
+  };
+
+  expect(
+    transform(
+      `
+    [Link](#foo)
+    [Another](pages/intro.md)
+  `,
+      '/path',
+      options
+    )
+  ).toMatchSnapshot();
 });
