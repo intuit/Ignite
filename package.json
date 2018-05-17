@@ -157,7 +157,7 @@
   },
   "jest": {
     "transform": {
-      "\\.(css)$": "<rootDir>/node_modules/jest-css-modules",
+      "\\.(css)$": "jest-css-modules",
       "^.+\\.jsx?$": "babel-jest"
     },
     "testPathIgnorePatterns": [
@@ -170,7 +170,8 @@
     "collectCoverage": true,
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/**/*.js",
+      "!**/testExtension/*.js"
     ],
     "coverageReporters": [
       "cobertura",

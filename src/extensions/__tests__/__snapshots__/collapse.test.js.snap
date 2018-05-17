@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collapse 1`] = `
+"
+        <details >
+          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
+            <p></p>
+          </summary>
+      <h1>Title</h1>
+<h2>I can contain various combinations of elements.</h2>
+
+      </details>
+    "
+`;
+
+exports[`collapse 2`] = `
+"
+        <details open>
+          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
+            <p></p>
+          </summary>
+      <h1>Title</h1>
+<h2>I can contain various combinations of elements.</h2>
+
+      </details>
+    "
+`;
+
+exports[`collapse 3`] = `
+"<ul>
+<li>
+
+        <details >
+          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
+            <p><a href=\\"./pages/Publishing.md\\">:package: Publishing</a></p>
+          </summary>
+      <ul>
+<li><a href=\\"./pages/Publishing.md#setup-branch\\">Setup</a></li>
+<li><a href=\\"./pages/Publishing.md#Continuous-integration\\">Continuous Integration</a>u</li>
+</ul>
+
+      </details>
+    </li>
+</ul>
+"
+`;

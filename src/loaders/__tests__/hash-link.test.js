@@ -1,4 +1,4 @@
-import { transformLink } from '../hash-link';
+import { transformLink, transform } from '../hash-link';
 
 describe('transformLink', () => {
   beforeAll(() => {
@@ -7,6 +7,10 @@ describe('transformLink', () => {
 
   afterAll(() => {
     process.cwd.mockRestore();
+  });
+
+  test('should leave id links alone', () => {
+    expect(transformLink('/path/', '#link')).toBe('#link');
   });
 
   test('should leave http links alone', () => {
@@ -36,4 +40,21 @@ describe('transformLink', () => {
       })
     ).toBe('../link/to/image.png "With a description"');
   });
+});
+
+describe('transform', () => {
+  const options = {
+    src: './docs/'
+  };
+
+  expect(
+    transform(
+      `
+    [Link](#foo)
+    [Another](pages/intro.md)
+  `,
+      'docs/path',
+      options
+    )
+  ).toMatchSnapshot();
 });

@@ -1,8 +1,7 @@
 import { getOptions } from 'loader-utils';
 import MarkdownIt from 'markdown-it';
 
-export default function(source) {
-  const options = getOptions(this);
+export function renderMarkdown(source, options = {}) {
   const renderer = new MarkdownIt(options);
 
   if (options.plugins) {
@@ -23,4 +22,9 @@ export default function(source) {
   }
 
   return renderer.render(source);
+}
+
+export default function(source) {
+  const options = getOptions(this);
+  return renderMarkdown(source, options);
 }

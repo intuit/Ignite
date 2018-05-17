@@ -1,5 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`clicking hamburger changes state 1`] = `
+<nav
+  aria-label="main navigation"
+  className="navbar"
+  role="navigation"
+>
+  <div
+    className={undefined}
+  >
+    <div
+      className="navbar-brand"
+    >
+      <a
+        className="navbar-item"
+        href="/"
+      >
+        <span
+          className="is-hidden-mobile"
+        />
+      </a>
+      <a
+        aria-expanded="false"
+        aria-label="menu"
+        className="navbar-burger is-active"
+        onClick={[Function]}
+        role="button"
+      >
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+    <div
+      className="navbar-menu is-active"
+    >
+      <div
+        className="navbar-end"
+      >
+        <a
+          className="navbar-item"
+          href={undefined}
+        >
+          GitHub
+          <i
+            className="fab fa-github"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
 exports[`renders githubURL 1`] = `
 <nav
   aria-label="main navigation"
@@ -47,6 +106,218 @@ exports[`renders githubURL 1`] = `
         <a
           className="navbar-item"
           href="https://github.com/sindresorhus/cows"
+        >
+          GitHub
+          <Icon
+            className={null}
+            icon="github"
+            type="fab"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`renders logo 1`] = `
+<nav
+  aria-label="main navigation"
+  className="navbar"
+  role="navigation"
+>
+  <div
+    className={undefined}
+  >
+    <div
+      className="navbar-brand"
+    >
+      <a
+        className="navbar-item"
+        href="/"
+      >
+        <img
+          alt="logo"
+          className="navbar-item"
+          src="https://github.com/sindresorhus/cows"
+        />
+        <span
+          className="is-hidden-mobile"
+        />
+      </a>
+      <a
+        aria-expanded="false"
+        aria-label="menu"
+        className="navbar-burger"
+        onClick={[Function]}
+        role="button"
+      >
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+    <div
+      className="navbar-menu"
+    >
+      <div
+        className="navbar-end"
+      >
+        <a
+          className="navbar-item"
+          href={undefined}
+        >
+          GitHub
+          <Icon
+            className={null}
+            icon="github"
+            type="fab"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`renders nav items 1`] = `
+<nav
+  aria-label="main navigation"
+  className="navbar"
+  role="navigation"
+>
+  <div
+    className={undefined}
+  >
+    <div
+      className="navbar-brand"
+    >
+      <a
+        className="navbar-item"
+        href="/"
+      >
+        <span
+          className="is-hidden-mobile"
+        />
+      </a>
+      <a
+        aria-expanded="false"
+        aria-label="menu"
+        className="navbar-burger"
+        onClick={[Function]}
+        role="button"
+      >
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+    <div
+      className="navbar-menu"
+    >
+      <div
+        className="navbar-end"
+      >
+        <a
+          className="navbar-item is-active"
+          href="#/undefined"
+        >
+          Doc 1
+        </a>
+        <a
+          className="navbar-item"
+          href="#/pages/undefined"
+        >
+          Doc 2
+        </a>
+        <a
+          className="navbar-item"
+          href={undefined}
+        >
+          GitHub
+          <Icon
+            className={null}
+            icon="github"
+            type="fab"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`renders nav items with just a index 1`] = `
+<nav
+  aria-label="main navigation"
+  className="navbar"
+  role="navigation"
+>
+  <div
+    className={undefined}
+  >
+    <div
+      className="navbar-brand"
+    >
+      <a
+        className="navbar-item"
+        href="/"
+      >
+        <span
+          className="is-hidden-mobile"
+        />
+      </a>
+      <a
+        aria-expanded="false"
+        aria-label="menu"
+        className="navbar-burger"
+        onClick={[Function]}
+        role="button"
+      >
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+    <div
+      className="navbar-menu"
+    >
+      <div
+        className="navbar-end"
+      >
+        <a
+          className="navbar-item"
+          href="#/other/index.md"
+        >
+          Doc 1
+        </a>
+        <a
+          className="navbar-item"
+          href="#/pages/index.md"
+        >
+          Doc 2
+        </a>
+        <a
+          className="navbar-item"
+          href={undefined}
         >
           GitHub
           <Icon
