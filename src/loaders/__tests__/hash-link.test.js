@@ -44,7 +44,7 @@ describe('transformLink', () => {
 
 describe('transform', () => {
   const options = {
-    src: '/'
+    src: 'docs/'
   };
 
   expect(

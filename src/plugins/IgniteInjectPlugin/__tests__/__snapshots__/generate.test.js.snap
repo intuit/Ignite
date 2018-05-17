@@ -60,9 +60,9 @@ exports[`generate should add markdown 1`] = `
         window.configuration.markdown.push([path, comp]);
       }
     }
-  registerMarkdown('Users/alisowski/Documents/Ignite/path/to/markdown.md', () => import('path/to/markdown.md'));
+  registerMarkdown('../path/to/markdown.md', () => import('path/to/markdown.md'));
         
-registerMarkdown('Users/alisowski/Documents/Ignite/path/to/another-markdown.md', () => import('path/to/another-markdown.md'));
+registerMarkdown('../path/to/another-markdown.md', () => import('path/to/another-markdown.md'));
         "
 `;
 
