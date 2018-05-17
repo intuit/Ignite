@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate should add markdown 1`] = `
+"
+    window.configuration = {
+      markdown: [],
+      plugins: [],
+      setFirstLink() {
+        console.log('Called setFirstLink before it was configured');
+      }
+    };
+
+    import React from 'react';
+
+    function lazyLoad(CompProvider) {
+      return class extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            Comp: null
+          }
+        }
+
+        componentDidMount() {
+          if (!this.state.Comp) {
+            CompProvider().then(c => {
+              this.setState({
+                Comp: c.default
+              });
+            });
+          }
+        }
+
+        render() {
+          const { Comp } = this.state;
+          return Comp ? React.createElement(Comp, this.props, null) : null;
+        }
+      }
+    }
+
+    const INDEX_PAGE = 'index.md';
+    import path from 'path';
+
+    function isIndex(p) {
+      return p.includes(INDEX_PAGE) && 
+        (!process.env.navItems || 
+          Object.values(process.env.navItems)
+            .map(item => {
+              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+            })
+            .includes(p)
+          );
+    }
+
+    function registerMarkdown(path, provider) {
+      const comp = lazyLoad(provider);
+      if(isIndex(path)) {
+        window.configuration.markdown.push([path, comp, true, null]);
+      } else {
+        window.configuration.markdown.push([path, comp]);
+      }
+    }
+  registerMarkdown('Users/alisowski/Documents/Ignite/path/to/markdown.md', () => import('path/to/markdown.md'));
+        
+registerMarkdown('Users/alisowski/Documents/Ignite/path/to/another-markdown.md', () => import('path/to/another-markdown.md'));
+        "
+`;
+
+exports[`generate should add plugins 1`] = `
+"
+    window.configuration = {
+      markdown: [],
+      plugins: [],
+      setFirstLink() {
+        console.log('Called setFirstLink before it was configured');
+      }
+    };
+
+    import React from 'react';
+
+    function lazyLoad(CompProvider) {
+      return class extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            Comp: null
+          }
+        }
+
+        componentDidMount() {
+          if (!this.state.Comp) {
+            CompProvider().then(c => {
+              this.setState({
+                Comp: c.default
+              });
+            });
+          }
+        }
+
+        render() {
+          const { Comp } = this.state;
+          return Comp ? React.createElement(Comp, this.props, null) : null;
+        }
+      }
+    }
+
+    const INDEX_PAGE = 'index.md';
+    import path from 'path';
+
+    function isIndex(p) {
+      return p.includes(INDEX_PAGE) && 
+        (!process.env.navItems || 
+          Object.values(process.env.navItems)
+            .map(item => {
+              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+            })
+            .includes(p)
+          );
+    }
+
+    function registerMarkdown(path, provider) {
+      const comp = lazyLoad(provider);
+      if(isIndex(path)) {
+        window.configuration.markdown.push([path, comp, true, null]);
+      } else {
+        window.configuration.markdown.push([path, comp]);
+      }
+    }
+  
+      import * as first from 'path/to/plugin.js';
+      
+      var options = {};
+
+      window.configuration.plugins.push(['first', first.default, options]);
+      
+
+      import * as second from 'path/to/another-plugin.js';
+      
+      var options = { 'options': '1337' };;
+
+      window.configuration.plugins.push(['second', second.default, options]);
+      
+
+      import * as npm from 'npm-package';
+      
+      var options = {};
+
+      window.configuration.plugins.push(['npm', npm.default, options]);
+      "
+`;
+
+exports[`stringify 1`] = `
+"var options = {
+    'number': '1',
+    'string': 'string',
+    'bool': 'true',
+    'array': [() => 'string'],
+    'functions': {
+        'first': () => {
+            return 1;
+        }
+    }
+};"
+`;
