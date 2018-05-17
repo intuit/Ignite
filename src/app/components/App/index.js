@@ -18,7 +18,9 @@ export const determineComponents = (
   const filePath = location.pathname.substring(1);
 
   let Page = markdown[filePath];
-  let SidebarComponent = markdown[indexFile];
+  let SidebarComponent = filePath.includes('blog/')
+    ? null
+    : markdown[indexFile];
 
   if (navItems) {
     const parent =
@@ -46,12 +48,10 @@ export const determineComponents = (
     }
   }
 
-  if (markdown.indexFiles && filePath.includes(indexFile)) {
-    Page = markdown[markdown.indexFiles[filePath]];
-  }
-
   if (!Page && markdown.indexFiles) {
-    Page = markdown[markdown.indexFiles[indexFile]];
+    Page = filePath.includes(indexFile)
+      ? markdown[markdown.indexFiles[filePath]]
+      : markdown[markdown.indexFiles[indexFile]];
   }
 
   if (!Page) {
