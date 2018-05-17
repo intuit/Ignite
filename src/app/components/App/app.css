@@ -16,6 +16,43 @@ body {
   }
 }
 
+:global .blogPost {
+  max-width: 700px;
+  margin: auto;
+}
+
+:global h1.blogTitle {
+  font-size: 2rem;
+  font-weight: lighter;
+  line-height: 2;
+}
+
+:global p.blogSubtitle {
+  color: #909aa0;
+  margin-bottom: 3rem;
+}
+
+:global .blogBody {
+  line-height: 1.4;
+  margin: 0 6rem;
+
+  p {
+    line-height: 1.9;
+    margin: 15px 0;
+  }
+}
+
+:global .has-text-centered {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    justify-content: center;
+  }
+}
+
 h1,
 h2,
 h3,

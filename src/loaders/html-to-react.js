@@ -1,4 +1,5 @@
 import path from 'path';
+import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
 
 export function replaceAt(input, search, replace, start) {
@@ -160,6 +161,71 @@ export function addActiveAll(source, firstLink, indexFile) {
   return source;
 }
 
+export function blogPost(source) {
+  const options = {
+    xmlMode: true
+  };
+  const $source = cheerio.load(`<div>${source}</div>`, options);
+  const $output = cheerio.load(
+    `
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content has-text-centered">
+                
+            </div>
+          </div>
+          <div class="blogBody">
+            
+          </div>
+        </div>
+      </div>    
+    `,
+    options
+  );
+
+  console.log(source);
+  const title = $source('h1:first-of-type').remove();
+  const subtitle = $source('p:first-of-type').remove();
+  title.addClass('title blogTitle is-spaced');
+  subtitle.addClass('subtitle is-6 blogSubtitle');
+
+  $output('.media-content').append(title);
+  $output('.media-content').append(subtitle);
+  $output('.blogBody').append($source.html());
+
+  source = $output.html();
+  source = sanitizeJSX(source);
+
+  return `
+    import React from 'react';
+    import makeClass from 'classnames';
+    import { Link } from 'react-router-dom';
+
+    const PluginProvider = ({plugins, name, options, children}) => {
+      let Plugin = plugins[name];
+      const pluginOptions = Plugin.options;
+    
+      if (!Plugin) {
+        return <div />;
+      }
+
+      Plugin = Plugin.component;
+      return <Plugin {...pluginOptions}  children={children} {...options} />;
+    };
+
+    const blogPost = props => (
+      <div className={makeClass('blogPost', props.className)}>
+        <section>
+          ${source}
+        </section>
+      </div>
+    );
+
+    export default blogPost;
+  `;
+}
+
 export function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
@@ -239,6 +305,11 @@ export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
   const isIndex = detectIndex(this.resourcePath, pathToMarkdown, options);
+  const isBlogPost = this.resourcePath.includes('blog/');
+
+  if (isBlogPost) {
+    return blogPost(source);
+  }
 
   if (isIndex) {
     return index(source, pathToMarkdown, options);
