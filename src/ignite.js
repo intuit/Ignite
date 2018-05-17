@@ -2,29 +2,18 @@
 
 import fs from 'fs';
 import path from 'path';
+import register from 'babel-register';
+import root from 'root-path';
+import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
-import register from 'babel-register';
+
 
 import config from '../webpack.config';
 import packageJSON from '../package';
 
 register(packageJSON.babel || {});
-
-export const defaults = {
-  mode: 'production',
-  src: 'docs/',
-  dst: '_ignite/',
-  index: 'index.md',
-  port: 8008,
-  title: 'Documentation',
-  codeStyle: 'foundation',
-  color: 'auto',
-  selectedColor: 'auto',
-  logo: 'logo.svg',
-  bulmaTheme: 'flatly'
-};
 
 async function initPlugins(options) {
   options.plugins.forEach(async plugin => {
@@ -44,8 +33,41 @@ async function initPlugins(options) {
   return options;
 }
 
-export default async function build(options, user) {
-  options = Object.assign({}, defaults, options);
+function getAuthor() {
+  const rootJson = JSON.parse(fs.readFileSync(`${root()}/package.json`));
+  const author = rootJson ? rootJson.author : {};
+
+  return author;
+}
+
+export const defaults = {
+  mode: 'production',
+  src: 'docs/',
+  dst: '_ignite/',
+  index: 'index.md',
+  port: 8008,
+  title: 'Documentation',
+  codeStyle: 'foundation',
+  color: 'auto',
+  selectedColor: 'auto',
+  logo: 'logo.svg',
+  bulmaTheme: 'flatly'
+};
+
+function initOptions(options) {
+  const explorer = cosmiconfig('ignite');
+  const igniteRc = explorer.searchSync();
+
+  if (igniteRc) {
+    options = Object.assign({}, options, igniteRc.config);
+  }
+
+  return Object.assign({}, defaults, options);
+}
+
+export default async function build(options) {
+  const user = getAuthor();
+  options = initOptions(options);
 
   if (options.plugins) {
     options = await initPlugins(options);

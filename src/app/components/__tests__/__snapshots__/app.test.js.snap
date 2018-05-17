@@ -1,55 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders default page when there is not page match 1`] = `
-<div
-  className={undefined}
->
-  <Header
-    githubURL={undefined}
-    location={
-      Object {
-        "pathname": "/",
-      }
-    }
-    logo={undefined}
-    navItems={undefined}
-    title={undefined}
-  />
-  <div
-    className=""
-    id="root"
-  >
-    <div
-      className="columns"
-    >
-      <OnClickOutside(Sidebar)
-        className="column is-one-third-tablet is-one-quarter-desktop box"
-        content={[Function]}
-        currentPage="/"
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        excludeScrollbar={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      />
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Page
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders first page at index if found 1`] = `
+exports[`App renders first page at index if found 1`] = `
 <div
   className={undefined}
 >
@@ -99,7 +50,7 @@ exports[`renders first page at index if found 1`] = `
 </div>
 `;
 
-exports[`renders matched page 1`] = `
+exports[`App renders matched page 1`] = `
 <div
   className={undefined}
 >
@@ -148,51 +99,86 @@ exports[`renders matched page 1`] = `
 </div>
 `;
 
-exports[`renders renders index if firstPagePath specified but not actually in markdown map 1`] = `
-<div
-  className={undefined}
->
-  <Header
-    githubURL={undefined}
-    location={
-      Object {
-        "pathname": "/",
-      }
-    }
-    logo={undefined}
-    navItems={undefined}
-    title={undefined}
-  />
-  <div
-    className=""
-    id="root"
-  >
-    <div
-      className="columns"
-    >
-      <OnClickOutside(Sidebar)
-        className="column is-one-third-tablet is-one-quarter-desktop box"
-        content={[Function]}
-        currentPage="/"
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        excludeScrollbar={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      />
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Page
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
-</div>
+exports[`determineComponents render matching index file and first page if path not found 1`] = `
+<ul>
+   Folder Links 
+</ul>
+`;
+
+exports[`determineComponents render matching index file and first page if path not found 2`] = `
+<p>
+   Folder First 
+</p>
+`;
+
+exports[`determineComponents render matching index file in subpath 1`] = `
+<ul>
+   Folder Links 
+</ul>
+`;
+
+exports[`determineComponents render matching index file in subpath 2`] = `
+<p>
+   foo 
+</p>
+`;
+
+exports[`determineComponents render matching page if found 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents render matching page if found 2`] = `
+<p>
+   foo 
+</p>
+`;
+
+exports[`determineComponents render matching subpath index file and first page if path not found 1`] = `
+<ul>
+   Pages Links 
+</ul>
+`;
+
+exports[`determineComponents render matching subpath index file and first page if path not found 2`] = `
+<h1>
+   First Page 
+</h1>
+`;
+
+exports[`determineComponents renders first page if it exists and no pages found 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents renders first page if it exists and no pages found 2`] = `
+<h1>
+   First Page 
+</h1>
+`;
+
+exports[`determineComponents renders matching index file if filePath matches index filename pattern 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents renders matching index file if filePath matches index filename pattern 2`] = `
+<h1>
+   First Page 
+</h1>
+`;
+
+exports[`determineComponents renders root index if no matching subPath first page found 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents renders root index if no matching subPath first page found 2`] = `
+<h1>
+   First Page 
+</h1>
 `;

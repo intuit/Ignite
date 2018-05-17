@@ -6,8 +6,63 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
 import Header from '../Header';
-import Sidebar from '../Sidebar';
+import { default as Sidebar } from '../Sidebar';
 import styles from './app.css';
+
+export const determineComponents = (
+  markdown,
+  location,
+  indexFile,
+  navItems = process.env.navItems
+) => {
+  const filePath = location.pathname.substring(1);
+
+  let Page = markdown[filePath];
+  let SidebarComponent = markdown[indexFile];
+
+  if (navItems) {
+    const parent =
+      markdown.indexFiles &&
+      Object.entries(markdown.indexFiles).find(([key]) => {
+        return (
+          Object.values(navItems).includes(path.dirname(key)) &&
+          path.dirname(key) === path.dirname(filePath)
+        );
+      });
+
+    if (parent) {
+      SidebarComponent = markdown[parent[0]];
+
+      if (!Page || filePath.includes(indexFile)) {
+        Page = markdown[parent[1]];
+      }
+    }
+
+    if (!Page && markdown.indexFiles) {
+      const rootIndex =
+        navItems.root === '/' ? indexFile : path.join(navItems.root, indexFile);
+      SidebarComponent = markdown[rootIndex];
+      Page = markdown[markdown.indexFiles[rootIndex]];
+    }
+  }
+
+  if (markdown.indexFiles && filePath.includes(indexFile)) {
+    Page = markdown[markdown.indexFiles[filePath]];
+  }
+
+  if (!Page && markdown.indexFiles) {
+    Page = markdown[markdown.indexFiles[indexFile]];
+  }
+
+  if (!Page) {
+    Page = () => null;
+  }
+
+  return {
+    SidebarComponent,
+    Page
+  };
+};
 
 class App extends Component {
   componentDidUpdate() {
@@ -31,52 +86,11 @@ class App extends Component {
 
   render() {
     const { markdown, location, index } = this.props;
-    const filePath = location.pathname.substring(1);
-
-    let Page = markdown[filePath];
-    let sidebarComponent = markdown[index];
-
-    if (process.env.navItems) {
-      const parent =
-        markdown.indexFiles &&
-        Object.entries(markdown.indexFiles).find(([key]) => {
-          return (
-            Object.values(process.env.navItems).includes(path.dirname(key)) &&
-            path.dirname(key) === path.dirname(filePath)
-          );
-        });
-
-      if (parent) {
-        sidebarComponent = markdown[parent[0]];
-
-        console.log(filePath);
-        if (!Page || filePath.includes(index)) {
-          Page = markdown[parent[1]];
-          console.log(markdown, parent[1], Page);
-        }
-      }
-
-      if (!Page && markdown.indexFiles) {
-        const rootIndex =
-          process.env.navItems.root === '/'
-            ? index
-            : path.join(process.env.navItems.root, index);
-        sidebarComponent = markdown[rootIndex];
-        Page = markdown[markdown.indexFiles[rootIndex]];
-      }
-    }
-
-    if (markdown.indexFiles && filePath.includes(index)) {
-      Page = markdown[markdown.indexFiles[filePath]];
-    }
-
-    if (!Page && markdown.indexFiles) {
-      Page = markdown[markdown.indexFiles[index]];
-    }
-
-    if (!Page) {
-      Page = () => null;
-    }
+    const { SidebarComponent, Page } = determineComponents(
+      markdown,
+      location,
+      index
+    );
 
     return (
       <div className={styles.root}>
@@ -86,7 +100,7 @@ class App extends Component {
           <div className={makeClass(styles.App, 'columns')}>
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop box"
-              content={sidebarComponent}
+              content={SidebarComponent}
               currentPage={`${location.pathname}${
                 location.hash ? location.hash : ''
               }`}
