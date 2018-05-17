@@ -90,3 +90,7 @@
  0.0.23
 
 - Changin' #92
+
+ 0.0.24
+
+- Fix Initial Page Jump #93
