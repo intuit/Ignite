@@ -57,6 +57,7 @@ exports[`renders first page at index if found 1`] = `
     githubURL={undefined}
     location={
       Object {
+        "hash": "#foo",
         "pathname": "/",
       }
     }
@@ -74,105 +75,7 @@ exports[`renders first page at index if found 1`] = `
       <OnClickOutside(Sidebar)
         className="column is-one-third-tablet is-one-quarter-desktop box"
         content={[Function]}
-        currentPage="/"
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        excludeScrollbar={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      />
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Page
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders index if no page matched 1`] = `
-<div
-  className={undefined}
->
-  <Header
-    githubURL={undefined}
-    location={
-      Object {
-        "pathname": "/bar",
-      }
-    }
-    logo={undefined}
-    navItems={undefined}
-    title={undefined}
-  />
-  <div
-    className=""
-    id="root"
-  >
-    <div
-      className="columns"
-    >
-      <OnClickOutside(Sidebar)
-        className="column is-one-third-tablet is-one-quarter-desktop box"
-        content={[Function]}
-        currentPage="/bar"
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        excludeScrollbar={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      />
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Page
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders index if no page matched 2`] = `
-<div
-  className={undefined}
->
-  <Header
-    githubURL={undefined}
-    location={
-      Object {
-        "pathname": "/index.md",
-      }
-    }
-    logo={undefined}
-    navItems={undefined}
-    title={undefined}
-  />
-  <div
-    className=""
-    id="root"
-  >
-    <div
-      className="columns"
-    >
-      <OnClickOutside(Sidebar)
-        className="column is-one-third-tablet is-one-quarter-desktop box"
-        content={[Function]}
-        currentPage="/index.md"
+        currentPage="/#foo"
         eventTypes={
           Array [
             "mousedown",
