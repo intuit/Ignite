@@ -5,6 +5,7 @@ import makeClass from 'classnames';
 
 import Icon from '../Icon';
 import styles from './sidebar.css';
+
 export class Sidebar extends Component {
   static propTypes = {
     className: PropTypes.string,
