@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -16,6 +17,66 @@ const makeRouterLink = link => {
   }
 
   return `#/${link}`;
+};
+
+const navItem = ([key, item]) => {
+  const otherPaths = Object.values(this.props.navItems).filter(
+    val => val !== '/'
+  );
+
+  let isActive;
+
+  if (
+    (item !== '/' && this.props.location.pathname.includes(item)) ||
+    (this.props.location.pathname === '/' &&
+      this.props.navItems.root === item) ||
+    (item === '/' &&
+      !otherPaths.find(path => this.props.location.pathname.includes(path)))
+  ) {
+    isActive = true;
+  }
+
+  return (
+    key !== 'root' && (
+      <a
+        key={key}
+        className={makeClass('navbar-item', isActive && 'is-active')}
+        href={makeRouterLink(item)}
+      >
+        {key}
+      </a>
+    )
+  );
+};
+
+const GithubLink = ({ githubURL }) =>
+  githubURL ? (
+    <a className="navbar-item" href={githubURL}>
+      GitHub
+      <Icon className={styles.githubIcon} type="fab" icon="github" />
+    </a>
+  ) : null;
+
+const hasBlogLink = () =>
+  Object.values(window.configuration.markdown).find(([page]) => {
+    console.log(page);
+    return page.includes('blog/');
+  });
+
+const BlogLink = () =>
+  hasBlogLink() ? (
+    <Link className="navbar-item" to="blog/index.md">
+      Blog
+      <Icon className={styles.githubIcon} type="fas" icon="rss" />
+    </Link>
+  ) : null;
+
+GithubLink.propTypes = {
+  githubURL: PropTypes.string
+};
+
+GithubLink.defaultProps = {
+  githubURL: null
 };
 
 class Header extends Component {
@@ -77,45 +138,10 @@ class Header extends Component {
           >
             <div className="navbar-end">
               {this.props.navItems &&
-                Object.entries(this.props.navItems).map(([key, item]) => {
-                  const otherPaths = Object.values(this.props.navItems).filter(
-                    val => val !== '/'
-                  );
+                Object.entries(this.props.navItems).map(navItem)}
 
-                  let isActive;
-
-                  if (
-                    (item !== '/' &&
-                      this.props.location.pathname.includes(item)) ||
-                    (this.props.location.pathname === '/' &&
-                      this.props.navItems.root === item) ||
-                    (item === '/' &&
-                      !otherPaths.find(path =>
-                        this.props.location.pathname.includes(path)
-                      ))
-                  ) {
-                    isActive = true;
-                  }
-
-                  return (
-                    key !== 'root' && (
-                      <a
-                        key={key}
-                        className={makeClass(
-                          'navbar-item',
-                          isActive && 'is-active'
-                        )}
-                        href={makeRouterLink(item)}
-                      >
-                        {key}
-                      </a>
-                    )
-                  );
-                })}
-              <a className="navbar-item" href={this.props.githubURL}>
-                GitHub
-                <Icon className={styles.githubIcon} type="fab" icon="github" />
-              </a>
+              <BlogLink />
+              <GithubLink githubURL={this.props.githubURL} />
             </div>
           </div>
         </div>
