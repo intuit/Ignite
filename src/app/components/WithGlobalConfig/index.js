@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function withGlobalConfig(Comp) {
-  return class extends React.Component {
+const withGlobalConfig = Comp =>
+  class extends Component {
     constructor(props) {
       super(props);
 
@@ -36,4 +36,5 @@ export default function withGlobalConfig(Comp) {
       );
     }
   };
-}
+
+export default withGlobalConfig;

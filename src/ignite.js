@@ -9,16 +9,21 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
 
-
 import config from '../webpack.config';
 import packageJSON from '../package';
 
 register(packageJSON.babel || {});
 
-async function initPlugins(options) {
+export async function initPlugins(options) {
   options.plugins.forEach(async plugin => {
-    const [, pluginPath, pluginOptions] = plugin;
+    let [, pluginPath, pluginOptions] = plugin;
     const initFile = path.join(pluginPath, 'init.js');
+
+    if (!pluginOptions) {
+      pluginOptions = {};
+      plugin[2] = pluginOptions;
+    }
+
     if (fs.existsSync(initFile)) {
       try {
         pluginOptions._initData = await require(path.resolve(initFile))(
@@ -33,7 +38,7 @@ async function initPlugins(options) {
   return options;
 }
 
-function getAuthor() {
+export function getAuthor() {
   const rootJson = JSON.parse(fs.readFileSync(`${root()}/package.json`));
   const author = rootJson ? rootJson.author : {};
 
@@ -65,14 +70,7 @@ function initOptions(options) {
   return Object.assign({}, defaults, options);
 }
 
-export default async function build(options) {
-  const user = getAuthor();
-  options = initOptions(options);
-
-  if (options.plugins) {
-    options = await initPlugins(options);
-  }
-
+function initBuildMessages(options) {
   if (options.watch) {
     options = Object.assign({}, options, {
       mode: 'development',
@@ -83,7 +81,7 @@ export default async function build(options) {
       }
     });
   } else {
-    options = Object.assign(options, {
+    options = Object.assign({}, options, {
       compilationSuccessInfo: {
         messages: ['Documentation built!'],
         notes: [
@@ -92,6 +90,42 @@ export default async function build(options) {
         ]
       }
     });
+  }
+
+  return options;
+}
+
+function publish(options, user) {
+  if (options.githubURL.includes('http')) {
+    [, options.githubURL] = options.githubURL.split('//');
+  }
+
+  ghpages.publish(
+    options.dst,
+    {
+      message: ':memo: Update Documentation',
+      repo: `https://username:${process.env.GITHUB_KEY}@${options.githubURL}`,
+      user
+    },
+    err => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      console.log('Documentation published to github-pages!');
+    }
+  );
+}
+
+export default async function build(options) {
+  const user = getAuthor();
+
+  options = initOptions(options);
+  options = initBuildMessages(options);
+
+  if (options.plugins) {
+    options = await initPlugins(options);
   }
 
   const webpackConfig = config(options);
@@ -140,28 +174,7 @@ export default async function build(options) {
       }
 
       if (options.publish) {
-        if (options.githubURL.includes('http')) {
-          [, options.githubURL] = options.githubURL.split('//');
-        }
-
-        ghpages.publish(
-          options.dst,
-          {
-            message: ':memo: Update Documentation',
-            repo: `https://username:${process.env.GITHUB_KEY}@${
-              options.githubURL
-            }`,
-            user
-          },
-          err => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-
-            console.log('Documentation published to github-pages!');
-          }
-        );
+        publish(options, user);
       }
     });
   }
