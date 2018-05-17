@@ -44,7 +44,7 @@ describe('transformLink', () => {
 
 describe('transform', () => {
   const options = {
-    src: 'docs/'
+    src: './docs/'
   };
 
   expect(
@@ -53,7 +53,7 @@ describe('transform', () => {
     [Link](#foo)
     [Another](pages/intro.md)
   `,
-      '/path',
+      'docs/path',
       options
     )
   ).toMatchSnapshot();
