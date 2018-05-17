@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addActive 1`] = `
+"<a
+      className=!{
+        '/foo' === props.currentPage ||
+        ('bar' === 'foo' && '/' === props.currentPage) ||
+        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md')) 
+          ? 'is-active'
+          : null
+      !}
+      href=\\"/foo\\">Foo</a>"
+`;
+
+exports[`addActiveAll 1`] = `
+"
+      <a
+      className=!{
+        '/foo' === props.currentPage ||
+        ('bar' === 'foo' && '/' === props.currentPage) ||
+        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md')) 
+          ? 'is-active'
+          : null
+      !}
+      href=\\"/foo\\">Foo</a>'
+      <a
+      className=!{
+        '/bar' === props.currentPage ||
+        ('bar' === 'bar' && '/' === props.currentPage) ||
+        ('bar' === 'bar' && props.currentPage && props.currentPage.includes('index.md')) 
+          ? 'is-active'
+          : null
+      !}
+      href=\\"/bar\\">Foo</a>'
+    "
+`;
+
+exports[`index 1`] = `
+"
+    import makeClass from 'classnames';
+
+    export default function markDownPage(props) {
+      return (
+        <aside className={makeClass('menu', props.className)}>
+          <ul className=\\"menu-list\\"></ul>
+        </aside>
+      );
+    }
+
+    window.configuration.setFirstLink('/path', '');
+  "
+`;
+
+exports[`index 2`] = `
+"
+    import makeClass from 'classnames';
+
+    export default function markDownPage(props) {
+      return (
+        <aside className={makeClass('menu', props.className)}>
+          <p className=\\"menu-label\\"></p>
+        </aside>
+      );
+    }
+
+    window.configuration.setFirstLink('/path', '');
+  "
+`;
+
+exports[`insertBreaks 1`] = `
+"
+    <div>
+      <pre><br />        Line<br />        with<br />        breaks<br />      </pre><br />
+      <pre><br />        Another<br />        Line<br />        with<br />        breaks<br />      </pre><br />    </div>
+  "
+`;
+
+exports[`markDownPage 1`] = `
+"
+    import React from 'react';
+    import { Link } from 'react-router-dom';
+
+    const PluginProvider = ({plugins, name, options, children}) => {
+      let Plugin = plugins[name];
+      const pluginOptions = Plugin.options;
+    
+      if (!Plugin) {
+        return <div />;
+      }
+
+      Plugin = Plugin.component;
+      return <Plugin {...pluginOptions}  children={children} {...options} />;
+    };
+
+    const markDownPage = props => (
+      <div className={props.className}>
+        <section>
+          <span className=\\"highlighted-line hero is-primary\\"></span>
+        </section>
+      </div>
+    );
+
+    export default markDownPage;
+  "
+`;
+
+exports[`replaceIdLinks 1`] = `
+"
+    <Link to=\\"#some-id\\">Link</Link>
+    <Link className=\\"fas fa-hashtag headerLink\\" to=\\"#some-other-id\\">Link</Link>
+  "
+`;
+
+exports[`sanitizeJSX 1`] = `"<a className=\\"/foo\\">&#123;Foo&#125;</a>"`;
+
+exports[`sanitizeJSX 2`] = `"<a className={\\"/foo\\"}>Foo</a>"`;
+
+exports[`sanitizeJSX 3`] = `"<br/>"`;
+
+exports[`sanitizeJSX 4`] = `"<PluginProvider>"`;
+
+exports[`sanitizeJSX 5`] = `"<div className=\\"field\\" />"`;
+
+exports[`sanitizeJSX 6`] = `"<label htmlFor=\\"field\\" />"`;
+
+exports[`sanitizeJSX 7`] = `"<input type=\\"checkbox\\" readOnly className=\\"is-checkradio\\" />"`;
+
+exports[`sanitizeJSX 8`] = `
+"
+      <pre><br />        content<br />      </pre><br />    "
+`;

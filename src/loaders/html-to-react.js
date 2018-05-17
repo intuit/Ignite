@@ -1,81 +1,7 @@
 import path from 'path';
 import { getOptions } from 'loader-utils';
 
-function getLink(source, index = 0) {
-  const linkIndex = source.indexOf('<a h', index);
-
-  if (linkIndex === -1) {
-    return '';
-  }
-
-  const hrefIndex = source.indexOf('href="', linkIndex);
-  const startIndex = source.indexOf('/', hrefIndex) + 1;
-  const endIndex = source.indexOf('"', startIndex);
-
-  return source.substring(startIndex, endIndex);
-}
-
-function addActive(source, link, firstLink, indexFile) {
-  source = source.replace(
-    new RegExp('<a h'),
-    `<a
-      className=!{
-        '/${link}' === props.currentPage ||
-        ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
-        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
-          ? 'is-active'
-          : null
-      !}
-      h`
-  );
-
-  return source;
-}
-
-function addActiveAll(source, firstLink, indexFile) {
-  let nextLink = getLink(source);
-
-  while (nextLink !== '') {
-    source = addActive(source, nextLink, firstLink, indexFile);
-    nextLink = getLink(source);
-  }
-
-  return source;
-}
-
-function index(source, pathToMarkdown, options) {
-  const firstLink = getLink(source);
-
-  source = addActiveAll(source, firstLink, options.index);
-  // Some of the curlies need to stay to pass props to the plugin component
-  source = source.replace(new RegExp('!{', 'g'), '__CURLY_LEFT__');
-  source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
-  source = source.replace(
-    new RegExp('<ul>', 'g'),
-    '<ul className="menu-list">'
-  );
-  source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
-  source = source.replace(new RegExp('{', 'g'), '&#123;');
-  source = source.replace(new RegExp('}', 'g'), '&#125;');
-  source = source.replace(new RegExp('__CURLY_LEFT__', 'g'), '{');
-  source = source.replace(new RegExp('__CURLY_RIGHT__', 'g'), '}');
-
-  return `
-    import makeClass from 'classnames';
-
-    export default function markDownPage(props) {
-      return (
-        <aside className={makeClass('menu', props.className)}>
-          ${source}
-        </aside>
-      );
-    }
-
-    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink}');
-  `;
-}
-
-function replaceAt(input, search, replace, start) {
+export function replaceAt(input, search, replace, start) {
   return (
     input.slice(0, start) +
     input.slice(start, start + search.length).replace(search, replace) +
@@ -83,7 +9,7 @@ function replaceAt(input, search, replace, start) {
   );
 }
 
-function insertBreaks(source) {
+export function insertBreaks(source) {
   let preTeg = source.indexOf('<pre>');
 
   while (preTeg !== -1) {
@@ -106,12 +32,12 @@ function insertBreaks(source) {
   return source;
 }
 
-const regexIndexOf = function(string, regex, startpos) {
+export const regexIndexOf = function(string, regex, startpos) {
   const indexOf = string.substring(startpos || 0).search(regex);
   return indexOf >= 0 ? indexOf + (startpos || 0) : indexOf;
 };
 
-const replaceIdLinks = source => {
+export const replaceIdLinks = source => {
   let isTag = /<a href="#(?!\/)[\S]+/;
   let linkOnPage = regexIndexOf(source, isTag);
 
@@ -192,22 +118,76 @@ export function sanitizeJSX(source) {
   return source;
 }
 
-export default function(source) {
-  const options = getOptions(this);
-  const pathToMarkdown = path.relative(options.src, this.resourcePath);
-  const isIndex =
-    this.resourcePath.includes(options.index) &&
-    (!options.navItems ||
-      Object.values(options.navItems)
-        .map(item => {
-          return item === '/' ? options.index : path.join(item, options.index);
-        })
-        .includes(pathToMarkdown));
+export function getLink(source, index = 0) {
+  const linkIndex = source.indexOf('<a h', index);
 
-  if (isIndex) {
-    return index(source, pathToMarkdown, options);
+  if (linkIndex === -1) {
+    return '';
   }
 
+  const hrefIndex = source.indexOf('href="', linkIndex);
+  const startIndex = source.indexOf('/', hrefIndex) + 1;
+  const endIndex = source.indexOf('"', startIndex);
+
+  return source.substring(startIndex, endIndex);
+}
+
+export function addActive(source, link, firstLink, indexFile) {
+  source = source.replace(
+    new RegExp('<a h'),
+    `<a
+      className=!{
+        '/${link}' === props.currentPage ||
+        ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
+        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
+          ? 'is-active'
+          : null
+      !}
+      h`
+  );
+
+  return source;
+}
+
+export function addActiveAll(source, firstLink, indexFile) {
+  let nextLink = getLink(source);
+
+  while (nextLink !== '') {
+    source = addActive(source, nextLink, firstLink, indexFile);
+    nextLink = getLink(source);
+  }
+
+  return source;
+}
+
+export function index(source, pathToMarkdown, options) {
+  const firstLink = getLink(source);
+
+  source = addActiveAll(source, firstLink, options.index);
+  // Some of the curlies need to stay to pass props to the plugin component
+  source = sanitizeJSX(source);
+  source = source.replace(
+    new RegExp('<ul>', 'g'),
+    '<ul className="menu-list">'
+  );
+  source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
+
+  return `
+    import makeClass from 'classnames';
+
+    export default function markDownPage(props) {
+      return (
+        <aside className={makeClass('menu', props.className)}>
+          ${source}
+        </aside>
+      );
+    }
+
+    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink}');
+  `;
+}
+
+export function markDownPage(source) {
   source = sanitizeJSX(
     source.replace(
       new RegExp('highlighted-line', 'g'),
@@ -241,4 +221,28 @@ export default function(source) {
 
     export default markDownPage;
   `;
+}
+
+export function detectIndex(resourcePath, pathToMarkdown, options) {
+  return (
+    resourcePath.includes(options.index) &&
+    (!options.navItems ||
+      Object.values(options.navItems)
+        .map(item => {
+          return item === '/' ? options.index : path.join(item, options.index);
+        })
+        .includes(pathToMarkdown))
+  );
+}
+
+export default function(source) {
+  const options = getOptions(this);
+  const pathToMarkdown = path.relative(options.src, this.resourcePath);
+  const isIndex = detectIndex(this.resourcePath, pathToMarkdown, options);
+
+  if (isIndex) {
+    return index(source, pathToMarkdown, options);
+  }
+
+  return markDownPage(source);
 }
