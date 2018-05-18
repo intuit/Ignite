@@ -27,7 +27,8 @@ const NavItem = ({ item: [key, item], ...props }) => {
     (item !== '/' && props.location.pathname.includes(item)) ||
     (props.location.pathname === '/' && props.navItems.root === item) ||
     (item === '/' &&
-      !otherPaths.find(path => props.location.pathname.includes(path)))
+      !otherPaths.find(path => props.location.pathname.includes(path)) &&
+      !props.location.pathname.includes('blog/'))
   ) {
     isActive = true;
   }
@@ -47,7 +48,7 @@ const NavItem = ({ item: [key, item], ...props }) => {
 
 const GithubLink = ({ githubURL }) =>
   githubURL ? (
-    <a className="navbar-item" href={githubURL}>
+    <a className="navbar-item" href={githubURL} target="_blank">
       GitHub
       <Icon className={styles.icon} type="fab" icon="github" />
     </a>

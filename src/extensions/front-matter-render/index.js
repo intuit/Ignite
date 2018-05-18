@@ -41,7 +41,7 @@ export default function renderBlogFrontMatter(tokens) {
     : '';
 
   if (link) {
-    name = `<a href="${link}">${name}</a>`;
+    name = `<a target="_blank" href="${link}">${name}</a>`;
   }
 
   return `
