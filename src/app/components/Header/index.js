@@ -100,7 +100,7 @@ class Header extends Component {
   render() {
     return (
       <nav
-        className={makeClass('navbar')}
+        className={makeClass('navbar', styles.nav)}
         role="navigation"
         aria-label="main navigation"
       >
