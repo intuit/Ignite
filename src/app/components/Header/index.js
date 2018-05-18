@@ -67,12 +67,28 @@ const BlogLink = ({ className }) =>
     </a>
   ) : null;
 
+BlogLink.propTypes = {
+  className: PropTypes.string
+};
+
+BlogLink.defaultProps = {
+  className: null
+};
+
 const DocsLink = ({ className }) => (
   <a className={makeClass('navbar-item', className)} href="#/">
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
   </a>
 );
+
+DocsLink.propTypes = {
+  className: PropTypes.string
+};
+
+DocsLink.defaultProps = {
+  className: null
+};
 
 GithubLink.propTypes = {
   githubURL: PropTypes.string

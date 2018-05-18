@@ -107,6 +107,8 @@ class App extends Component {
             )}
             style={
               blogHero && {
+                maxWidth: 1800,
+                margin: 'auto',
                 background: `url(${blogHero})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
@@ -158,11 +160,13 @@ App.propTypes = {
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired,
   plugins: PropTypes.array,
-  index: PropTypes.string
+  index: PropTypes.string,
+  blogHero: PropTypes.string
 };
 
 App.defaultProps = {
   plugins: [],
+  blogHero: null,
   index: process.env.index
 };
 
