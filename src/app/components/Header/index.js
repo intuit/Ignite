@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -64,10 +63,10 @@ const hasBlogLink = () =>
 
 const BlogLink = () =>
   hasBlogLink() ? (
-    <Link className="navbar-item" to="blog/index.md">
+    <a className="navbar-item" href="#/blog/index.md">
       Blog
       <Icon className={styles.githubIcon} type="fas" icon="rss" />
-    </Link>
+    </a>
   ) : null;
 
 GithubLink.propTypes = {
