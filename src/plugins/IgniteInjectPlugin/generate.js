@@ -79,11 +79,14 @@ const generateBlogIndex = (blogFiles, options) => {
     .sort((a, b) => a.birthtime < b.birthtime);
 
   return `
+    import scrollToElement from 'scroll-to-element';
+
     class blogIndex extends React.Component {
       constructor(props) {
         super(props)
 
         this.showMore = this.showMore.bind(this)
+        this.scrollTop = this.scrollTop.bind(this)
         this.state = {
           shownPosts: 10
         };
@@ -99,13 +102,14 @@ const generateBlogIndex = (blogFiles, options) => {
         return e('div', null, [
           ${JSON.stringify(
             blogPosts.map(post => post.path)
-          )}.slice(0, this.state.shownPosts).map(blogFile => {
+          )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
             const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
             return e(BlogPost, { stub: true });
           }),
           ${
             blogPosts.length
-          } > this.state.shownPosts && e('div', { className: 'showMore' }, e('button', { className: 'button', onClick: this.showMore } , 'Load More'))
+          } > this.state.shownPosts && e('div', { className: 'showMore' }, e('button', { className: 'button', onClick: this.showMore } , 'Load More')),
+          !this.state.firstPostVisible && e('div', { className: 'backToTop', onClick: this.scrollTop }, 'Back to Top')
         ]);
       }
     }

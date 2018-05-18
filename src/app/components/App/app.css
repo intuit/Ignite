@@ -218,6 +218,13 @@ p {
   margin-top: -20px;
 }
 
+:global .backToTop {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 30px 40px;
+}
+
 :global .tile {
   h1,
   h2 {
