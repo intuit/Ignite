@@ -262,3 +262,7 @@ p {
 .App.blogIndex {
   margin-top: -55px;
 }
+
+.App.blogPost {
+  margin-top: -115px;
+}
