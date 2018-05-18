@@ -52,7 +52,7 @@ const GithubLink = ({ githubURL }) =>
   githubURL ? (
     <a className="navbar-item" href={githubURL}>
       GitHub
-      <Icon className={styles.githubIcon} type="fab" icon="github" />
+      <Icon className={styles.icon} type="fab" icon="github" />
     </a>
   ) : null;
 
@@ -65,9 +65,16 @@ const BlogLink = () =>
   hasBlogLink() ? (
     <a className="navbar-item" href="#/blog/index.md">
       Blog
-      <Icon className={styles.githubIcon} type="fas" icon="rss" />
+      <Icon className={styles.icon} type="fas" icon="rss" />
     </a>
   ) : null;
+
+const DocsLink = () => (
+  <a className="navbar-item" href="#/">
+    Docs
+    <Icon className={styles.icon} type="fas" icon="book" />
+  </a>
+);
 
 GithubLink.propTypes = {
   githubURL: PropTypes.string
@@ -135,8 +142,11 @@ class Header extends Component {
             )}
           >
             <div className="navbar-end">
-              {this.props.navItems &&
-                Object.entries(this.props.navItems).map(navItem)}
+              {this.props.navItems ? (
+                Object.entries(this.props.navItems).map(navItem)
+              ) : (
+                <DocsLink />
+              )}
 
               <BlogLink />
               <GithubLink githubURL={this.props.githubURL} />
