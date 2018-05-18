@@ -61,16 +61,16 @@ const hasBlogLink = () =>
     page.includes('blog/')
   );
 
-const BlogLink = () =>
+const BlogLink = ({ className }) =>
   hasBlogLink() ? (
-    <a className="navbar-item" href="#/blog/index.md">
+    <a className={makeClass('navbar-item', className)} href="#/blog/index.md">
       Blog
       <Icon className={styles.icon} type="fas" icon="rss" />
     </a>
   ) : null;
 
-const DocsLink = () => (
-  <a className="navbar-item" href="#/">
+const DocsLink = ({ className }) => (
+  <a className={makeClass('navbar-item', className)} href="#/">
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
   </a>
@@ -145,10 +145,14 @@ class Header extends Component {
               {this.props.navItems ? (
                 Object.entries(this.props.navItems).map(navItem)
               ) : (
-                <DocsLink />
+                <DocsLink
+                  className={!location.hash.includes('blog/') && 'is-active'}
+                />
               )}
 
-              <BlogLink />
+              <BlogLink
+                className={location.hash.includes('blog/') && 'is-active'}
+              />
               <GithubLink githubURL={this.props.githubURL} />
             </div>
           </div>
