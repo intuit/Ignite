@@ -170,11 +170,6 @@ export function blogPost(source) {
     `
       <div class="card">
         <div class="card-content">
-          <div class="media">
-            <div class="media-content has-text-centered">
-                
-            </div>
-          </div>
           <div class="blogBody">
             
           </div>
@@ -184,14 +179,8 @@ export function blogPost(source) {
     options
   );
 
-  console.log(source);
-  const title = $source('h1:first-of-type').remove();
-  const subtitle = $source('p:first-of-type').remove();
-  title.addClass('title blogTitle is-spaced');
-  subtitle.addClass('subtitle is-6 blogSubtitle');
-
-  $output('.media-content').append(title);
-  $output('.media-content').append(subtitle);
+  const blogHeader = $source('.media').remove();
+  $output('.card-content').prepend(blogHeader);
   $output('.blogBody').append($source.html());
 
   source = $output.html();

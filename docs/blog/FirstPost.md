@@ -1,6 +1,11 @@
-# Blog Title
-
-Author: Andrew Lisowski
+---
+title: First Post
+date: May 17, 2018
+author:
+  name: Andrew Lisowski
+  link: https://github.intuit.com/alisowski
+  email: lisowski54@gmail.com
+---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu metus et est luctus efficitur non sit amet erat. Nulla et tincidunt purus. Suspendisse cursus pretium massa, non bibendum sapien ullamcorper a. Phasellus sodales vitae nulla a convallis. Donec molestie condimentum eleifend. Nam fringilla dapibus lectus, eu mollis felis pretium sed. In rutrum mollis massa, eu gravida urna. Nam rutrum dolor neque, a facilisis risus consequat eget. Etiam et elit rhoncus, viverra sapien ac, venenatis est.
 

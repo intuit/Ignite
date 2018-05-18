@@ -21,7 +21,11 @@ body {
   margin: auto;
 }
 
-:global h1.blogTitle {
+:global .blogHeader {
+  margin-top: 2.5rem;
+}
+
+:global p.blogTitle {
   font-size: 2rem;
   font-weight: lighter;
   line-height: 2;
@@ -29,17 +33,32 @@ body {
 
 :global p.blogSubtitle {
   color: #909aa0;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 :global .blogBody {
   line-height: 1.4;
-  margin: 0 6rem;
+  margin: 0 2rem;
 
   p {
     line-height: 1.9;
     margin: 15px 0;
   }
+
+  @media screen and (min-width: 769px) {
+    margin: 0 4rem;
+  }
+}
+
+:global .authorImage {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  border: 3px solid #ccc;
+  border-radius: 50%;
 }
 
 :global .has-text-centered {

@@ -58,10 +58,9 @@ const GithubLink = ({ githubURL }) =>
   ) : null;
 
 const hasBlogLink = () =>
-  Object.values(window.configuration.markdown).find(([page]) => {
-    console.log(page);
-    return page.includes('blog/');
-  });
+  Object.values(window.configuration.markdown).find(([page]) =>
+    page.includes('blog/')
+  );
 
 const BlogLink = () =>
   hasBlogLink() ? (
