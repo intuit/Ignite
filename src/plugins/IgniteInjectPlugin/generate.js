@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';
@@ -69,6 +70,33 @@ const generatePlugins = plugins => {
     .join('\n');
 };
 
+const generateBlogIndex = (blogFiles, options) => {
+  const blogPosts = blogFiles
+    .map(blogFile => ({
+      path: path.relative(options.src, blogFile),
+      birthtime: fs.statSync(blogFile).birthtime
+    }))
+    .sort((a, b) => a.birthtime < b.birthtime);
+
+  console.log(blogPosts);
+
+  return `
+    const blogIndex = () => {
+      return e('div', null, ${JSON.stringify(
+        blogPosts.map(post => post.path)
+      )}.map(blogFile => {
+        const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
+        return e(BlogPost);
+      }))
+    }
+
+    console.log('blog/${options.index}', blogIndex)
+    registerMarkdown('blog/${options.index}', async () => ({ 
+      default: blogIndex
+    }));
+  `;
+};
+
 const initLazyLoad = options => {
   return `
     window.configuration = {
@@ -80,6 +108,8 @@ const initLazyLoad = options => {
     };
 
     import React from 'react';
+
+    const e = React.createElement;
 
     function lazyLoad(CompProvider) {
       return class extends React.Component {
@@ -134,11 +164,17 @@ const initLazyLoad = options => {
 
 export default function generate(entries = [], plugins = [], options = {}) {
   return () => {
+    const blogFiles = entries.filter(page => page.includes('blog/'));
     let generated = initLazyLoad(options);
+
     generated += registerMarkdown(entries, options);
 
     if (plugins.length > 0) {
       generated += generatePlugins(plugins);
+    }
+
+    if (blogFiles.length > 0) {
+      generated += generateBlogIndex(blogFiles, options);
     }
 
     return generated;
