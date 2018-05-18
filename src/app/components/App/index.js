@@ -99,17 +99,22 @@ class App extends Component {
       <div className={styles.root}>
         <Header location={this.props.location} />
 
-        <div id="root" className={makeClass(styles.contentArea)}>
-          {isBlog && (
-            <section className="hero is-info is-medium is-bold">
-              <div className="hero-body">
-                <div className="container has-text-centered">
-                  <h1 className="title">{isBlogIndex ? 'Blog' : ''}</h1>
-                </div>
+        {isBlog && (
+          <section
+            className={makeClass(
+              'hero is-info is-medium is-bold',
+              styles.blogHero
+            )}
+          >
+            <div className="hero-body">
+              <div className="container has-text-centered">
+                <h1 className="title">{isBlogIndex ? 'Blog' : ''}</h1>
               </div>
-            </section>
-          )}
+            </div>
+          </section>
+        )}
 
+        <div id="root" className={makeClass(styles.contentArea)}>
           <div
             className={makeClass(
               styles.App,

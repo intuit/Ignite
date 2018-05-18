@@ -287,9 +287,13 @@ p {
 }
 
 .App.blogIndex {
-  margin-top: -55px;
+  margin-top: -75px;
 }
 
 .App.blogPost {
   margin-top: -115px;
+}
+
+.blogHero :global .title {
+  padding-bottom: 15px;
 }
