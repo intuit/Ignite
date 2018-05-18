@@ -212,6 +212,12 @@ p {
   flex-direction: column;
 }
 
+:global .showMore {
+  text-align: center;
+  margin-bottom: 105px;
+  margin-top: -20px;
+}
+
 :global .tile {
   h1,
   h2 {

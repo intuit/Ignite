@@ -79,13 +79,35 @@ const generateBlogIndex = (blogFiles, options) => {
     .sort((a, b) => a.birthtime < b.birthtime);
 
   return `
-    const blogIndex = () => {
-      return e('div', null, [
-        ${JSON.stringify(blogPosts.map(post => post.path))}.map(blogFile => {
-          const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
-          return e(BlogPost, { stub: true });
-        })
-      ]);
+    class blogIndex extends React.Component {
+      constructor(props) {
+        super(props)
+
+        this.showMore = this.showMore.bind(this)
+        this.state = {
+          shownPosts: 10
+        };
+      }
+
+      showMore() {
+        this.setState({
+          shownPosts: this.state.shownPosts + 10
+        });
+      }
+
+      render() {
+        return e('div', null, [
+          ${JSON.stringify(
+            blogPosts.map(post => post.path)
+          )}.slice(0, this.state.shownPosts).map(blogFile => {
+            const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
+            return e(BlogPost, { stub: true });
+          }),
+          ${
+            blogPosts.length
+          } > this.state.shownPosts && e('div', { className: 'showMore' }, e('button', { className: 'button', onClick: this.showMore } , 'Load More'))
+        ]);
+      }
     }
 
     console.log('blog/${options.index}', blogIndex)
@@ -172,7 +194,22 @@ export default function generate(entries = [], plugins = [], options = {}) {
     }
 
     if (blogFiles.length > 0) {
-      generated += generateBlogIndex(blogFiles, options);
+      generated += generateBlogIndex(
+        [
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles,
+          ...blogFiles
+        ],
+        options
+      );
     }
 
     return generated;
