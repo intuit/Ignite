@@ -161,29 +161,48 @@ export function addActiveAll(source, firstLink, indexFile) {
   return source;
 }
 
-export function blogPost(source) {
+export function blogPost(source, pathToMarkdown) {
+  const card = `
+    <div class="card">
+      <div class="card-content">
+        <div class="blogBody">
+          
+        </div>
+      </div>
+    </div>    
+  `;
   const options = {
     xmlMode: true
   };
   const $source = cheerio.load(`<div>${source}</div>`, options);
-  const $output = cheerio.load(
-    `
-      <div class="card">
-        <div class="card-content">
-          <div class="blogBody">
-            
-          </div>
+  const $fullPage = cheerio.load(card, options);
+  const $stub = cheerio.load(card, options);
+
+  $stub('.card-content').prepend($source('.media').clone());
+  $fullPage('.card-content').prepend($source('.media').clone());
+  $source('.media').remove();
+
+  $source('div')
+    .clone()
+    .children()
+    .map((i, el) =>
+      $stub('.blogBody').append(
+        i < 3
+          ? el
+          : i === 4 &&
+            `
+        <div class='has-text-centered learnMore'>
+          <a href='#/${pathToMarkdown}'>
+            Read More
+          </a>
         </div>
-      </div>    
-    `,
-    options
-  );
+      `
+      )
+    );
 
-  const blogHeader = $source('.media').remove();
-  $output('.card-content').prepend(blogHeader);
-  $output('.blogBody').append($source.html());
+  $fullPage('.blogBody').append($source.html());
 
-  source = $output.html();
+  source = $fullPage.html();
   source = sanitizeJSX(source);
 
   return `
@@ -206,7 +225,7 @@ export function blogPost(source) {
     const blogPost = props => (
       <div className={makeClass('blogPost', props.className)}>
         <section>
-          ${source}
+          {props.stub ? ${sanitizeJSX($stub.html())} : ${source}}
         </section>
       </div>
     );
@@ -297,7 +316,7 @@ export default function(source) {
   const isBlogPost = this.resourcePath.includes('blog/');
 
   if (isBlogPost) {
-    return blogPost(source);
+    return blogPost(source, pathToMarkdown);
   }
 
   if (isIndex) {

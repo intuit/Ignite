@@ -83,7 +83,7 @@ const generateBlogIndex = (blogFiles, options) => {
       return e('div', null, [
         ${JSON.stringify(blogPosts.map(post => post.path))}.map(blogFile => {
           const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
-          return e(BlogPost);
+          return e(BlogPost, { stub: true });
         })
       ]);
     }

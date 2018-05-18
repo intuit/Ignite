@@ -243,6 +243,10 @@ p {
   opacity: 0.5;
 }
 
+:global .learnMore {
+  padding: 2rem;
+}
+
 .content {
   max-width: 100%;
   margin: 0 auto 15px;
