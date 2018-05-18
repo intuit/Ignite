@@ -18,19 +18,16 @@ const makeRouterLink = link => {
   return `#/${link}`;
 };
 
-const navItem = ([key, item]) => {
-  const otherPaths = Object.values(this.props.navItems).filter(
-    val => val !== '/'
-  );
+const NavItem = ({ item: [key, item], ...props }) => {
+  const otherPaths = Object.values(props.navItems).filter(val => val !== '/');
 
   let isActive;
 
   if (
-    (item !== '/' && this.props.location.pathname.includes(item)) ||
-    (this.props.location.pathname === '/' &&
-      this.props.navItems.root === item) ||
+    (item !== '/' && props.location.pathname.includes(item)) ||
+    (props.location.pathname === '/' && props.navItems.root === item) ||
     (item === '/' &&
-      !otherPaths.find(path => this.props.location.pathname.includes(path)))
+      !otherPaths.find(path => props.location.pathname.includes(path)))
   ) {
     isActive = true;
   }
@@ -143,7 +140,9 @@ class Header extends Component {
           >
             <div className="navbar-end">
               {this.props.navItems ? (
-                Object.entries(this.props.navItems).map(navItem)
+                Object.entries(this.props.navItems).map(item => (
+                  <NavItem key={item[0]} item={item} {...this.props} />
+                ))
               ) : (
                 <DocsLink
                   className={!location.hash.includes('blog/') && 'is-active'}
