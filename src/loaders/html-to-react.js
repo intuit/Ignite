@@ -251,7 +251,7 @@ export function index(source, pathToMarkdown, options) {
 
     export default function markDownPage(props) {
       return (
-        <aside className={makeClass('menu', props.className)}>
+        <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
           ${source}
         </aside>
       );

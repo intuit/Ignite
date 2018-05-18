@@ -68,6 +68,7 @@ export class Sidebar extends Component {
         </button>
         {this.props.content && (
           <this.props.content
+            onClick={this.handleClickOutside}
             className={styles.sidebar}
             currentPage={this.props.currentPage}
           />
