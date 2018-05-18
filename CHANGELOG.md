@@ -94,3 +94,7 @@
  0.0.24
 
 - Fix Initial Page Jump #93
+
+ 0.0.25
+
+- Blog Tab #94
