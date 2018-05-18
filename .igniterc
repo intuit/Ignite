@@ -2,12 +2,18 @@
   "title": "Ignite",
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
   
+  "navItems": {
+    "root": "/",
+    "First": "/",
+    "Another": "another"
+  },
+
   "plugins": [
     ["test", "./src/extensions/testExtension", {
       "url": "google.com",
       "array": [
-        'one',
-        'two'
+        "one",
+        "one"
       ]
     }],
     ["pell", "react-pell"]

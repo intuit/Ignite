@@ -41,7 +41,7 @@ exports[`index 1`] = `
 
     export default function markDownPage(props) {
       return (
-        <aside className={makeClass('menu', props.className)}>
+        <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
           <ul className=\\"menu-list\\"></ul>
         </aside>
       );
@@ -57,7 +57,7 @@ exports[`index 2`] = `
 
     export default function markDownPage(props) {
       return (
-        <aside className={makeClass('menu', props.className)}>
+        <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
           <p className=\\"menu-label\\"></p>
         </aside>
       );

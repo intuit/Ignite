@@ -10,9 +10,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const highlightjs = require('highlight.js');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const IgnitePlugin = require('./dist/plugins/ignite-inject-plugin');
+const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 
 const makePlugin = require('./dist/extensions/ignite-plugin').default;
+const renderBlogFrontMatter = require('./dist/extensions/front-matter-render');
 
 const splitPlugins = plugins => {
   const markdownPlugins = [];
@@ -94,6 +95,7 @@ module.exports = function(options = {}) {
                   'markdown-it-mark',
                   'markdown-it-ins',
                   'markdown-it-sup',
+                  ['markdown-it-front-matter', renderBlogFrontMatter],
                   [
                     'markdown-it-anchor',
                     {

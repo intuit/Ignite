@@ -18,6 +18,86 @@ const makeRouterLink = link => {
   return `#/${link}`;
 };
 
+const NavItem = ({ item: [key, item], ...props }) => {
+  const otherPaths = Object.values(props.navItems).filter(val => val !== '/');
+
+  let isActive;
+
+  if (
+    (item !== '/' && props.location.pathname.includes(item)) ||
+    (props.location.pathname === '/' && props.navItems.root === item) ||
+    (item === '/' &&
+      !otherPaths.find(path => props.location.pathname.includes(path)) &&
+      !props.location.pathname.includes('blog/'))
+  ) {
+    isActive = true;
+  }
+
+  return (
+    key !== 'root' && (
+      <a
+        key={key}
+        className={makeClass('navbar-item', isActive && 'is-active')}
+        href={makeRouterLink(item)}
+      >
+        {key}
+      </a>
+    )
+  );
+};
+
+const GithubLink = ({ githubURL }) =>
+  githubURL ? (
+    <a className="navbar-item" href={githubURL} target="_blank">
+      GitHub
+      <Icon className={styles.icon} type="fab" icon="github" />
+    </a>
+  ) : null;
+
+const hasBlogLink = () =>
+  Object.values(window.configuration.markdown).find(([page]) =>
+    page.includes('blog/')
+  );
+
+const BlogLink = ({ className }) =>
+  hasBlogLink() ? (
+    <a className={makeClass('navbar-item', className)} href="#/blog/index.md">
+      Blog
+      <Icon className={styles.icon} type="fas" icon="rss" />
+    </a>
+  ) : null;
+
+BlogLink.propTypes = {
+  className: PropTypes.string
+};
+
+BlogLink.defaultProps = {
+  className: null
+};
+
+const DocsLink = ({ className }) => (
+  <a className={makeClass('navbar-item', className)} href="#/">
+    Docs
+    <Icon className={styles.icon} type="fas" icon="book" />
+  </a>
+);
+
+DocsLink.propTypes = {
+  className: PropTypes.string
+};
+
+DocsLink.defaultProps = {
+  className: null
+};
+
+GithubLink.propTypes = {
+  githubURL: PropTypes.string
+};
+
+GithubLink.defaultProps = {
+  githubURL: null
+};
+
 class Header extends Component {
   state = {
     menuOpen: false
@@ -34,7 +114,7 @@ class Header extends Component {
   render() {
     return (
       <nav
-        className={makeClass('navbar')}
+        className={makeClass('navbar', styles.nav)}
         role="navigation"
         aria-label="main navigation"
       >
@@ -76,46 +156,20 @@ class Header extends Component {
             )}
           >
             <div className="navbar-end">
-              {this.props.navItems &&
-                Object.entries(this.props.navItems).map(([key, item]) => {
-                  const otherPaths = Object.values(this.props.navItems).filter(
-                    val => val !== '/'
-                  );
+              {this.props.navItems ? (
+                Object.entries(this.props.navItems).map(item => (
+                  <NavItem key={item[0]} item={item} {...this.props} />
+                ))
+              ) : (
+                <DocsLink
+                  className={!location.hash.includes('blog/') && 'is-active'}
+                />
+              )}
 
-                  let isActive;
-
-                  if (
-                    (item !== '/' &&
-                      this.props.location.pathname.includes(item)) ||
-                    (this.props.location.pathname === '/' &&
-                      this.props.navItems.root === item) ||
-                    (item === '/' &&
-                      !otherPaths.find(path =>
-                        this.props.location.pathname.includes(path)
-                      ))
-                  ) {
-                    isActive = true;
-                  }
-
-                  return (
-                    key !== 'root' && (
-                      <a
-                        key={key}
-                        className={makeClass(
-                          'navbar-item',
-                          isActive && 'is-active'
-                        )}
-                        href={makeRouterLink(item)}
-                      >
-                        {key}
-                      </a>
-                    )
-                  );
-                })}
-              <a className="navbar-item" href={this.props.githubURL}>
-                GitHub
-                <Icon className={styles.githubIcon} type="fab" icon="github" />
-              </a>
+              <BlogLink
+                className={location.hash.includes('blog/') && 'is-active'}
+              />
+              <GithubLink githubURL={this.props.githubURL} />
             </div>
           </div>
         </div>

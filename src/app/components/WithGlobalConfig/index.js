@@ -7,10 +7,16 @@ const withGlobalConfig = Comp =>
 
       this.state = {
         markdown: window.configuration.markdown,
-        plugins: window.configuration.plugins
+        plugins: window.configuration.plugins,
+        blogHeroImage: null
       };
 
       window.configuration.setFirstLink = this.setFirstLink.bind(this);
+      window.configuration.setBlogHero = this.setBlogHeader.bind(this);
+    }
+
+    setBlogHeader(link) {
+      this.setState({ blogHeroImage: link });
     }
 
     setFirstLink(pathToMarkdown, firstLink) {
@@ -32,6 +38,7 @@ const withGlobalConfig = Comp =>
           {...this.props}
           markdown={this.state.markdown}
           plugins={this.state.plugins}
+          blogHero={this.state.blogHeroImage}
         />
       );
     }

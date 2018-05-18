@@ -40,10 +40,12 @@ class MarkdownProvider extends Component {
   static propTypes = {
     location: ReactRouterPropTypes.location.isRequired,
     markdown: PropTypes.array,
+    blogHero: PropTypes.string,
     plugins: PropTypes.array
   };
 
   static defaultProps = {
+    blogHero: null,
     markdown: [],
     plugins: []
   };
@@ -66,6 +68,7 @@ class MarkdownProvider extends Component {
         markdown={this.markdown}
         location={this.props.location}
         plugins={this.plugins}
+        blogHero={this.props.blogHero}
       />
     );
   }

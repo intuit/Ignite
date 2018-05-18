@@ -38,6 +38,10 @@ export class Sidebar extends Component {
   };
 
   render() {
+    if (!this.props.content) {
+      return null;
+    }
+
     return (
       <div
         className={makeClass(
@@ -64,6 +68,7 @@ export class Sidebar extends Component {
         </button>
         {this.props.content && (
           <this.props.content
+            onClick={this.handleClickOutside}
             className={styles.sidebar}
             currentPage={this.props.currentPage}
           />

@@ -18,9 +18,10 @@ export const determineComponents = (
   const filePath = location.pathname.substring(1);
 
   let Page = markdown[filePath];
-  let SidebarComponent = markdown[indexFile];
+  const isBlog = filePath.includes('blog/');
+  let SidebarComponent = isBlog ? null : markdown[indexFile];
 
-  if (navItems) {
+  if (navItems && !filePath.includes('blog/')) {
     const parent =
       markdown.indexFiles &&
       Object.entries(markdown.indexFiles).find(([key]) => {
@@ -38,7 +39,7 @@ export const determineComponents = (
       }
     }
 
-    if (!Page && markdown.indexFiles) {
+    if (!Page && !SidebarComponent && markdown.indexFiles) {
       const rootIndex =
         navItems.root === '/' ? indexFile : path.join(navItems.root, indexFile);
       SidebarComponent = markdown[rootIndex];
@@ -46,7 +47,7 @@ export const determineComponents = (
     }
   }
 
-  if (markdown.indexFiles && filePath.includes(indexFile)) {
+  if (!isBlog && markdown.indexFiles && filePath.includes(indexFile)) {
     Page = markdown[markdown.indexFiles[filePath]];
   }
 
@@ -77,7 +78,7 @@ class App extends Component {
           duration: 500
         });
       } else if (!hash) {
-        scrollToElement('#root', {
+        scrollToElement('body', {
           duration: 1
         });
       }
@@ -85,7 +86,9 @@ class App extends Component {
   };
 
   render() {
-    const { markdown, location, index } = this.props;
+    const { markdown, location, index, blogHero } = this.props;
+    const isBlogIndex = location.pathname.includes('blog/index.md');
+    const isBlog = location.pathname.includes('blog/');
     const { SidebarComponent, Page } = determineComponents(
       markdown,
       location,
@@ -96,8 +99,36 @@ class App extends Component {
       <div className={styles.root}>
         <Header location={this.props.location} />
 
+        {isBlog && (
+          <section
+            className={makeClass(
+              'hero is-info is-medium is-bold',
+              styles.blogHero
+            )}
+            style={
+              blogHero && {
+                maxWidth: 1800,
+                margin: 'auto',
+                background: `url(${blogHero})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover'
+              }
+            }
+          >
+            <div className="hero-body">
+              <div className="container has-text-centered">
+                <h1 className="title" style={isBlogIndex ? {} : { opacity: 0 }}>
+                  Blog
+                </h1>
+              </div>
+            </div>
+          </section>
+        )}
+
         <div id="root" className={makeClass(styles.contentArea)}>
-          <div className={makeClass(styles.App, 'columns')}>
+          <div
+            className={makeClass(styles.App, 'columns', isBlog && styles.blog)}
+          >
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop box"
               content={SidebarComponent}
@@ -108,7 +139,7 @@ class App extends Component {
 
             <div
               className={makeClass(
-                styles.content,
+                !isBlog && styles.content,
                 'column',
                 'content',
                 'is-two-thirds-tablet',
@@ -129,11 +160,13 @@ App.propTypes = {
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired,
   plugins: PropTypes.array,
-  index: PropTypes.string
+  index: PropTypes.string,
+  blogHero: PropTypes.string
 };
 
 App.defaultProps = {
   plugins: [],
+  blogHero: null,
   index: process.env.index
 };
 

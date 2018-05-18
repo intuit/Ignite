@@ -56,7 +56,7 @@ h6 {
 }
 
 section {
-  padding: 15px 30px;
+  padding: 2rem 0;
 }
 
 a {
@@ -133,6 +133,17 @@ p {
   }
 }
 
+:global .has-text-centered {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    justify-content: center;
+  }
+}
+
 :global .highlighted-line {
   display: block;
   margin: 0 -1rem;
@@ -153,6 +164,28 @@ p {
 :global .progress-with-message {
   display: flex;
   flex-direction: column;
+}
+
+:global .showMore {
+  text-align: center;
+  margin-bottom: 105px;
+  margin-top: -20px;
+}
+
+:global .backToTop {
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 10px 25px;
+  display: flex;
+  align-items: center;
+
+  i {
+    padding: 1.25rem 1rem;
+    font-size: x-large;
+  }
 }
 
 :global .tile {
@@ -186,6 +219,57 @@ p {
   opacity: 0.5;
 }
 
+:global .learnMore {
+  padding: 2rem;
+}
+
+:global .blogPost {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 65px;
+}
+
+:global .blogHeader {
+  margin-top: 2.5rem;
+}
+
+:global p.blogTitle {
+  font-size: 2rem;
+  font-weight: lighter;
+  line-height: 2;
+}
+
+:global p.blogSubtitle {
+  color: #909aa0;
+  margin-bottom: 2rem;
+}
+
+:global .blogBody {
+  line-height: 1.4;
+  margin: 0 1rem;
+
+  p {
+    line-height: 1.9;
+    margin: 15px 0;
+  }
+
+  @media screen and (min-width: 769px) {
+    margin: 0 4rem;
+  }
+}
+
+:global .authorImage {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+}
+
 .content {
   max-width: 100%;
   margin: 0 auto 15px;
@@ -200,4 +284,12 @@ p {
   @media screen and (min-width: 769px) {
     max-width: 950px;
   }
+}
+
+.App.blog {
+  margin-top: -7.5rem;
+}
+
+.blogHero :global .title {
+  padding-bottom: 3rem;
 }

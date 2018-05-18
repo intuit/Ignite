@@ -1,4 +1,5 @@
 import path from 'path';
+import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
 
 export function replaceAt(input, search, replace, start) {
@@ -160,6 +161,93 @@ export function addActiveAll(source, firstLink, indexFile) {
   return source;
 }
 
+export function blogPost(source, pathToMarkdown) {
+  const card = `
+    <div class="card">
+      <div class="card-content">
+        <div class="blogBody">
+          
+        </div>
+      </div>
+    </div>    
+  `;
+  const options = {
+    xmlMode: true
+  };
+  const $source = cheerio.load(`<div>${source}</div>`, options);
+  const $fullPage = cheerio.load(card, options);
+  const $stub = cheerio.load(card, options);
+  const heroUrl = $source('#background-image')
+    .remove()
+    .text();
+
+  $stub('.card-content').prepend($source('.media').clone());
+  $fullPage('.card-content').prepend($source('.media').clone());
+  $source('.media').remove();
+
+  $source('div')
+    .clone()
+    .children()
+    .map((i, el) =>
+      $stub('.blogBody').append(
+        i < 3
+          ? el
+          : i === 4 &&
+            `
+        <div class='has-text-centered learnMore'>
+          <a href='#/${pathToMarkdown}'>
+            Read More
+          </a>
+        </div>
+      `
+      )
+    );
+
+  $fullPage('.blogBody').append($source.html());
+
+  source = $fullPage.html();
+  source = sanitizeJSX(source);
+
+  return `
+    import React from 'react';
+    import makeClass from 'classnames';
+    import { Link } from 'react-router-dom';
+
+    const PluginProvider = ({plugins, name, options, children}) => {
+      let Plugin = plugins[name];
+      const pluginOptions = Plugin.options;
+    
+      if (!Plugin) {
+        return <div />;
+      }
+
+      Plugin = Plugin.component;
+      return <Plugin {...pluginOptions}  children={children} {...options} />;
+    };
+
+    class blogPost extends React.Component {
+      componentDidMount() {
+        if (!this.props.atIndex) {
+          window.configuration.setBlogHero('${heroUrl.trim()}');
+        }
+      }
+
+      render() {
+        return  (
+          <div className={makeClass('blogPost', this.props.className)}>
+            <p>{this.props.heroUrl}</p>
+            <section>
+              {this.props.stub ? ${sanitizeJSX($stub.html())} : ${source}}
+            </section>
+          </div>
+        );
+      }
+    }
+
+    export default blogPost;
+  `;
+}
+
 export function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
@@ -177,7 +265,7 @@ export function index(source, pathToMarkdown, options) {
 
     export default function markDownPage(props) {
       return (
-        <aside className={makeClass('menu', props.className)}>
+        <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
           ${source}
         </aside>
       );
@@ -239,6 +327,11 @@ export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
   const isIndex = detectIndex(this.resourcePath, pathToMarkdown, options);
+  const isBlogPost = this.resourcePath.includes('blog/');
+
+  if (isBlogPost) {
+    return blogPost(source, pathToMarkdown);
+  }
 
   if (isIndex) {
     return index(source, pathToMarkdown, options);

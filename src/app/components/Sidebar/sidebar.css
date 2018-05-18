@@ -17,12 +17,16 @@
 
   .sidebar {
     height: 100%;
-    padding: 4rem 20px 3rem;
+    padding: 8rem 20px 3rem;
     overflow-y: scroll;
   }
 
   @media screen and (min-width: 769px) {
     position: sticky;
+
+    .sidebar {
+      padding: 4rem 20px 3rem;
+    }
   }
 
   li {

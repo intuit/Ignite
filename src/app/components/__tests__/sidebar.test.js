@@ -12,7 +12,7 @@ test('only renders content if its there', () => {
 });
 
 test('should open and close', () => {
-  const component = renderer.create(<Sidebar />);
+  const component = renderer.create(<Sidebar content={() => <h1>beans</h1>} />);
   const inst = component.getInstance();
 
   inst.toggleSidebar();
@@ -22,7 +22,7 @@ test('should open and close', () => {
 });
 
 test('should close when clicked outside', () => {
-  const component = renderer.create(<Sidebar />);
+  const component = renderer.create(<Sidebar content={() => <h1>beans</h1>} />);
   const inst = component.getInstance();
 
   inst.toggleSidebar();
