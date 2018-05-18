@@ -21,6 +21,7 @@ test('renders logo', () => {
 });
 
 test('clicking hamburger changes state', () => {
+  window.configuration = { markdown: {} };
   const component = renderer.create(<Header location={{ pathname: '/' }} />);
   const inst = component.getInstance();
 

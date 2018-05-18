@@ -45,12 +45,12 @@ exports[`clicking hamburger changes state 1`] = `
         className="navbar-end"
       >
         <a
-          className="navbar-item"
-          href={undefined}
+          className="navbar-item is-active"
+          href="#/"
         >
-          GitHub
+          Docs
           <i
-            className="fab fa-github"
+            className="fas fa-book"
           />
         </a>
       </div>
@@ -103,17 +103,15 @@ exports[`renders githubURL 1`] = `
       <div
         className="navbar-end"
       >
-        <a
-          className="navbar-item"
-          href="https://github.com/sindresorhus/cows"
-        >
-          GitHub
-          <Icon
-            className={null}
-            icon="github"
-            type="fab"
-          />
-        </a>
+        <DocsLink
+          className="is-active"
+        />
+        <BlogLink
+          className={false}
+        />
+        <GithubLink
+          githubURL="https://github.com/sindresorhus/cows"
+        />
       </div>
     </div>
   </div>
@@ -169,17 +167,15 @@ exports[`renders logo 1`] = `
       <div
         className="navbar-end"
       >
-        <a
-          className="navbar-item"
-          href={undefined}
-        >
-          GitHub
-          <Icon
-            className={null}
-            icon="github"
-            type="fab"
-          />
-        </a>
+        <DocsLink
+          className="is-active"
+        />
+        <BlogLink
+          className={false}
+        />
+        <GithubLink
+          githubURL={null}
+        />
       </div>
     </div>
   </div>
@@ -230,29 +226,81 @@ exports[`renders nav items 1`] = `
       <div
         className="navbar-end"
       >
-        <a
-          className="navbar-item is-active"
-          href="#/undefined"
-        >
-          Doc 1
-        </a>
-        <a
-          className="navbar-item"
-          href="#/pages/undefined"
-        >
-          Doc 2
-        </a>
-        <a
-          className="navbar-item"
-          href={undefined}
-        >
-          GitHub
-          <Icon
-            className={null}
-            icon="github"
-            type="fab"
-          />
-        </a>
+        <NavItem
+          githubURL={undefined}
+          item={
+            Array [
+              "root",
+              "/",
+            ]
+          }
+          location={
+            Object {
+              "pathname": "/",
+            }
+          }
+          logo={undefined}
+          navItems={
+            Object {
+              "Doc 1": "/",
+              "Doc 2": "pages",
+              "root": "/",
+            }
+          }
+          title={undefined}
+        />
+        <NavItem
+          githubURL={undefined}
+          item={
+            Array [
+              "Doc 1",
+              "/",
+            ]
+          }
+          location={
+            Object {
+              "pathname": "/",
+            }
+          }
+          logo={undefined}
+          navItems={
+            Object {
+              "Doc 1": "/",
+              "Doc 2": "pages",
+              "root": "/",
+            }
+          }
+          title={undefined}
+        />
+        <NavItem
+          githubURL={undefined}
+          item={
+            Array [
+              "Doc 2",
+              "pages",
+            ]
+          }
+          location={
+            Object {
+              "pathname": "/",
+            }
+          }
+          logo={undefined}
+          navItems={
+            Object {
+              "Doc 1": "/",
+              "Doc 2": "pages",
+              "root": "/",
+            }
+          }
+          title={undefined}
+        />
+        <BlogLink
+          className={false}
+        />
+        <GithubLink
+          githubURL={null}
+        />
       </div>
     </div>
   </div>
@@ -303,29 +351,81 @@ exports[`renders nav items with just a index 1`] = `
       <div
         className="navbar-end"
       >
-        <a
-          className="navbar-item"
-          href="#/other/index.md"
-        >
-          Doc 1
-        </a>
-        <a
-          className="navbar-item"
-          href="#/pages/index.md"
-        >
-          Doc 2
-        </a>
-        <a
-          className="navbar-item"
-          href={undefined}
-        >
-          GitHub
-          <Icon
-            className={null}
-            icon="github"
-            type="fab"
-          />
-        </a>
+        <NavItem
+          githubURL={undefined}
+          item={
+            Array [
+              "root",
+              "/",
+            ]
+          }
+          location={
+            Object {
+              "pathname": "/foo",
+            }
+          }
+          logo={undefined}
+          navItems={
+            Object {
+              "Doc 1": "other/index.md",
+              "Doc 2": "pages",
+              "root": "/",
+            }
+          }
+          title={undefined}
+        />
+        <NavItem
+          githubURL={undefined}
+          item={
+            Array [
+              "Doc 1",
+              "other/index.md",
+            ]
+          }
+          location={
+            Object {
+              "pathname": "/foo",
+            }
+          }
+          logo={undefined}
+          navItems={
+            Object {
+              "Doc 1": "other/index.md",
+              "Doc 2": "pages",
+              "root": "/",
+            }
+          }
+          title={undefined}
+        />
+        <NavItem
+          githubURL={undefined}
+          item={
+            Array [
+              "Doc 2",
+              "pages",
+            ]
+          }
+          location={
+            Object {
+              "pathname": "/foo",
+            }
+          }
+          logo={undefined}
+          navItems={
+            Object {
+              "Doc 1": "other/index.md",
+              "Doc 2": "pages",
+              "root": "/",
+            }
+          }
+          title={undefined}
+        />
+        <BlogLink
+          className={false}
+        />
+        <GithubLink
+          githubURL={null}
+        />
       </div>
     </div>
   </div>
@@ -378,17 +478,15 @@ exports[`renders title 1`] = `
       <div
         className="navbar-end"
       >
-        <a
-          className="navbar-item"
-          href={undefined}
-        >
-          GitHub
-          <Icon
-            className={null}
-            icon="github"
-            type="fab"
-          />
-        </a>
+        <DocsLink
+          className="is-active"
+        />
+        <BlogLink
+          className={false}
+        />
+        <GithubLink
+          githubURL={null}
+        />
       </div>
     </div>
   </div>

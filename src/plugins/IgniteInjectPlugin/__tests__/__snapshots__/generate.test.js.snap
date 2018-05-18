@@ -12,6 +12,8 @@ exports[`generate should add markdown 1`] = `
 
     import React from 'react';
 
+    const e = React.createElement;
+
     function lazyLoad(CompProvider) {
       return class extends React.Component {
         constructor(props) {
@@ -77,6 +79,8 @@ exports[`generate should add plugins 1`] = `
     };
 
     import React from 'react';
+
+    const e = React.createElement;
 
     function lazyLoad(CompProvider) {
       return class extends React.Component {
