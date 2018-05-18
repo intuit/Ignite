@@ -95,6 +95,10 @@ const generateBlogIndex = (blogFiles, options) => {
         };
       }
 
+      componentDidMount() {
+        window.configuration.setBlogHero(null);
+      }
+
       scrollTop() {
         scrollToElement('body', {
           duration: 750
@@ -120,7 +124,7 @@ const generateBlogIndex = (blogFiles, options) => {
             blogPosts.map(post => post.path)
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
             const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
-            return e(BlogPost, { stub: true });
+            return e(BlogPost, { stub: true, atIndex: true });
           }),
           ${
             blogPosts.length
@@ -133,7 +137,6 @@ const generateBlogIndex = (blogFiles, options) => {
       }
     }
 
-    console.log('blog/${options.index}', blogIndex)
     registerMarkdown('blog/${options.index}', async () => ({ 
       default: blogIndex
     }));

@@ -2,7 +2,7 @@ import yaml from 'js-yaml';
 import gravatar from 'gravatar';
 
 function parseConfig(config) {
-  const { title, date, author } = config;
+  const { title, date, image, author } = config;
 
   let name;
   let email;
@@ -16,6 +16,7 @@ function parseConfig(config) {
 
   return {
     title,
+    image,
     date,
     name,
     link,
@@ -35,7 +36,7 @@ export default function renderBlogFrontMatter(tokens) {
     console.log(e);
   }
 
-  let { title, date, name, link, email } = parseConfig(blogConfig);
+  let { title, image, date, name, link, email } = parseConfig(blogConfig);
   const profilePic = email
     ? `<img src="${gravatar.url(email)}" class="authorImage" />`
     : '';
@@ -46,6 +47,9 @@ export default function renderBlogFrontMatter(tokens) {
 
   return `
     <div class="media blogHeader">
+      <p id="background-image">
+        ${image}
+      </p>
       <div class="media-content has-text-centered">
         ${profilePic}
 

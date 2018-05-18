@@ -86,7 +86,7 @@ class App extends Component {
   };
 
   render() {
-    const { markdown, location, index } = this.props;
+    const { markdown, location, index, blogHero } = this.props;
     const isBlogIndex = location.pathname.includes('blog/index.md');
     const isBlog = location.pathname.includes('blog/');
     const { SidebarComponent, Page } = determineComponents(
@@ -105,10 +105,19 @@ class App extends Component {
               'hero is-info is-medium is-bold',
               styles.blogHero
             )}
+            style={
+              blogHero && {
+                background: `url(${blogHero})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover'
+              }
+            }
           >
             <div className="hero-body">
               <div className="container has-text-centered">
-                <h1 className="title">{isBlogIndex ? 'Blog' : ''}</h1>
+                <h1 className="title" style={isBlogIndex ? {} : { opacity: 0 }}>
+                  Blog
+                </h1>
               </div>
             </div>
           </section>
@@ -116,11 +125,7 @@ class App extends Component {
 
         <div id="root" className={makeClass(styles.contentArea)}>
           <div
-            className={makeClass(
-              styles.App,
-              'columns',
-              isBlogIndex ? styles.blogIndex : isBlog && styles.blogPost
-            )}
+            className={makeClass(styles.App, 'columns', isBlog && styles.blog)}
           >
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop box"

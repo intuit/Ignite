@@ -177,6 +177,9 @@ export function blogPost(source, pathToMarkdown) {
   const $source = cheerio.load(`<div>${source}</div>`, options);
   const $fullPage = cheerio.load(card, options);
   const $stub = cheerio.load(card, options);
+  const heroUrl = $source('#background-image')
+    .remove()
+    .text();
 
   $stub('.card-content').prepend($source('.media').clone());
   $fullPage('.card-content').prepend($source('.media').clone());
@@ -222,13 +225,24 @@ export function blogPost(source, pathToMarkdown) {
       return <Plugin {...pluginOptions}  children={children} {...options} />;
     };
 
-    const blogPost = props => (
-      <div className={makeClass('blogPost', props.className)}>
-        <section>
-          {props.stub ? ${sanitizeJSX($stub.html())} : ${source}}
-        </section>
-      </div>
-    );
+    class blogPost extends React.Component {
+      componentDidMount() {
+        if (!this.props.atIndex) {
+          window.configuration.setBlogHero('${heroUrl.trim()}');
+        }
+      }
+
+      render() {
+        return  (
+          <div className={makeClass('blogPost', this.props.className)}>
+            <p>{this.props.heroUrl}</p>
+            <section>
+              {this.props.stub ? ${sanitizeJSX($stub.html())} : ${source}}
+            </section>
+          </div>
+        );
+      }
+    }
 
     export default blogPost;
   `;

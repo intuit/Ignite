@@ -286,14 +286,10 @@ p {
   }
 }
 
-.App.blogIndex {
-  margin-top: -75px;
-}
-
-.App.blogPost {
-  margin-top: -115px;
+.App.blog {
+  margin-top: -7.5rem;
 }
 
 .blogHero :global .title {
-  padding-bottom: 15px;
+  padding-bottom: 3rem;
 }
