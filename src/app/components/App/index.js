@@ -21,7 +21,7 @@ export const determineComponents = (
   const isBlog = filePath.includes('blog/');
   let SidebarComponent = isBlog ? null : markdown[indexFile];
 
-  if (navItems) {
+  if (navItems && !filePath.includes('blog/')) {
     const parent =
       markdown.indexFiles &&
       Object.entries(markdown.indexFiles).find(([key]) => {
@@ -39,7 +39,7 @@ export const determineComponents = (
       }
     }
 
-    if (!Page && markdown.indexFiles) {
+    if (!Page && !SidebarComponent && markdown.indexFiles) {
       const rootIndex =
         navItems.root === '/' ? indexFile : path.join(navItems.root, indexFile);
       SidebarComponent = markdown[rootIndex];
