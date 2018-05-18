@@ -17,6 +17,7 @@ body {
 }
 
 :global .blogPost {
+  width: 100%;
   max-width: 700px;
   margin: auto;
   margin-bottom: 65px;
@@ -39,7 +40,7 @@ body {
 
 :global .blogBody {
   line-height: 1.4;
-  margin: 0 2rem;
+  margin: 0 1rem;
 
   p {
     line-height: 1.9;
@@ -113,7 +114,7 @@ h6 {
 }
 
 section {
-  padding: 2rem 3rem;
+  padding: 2rem 0;
 }
 
 a {

@@ -217,22 +217,7 @@ export default function generate(entries = [], plugins = [], options = {}) {
     }
 
     if (blogFiles.length > 0) {
-      generated += generateBlogIndex(
-        [
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles,
-          ...blogFiles
-        ],
-        options
-      );
+      generated += generateBlogIndex(blogFiles, options);
     }
 
     return generated;
