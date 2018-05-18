@@ -125,7 +125,7 @@ class App extends Component {
               }`}
             />
 
-            <Page
+            <div
               className={makeClass(
                 !isBlog && styles.content,
                 'column',
@@ -133,8 +133,9 @@ class App extends Component {
                 'is-two-thirds-tablet',
                 'is-three-quarters-desktop'
               )}
-              plugins={this.props.plugins}
-            />
+            >
+              <Page plugins={this.props.plugins} />
+            </div>
           </div>
         </div>
       </div>
