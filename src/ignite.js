@@ -56,7 +56,7 @@ export const defaults = {
   color: 'auto',
   selectedColor: 'auto',
   logo: 'logo.svg',
-  bulmaTheme: 'flatly'
+  bulmaTheme: 'cosmo'
 };
 
 function initOptions(options) {

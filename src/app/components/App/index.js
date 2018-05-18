@@ -48,10 +48,12 @@ export const determineComponents = (
     }
   }
 
+  if (markdown.indexFiles && filePath.includes(indexFile)) {
+    Page = markdown[markdown.indexFiles[filePath]];
+  }
+
   if (!Page && markdown.indexFiles) {
-    Page = filePath.includes(indexFile)
-      ? markdown[markdown.indexFiles[filePath]]
-      : markdown[markdown.indexFiles[indexFile]];
+    Page = markdown[markdown.indexFiles[indexFile]];
   }
 
   if (!Page) {
