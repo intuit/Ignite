@@ -19,6 +19,7 @@ body {
 :global .blogPost {
   max-width: 700px;
   margin: auto;
+  margin-bottom: 65px;
 }
 
 :global .blogHeader {
@@ -256,4 +257,8 @@ p {
   @media screen and (min-width: 769px) {
     max-width: 950px;
   }
+}
+
+.App.blogIndex {
+  margin-top: -55px;
 }

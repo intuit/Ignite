@@ -78,16 +78,14 @@ const generateBlogIndex = (blogFiles, options) => {
     }))
     .sort((a, b) => a.birthtime < b.birthtime);
 
-  console.log(blogPosts);
-
   return `
     const blogIndex = () => {
-      return e('div', null, ${JSON.stringify(
-        blogPosts.map(post => post.path)
-      )}.map(blogFile => {
-        const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
-        return e(BlogPost);
-      }))
+      return e('div', null, [
+        ${JSON.stringify(blogPosts.map(post => post.path))}.map(blogFile => {
+          const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
+          return e(BlogPost);
+        })
+      ]);
     }
 
     console.log('blog/${options.index}', blogIndex)

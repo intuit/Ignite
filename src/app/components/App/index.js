@@ -86,6 +86,7 @@ class App extends Component {
 
   render() {
     const { markdown, location, index } = this.props;
+    const isBlogIndex = location.pathname.includes('blog/index.md');
     const { SidebarComponent, Page } = determineComponents(
       markdown,
       location,
@@ -97,7 +98,23 @@ class App extends Component {
         <Header location={this.props.location} />
 
         <div id="root" className={makeClass(styles.contentArea)}>
-          <div className={makeClass(styles.App, 'columns')}>
+          {isBlogIndex && (
+            <section className="hero is-info is-medium is-bold">
+              <div className="hero-body">
+                <div className="container has-text-centered">
+                  <h1 className="title">Blog</h1>
+                </div>
+              </div>
+            </section>
+          )}
+
+          <div
+            className={makeClass(
+              styles.App,
+              'columns',
+              isBlogIndex && styles.blogIndex
+            )}
+          >
             <Sidebar
               className="column is-one-third-tablet is-one-quarter-desktop box"
               content={SidebarComponent}
@@ -106,7 +123,7 @@ class App extends Component {
               }`}
             />
 
-            <div
+            <Page
               className={makeClass(
                 styles.content,
                 'column',
@@ -114,9 +131,8 @@ class App extends Component {
                 'is-two-thirds-tablet',
                 'is-three-quarters-desktop'
               )}
-            >
-              <Page plugins={this.props.plugins} />
-            </div>
+              plugins={this.props.plugins}
+            />
           </div>
         </div>
       </div>
