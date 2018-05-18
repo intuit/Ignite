@@ -2480,6 +2480,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+create-react-class@^15.5.1:
+  version "15.6.3"
+  resolved "https://registry.npmjs.intuit.net/c/create-react-class/_attachments/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -3637,7 +3645,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.16:
+fbjs@^0.8.16, fbjs@^0.8.9:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -6063,9 +6071,9 @@ markdown-it-external-links@0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.intuit.net/m/markdown-it-external-links/_attachments/markdown-it-external-links-0.0.6.tgz#9503258fce4c81010ea15fe71769d63a1346d801"
 
-markdown-it-front-matter@0.1.2:
+"markdown-it-front-matter@git+https://github.com/hipstersmoothie/markdown-it-front-matter.git#use-callback":
   version "0.1.2"
-  resolved "https://registry.npmjs.intuit.net/m/markdown-it-front-matter/_attachments/markdown-it-front-matter-0.1.2.tgz#e50bf56e77e6a4f5ac4ffa894d4d45ccd9896b20"
+  resolved "git+https://github.com/hipstersmoothie/markdown-it-front-matter.git#cf3c840c9ecbd2cf3b1d66a358f1bdd50d11c6be"
 
 markdown-it-highlight-lines@^1.0.0:
   version "1.0.0"
@@ -7859,6 +7867,13 @@ react-test-renderer@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
     react-is "^16.3.2"
+
+react-visibility-sensor@3.11.0:
+  version "3.11.0"
+  resolved "https://registry.npmjs.intuit.net/r/react-visibility-sensor/_attachments/react-visibility-sensor-3.11.0.tgz#2da089ccb18b33ec3539914b300b120684aff2e0"
+  dependencies:
+    create-react-class "^15.5.1"
+    prop-types "^15.5.4"
 
 react@^16.3.2:
   version "16.3.2"

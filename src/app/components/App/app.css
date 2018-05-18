@@ -219,10 +219,19 @@ p {
 }
 
 :global .backToTop {
+  cursor: pointer;
   position: fixed;
   right: 0;
   bottom: 0;
-  padding: 30px 40px;
+  padding: 0;
+  margin: 10px 25px;
+  display: flex;
+  align-items: center;
+
+  i {
+    padding: 1.25rem 1rem;
+    font-size: x-large;
+  }
 }
 
 :global .tile {

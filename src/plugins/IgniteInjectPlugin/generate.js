@@ -80,6 +80,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
   return `
     import scrollToElement from 'scroll-to-element';
+    import VisibilitySensor from 'react-visibility-sensor';
 
     class blogIndex extends React.Component {
       constructor(props) {
@@ -87,9 +88,23 @@ const generateBlogIndex = (blogFiles, options) => {
 
         this.showMore = this.showMore.bind(this)
         this.scrollTop = this.scrollTop.bind(this)
+        this.toggleScrollTopButton = this.toggleScrollTopButton.bind(this)
         this.state = {
-          shownPosts: 10
+          shownPosts: 10,
+          showScrollButton: false,
         };
+      }
+
+      scrollTop() {
+        scrollToElement('body', {
+          duration: 750
+        })
+      }
+
+      toggleScrollTopButton(isVisible) {
+        this.setState({
+          showScrollButton: !isVisible
+        });
       }
 
       showMore() {
@@ -100,6 +115,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
       render() {
         return e('div', null, [
+          e(VisibilitySensor, { onChange: this.toggleScrollTopButton, scrollCheck: true }, e('div')),
           ${JSON.stringify(
             blogPosts.map(post => post.path)
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
@@ -109,7 +125,10 @@ const generateBlogIndex = (blogFiles, options) => {
           ${
             blogPosts.length
           } > this.state.shownPosts && e('div', { className: 'showMore' }, e('button', { className: 'button', onClick: this.showMore } , 'Load More')),
-          !this.state.firstPostVisible && e('div', { className: 'backToTop', onClick: this.scrollTop }, 'Back to Top')
+          this.state.showScrollButton && e('div', { className: 'backToTop notification is-info', onClick: this.scrollTop }, [
+            e('i', { className: 'fas fa-angle-up' }),
+            e('span', { className: 'notification is-light', style: { paddingRight: '1.5rem', borderBottomLeftRadius: 0, borderTopLeftRadius: 0, boxShadow: 'none', border: 'none' } }, 'Back to Top')
+          ])
         ]);
       }
     }
