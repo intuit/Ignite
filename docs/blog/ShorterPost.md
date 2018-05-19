@@ -1,6 +1,5 @@
 ---
 title: Shorter Post
-date: May 18, 2018
 author:
   name: Andrew Lisowski
   link: https://github.intuit.com/alisowski

@@ -1,6 +1,5 @@
 ---
 title: First Post
-date: May 17, 2018
 image: https://pbs.twimg.com/profile_banners/7547562/1516584955/1500x500
 author:
   name: Andrew Lisowski
