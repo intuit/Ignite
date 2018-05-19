@@ -86,17 +86,17 @@ OUTPUT:
 
 ::: codeTabs CSS HTML JS
 
-```css
+```css [0]
 .className {
   background: red;
 }
 ```
 
-```html
+```html [1]
 <div class="className">
 ```
 
-```javascript
+```javascript [2]
 function doSomething() {
   return 'foo';
 }

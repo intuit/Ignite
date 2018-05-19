@@ -308,11 +308,26 @@ p {
   margin-bottom: 3rem;
 }
 
+:global .codeBlocks {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+
+  transition: left 0.25s;
+  transition-timing-function: ease-in-out;
+
+  pre {
+    flex: 0 0 100%;
+  }
+}
+
 :global .content .codeTabs li + li {
   margin-top: 0;
 }
 
 :global .codeTabs {
+  overflow: hidden;
+
   ul {
     margin-left: 0;
   }
