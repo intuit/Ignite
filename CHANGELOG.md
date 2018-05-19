@@ -102,3 +102,7 @@
  0.0.26
 
 - Blog order and other layout enhancments #95
+
+ 0.0.27
+
+- Code tabs #98
