@@ -43,6 +43,7 @@ exports[`clicking hamburger changes state 1`] = `
     >
       <div
         className="navbar-end"
+        onClick={[Function]}
       >
         <a
           className="navbar-item is-active"
@@ -102,6 +103,7 @@ exports[`renders githubURL 1`] = `
     >
       <div
         className="navbar-end"
+        onClick={[Function]}
       >
         <DocsLink
           className="is-active"
@@ -166,6 +168,7 @@ exports[`renders logo 1`] = `
     >
       <div
         className="navbar-end"
+        onClick={[Function]}
       >
         <DocsLink
           className="is-active"
@@ -225,6 +228,7 @@ exports[`renders nav items 1`] = `
     >
       <div
         className="navbar-end"
+        onClick={[Function]}
       >
         <NavItem
           githubURL={undefined}
@@ -350,6 +354,7 @@ exports[`renders nav items with just a index 1`] = `
     >
       <div
         className="navbar-end"
+        onClick={[Function]}
       >
         <NavItem
           githubURL={undefined}
@@ -477,6 +482,7 @@ exports[`renders title 1`] = `
     >
       <div
         className="navbar-end"
+        onClick={[Function]}
       >
         <DocsLink
           className="is-active"
