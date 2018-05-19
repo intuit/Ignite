@@ -126,7 +126,7 @@ class Header extends Component {
       >
         <div className={styles.container}>
           <div className="navbar-brand">
-            <a href="/" className={makeClass(styles.title, 'navbar-item')}>
+            <a href="#/" className={makeClass(styles.title, 'navbar-item')}>
               {this.props.logo && (
                 <img
                   src={this.props.logo}
