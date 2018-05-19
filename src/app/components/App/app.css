@@ -64,6 +64,10 @@ a {
   color: $APP_COLOR;
 }
 
+iframe {
+  max-width: 100%;
+}
+
 details {
   summary {
     cursor: pointer;

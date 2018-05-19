@@ -297,6 +297,8 @@ export function markDownPage(source) {
   return `
     import React from 'react';
     import { Link } from 'react-router-dom';
+    import Gist from 'react-gist';
+    import TweetEmbed from 'react-tweet-embed'
 
     const PluginProvider = ({plugins, name, options, children}) => {
       let Plugin = plugins[name];

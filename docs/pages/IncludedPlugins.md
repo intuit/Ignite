@@ -1,5 +1,22 @@
 # Included Plugins
 
+## Embed
+
+Format = \{SERVICE\}(ARGS)
+
+Supported Embeds:
+
+```markdown
+{github}(ID:FILE)
+{youtube}(ID)
+{twitter}(ID)
+{soundcloud}(ID)
+```
+
+OUTPUT:
+
+{twitter}(989197113648037888)
+
 ## Collapse
 
 Make a set of elements collapsible. If first word is 'open' the elements will default to being shown.

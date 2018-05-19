@@ -123,6 +123,7 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-row'),
                   require('./dist/extensions/bulma-tile'),
                   require('./dist/extensions/collapse'),
+                  require('./dist/extensions/embed'),
                   ...pluginTokens,
                   ...markdownPlugins
                 ],
