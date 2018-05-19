@@ -64,10 +64,6 @@ a {
   color: $APP_COLOR;
 }
 
-img {
-  max-width: 100%;
-}
-
 details {
   summary {
     cursor: pointer;

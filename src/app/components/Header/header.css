@@ -20,13 +20,13 @@
   }
 }
 
-.logo {
-  height: 52px;
-  margin: auto;
-}
-
 .title {
   font-size: 20px;
+  padding: 0;
+  padding-right: 50px;
+}
+
+.titleText {
   padding: 0;
 }
 
