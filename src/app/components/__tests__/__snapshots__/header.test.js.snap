@@ -14,10 +14,10 @@ exports[`clicking hamburger changes state 1`] = `
     >
       <a
         className="navbar-item"
-        href="/"
+        href="#/"
       >
         <span
-          className="is-hidden-mobile"
+          className="is-hidden-mobile navbar-item"
         />
       </a>
       <a
@@ -74,10 +74,10 @@ exports[`renders githubURL 1`] = `
     >
       <a
         className="navbar-item"
-        href="/"
+        href="#/"
       >
         <span
-          className="is-hidden-mobile"
+          className="is-hidden-mobile navbar-item"
         />
       </a>
       <a
@@ -134,7 +134,7 @@ exports[`renders logo 1`] = `
     >
       <a
         className="navbar-item"
-        href="/"
+        href="#/"
       >
         <img
           alt="logo"
@@ -142,7 +142,7 @@ exports[`renders logo 1`] = `
           src="https://github.com/sindresorhus/cows"
         />
         <span
-          className="is-hidden-mobile"
+          className="is-hidden-mobile navbar-item"
         />
       </a>
       <a
@@ -199,10 +199,10 @@ exports[`renders nav items 1`] = `
     >
       <a
         className="navbar-item"
-        href="/"
+        href="#/"
       >
         <span
-          className="is-hidden-mobile"
+          className="is-hidden-mobile navbar-item"
         />
       </a>
       <a
@@ -325,10 +325,10 @@ exports[`renders nav items with just a index 1`] = `
     >
       <a
         className="navbar-item"
-        href="/"
+        href="#/"
       >
         <span
-          className="is-hidden-mobile"
+          className="is-hidden-mobile navbar-item"
         />
       </a>
       <a
@@ -451,10 +451,10 @@ exports[`renders title 1`] = `
     >
       <a
         className="navbar-item"
-        href="/"
+        href="#/"
       >
         <span
-          className="is-hidden-mobile"
+          className="is-hidden-mobile navbar-item"
         >
           Super Cool Docs
         </span>
