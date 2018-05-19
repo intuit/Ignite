@@ -1,5 +1,22 @@
 # Included Plugins
 
+## Embed
+
+Format = \{SERVICE\}(ARGS)
+
+Supported Embeds:
+
+```markdown
+{github}(ID:FILE)
+{youtube}(ID)
+{twitter}(ID)
+{soundcloud}(ID)
+```
+
+OUTPUT:
+
+{twitter}(989197113648037888)
+
 ## Collapse
 
 Make a set of elements collapsible. If first word is 'open' the elements will default to being shown.
@@ -62,6 +79,60 @@ Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlig
 ```javascript
 ```
 ````
+
+## Tabbed Code Blocks
+
+You can group multiple markdown code blocks into a tabbed code block.
+
+1 word currently supported.
+
+FORMAT: codeTabs First Second Third Title
+
+Also must include the matching index of the title on the code block.
+
+````markdown
+::: codeTabs CSS HTML JS
+
+```css [0]
+.className {
+  background: red;
+}
+```
+
+```html [1]
+<div class="className">
+```
+
+```javascript [2]
+function doSomething() {
+  return 'foo';
+}
+```
+
+:::
+````
+
+OUTPUT:
+
+::: codeTabs CSS HTML JS
+
+```css [0]
+.className {
+  background: red;
+}
+```
+
+```html [1]
+<div class="className">
+```
+
+```javascript [2]
+function doSomething() {
+  return 'foo';
+}
+```
+
+:::
 
 ## Highlight Specific lines
 

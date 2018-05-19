@@ -64,6 +64,10 @@ a {
   color: $APP_COLOR;
 }
 
+iframe {
+  max-width: 100%;
+}
+
 details {
   summary {
     cursor: pointer;
@@ -102,6 +106,7 @@ details[open] summary:before {
 
 pre {
   border-left: 4px solid $APP_COLOR;
+  margin-bottom: 1rem;
 
   & > code {
     display: block;
@@ -289,4 +294,41 @@ p {
 
 .blogHero :global .title {
   padding-bottom: 3rem;
+}
+
+:global .collapse-summary {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  position: relative;
+  padding-left: 0;
+}
+
+:global .codeBlocks {
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+
+  transition: left 0.25s;
+  transition-timing-function: ease-in-out;
+
+  pre {
+    flex: 0 0 100%;
+  }
+}
+
+:global .content :not(.codeBlocks) > pre:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+:global .content .codeTabs li + li {
+  margin-top: 0;
+}
+
+:global .codeTabs {
+  overflow: hidden;
+
+  ul {
+    margin-left: 0;
+  }
 }

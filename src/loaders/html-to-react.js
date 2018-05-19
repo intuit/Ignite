@@ -3,6 +3,10 @@ import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
 
+const libHTMLOptions = {
+  xmlMode: true
+};
+
 export function replaceAt(input, search, replace, start) {
   return (
     input.slice(0, start) +
@@ -12,7 +16,7 @@ export function replaceAt(input, search, replace, start) {
 }
 
 export function insertBreaks(source) {
-  let preTeg = source.indexOf('<pre>');
+  let preTeg = source.indexOf('<pre');
 
   while (preTeg !== -1) {
     let endPreTag = source.indexOf('</pre>', preTeg);
@@ -23,12 +27,12 @@ export function insertBreaks(source) {
       endPreTag = source.indexOf('</pre>', preTeg);
       source = replaceAt(source, '\n', '<br />', newLine);
     } while (
-      newLine < endPreTag &&
+      source.indexOf('\n', preTeg) < endPreTag &&
       newLine !== source.indexOf('\n', preTeg) &&
       newLine !== -1
     );
 
-    preTeg = source.indexOf('<pre>', endPreTag);
+    preTeg = source.indexOf('<pre', endPreTag);
   }
 
   return source;
@@ -39,45 +43,58 @@ export const regexIndexOf = function(string, regex, startpos) {
   return indexOf >= 0 ? indexOf + (startpos || 0) : indexOf;
 };
 
-export const replaceIdLinks = source => {
-  let isTag = /<a href="#(?!\/)[\S]+/;
-  let linkOnPage = regexIndexOf(source, isTag);
+const replaceAll = (source, regex, search = {}, replace = {}) => {
+  let indexOnPage = regexIndexOf(source, regex);
 
-  while (linkOnPage !== -1) {
-    source = replaceAt(source, '<a href="#', '<Link to="#', linkOnPage);
-    source = replaceAt(
-      source,
-      '</a>',
-      '</Link>',
-      source.indexOf('</a>', linkOnPage)
-    );
-    linkOnPage = regexIndexOf(source, isTag, linkOnPage);
-  }
+  while (indexOnPage !== -1) {
+    source = replaceAt(source, search.start, replace.start, indexOnPage);
 
-  isTag = /<a className="fas fa-hashtag headerLink" href="#(?!\/)[\S]+/;
-  linkOnPage = regexIndexOf(source, isTag);
+    if (search.end) {
+      source = replaceAt(
+        source,
+        search.end,
+        replace.end,
+        source.indexOf(search.end, indexOnPage)
+      );
+    }
 
-  while (linkOnPage !== -1) {
-    source = replaceAt(
-      source,
-      '<a className="fas fa-hashtag headerLink" href="#',
-      '<Link className="fas fa-hashtag headerLink" to="#',
-      linkOnPage
-    );
-    source = replaceAt(
-      source,
-      '</a>',
-      '</Link>',
-      source.indexOf('</a>', linkOnPage)
-    );
-    linkOnPage = regexIndexOf(source, isTag, linkOnPage);
+    indexOnPage = regexIndexOf(source, regex, indexOnPage);
   }
 
   return source;
 };
 
+export const replaceIdLinks = source => {
+  source = replaceAll(
+    source,
+    /<a href="#(?!\/)[\S]+/,
+    {
+      start: '<a href="#',
+      end: '</a>'
+    },
+    {
+      start: '<Link to="#',
+      end: '</Link>'
+    }
+  );
+  source = replaceAll(
+    source,
+    /<a className="fas fa-hashtag headerLink" href="#(?!\/)[\S]+/,
+    {
+      start: '<a className="fas fa-hashtag headerLink" href="#',
+      end: '</a>'
+    },
+    {
+      start: '<Link className="fas fa-hashtag headerLink" to="#',
+      end: '</Link>'
+    }
+  );
+
+  return source;
+};
+
 export function sanitizeJSX(source) {
-  if (source.includes('<pre>')) {
+  if (source.includes('<pre')) {
     source = insertBreaks(source);
   }
 
@@ -179,9 +196,6 @@ export function blogPost(source, pathToMarkdown, options) {
       </div>
     </div>    
   `;
-  const libHTMLOptions = {
-    xmlMode: true
-  };
   const $source = cheerio.load(`<div>${source}</div>`, libHTMLOptions);
   const $fullPage = cheerio.load(card, libHTMLOptions);
   const $stub = cheerio.load(card, libHTMLOptions);
@@ -286,7 +300,59 @@ export function index(source, pathToMarkdown, options) {
   `;
 }
 
+export function codeTabs(source) {
+  const codeTabsComponents = [];
+  let start = source.indexOf('<CodeTabs>');
+  let index = 0;
+
+  while (start !== -1) {
+    const endString = '</CodeTabs>';
+    let end = source.indexOf('</CodeTabs>', start);
+    let html = source.substring(start, end + endString.length);
+
+    html = html.replace('CodeTabs', 'div className="codeTabs"');
+    html = html.replace('CodeTabs', 'div');
+
+    codeTabsComponents.push(`
+      class CodeTabs${index} extends React.Component {
+        state = {
+          tabIndex: 0
+        }
+
+        onClick = tabIndex => () => {
+          this.setState({
+            tabIndex
+          })
+        }
+
+        render() {
+          return (
+            ${sanitizeJSX(html)}
+          )
+        }
+      }
+    `);
+
+    source =
+      source.slice(0, start) +
+      `<CodeTabs${index} />` +
+      source.slice(end + endString.length);
+    end = source.indexOf(`<CodeTabs${index} />`, start);
+    start = source.indexOf('<CodeTabs>', end);
+    index += 1;
+  }
+
+  return {
+    source,
+    codeTabsComponent: codeTabsComponents.join('\n')
+  };
+}
+
 export function markDownPage(source) {
+  const s = codeTabs(source);
+  const { codeTabsComponent } = s;
+  ({ source } = s);
+
   source = sanitizeJSX(
     source.replace(
       new RegExp('highlighted-line', 'g'),
@@ -297,6 +363,8 @@ export function markDownPage(source) {
   return `
     import React from 'react';
     import { Link } from 'react-router-dom';
+    import Gist from 'react-gist';
+    import TweetEmbed from 'react-tweet-embed'
 
     const PluginProvider = ({plugins, name, options, children}) => {
       let Plugin = plugins[name];
@@ -309,6 +377,8 @@ export function markDownPage(source) {
       Plugin = Plugin.component;
       return <Plugin {...pluginOptions}  children={children} {...options} />;
     };
+
+    ${codeTabsComponent}
 
     const markDownPage = props => (
       <div className={props.className}>

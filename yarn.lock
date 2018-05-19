@@ -7805,6 +7805,12 @@ react-dom@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-gist@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.intuit.net/r/react-gist/_attachments/react-gist-1.2.1.tgz#969ceb706b5503d84f398c5953818ee631a05fd0"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-is@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
@@ -7871,6 +7877,10 @@ react-test-renderer@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
     react-is "^16.3.2"
+
+react-tweet-embed@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.intuit.net/r/react-tweet-embed/_attachments/react-tweet-embed-1.1.0.tgz#eb83ad8d75bb29d81b2e5c2d9d586021ceeda948"
 
 react-visibility-sensor@3.11.0:
   version "3.11.0"
