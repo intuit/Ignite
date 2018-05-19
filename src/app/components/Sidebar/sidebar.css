@@ -1,10 +1,11 @@
 .root {
   z-index: 1;
   padding: 0;
-  height: calc(100vh + 65px - 4em);
+  height: calc(100vh + 60px - 7em);
   overflow-x: visible;
   border: none;
   border-right: 1px solid #e0e0e0;
+  box-shadow: none;
   border-radius: 0;
   margin-bottom: 0 !important;
 
@@ -38,6 +39,8 @@
   }
 
   details {
+    margin: auto;
+
     summary:before {
       display: none;
     }
@@ -73,12 +76,6 @@
     input[type='radio'] {
       margin-right: 10px;
     }
-  }
-
-  details,
-  :global(.menu-list) {
-    max-width: 300px;
-    margin: auto;
   }
 }
 

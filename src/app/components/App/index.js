@@ -146,7 +146,7 @@ class App extends Component {
                 'is-three-quarters-desktop'
               )}
             >
-              <Page plugins={this.props.plugins} />
+              <Page plugins={this.props.plugins} className={styles.Page} />
             </div>
           </div>
         </div>
