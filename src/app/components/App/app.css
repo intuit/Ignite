@@ -106,6 +106,7 @@ details[open] summary:before {
 
 pre {
   border-left: 4px solid $APP_COLOR;
+  margin-bottom: 1rem;
 
   & > code {
     display: block;
@@ -293,6 +294,10 @@ p {
 
 .blogHero :global .title {
   padding-bottom: 3rem;
+}
+
+:global .content :not(.codeBlocks) > pre:not(:last-child) {
+  margin-bottom: 3rem;
 }
 
 :global .content .codeTabs li + li {
