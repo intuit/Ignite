@@ -113,6 +113,11 @@ export function sanitizeJSX(source) {
     '<input type="checkbox" readOnly class="is-checkradio"'
   );
 
+  source = source.replace(
+    new RegExp('<a href="http', 'g'),
+    '<a target="_blank" href="http'
+  );
+
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
