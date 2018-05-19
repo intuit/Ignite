@@ -19,12 +19,12 @@ const codeTabs = {
               ${titles
                 .map(
                   (title, index) => `
-                <li class="${index === 0 && 'is-active'}">
-                  <a>
-                    <span>${title}</span>
-                  </a>
-                </li>
-              `
+                    <li class="${index === 0 && 'is-active'}">
+                      <a>
+                        <span>${title}</span>
+                      </a>
+                    </li>
+                  `
                 )
                 .join('\n')}
             </ul>

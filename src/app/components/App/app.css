@@ -296,6 +296,14 @@ p {
   padding-bottom: 3rem;
 }
 
+:global .collapse-summary {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  position: relative;
+  padding-left: 0;
+}
+
 :global .content :not(.codeBlocks) > pre:not(:last-child) {
   margin-bottom: 3rem;
 }
