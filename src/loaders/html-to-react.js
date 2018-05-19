@@ -23,7 +23,7 @@ export function insertBreaks(source) {
       endPreTag = source.indexOf('</pre>', preTeg);
       source = replaceAt(source, '\n', '<br />', newLine);
     } while (
-      newLine < endPreTag &&
+      source.indexOf('\n', preTeg) < endPreTag &&
       newLine !== source.indexOf('\n', preTeg) &&
       newLine !== -1
     );
