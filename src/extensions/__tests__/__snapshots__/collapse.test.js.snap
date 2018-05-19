@@ -3,7 +3,7 @@
 exports[`collapse 1`] = `
 "
         <details >
-          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
+          <summary className='collapse-summary'>
             <p></p>
           </summary>
       <h1>Title</h1>
@@ -16,7 +16,7 @@ exports[`collapse 1`] = `
 exports[`collapse 2`] = `
 "
         <details open>
-          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
+          <summary className='collapse-summary'>
             <p></p>
           </summary>
       <h1>Title</h1>
@@ -31,7 +31,7 @@ exports[`collapse 3`] = `
 <li>
 
         <details >
-          <summary style=!{!{display: 'flex',alignItems: 'center', padding: 7, position: 'relative',paddingLeft: 0!}!}>
+          <summary className='collapse-summary'>
             <p><a href=\\"./pages/Publishing.md\\">:package: Publishing</a></p>
           </summary>
       <ul>

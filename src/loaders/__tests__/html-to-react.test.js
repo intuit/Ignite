@@ -73,7 +73,7 @@ test('regexIndexOf', () => {
   expect(regexIndexOf('I am the test:string.', /[\S]+:[\S]+/, 15)).toBe(-1);
 });
 
-test('replaceIdLinks', () => {
+test.only('replaceIdLinks', () => {
   expect(
     replaceIdLinks(`
     <a href="#some-id">Link</a>

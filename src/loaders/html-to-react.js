@@ -79,7 +79,7 @@ export const replaceIdLinks = source => {
   );
   source = replaceAll(
     source,
-    /<a href="#(?!\/)[\S]+/,
+    /<a className="fas fa-hashtag headerLink" href="#(?!\/)[\S]+/,
     {
       start: '<a className="fas fa-hashtag headerLink" href="#',
       end: '</a>'
