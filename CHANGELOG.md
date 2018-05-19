@@ -98,3 +98,7 @@
  0.0.25
 
 - Blog Tab #94
+
+ 0.0.26
+
+- Blog order and other layout enhancments #95
