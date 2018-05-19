@@ -1,4 +1,5 @@
 import path from 'path';
+import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
 
@@ -112,6 +113,11 @@ export function sanitizeJSX(source) {
     '<input type="checkbox" readOnly class="is-checkradio"'
   );
 
+  source = source.replace(
+    new RegExp('<a href="http', 'g'),
+    '<a target="_blank" href="http'
+  );
+
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
@@ -161,7 +167,9 @@ export function addActiveAll(source, firstLink, indexFile) {
   return source;
 }
 
-export function blogPost(source, pathToMarkdown) {
+export function blogPost(source, pathToMarkdown, options) {
+  const date = options.blogPosts.find(post => post.path === pathToMarkdown)
+    .birth;
   const card = `
     <div class="card">
       <div class="card-content">
@@ -171,16 +179,19 @@ export function blogPost(source, pathToMarkdown) {
       </div>
     </div>    
   `;
-  const options = {
+  const libHTMLOptions = {
     xmlMode: true
   };
-  const $source = cheerio.load(`<div>${source}</div>`, options);
-  const $fullPage = cheerio.load(card, options);
-  const $stub = cheerio.load(card, options);
+  const $source = cheerio.load(`<div>${source}</div>`, libHTMLOptions);
+  const $fullPage = cheerio.load(card, libHTMLOptions);
+  const $stub = cheerio.load(card, libHTMLOptions);
   const heroUrl = $source('#background-image')
     .remove()
     .text();
 
+  $source('.blogSubtitle').append(
+    `<span> on ${dayjs(date).format('MMMM D, YYYY')}<span/>`
+  );
   $stub('.card-content').prepend($source('.media').clone());
   $fullPage('.card-content').prepend($source('.media').clone());
   $source('.media').remove();
@@ -330,7 +341,7 @@ export default function(source) {
   const isBlogPost = this.resourcePath.includes('blog/');
 
   if (isBlogPost) {
-    return blogPost(source, pathToMarkdown);
+    return blogPost(source, pathToMarkdown, options);
   }
 
   if (isIndex) {

@@ -2,6 +2,9 @@
 
 import fs from 'fs';
 import path from 'path';
+import git from 'simple-git/promise';
+import dayjs from 'dayjs';
+import globby from 'globby';
 import register from 'babel-register';
 import root from 'root-path';
 import cosmiconfig from 'cosmiconfig';
@@ -36,6 +39,30 @@ export async function initPlugins(options) {
   });
 
   return options;
+}
+
+export async function blogPosts(options) {
+  let blogPosts = await globby([path.join(options.src, 'blog/**/*.md')]);
+
+  if (blogPosts.length === 0) {
+    return null;
+  }
+
+  blogPosts = await Promise.all(
+    blogPosts
+      .map(blogFile => path.relative(options.src, blogFile))
+      .map(async blogFile => {
+        const docLog = await git().log({ file: 'docs/' + blogFile });
+        const birth = docLog.all[docLog.all.length - 1].date;
+
+        return {
+          path: blogFile,
+          birth: Number(dayjs(birth))
+        };
+      })
+  );
+
+  return blogPosts;
 }
 
 export function getAuthor() {
@@ -123,6 +150,7 @@ export default async function build(options) {
 
   options = initOptions(options);
   options = initBuildMessages(options);
+  options.blogPosts = await blogPosts(options);
 
   if (options.plugins) {
     options = await initPlugins(options);

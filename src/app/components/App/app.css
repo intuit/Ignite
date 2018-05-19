@@ -25,10 +25,6 @@ h6 {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
-  &:not(:first-child) {
-    padding-top: 25px;
-  }
 }
 
 .App {
@@ -55,16 +51,17 @@ h6 {
   }
 }
 
+.Page {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
 section {
   padding: 2rem 0;
 }
 
 a {
   color: $APP_COLOR;
-}
-
-img {
-  max-width: 100%;
 }
 
 details {

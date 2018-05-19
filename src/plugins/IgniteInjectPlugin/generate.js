@@ -1,5 +1,4 @@
 import path from 'path';
-import fs from 'fs';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';
@@ -70,13 +69,17 @@ const generatePlugins = plugins => {
     .join('\n');
 };
 
+const findBirthday = (posts, file) => {
+  return posts.find(post => post.path === file).birth;
+};
+
 const generateBlogIndex = (blogFiles, options) => {
   const blogPosts = blogFiles
-    .map(blogFile => ({
-      path: path.relative(options.src, blogFile),
-      birthtime: fs.statSync(blogFile).birthtime
-    }))
-    .sort((a, b) => a.birthtime < b.birthtime);
+    .map(blogFile => path.relative(options.src, blogFile))
+    .sort(
+      (a, b) =>
+        findBirthday(options.blogPosts, a) < findBirthday(options.blogPosts, b)
+    );
 
   return `
     import scrollToElement from 'scroll-to-element';
@@ -119,19 +122,19 @@ const generateBlogIndex = (blogFiles, options) => {
 
       render() {
         return e('div', null, [
-          e(VisibilitySensor, { onChange: this.toggleScrollTopButton, scrollCheck: true }, e('div')),
+          e(VisibilitySensor, { key: 'visibilitySensor', onChange: this.toggleScrollTopButton, scrollCheck: true }, e('div')),
           ${JSON.stringify(
-            blogPosts.map(post => post.path)
+            blogPosts
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
             const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
-            return e(BlogPost, { stub: true, atIndex: true });
+            return e(BlogPost, { stub: true, atIndex: true, key: blogFile });
           }),
           ${
             blogPosts.length
-          } > this.state.shownPosts && e('div', { className: 'showMore' }, e('button', { className: 'button', onClick: this.showMore } , 'Load More')),
-          this.state.showScrollButton && e('div', { className: 'backToTop notification is-info', onClick: this.scrollTop }, [
-            e('i', { className: 'fas fa-angle-up' }),
-            e('span', { className: 'notification is-light', style: { paddingRight: '1.5rem', borderBottomLeftRadius: 0, borderTopLeftRadius: 0, boxShadow: 'none', border: 'none' } }, 'Back to Top')
+          } > this.state.shownPosts && e('div', { className: 'showMore' }, e('button', { className: 'button', onClick: this.showMore, key: 'showMore' } , 'Load More')),
+          this.state.showScrollButton && e('div', { className: 'backToTop notification is-info', onClick: this.scrollTop, key: 'scrollButton' }, [
+            e('i', { className: 'fas fa-angle-up', key: 'uparrow' }),
+            e('span', { className: 'notification is-light', key: 'toTop', style: { paddingRight: '1.5rem', borderBottomLeftRadius: 0, borderTopLeftRadius: 0, boxShadow: 'none', border: 'none' } }, 'Back to Top')
           ])
         ]);
       }

@@ -103,6 +103,12 @@ class Header extends Component {
     menuOpen: false
   };
 
+  closeMenu = () => {
+    this.setState({
+      menuOpen: false
+    });
+  };
+
   onClickHamburger = () => {
     const { menuOpen } = this.state;
 
@@ -120,7 +126,7 @@ class Header extends Component {
       >
         <div className={styles.container}>
           <div className="navbar-brand">
-            <a href="/" className={makeClass(styles.title, 'navbar-item')}>
+            <a href="#/" className={makeClass(styles.title, 'navbar-item')}>
               {this.props.logo && (
                 <img
                   src={this.props.logo}
@@ -128,7 +134,12 @@ class Header extends Component {
                   className={makeClass(styles.logo, 'navbar-item')}
                 />
               )}
-              <span className={makeClass('is-hidden-mobile', styles.titleText)}>
+              <span
+                className={makeClass(
+                  'is-hidden-mobile navbar-item',
+                  styles.titleText
+                )}
+              >
                 {this.props.title}
               </span>
             </a>
@@ -155,7 +166,7 @@ class Header extends Component {
               this.state.menuOpen && 'is-active'
             )}
           >
-            <div className="navbar-end">
+            <div className="navbar-end" onClick={this.closeMenu}>
               {this.props.navItems ? (
                 Object.entries(this.props.navItems).map(item => (
                   <NavItem key={item[0]} item={item} {...this.props} />

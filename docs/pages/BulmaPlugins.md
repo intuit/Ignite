@@ -71,9 +71,9 @@ OUTPUT:
 
 Small tag labels to insert anywhere
 
-Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)] {YOUR_STRING}
+Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)][your_string]
 
-Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)]:[[SIZE](https://bulma.io/documentation/elements/tag/#sizes)] {YOUR_STRING}
+Structure: # : [[COLOR](https://bulma.io/documentation/elements/tag/#colors)]:[[SIZE](https://bulma.io/documentation/elements/tag/#sizes)][your_string]
 
 ```markdown
 #:is-info useful information #:is-success:is-large extension
