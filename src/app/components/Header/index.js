@@ -103,6 +103,12 @@ class Header extends Component {
     menuOpen: false
   };
 
+  closeMenu = () => {
+    this.setState({
+      menuOpen: false
+    });
+  };
+
   onClickHamburger = () => {
     const { menuOpen } = this.state;
 
@@ -155,7 +161,7 @@ class Header extends Component {
               this.state.menuOpen && 'is-active'
             )}
           >
-            <div className="navbar-end">
+            <div className="navbar-end" onClick={this.closeMenu}>
               {this.props.navItems ? (
                 Object.entries(this.props.navItems).map(item => (
                   <NavItem key={item[0]} item={item} {...this.props} />
