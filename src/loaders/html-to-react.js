@@ -308,19 +308,20 @@ export function index(source, pathToMarkdown, options) {
 }
 
 export function codeTabs(source) {
-  let codeTabsComponent;
+  let codeTabsComponents = [];
+  let start = source.indexOf('<CodeTabs>');
+  let index = 0;
 
-  if (source.indexOf('<CodeTabs>') !== -1) {
-    const start = source.indexOf('<CodeTabs>');
+  while (start !== -1) {
     const endString = '</CodeTabs>';
-    const end = source.indexOf('</CodeTabs>');
+    let end = source.indexOf('</CodeTabs>', start);
     let html = source.substring(start, end + endString.length);
 
     html = html.replace('CodeTabs', 'div className="codeTabs"');
     html = html.replace('CodeTabs', 'div');
 
-    codeTabsComponent = `
-      class CodeTabs extends React.Component {
+    codeTabsComponent.push(`
+      class CodeTabs${index} extends React.Component {
         state = {
           tabIndex: 0
         }
@@ -337,17 +338,20 @@ export function codeTabs(source) {
           )
         }
       }
-    `;
+    `);
 
     source =
       source.slice(0, start) +
-      '<CodeTabs />' +
+      `<CodeTabs${index} />` +
       source.slice(end + endString.length);
+    end = source.indexOf(`<CodeTabs${index} />`, start);
+    start = source.indexOf('<CodeTabs>', end);
+    index += 1;
   }
 
   return {
     source,
-    codeTabsComponent
+    codeTabsComponent: codeTabsComponents.join('\n')
   };
 }
 
