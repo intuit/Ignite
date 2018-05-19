@@ -304,10 +304,6 @@ p {
   padding-left: 0;
 }
 
-:global .content :not(.codeBlocks) > pre:not(:last-child) {
-  margin-bottom: 3rem;
-}
-
 :global .codeBlocks {
   display: flex;
   flex-wrap: nowrap;
@@ -319,6 +315,10 @@ p {
   pre {
     flex: 0 0 100%;
   }
+}
+
+:global .content :not(.codeBlocks) > pre:not(:last-child) {
+  margin-bottom: 3rem;
 }
 
 :global .content .codeTabs li + li {

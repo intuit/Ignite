@@ -43,17 +43,10 @@ export const regexIndexOf = function(string, regex, startpos) {
   return indexOf >= 0 ? indexOf + (startpos || 0) : indexOf;
 };
 
-const replaceAll = (
-  source,
-  regex,
-  search = {},
-  replace = {},
-  start = 0,
-  limit
-) => {
-  let indexOnPage = regexIndexOf(source, regex, start);
+const replaceAll = (source, regex, search = {}, replace = {}) => {
+  let indexOnPage = regexIndexOf(source, regex);
 
-  while (indexOnPage !== -1 && (!limit || indexOnPage <= limit)) {
+  while (indexOnPage !== -1) {
     source = replaceAt(source, search.start, replace.start, indexOnPage);
 
     if (search.end) {
@@ -308,7 +301,7 @@ export function index(source, pathToMarkdown, options) {
 }
 
 export function codeTabs(source) {
-  let codeTabsComponents = [];
+  const codeTabsComponents = [];
   let start = source.indexOf('<CodeTabs>');
   let index = 0;
 
@@ -320,7 +313,7 @@ export function codeTabs(source) {
     html = html.replace('CodeTabs', 'div className="codeTabs"');
     html = html.replace('CodeTabs', 'div');
 
-    codeTabsComponent.push(`
+    codeTabsComponents.push(`
       class CodeTabs${index} extends React.Component {
         state = {
           tabIndex: 0
@@ -356,8 +349,9 @@ export function codeTabs(source) {
 }
 
 export function markDownPage(source) {
-  let codeTabsComponent;
-  ({ codeTabsComponent, source } = codeTabs(source));
+  const s = codeTabs(source);
+  const { codeTabsComponent } = s;
+  ({ source } = s);
 
   source = sanitizeJSX(
     source.replace(
