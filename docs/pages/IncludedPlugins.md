@@ -80,6 +80,30 @@ Code blocks are colored with [Highlight.js](https://github.com/isagalaev/highlig
 ```
 ````
 
+## Tabbed Code Blocks
+
+OUTPUT:
+
+::: codeTabs CSS HTML JS
+
+```css
+.className {
+  background: red;
+}
+```
+
+```html
+<div class="className">
+```
+
+```javascript
+function doSomething() {
+  return 'foo';
+}
+```
+
+:::
+
 ## Highlight Specific lines
 
 _NOT WORKING_

@@ -124,6 +124,7 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-tile'),
                   require('./dist/extensions/collapse'),
                   require('./dist/extensions/embed'),
+                  require('./dist/extensions/code-tabs'),
                   ...pluginTokens,
                   ...markdownPlugins
                 ],
