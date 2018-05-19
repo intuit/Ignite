@@ -3,7 +3,7 @@ title: First Post
 image: https://pbs.twimg.com/profile_banners/7547562/1516584955/1500x500
 author:
   name: Andrew Lisowski
-  link: https://github.intuit.com/alisowski
+  url: https://github.intuit.com/alisowski
   email: lisowski54@gmail.com
 ---
 

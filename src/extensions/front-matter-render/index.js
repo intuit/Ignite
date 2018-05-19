@@ -6,19 +6,19 @@ function parseConfig(config) {
 
   let name;
   let email;
-  let link;
+  let url;
 
   if (typeof author === 'string') {
     name = author;
   } else {
-    ({ name, link, email } = author);
+    ({ name, url, email } = author);
   }
 
   return {
     title,
     image,
     name,
-    link,
+    url,
     email
   };
 }
@@ -35,13 +35,13 @@ export default function renderBlogFrontMatter(tokens) {
     console.log(e);
   }
 
-  let { title, image, name, link, email } = parseConfig(blogConfig);
+  let { title, image, name, url, email } = parseConfig(blogConfig);
   const profilePic = email
     ? `<img src="${gravatar.url(email)}" class="authorImage" />`
     : '';
 
-  if (link) {
-    name = `<a target="_blank" href="${link}">${name}</a>`;
+  if (url) {
+    name = `<a target="_blank" href="${url}">${name}</a>`;
   }
 
   return `

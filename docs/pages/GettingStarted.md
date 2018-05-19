@@ -6,7 +6,7 @@
 yarn add -D ignite
 ```
 
-## Usage
+## Add scripts
 
 Add `docs` script to package.json
 
