@@ -92,14 +92,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@fuego/github-release@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.npmjs.intuit.net/@/@fuego/github-release/_attachments/github-release-2.0.0.tgz#5de5f5daf28cb84b2c67f78c85020c866739740b"
+"@fuego/github-release@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.npmjs.intuit.net/@/@fuego/github-release/_attachments/github-release-2.1.4.tgz#d23b4c8dc099c60cde84a49ee2903869bb30938c"
   dependencies:
     "@octokit/rest" "~15.2.6"
     babel-runtime "6.25.0"
     commander "2.11.0"
     lodash "4.17.4"
+    node-fetch "2.1.2"
     parse-git "1.1.2"
     parse-github-url "~1.0.0"
     proxy-from-env "1.0.0"
@@ -550,6 +551,10 @@ ast-types@0.11.3:
   version "0.11.3"
   resolved "https://registry.npmjs.intuit.net/a/ast-types/_attachments/ast-types-0.11.3.tgz#c20757fe72ee71278ea0ff3d87e5c2ca30d9edf8"
 
+ast-types@0.11.4:
+  version "0.11.4"
+  resolved "https://registry.npmjs.intuit.net/a/ast-types/_attachments/ast-types-0.11.4.tgz#76f930930e9571851ba282a9a0f6923f29f6be2f"
+
 astral-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-1.0.0.tgz#6c8c3fb827dd43ee3918f27b82782ab7658a6fd9"
@@ -832,12 +837,12 @@ babel-jest@^16.0.0:
     babel-plugin-istanbul "^2.0.0"
     babel-preset-jest "^16.0.0"
 
-babel-jest@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.npmjs.intuit.net/b/babel-jest/_attachments/babel-jest-22.4.3.tgz#4b7a0b6041691bbd422ab49b3b73654a49a6627a"
+babel-jest@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/b/babel-jest/_attachments/babel-jest-22.4.4.tgz#977259240420e227444ebe49e226a61e49ea659d"
   dependencies:
     babel-plugin-istanbul "^4.1.5"
-    babel-preset-jest "^22.4.3"
+    babel-preset-jest "^22.4.4"
 
 babel-loader@^7.1.4:
   version "7.1.4"
@@ -885,9 +890,9 @@ babel-plugin-jest-hoist@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-16.0.0.tgz#b58ca3f770982a7e7c25b5614b2e57e9dafc6e76"
 
-babel-plugin-jest-hoist@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.npmjs.intuit.net/b/babel-plugin-jest-hoist/_attachments/babel-plugin-jest-hoist-22.4.3.tgz#7d8bcccadc2667f96a0dcc6afe1891875ee6c14a"
+babel-plugin-jest-hoist@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/b/babel-plugin-jest-hoist/_attachments/babel-plugin-jest-hoist-22.4.4.tgz#b9851906eab34c7bf6f8c895a2b08bea1a844c0b"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -1336,11 +1341,11 @@ babel-preset-jest@^16.0.0:
   dependencies:
     babel-plugin-jest-hoist "^16.0.0"
 
-babel-preset-jest@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.npmjs.intuit.net/b/babel-preset-jest/_attachments/babel-preset-jest-22.4.3.tgz#e92eef9813b7026ab4ca675799f37419b5a44156"
+babel-preset-jest@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/b/babel-preset-jest/_attachments/babel-preset-jest-22.4.4.tgz#ec9fbd8bcd7dfd24b8b5320e0e688013235b7c39"
   dependencies:
-    babel-plugin-jest-hoist "^22.4.3"
+    babel-plugin-jest-hoist "^22.4.4"
     babel-plugin-syntax-object-rest-spread "^6.13.0"
 
 babel-preset-react@^6.24.1:
@@ -2223,7 +2228,7 @@ combined-stream@1.0.6, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.11.0, commander@^2.11.0, commander@~2.11.0:
+commander@2.11.0, commander@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
@@ -2417,9 +2422,9 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-cosmiconfig@5.0.3, cosmiconfig@^5.0.0:
-  version "5.0.3"
-  resolved "https://registry.npmjs.intuit.net/c/cosmiconfig/_attachments/cosmiconfig-5.0.3.tgz#299c08ebce9d2df8a2c9ec3f11e55b1c2e897bf3"
+cosmiconfig@5.0.4:
+  version "5.0.4"
+  resolved "https://registry.npmjs.intuit.net/c/cosmiconfig/_attachments/cosmiconfig-5.0.4.tgz#fe4c1fccf8947ab30911760eace33784749eb51e"
   dependencies:
     is-directory "^0.3.1"
     js-yaml "^3.9.0"
@@ -2445,6 +2450,14 @@ cosmiconfig@^4.0.0:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
+
+cosmiconfig@^5.0.0:
+  version "5.0.3"
+  resolved "https://registry.npmjs.intuit.net/c/cosmiconfig/_attachments/cosmiconfig-5.0.3.tgz#299c08ebce9d2df8a2c9ec3f11e55b1c2e897bf3"
+  dependencies:
+    is-directory "^0.3.1"
+    js-yaml "^3.9.0"
+    parse-json "^4.0.0"
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -3503,9 +3516,9 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-expect@^22.4.3:
+expect@^22.4.0, expect@^22.4.3:
   version "22.4.3"
-  resolved "https://registry.yarnpkg.com/expect/-/expect-22.4.3.tgz#d5a29d0a0e1fb2153557caef2674d4547e914674"
+  resolved "https://registry.npmjs.intuit.net/e/expect/_attachments/expect-22.4.3.tgz#d5a29d0a0e1fb2153557caef2674d4547e914674"
   dependencies:
     ansi-styles "^3.2.0"
     jest-diff "^22.4.3"
@@ -3514,7 +3527,7 @@ expect@^22.4.3:
     jest-message-util "^22.4.3"
     jest-regex-util "^22.4.3"
 
-express@^4.15.2, express@^4.16.2:
+express@^4.16.2:
   version "4.16.3"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
   dependencies:
@@ -4456,15 +4469,6 @@ http-proxy-agent@^2.1.0:
     agent-base "4"
     debug "3.1.0"
 
-http-proxy-middleware@^0.17.4:
-  version "0.17.4"
-  resolved "https://registry.npmjs.intuit.net/h/http-proxy-middleware/_attachments/http-proxy-middleware-0.17.4.tgz#642e8848851d66f09d4f124912846dbaeb41b833"
-  dependencies:
-    http-proxy "^1.16.2"
-    is-glob "^3.1.0"
-    lodash "^4.17.2"
-    micromatch "^2.3.11"
-
 http-proxy-middleware@~0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/http-proxy-middleware/-/http-proxy-middleware-0.18.0.tgz#0987e6bb5a5606e5a69168d8f967a87f15dd8aab"
@@ -5166,15 +5170,15 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-jest-changed-files@^22.4.3:
+jest-changed-files@^22.2.0:
   version "22.4.3"
   resolved "https://registry.npmjs.intuit.net/j/jest-changed-files/_attachments/jest-changed-files-22.4.3.tgz#8882181e022c38bd46a2e4d18d44d19d90a90fb2"
   dependencies:
     throat "^4.0.0"
 
-jest-cli@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.npmjs.intuit.net/j/jest-cli/_attachments/jest-cli-22.4.3.tgz#bf16c4a5fb7edc3fa5b9bb7819e34139e88a72c7"
+jest-cli@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/j/jest-cli/_attachments/jest-cli-22.4.4.tgz#68cd2a2aae983adb1e6638248ca21082fd6d9e90"
   dependencies:
     ansi-escapes "^3.0.0"
     chalk "^2.0.1"
@@ -5187,20 +5191,20 @@ jest-cli@^22.4.3:
     istanbul-lib-coverage "^1.1.1"
     istanbul-lib-instrument "^1.8.0"
     istanbul-lib-source-maps "^1.2.1"
-    jest-changed-files "^22.4.3"
-    jest-config "^22.4.3"
-    jest-environment-jsdom "^22.4.3"
-    jest-get-type "^22.4.3"
-    jest-haste-map "^22.4.3"
-    jest-message-util "^22.4.3"
-    jest-regex-util "^22.4.3"
-    jest-resolve-dependencies "^22.4.3"
-    jest-runner "^22.4.3"
-    jest-runtime "^22.4.3"
-    jest-snapshot "^22.4.3"
-    jest-util "^22.4.3"
-    jest-validate "^22.4.3"
-    jest-worker "^22.4.3"
+    jest-changed-files "^22.2.0"
+    jest-config "^22.4.4"
+    jest-environment-jsdom "^22.4.1"
+    jest-get-type "^22.1.0"
+    jest-haste-map "^22.4.2"
+    jest-message-util "^22.4.0"
+    jest-regex-util "^22.1.0"
+    jest-resolve-dependencies "^22.1.0"
+    jest-runner "^22.4.4"
+    jest-runtime "^22.4.4"
+    jest-snapshot "^22.4.0"
+    jest-util "^22.4.1"
+    jest-validate "^22.4.4"
+    jest-worker "^22.2.2"
     micromatch "^2.3.11"
     node-notifier "^5.2.1"
     realpath-native "^1.0.0"
@@ -5227,13 +5231,29 @@ jest-config@^22.4.3:
     jest-validate "^22.4.3"
     pretty-format "^22.4.3"
 
+jest-config@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/j/jest-config/_attachments/jest-config-22.4.4.tgz#72a521188720597169cd8b4ff86934ef5752d86a"
+  dependencies:
+    chalk "^2.0.1"
+    glob "^7.1.1"
+    jest-environment-jsdom "^22.4.1"
+    jest-environment-node "^22.4.1"
+    jest-get-type "^22.1.0"
+    jest-jasmine2 "^22.4.4"
+    jest-regex-util "^22.1.0"
+    jest-resolve "^22.4.2"
+    jest-util "^22.4.1"
+    jest-validate "^22.4.4"
+    pretty-format "^22.4.0"
+
 jest-css-modules@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/jest-css-modules/-/jest-css-modules-1.1.0.tgz#19332cf767618e6052f0900de25e6b8859e65b95"
   dependencies:
     babel-jest "^16.0.0"
 
-jest-diff@^22.4.3:
+jest-diff@^22.4.0, jest-diff@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-22.4.3.tgz#e18cc3feff0aeef159d02310f2686d4065378030"
   dependencies:
@@ -5246,32 +5266,32 @@ jest-docblock@^21.0.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
 
-jest-docblock@^22.4.3:
+jest-docblock@^22.4.0, jest-docblock@^22.4.3:
   version "22.4.3"
   resolved "https://registry.npmjs.intuit.net/j/jest-docblock/_attachments/jest-docblock-22.4.3.tgz#50886f132b42b280c903c592373bb6e93bb68b19"
   dependencies:
     detect-newline "^2.1.0"
 
-jest-environment-jsdom@^22.4.3:
+jest-environment-jsdom@^22.4.1, jest-environment-jsdom@^22.4.3:
   version "22.4.3"
-  resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-22.4.3.tgz#d67daa4155e33516aecdd35afd82d4abf0fa8a1e"
+  resolved "https://registry.npmjs.intuit.net/j/jest-environment-jsdom/_attachments/jest-environment-jsdom-22.4.3.tgz#d67daa4155e33516aecdd35afd82d4abf0fa8a1e"
   dependencies:
     jest-mock "^22.4.3"
     jest-util "^22.4.3"
     jsdom "^11.5.1"
 
-jest-environment-node@^22.4.3:
+jest-environment-node@^22.4.1, jest-environment-node@^22.4.3:
   version "22.4.3"
-  resolved "https://registry.yarnpkg.com/jest-environment-node/-/jest-environment-node-22.4.3.tgz#54c4eaa374c83dd52a9da8759be14ebe1d0b9129"
+  resolved "https://registry.npmjs.intuit.net/j/jest-environment-node/_attachments/jest-environment-node-22.4.3.tgz#54c4eaa374c83dd52a9da8759be14ebe1d0b9129"
   dependencies:
     jest-mock "^22.4.3"
     jest-util "^22.4.3"
 
-jest-get-type@^22.4.3:
+jest-get-type@^22.1.0, jest-get-type@^22.4.3:
   version "22.4.3"
-  resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-22.4.3.tgz#e3a8504d8479342dd4420236b322869f18900ce4"
+  resolved "https://registry.npmjs.intuit.net/j/jest-get-type/_attachments/jest-get-type-22.4.3.tgz#e3a8504d8479342dd4420236b322869f18900ce4"
 
-jest-haste-map@^22.4.3:
+jest-haste-map@^22.4.2:
   version "22.4.3"
   resolved "https://registry.npmjs.intuit.net/j/jest-haste-map/_attachments/jest-haste-map-22.4.3.tgz#25842fa2ba350200767ac27f658d58b9d5c2e20b"
   dependencies:
@@ -5299,21 +5319,37 @@ jest-jasmine2@^22.4.3:
     jest-util "^22.4.3"
     source-map-support "^0.5.0"
 
-jest-junit@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-3.7.0.tgz#34abaed677439eb96557815d18b5ba01364fd897"
+jest-jasmine2@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/j/jest-jasmine2/_attachments/jest-jasmine2-22.4.4.tgz#c55f92c961a141f693f869f5f081a79a10d24e23"
+  dependencies:
+    chalk "^2.0.1"
+    co "^4.6.0"
+    expect "^22.4.0"
+    graceful-fs "^4.1.11"
+    is-generator-fn "^1.0.0"
+    jest-diff "^22.4.0"
+    jest-matcher-utils "^22.4.0"
+    jest-message-util "^22.4.0"
+    jest-snapshot "^22.4.0"
+    jest-util "^22.4.1"
+    source-map-support "^0.5.0"
+
+jest-junit@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.intuit.net/j/jest-junit/_attachments/jest-junit-4.0.0.tgz#6af04d43940d7e81dc7d37ec1b80c97551d91e80"
   dependencies:
     mkdirp "^0.5.1"
     strip-ansi "^4.0.0"
     xml "^1.0.1"
 
-jest-leak-detector@^22.4.3:
+jest-leak-detector@^22.4.0:
   version "22.4.3"
   resolved "https://registry.npmjs.intuit.net/j/jest-leak-detector/_attachments/jest-leak-detector-22.4.3.tgz#2b7b263103afae8c52b6b91241a2de40117e5b35"
   dependencies:
     pretty-format "^22.4.3"
 
-jest-matcher-utils@^22.4.3:
+jest-matcher-utils@^22.4.0, jest-matcher-utils@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-22.4.3.tgz#4632fe428ebc73ebc194d3c7b65d37b161f710ff"
   dependencies:
@@ -5321,7 +5357,7 @@ jest-matcher-utils@^22.4.3:
     jest-get-type "^22.4.3"
     pretty-format "^22.4.3"
 
-jest-message-util@^22.4.3:
+jest-message-util@^22.4.0, jest-message-util@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-message-util/-/jest-message-util-22.4.3.tgz#cf3d38aafe4befddbfc455e57d65d5239e399eb7"
   dependencies:
@@ -5335,56 +5371,56 @@ jest-mock@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-22.4.3.tgz#f63ba2f07a1511772cdc7979733397df770aabc7"
 
-jest-regex-util@^22.4.3:
+jest-regex-util@^22.1.0, jest-regex-util@^22.4.3:
   version "22.4.3"
-  resolved "https://registry.yarnpkg.com/jest-regex-util/-/jest-regex-util-22.4.3.tgz#a826eb191cdf22502198c5401a1fc04de9cef5af"
+  resolved "https://registry.npmjs.intuit.net/j/jest-regex-util/_attachments/jest-regex-util-22.4.3.tgz#a826eb191cdf22502198c5401a1fc04de9cef5af"
 
-jest-resolve-dependencies@^22.4.3:
+jest-resolve-dependencies@^22.1.0:
   version "22.4.3"
   resolved "https://registry.npmjs.intuit.net/j/jest-resolve-dependencies/_attachments/jest-resolve-dependencies-22.4.3.tgz#e2256a5a846732dc3969cb72f3c9ad7725a8195e"
   dependencies:
     jest-regex-util "^22.4.3"
 
-jest-resolve@^22.4.3:
+jest-resolve@^22.4.2, jest-resolve@^22.4.3:
   version "22.4.3"
-  resolved "https://registry.yarnpkg.com/jest-resolve/-/jest-resolve-22.4.3.tgz#0ce9d438c8438229aa9b916968ec6b05c1abb4ea"
+  resolved "https://registry.npmjs.intuit.net/j/jest-resolve/_attachments/jest-resolve-22.4.3.tgz#0ce9d438c8438229aa9b916968ec6b05c1abb4ea"
   dependencies:
     browser-resolve "^1.11.2"
     chalk "^2.0.1"
 
-jest-runner@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.npmjs.intuit.net/j/jest-runner/_attachments/jest-runner-22.4.3.tgz#298ddd6a22b992c64401b4667702b325e50610c3"
+jest-runner@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/j/jest-runner/_attachments/jest-runner-22.4.4.tgz#dfca7b7553e0fa617e7b1291aeb7ce83e540a907"
   dependencies:
     exit "^0.1.2"
-    jest-config "^22.4.3"
-    jest-docblock "^22.4.3"
-    jest-haste-map "^22.4.3"
-    jest-jasmine2 "^22.4.3"
-    jest-leak-detector "^22.4.3"
-    jest-message-util "^22.4.3"
-    jest-runtime "^22.4.3"
-    jest-util "^22.4.3"
-    jest-worker "^22.4.3"
+    jest-config "^22.4.4"
+    jest-docblock "^22.4.0"
+    jest-haste-map "^22.4.2"
+    jest-jasmine2 "^22.4.4"
+    jest-leak-detector "^22.4.0"
+    jest-message-util "^22.4.0"
+    jest-runtime "^22.4.4"
+    jest-util "^22.4.1"
+    jest-worker "^22.2.2"
     throat "^4.0.0"
 
-jest-runtime@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.npmjs.intuit.net/j/jest-runtime/_attachments/jest-runtime-22.4.3.tgz#b69926c34b851b920f666c93e86ba2912087e3d0"
+jest-runtime@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/j/jest-runtime/_attachments/jest-runtime-22.4.4.tgz#9ba7792fc75582a5be0f79af6f8fe8adea314048"
   dependencies:
     babel-core "^6.0.0"
-    babel-jest "^22.4.3"
+    babel-jest "^22.4.4"
     babel-plugin-istanbul "^4.1.5"
     chalk "^2.0.1"
     convert-source-map "^1.4.0"
     exit "^0.1.2"
     graceful-fs "^4.1.11"
-    jest-config "^22.4.3"
-    jest-haste-map "^22.4.3"
-    jest-regex-util "^22.4.3"
-    jest-resolve "^22.4.3"
-    jest-util "^22.4.3"
-    jest-validate "^22.4.3"
+    jest-config "^22.4.4"
+    jest-haste-map "^22.4.2"
+    jest-regex-util "^22.1.0"
+    jest-resolve "^22.4.2"
+    jest-util "^22.4.1"
+    jest-validate "^22.4.4"
     json-stable-stringify "^1.0.1"
     micromatch "^2.3.11"
     realpath-native "^1.0.0"
@@ -5397,9 +5433,9 @@ jest-serializer@^22.4.3:
   version "22.4.3"
   resolved "https://registry.npmjs.intuit.net/j/jest-serializer/_attachments/jest-serializer-22.4.3.tgz#a679b81a7f111e4766235f4f0c46d230ee0f7436"
 
-jest-snapshot@^22.4.3:
+jest-snapshot@^22.4.0, jest-snapshot@^22.4.3:
   version "22.4.3"
-  resolved "https://registry.yarnpkg.com/jest-snapshot/-/jest-snapshot-22.4.3.tgz#b5c9b42846ffb9faccb76b841315ba67887362d2"
+  resolved "https://registry.npmjs.intuit.net/j/jest-snapshot/_attachments/jest-snapshot-22.4.3.tgz#b5c9b42846ffb9faccb76b841315ba67887362d2"
   dependencies:
     chalk "^2.0.1"
     jest-diff "^22.4.3"
@@ -5408,7 +5444,7 @@ jest-snapshot@^22.4.3:
     natural-compare "^1.4.0"
     pretty-format "^22.4.3"
 
-jest-util@^22.4.3:
+jest-util@^22.4.1, jest-util@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-22.4.3.tgz#c70fec8eec487c37b10b0809dc064a7ecf6aafac"
   dependencies:
@@ -5430,18 +5466,28 @@ jest-validate@^22.4.0, jest-validate@^22.4.3:
     leven "^2.1.0"
     pretty-format "^22.4.3"
 
-jest-worker@^22.4.3:
+jest-validate@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/j/jest-validate/_attachments/jest-validate-22.4.4.tgz#1dd0b616ef46c995de61810d85f57119dbbcec4d"
+  dependencies:
+    chalk "^2.0.1"
+    jest-config "^22.4.4"
+    jest-get-type "^22.1.0"
+    leven "^2.1.0"
+    pretty-format "^22.4.0"
+
+jest-worker@^22.2.2, jest-worker@^22.4.3:
   version "22.4.3"
   resolved "https://registry.npmjs.intuit.net/j/jest-worker/_attachments/jest-worker-22.4.3.tgz#5c421417cba1c0abf64bf56bd5fb7968d79dd40b"
   dependencies:
     merge-stream "^1.0.1"
 
-jest@^22.4.3:
-  version "22.4.3"
-  resolved "https://registry.npmjs.intuit.net/j/jest/_attachments/jest-22.4.3.tgz#2261f4b117dc46d9a4a1a673d2150958dee92f16"
+jest@^22.4.4:
+  version "22.4.4"
+  resolved "https://registry.npmjs.intuit.net/j/jest/_attachments/jest-22.4.4.tgz#ffb36c9654b339a13e10b3d4b338eb3e9d49f6eb"
   dependencies:
     import-local "^1.0.0"
-    jest-cli "^22.4.3"
+    jest-cli "^22.4.4"
 
 js-base64@^2.1.9:
   version "2.4.3"
@@ -5544,7 +5590,7 @@ jsdom@^11.5.1:
     ws "^4.0.0"
     xml-name-validator "^3.0.0"
 
-jsdom@^9.0.0, jsdom@^9.4.5:
+jsdom@^9.0.0:
   version "9.12.0"
   resolved "https://registry.npmjs.intuit.net/j/jsdom/_attachments/jsdom-9.12.0.tgz#e8c546fffcb06c00d4833ca84410fed7f8a097d4"
   dependencies:
@@ -5722,9 +5768,9 @@ linkify-it@^2.0.0:
   dependencies:
     uc.micro "^1.0.1"
 
-lint-staged@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.npmjs.intuit.net/l/lint-staged/_attachments/lint-staged-7.1.0.tgz#1514a5b71b8d9492ca0c3d2a44769cbcbc8bcc79"
+lint-staged@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.npmjs.intuit.net/l/lint-staged/_attachments/lint-staged-7.1.1.tgz#bcdb5de76a6b52db6b2cf83fce62aee95baf7fa0"
   dependencies:
     app-root-path "^2.0.1"
     chalk "^2.3.1"
@@ -6079,9 +6125,9 @@ markdown-it-external-links@0.0.6:
   version "0.1.2"
   resolved "git+https://github.com/hipstersmoothie/markdown-it-front-matter.git#cf3c840c9ecbd2cf3b1d66a358f1bdd50d11c6be"
 
-markdown-it-highlight-lines@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/markdown-it-highlight-lines/-/markdown-it-highlight-lines-1.0.0.tgz#d6b56aca5ab9674cf140214f5591749e87ecbc39"
+markdown-it-highlight-lines@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.intuit.net/m/markdown-it-highlight-lines/_attachments/markdown-it-highlight-lines-1.0.1.tgz#59062f9959dc50d54a15384164ac169a8ecb003a"
 
 markdown-it-ins@^2.0.0:
   version "2.0.0"
@@ -6498,16 +6544,16 @@ node-dir@0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/node-dir/-/node-dir-0.1.8.tgz#55fb8deb699070707fb67f91a460f0448294c77d"
 
+node-fetch@2.1.2, node-fetch@^2.1.1:
+  version "2.1.2"
+  resolved "https://registry.npmjs.intuit.net/n/node-fetch/_attachments/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
+
 node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
   dependencies:
     encoding "^0.1.11"
     is-stream "^1.0.1"
-
-node-fetch@^2.1.1:
-  version "2.1.2"
-  resolved "https://registry.npmjs.intuit.net/n/node-fetch/_attachments/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
 
 node-forge@0.7.5:
   version "0.7.5"
@@ -7606,7 +7652,7 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-pretty-format@^22.4.3:
+pretty-format@^22.4.0, pretty-format@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-22.4.3.tgz#f873d780839a9c02e9664c8a082e9ee79eaac16f"
   dependencies:
@@ -7856,18 +7902,6 @@ react-router@^4.2.0:
     path-to-regexp "^1.7.0"
     prop-types "^15.5.4"
     warning "^3.0.0"
-
-react-snapshot@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.npmjs.intuit.net/r/react-snapshot/_attachments/react-snapshot-1.3.0.tgz#f86903017192f96e643d63f8855116b219b76484"
-  dependencies:
-    connect-history-api-fallback "^1.3.0"
-    express "^4.15.2"
-    glob-to-regexp "^0.3.0"
-    http-proxy-middleware "^0.17.4"
-    jsdom "^9.4.5"
-    mkdirp "^0.5.1"
-    safe-commander "^2.11.1"
 
 react-test-renderer@^16.3.2:
   version "16.3.2"
@@ -8403,12 +8437,6 @@ safe-buffer@5.1.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
 safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
-
-safe-commander@^2.11.1:
-  version "2.11.2"
-  resolved "https://registry.npmjs.intuit.net/s/safe-commander/_attachments/safe-commander-2.11.2.tgz#a15d1370b75aa7260c2eb926f54c203825fad943"
-  dependencies:
-    commander "~2.11.0"
 
 safe-regex@^1.1.0:
   version "1.1.0"
@@ -10144,9 +10172,9 @@ xo-init@^0.7.0:
     the-argv "^1.0.0"
     write-pkg "^3.1.0"
 
-xo@^0.21.0:
-  version "0.21.0"
-  resolved "https://registry.npmjs.intuit.net/x/xo/_attachments/xo-0.21.0.tgz#c5b8d871b06e307f910062d3fb7d8a95aa94296f"
+xo@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.npmjs.intuit.net/x/xo/_attachments/xo-0.21.1.tgz#b9b198e5af5118654994925ff8b371a82e9b4a2c"
   dependencies:
     arrify "^1.0.1"
     debug "^3.1.0"
