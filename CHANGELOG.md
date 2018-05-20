@@ -106,3 +106,7 @@
  0.0.27
 
 - Code tabs #98
+
+ 0.0.28
+
+- Fix Highlight Lines #99
