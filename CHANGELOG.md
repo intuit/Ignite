@@ -110,3 +110,7 @@
  0.0.28
 
 - Fix Highlight Lines #99
+
+ 0.0.29
+
+- Structure #100
