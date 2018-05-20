@@ -135,6 +135,11 @@ export function sanitizeJSX(source) {
     '<a target="_blank" href="http'
   );
 
+  source.replace(
+    new RegExp('highlighted-line', 'g'),
+    'highlighted-line hero is-primary'
+  );
+
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
@@ -182,122 +187,6 @@ export function addActiveAll(source, firstLink, indexFile) {
   }
 
   return source;
-}
-
-export function blogPost(source, pathToMarkdown, options) {
-  const date = options.blogPosts.find(post => post.path === pathToMarkdown)
-    .birth;
-  const card = `
-    <div class="card">
-      <div class="card-content">
-        <div class="blogBody">
-          
-        </div>
-      </div>
-    </div>    
-  `;
-  const $source = cheerio.load(`<div>${source}</div>`, libHTMLOptions);
-  const $fullPage = cheerio.load(card, libHTMLOptions);
-  const $stub = cheerio.load(card, libHTMLOptions);
-  const heroUrl = $source('#background-image')
-    .remove()
-    .text();
-
-  $source('.blogSubtitle').append(
-    `<span> on ${dayjs(date).format('MMMM D, YYYY')}<span/>`
-  );
-  $stub('.card-content').prepend($source('.media').clone());
-  $fullPage('.card-content').prepend($source('.media').clone());
-  $source('.media').remove();
-
-  $source('div')
-    .clone()
-    .children()
-    .map((i, el) =>
-      $stub('.blogBody').append(
-        i < 3
-          ? el
-          : i === 4 &&
-            `
-        <div class='has-text-centered learnMore'>
-          <a href='#/${pathToMarkdown}'>
-            Read More
-          </a>
-        </div>
-      `
-      )
-    );
-
-  $fullPage('.blogBody').append($source.html());
-
-  source = $fullPage.html();
-  source = sanitizeJSX(source);
-
-  return `
-    import React from 'react';
-    import makeClass from 'classnames';
-    import { Link } from 'react-router-dom';
-
-    const PluginProvider = ({plugins, name, options, children}) => {
-      let Plugin = plugins[name];
-      const pluginOptions = Plugin.options;
-    
-      if (!Plugin) {
-        return <div />;
-      }
-
-      Plugin = Plugin.component;
-      return <Plugin {...pluginOptions}  children={children} {...options} />;
-    };
-
-    class blogPost extends React.Component {
-      componentDidMount() {
-        if (!this.props.atIndex) {
-          window.configuration.setBlogHero('${heroUrl.trim()}');
-        }
-      }
-
-      render() {
-        return  (
-          <div className={makeClass('blogPost', this.props.className)}>
-            <p>{this.props.heroUrl}</p>
-            <section>
-              {this.props.stub ? ${sanitizeJSX($stub.html())} : ${source}}
-            </section>
-          </div>
-        );
-      }
-    }
-
-    export default blogPost;
-  `;
-}
-
-export function index(source, pathToMarkdown, options) {
-  const firstLink = getLink(source);
-
-  source = addActiveAll(source, firstLink, options.index);
-  // Some of the curlies need to stay to pass props to the plugin component
-  source = sanitizeJSX(source);
-  source = source.replace(
-    new RegExp('<ul>', 'g'),
-    '<ul className="menu-list">'
-  );
-  source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
-
-  return `
-    import makeClass from 'classnames';
-
-    export default function markDownPage(props) {
-      return (
-        <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
-          ${source}
-        </aside>
-      );
-    }
-
-    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink}');
-  `;
 }
 
 export function codeTabs(source) {
@@ -348,37 +237,158 @@ export function codeTabs(source) {
   };
 }
 
-export function markDownPage(source) {
-  const s = codeTabs(source);
-  const { codeTabsComponent } = s;
-  ({ source } = s);
+export const initPage = rawSource => {
+  const { codeTabsComponent, source } = codeTabs(rawSource);
 
-  source = sanitizeJSX(
-    source.replace(
-      new RegExp('highlighted-line', 'g'),
-      'highlighted-line hero is-primary'
-    )
+  return {
+    pageStart: `
+      import React from 'react';
+      import makeClass from 'classnames';
+      import { Link } from 'react-router-dom';
+      import Gist from 'react-gist';
+      import TweetEmbed from 'react-tweet-embed'
+
+      const PluginProvider = ({plugins, name, options, children}) => {
+        let Plugin = plugins[name];
+        const pluginOptions = Plugin.options;
+
+        if (!Plugin) {
+          return <div />;
+        }
+
+        Plugin = Plugin.component;
+        return <Plugin {...pluginOptions}  children={children} {...options} />;
+      };
+
+      ${codeTabsComponent}
+    `,
+    source
+  };
+};
+
+export const createStubAndPost = (source, pathToMarkdown, options) => {
+  const date = options.blogPosts.find(post => post.path === pathToMarkdown)
+    .birth;
+  const card = `
+  <div class="card">
+    <div class="card-content">
+      <div class="blogBody">
+        
+      </div>
+    </div>
+  </div>    
+`;
+  const $source = cheerio.load(`<div>${source}</div>`, libHTMLOptions);
+  const $fullPage = cheerio.load(card, libHTMLOptions);
+  const $stub = cheerio.load(card, libHTMLOptions);
+  const heroUrl = $source('#background-image')
+    .remove()
+    .text();
+
+  $source('.blogSubtitle').append(
+    `<span> on ${dayjs(date).format('MMMM D, YYYY')}<span/>`
+  );
+  $stub('.card-content').prepend($source('.media').clone());
+  $fullPage('.card-content').prepend($source('.media').clone());
+  $source('.media').remove();
+
+  $source('div')
+    .clone()
+    .children()
+    .map((i, el) =>
+      $stub('.blogBody').append(
+        i < 3
+          ? el
+          : i === 4 &&
+            `
+      <div class='has-text-centered learnMore'>
+        <a href='#/${pathToMarkdown}'>
+          Read More
+        </a>
+      </div>
+    `
+      )
+    );
+
+  $fullPage('.blogBody').append($source.html());
+
+  return {
+    heroUrl,
+    stub: $stub.html(),
+    post: $fullPage.html()
+  };
+};
+
+export function blogPost(rawSource, pathToMarkdown, options) {
+  const { pageStart, source } = initPage(rawSource);
+  let { heroUrl, stub, post } = createStubAndPost(
+    source,
+    pathToMarkdown,
+    options
   );
 
-  return `
-    import React from 'react';
-    import { Link } from 'react-router-dom';
-    import Gist from 'react-gist';
-    import TweetEmbed from 'react-tweet-embed'
+  post = sanitizeJSX(post);
+  stub = sanitizeJSX(stub);
 
-    const PluginProvider = ({plugins, name, options, children}) => {
-      let Plugin = plugins[name];
-      const pluginOptions = Plugin.options;
-    
-      if (!Plugin) {
-        return <div />;
+  return `
+    ${pageStart}
+
+    class blogPost extends React.Component {
+      componentDidMount() {
+        if (!this.props.atIndex) {
+          window.configuration.setBlogHero('${heroUrl.trim()}');
+        }
       }
 
-      Plugin = Plugin.component;
-      return <Plugin {...pluginOptions}  children={children} {...options} />;
-    };
+      render() {
+        return  (
+          <div className={makeClass('blogPost', this.props.className)}>
+            <p>{this.props.heroUrl}</p>
+            <section>
+              {this.props.stub ? ${stub} : ${post}}
+            </section>
+          </div>
+        );
+      }
+    }
 
-    ${codeTabsComponent}
+    export default blogPost;
+  `;
+}
+
+export function index(source, pathToMarkdown, options) {
+  const firstLink = getLink(source);
+
+  source = addActiveAll(source, firstLink, options.index);
+  source = sanitizeJSX(source);
+  source = source.replace(
+    new RegExp('<ul>', 'g'),
+    '<ul className="menu-list">'
+  );
+  source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
+
+  return `
+    import makeClass from 'classnames';
+
+    export default function markDownPage(props) {
+      return (
+        <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
+          ${source}
+        </aside>
+      );
+    }
+
+    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink}');
+  `;
+}
+
+export function markDownPage(rawSource) {
+  let { pageStart, source } = initPage(rawSource);
+
+  source = sanitizeJSX(source);
+
+  return `
+    ${pageStart}
 
     const markDownPage = props => (
       <div className={props.className}>
