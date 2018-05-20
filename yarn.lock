@@ -6095,9 +6095,9 @@ markdown-it-anchor@^4.0.0:
   dependencies:
     string "^3.3.3"
 
-markdown-it-attrs@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.intuit.net/m/markdown-it-attrs/_attachments/markdown-it-attrs-2.0.0.tgz#be9493483b20da76eea710590c39f18049b6cca1"
+markdown-it-attrs@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.intuit.net/m/markdown-it-attrs/_attachments/markdown-it-attrs-2.1.0.tgz#5446ad57a4921e574a64a3f3711beddd10cb9d0c"
 
 markdown-it-br@^1.0.0:
   version "1.0.0"
