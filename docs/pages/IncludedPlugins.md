@@ -136,12 +136,10 @@ function doSomething() {
 
 ## Highlight Specific lines
 
-_NOT WORKING_
-
 You can call attention to specific lines in your code by including the lines in the block definition.
 
 ````markdown
-```javascript
+```javascript {2}
 function foo() {
   return bar().then(res => {
     return res.doSomething();
@@ -152,7 +150,7 @@ function foo() {
 
 OUTPUT:
 
-```javascript
+```javascript {2}
 function foo() {
   return bar().then(res => {
     return res.doSomething();
@@ -234,6 +232,8 @@ paragraph 1
 paragraph 1
 
 ## HTML Attributes
+
+**_Not Working_**
 
 Add a class, id, or attribute to an element.
 

@@ -95,6 +95,7 @@ module.exports = function(options = {}) {
                   'markdown-it-mark',
                   'markdown-it-ins',
                   'markdown-it-sup',
+                  'markdown-it-highlight-lines',
                   ['markdown-it-front-matter', renderBlogFrontMatter],
                   [
                     'markdown-it-anchor',
@@ -106,7 +107,7 @@ module.exports = function(options = {}) {
                     }
                   ],
                   'markdown-it-emoji',
-                  'markdown-it-attrs',
+                  // 'markdown-it-attrs',
                   'markdown-it-external-links',
                   [
                     'markdown-it-table-of-contents',
@@ -129,13 +130,11 @@ module.exports = function(options = {}) {
                   ...markdownPlugins
                 ],
                 highlight: (code, language) => {
-                  const validLang = Boolean(
-                    language && highlightjs.getLanguage(language)
-                  );
-                  const highlighted = validLang
+                  language = language.trim();
+
+                  return language && highlightjs.getLanguage(language)
                     ? highlightjs.highlight(language, code).value
                     : code;
-                  return `${highlighted}`;
                 }
               }
             },
