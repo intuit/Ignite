@@ -107,7 +107,13 @@ module.exports = function(options = {}) {
                     }
                   ],
                   'markdown-it-emoji',
-                  // 'markdown-it-attrs',
+                  [
+                    'markdown-it-attrs',
+                    {
+                      leftDelimiter: '/',
+                      rightDelimiter: '\\'
+                    }
+                  ],
                   'markdown-it-external-links',
                   [
                     'markdown-it-table-of-contents',
