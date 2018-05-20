@@ -39,7 +39,6 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators": "^6.24.1",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-inline-elements": "^6.22.0",
     "babel-polyfill": "^6.26.0",
@@ -209,7 +208,6 @@
     ],
     "plugins": [
       "transform-class-properties",
-      "transform-decorators",
       "transform-react-constant-elements",
       "transform-react-inline-elements",
       "add-module-exports"
