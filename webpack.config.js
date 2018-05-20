@@ -130,8 +130,6 @@ module.exports = function(options = {}) {
                   ...markdownPlugins
                 ],
                 highlight: (code, language) => {
-                  language = language.trim();
-
                   return language && highlightjs.getLanguage(language)
                     ? highlightjs.highlight(language, code).value
                     : code;
