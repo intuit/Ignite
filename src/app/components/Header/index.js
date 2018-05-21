@@ -76,7 +76,7 @@ BlogLink.defaultProps = {
 };
 
 const DocsLink = ({ className }) => (
-  <a className={makeClass('navbar-item', className)} href="#/">
+  <a className={makeClass('navbar-item', className)} href="#/index.md">
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
   </a>

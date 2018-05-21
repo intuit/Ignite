@@ -73,13 +73,22 @@ test('regexIndexOf', () => {
   expect(regexIndexOf('I am the test:string.', /[\S]+:[\S]+/, 15)).toBe(-1);
 });
 
-test.only('replaceIdLinks', () => {
+test('replaceIdLinks', () => {
   expect(
     replaceIdLinks(`
     <a href="#some-id">Link</a>
     <a className="fas fa-hashtag headerLink" href="#some-other-id">Link</a>
   `)
   ).toMatchSnapshot();
+});
+
+test('sanitizeJSX- complex', () => {
+  expect(
+    sanitizeJSX(`
+    <a class="fas fa-hashtag headerLink" href="#zero-hassle-documentation" aria-hidden="true" />
+    <a href="#/pages/GettingStarted.md">&#x1F389; Get Started</a>
+  `)
+  ).toBe();
 });
 
 test('sanitizeJSX', () => {

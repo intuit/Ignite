@@ -51,8 +51,9 @@ export const determineComponents = (
     Page = markdown[markdown.indexFiles[filePath]];
   }
 
-  if (!Page && markdown.indexFiles) {
-    Page = markdown[markdown.indexFiles[indexFile]];
+  if (!Page && markdown.indexFiles && location.pathname === '/') {
+    Page = markdown['home.md'];
+    SidebarComponent = null;
   }
 
   if (!Page) {
@@ -64,6 +65,34 @@ export const determineComponents = (
     Page
   };
 };
+
+const BlogHero = ({ location, blogHero }) => (
+  <section
+    className={makeClass('hero is-info is-medium is-bold', styles.blogHero)}
+    style={
+      blogHero && {
+        maxWidth: 1800,
+        margin: 'auto',
+        background: `url(${blogHero})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }
+    }
+  >
+    <div className="hero-body">
+      <div className="container has-text-centered">
+        <h1
+          className="title"
+          style={
+            location.pathname.includes('blog/index.md') ? {} : { opacity: 0 }
+          }
+        >
+          Blog
+        </h1>
+      </div>
+    </div>
+  </section>
+);
 
 class App extends Component {
   componentDidUpdate() {
@@ -86,9 +115,9 @@ class App extends Component {
   };
 
   render() {
-    const { markdown, location, index, blogHero } = this.props;
-    const isBlogIndex = location.pathname.includes('blog/index.md');
+    const { markdown, location, index } = this.props;
     const isBlog = location.pathname.includes('blog/');
+    const isHome = location.pathname === '/';
     const { SidebarComponent, Page } = determineComponents(
       markdown,
       location,
@@ -99,57 +128,41 @@ class App extends Component {
       <div className={styles.root}>
         <Header location={this.props.location} />
 
-        {isBlog && (
-          <section
-            className={makeClass(
-              'hero is-info is-medium is-bold',
-              styles.blogHero
-            )}
-            style={
-              blogHero && {
-                maxWidth: 1800,
-                margin: 'auto',
-                background: `url(${blogHero})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover'
-              }
-            }
-          >
-            <div className="hero-body">
-              <div className="container has-text-centered">
-                <h1 className="title" style={isBlogIndex ? {} : { opacity: 0 }}>
-                  Blog
-                </h1>
-              </div>
-            </div>
-          </section>
-        )}
+        {isBlog && <BlogHero {...this.props} />}
 
-        <div id="root" className={makeClass(styles.contentArea)}>
-          <div
-            className={makeClass(styles.App, 'columns', isBlog && styles.blog)}
-          >
-            <Sidebar
-              className="column is-one-third-tablet is-one-quarter-desktop box"
-              content={SidebarComponent}
-              currentPage={`${location.pathname}${
-                location.hash ? location.hash : ''
-              }`}
-            />
-
+        {isHome ? (
+          <Page plugins={this.props.plugins} className={styles.Page} />
+        ) : (
+          <div id="root" className={makeClass(styles.contentArea)}>
             <div
               className={makeClass(
-                !isBlog && styles.content,
-                'column',
-                'content',
-                'is-two-thirds-tablet',
-                'is-three-quarters-desktop'
+                styles.App,
+                'columns',
+                isBlog && styles.blog
               )}
             >
-              <Page plugins={this.props.plugins} className={styles.Page} />
+              <Sidebar
+                className="column is-one-third-tablet is-one-quarter-desktop box"
+                content={SidebarComponent}
+                currentPage={`${location.pathname}${
+                  location.hash ? location.hash : ''
+                }`}
+              />
+
+              <div
+                className={makeClass(
+                  !isBlog && styles.content,
+                  'column',
+                  'content',
+                  'is-two-thirds-tablet',
+                  'is-three-quarters-desktop'
+                )}
+              >
+                <Page plugins={this.props.plugins} className={styles.Page} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
