@@ -12,7 +12,7 @@ const div = {
     const classList = parseClasses(tokens[idx].info);
     const classAttr =
       (tokens[idx].attrs || []).find(([key]) => key === 'class') || [];
-    console.log(`${classAttr[1]} ${classList.join(' ')}`);
+
     if (tokens[idx].nesting === 1) {
       return `
           <div class="${classAttr[1]} ${classList.join(' ')}">

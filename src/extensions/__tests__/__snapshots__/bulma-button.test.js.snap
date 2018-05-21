@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bulma - button 1`] = `
+"
+          <button class=\\"button  is-large is-link is-bold is-inverted is-outlined\\">
+      <p><a href=\\"pages/GettingStarted.md\\">Get Started :tada:</a></p>
+
+      </button>
+    "
+`;

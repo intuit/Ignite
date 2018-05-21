@@ -117,7 +117,7 @@ Ignite will generate a blog for you and add an item to the header
 
 # Even this pages is markdown. What are you waiting for? /.no-link .title .is-4 .has-text-centered\
 
-:::button is-large is-link is-bold is-inverted is-outlined
+::: button is-large is-link is-bold is-inverted is-outlined
 [Get Started :tada:](pages/GettingStarted.md)
 :::
 

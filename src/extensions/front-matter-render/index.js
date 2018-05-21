@@ -2,7 +2,7 @@ import yaml from 'js-yaml';
 import gravatar from 'gravatar';
 
 function parseConfig(config) {
-  const { title, image, author } = config;
+  const { title, image, author = {} } = config;
 
   let name;
   let email;

@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`code tabs - does nothing to non matching blocks 1`] = `
+"<pre><code class=\\"language-javascript\\">function doSomething() {
+  return 'foo';
+}
+</code></pre>
+"
+`;
+
+exports[`code tabs 1`] = `
+"
+        <CodeTabs>
+          <div class=\\"tabs is-boxed\\">
+            <ul>
+              
+                    <li
+                      className=!{this.state.tabIndex === 0 && 'is-active'!}
+                      onClick=!{this.onClick(0)!}
+                    >
+                      <a>
+                        <span>CSS</span>
+                      </a>
+                    </li>
+                  
+
+                    <li
+                      className=!{this.state.tabIndex === 1 && 'is-active'!}
+                      onClick=!{this.onClick(1)!}
+                    >
+                      <a>
+                        <span>HTML</span>
+                      </a>
+                    </li>
+                  
+
+                    <li
+                      className=!{this.state.tabIndex === 2 && 'is-active'!}
+                      onClick=!{this.onClick(2)!}
+                    >
+                      <a>
+                        <span>JS</span>
+                      </a>
+                    </li>
+                  
+            </ul>
+          </div>
+          <div class=\\"\\">
+            <div class=\\"codeBlocks\\" style=!{!{ left: this.state.tabIndex * -100 + '%' !}!}>
+      <pre><code data-index=\\"1\\" class=\\"language-css\\">.className {
+  background: red;
+}
+</code></pre>
+<pre><code data-index=\\"2\\" class=\\"language-html\\">&lt;div class=&quot;className&quot;&gt;
+</code></pre>
+<pre><code data-index=\\"3\\" class=\\"language-javascript\\">function doSomething() {
+  return 'foo';
+}
+</code></pre>
+
+          </div>
+        </div>
+      </CodeTabs>
+    "
+`;

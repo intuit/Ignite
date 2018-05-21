@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`embed - gist 1`] = `
+"<p>
+    <Gist id='6590929' file='' />
+  </p>
+"
+`;
+
+exports[`embed - gist 2`] = `
+"<p>
+    <Gist id='6590929' file='d3.js' />
+  </p>
+"
+`;
+
+exports[`embed - soundcloud 1`] = `
+"<p>
+    <iframe
+      width=\\"100%\\"
+      height=\\"300\\"
+      scrolling=\\"no\\"
+      frameborder=\\"no\\"
+      allow=\\"autoplay\\"
+      src=\\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/386355071&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true\\"
+    />
+  </p>
+"
+`;
+
+exports[`embed - twitter 1`] = `
+"<p>
+    <TweetEmbed id='989197113648037888' />
+  </p>
+"
+`;
+
+exports[`embed - youtube 1`] = `
+"<p>
+    <iframe
+      width=\\"560\\"
+      height=\\"315\\"
+      src=\\"https://www.youtube.com/embed/5Gi1djkgB5k?rel=0\\"
+      frameborder=\\"0\\"
+      allow=\\"autoplay; encrypted-media\\"
+      allowfullscreen
+    />
+  </p>
+"
+`;

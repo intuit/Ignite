@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`div 1`] = `
+"
+          <div class=\\"undefined with some classes\\">
+      <p>content</p>
+
+      </div>
+    "
+`;
+
+exports[`div 2`] = `
+"
+          <div class=\\"class names \\">
+      <p>content</p>
+
+      </div>
+    "
+`;

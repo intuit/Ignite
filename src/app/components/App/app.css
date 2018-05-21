@@ -301,10 +301,6 @@ p {
   margin-top: -7.5rem;
 }
 
-.blogHero :global .title {
-  padding-bottom: 3rem;
-}
-
 :global .collapse-summary {
   display: flex;
   align-items: center;

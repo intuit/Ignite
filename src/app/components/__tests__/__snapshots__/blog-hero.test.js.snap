@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BlogHero - index has title 1`] = `
+<section
+  className="hero is-info is-medium is-bold"
+  style={null}
+>
+  <div
+    className="hero-body"
+  >
+    <div
+      className="container has-text-centered"
+    >
+      <h1
+        className="title"
+        style={Object {}}
+      >
+        Blog
+      </h1>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`BlogHero - page - hero 1`] = `
+<section
+  className="hero is-info is-medium is-bold"
+  style={
+    Object {
+      "background": "url(https://some.link)",
+      "backgroundRepeat": "no-repeat",
+      "backgroundSize": "cover",
+      "margin": "auto",
+      "maxWidth": 1800,
+    }
+  }
+>
+  <div
+    className="hero-body"
+  >
+    <div
+      className="container has-text-centered"
+    >
+      <h1
+        className="title"
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+      >
+        Blog
+      </h1>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`BlogHero - page - no hero 1`] = `
+<section
+  className="hero is-info is-medium is-bold"
+  style={null}
+>
+  <div
+    className="hero-body"
+  >
+    <div
+      className="container has-text-centered"
+    >
+      <h1
+        className="title"
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+      >
+        Blog
+      </h1>
+    </div>
+  </div>
+</section>
+`;

@@ -55,23 +55,6 @@ const codeTabs = {
   }
 };
 
-const RE = /\[([\S ]+)\]/;
-
-const tabFence = fence => (...args) => {
-  const [tokens, idx] = args;
-  const token = tokens[idx];
-
-  if (!token.info || !RE.test(token.info)) {
-    return fence(...args);
-  }
-
-  const langName = token.info.replace(RE, '').trim();
-  const code = highlightjs.highlight(langName, token.content);
-
-  return `<pre><code>${code.value}</code></pre>`;
-};
-
 export default function codeTabsPlugin(md) {
-  md.renderer.rules.fence = tabFence(md.renderer.rules.fence);
   md.use(container, 'codeTabs', codeTabs);
 }

@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`front-matter-render - banner image 1`] = `
+"
+    <div class=\\"media blogHeader\\">
+      <p id=\\"background-image\\">
+        https://pbs.twimg.com/profile_banners/7547562/1516584955/1500x500
+      </p>
+      <div class=\\"media-content has-text-centered\\">
+        
+
+        <p class=\\"title blogTitle\\">
+          First Post
+        </p>
+        <p class=\\"subtitle is-6 blogSubtitle\\">
+          undefined
+        </p>
+      </div>
+    </div>
+  "
+`;
+
+exports[`front-matter-render - complex author 1`] = `
+"
+    <div class=\\"media blogHeader\\">
+      <p id=\\"background-image\\">
+        undefined
+      </p>
+      <div class=\\"media-content has-text-centered\\">
+        <img src=\\"//www.gravatar.com/avatar/ff725a631f869cdb78beeb003825bb40\\" class=\\"authorImage\\" />
+
+        <p class=\\"title blogTitle\\">
+          First Post
+        </p>
+        <p class=\\"subtitle is-6 blogSubtitle\\">
+          <a target=\\"_blank\\" href=\\"https://github.intuit.com/alisowski\\">Andrew Lisowski</a>
+        </p>
+      </div>
+    </div>
+  "
+`;
+
+exports[`front-matter-render - simple author 1`] = `
+"
+    <div class=\\"media blogHeader\\">
+      <p id=\\"background-image\\">
+        undefined
+      </p>
+      <div class=\\"media-content has-text-centered\\">
+        
+
+        <p class=\\"title blogTitle\\">
+          First Post
+        </p>
+        <p class=\\"subtitle is-6 blogSubtitle\\">
+          Andrew Lisowski
+        </p>
+      </div>
+    </div>
+  "
+`;

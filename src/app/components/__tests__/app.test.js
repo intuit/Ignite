@@ -109,7 +109,7 @@ describe('determineComponents', () => {
     expect(renderToJson(<Page />)).toMatchSnapshot();
   });
 
-  test.only('renders root index if no matching subPath first page found', () => {
+  test('renders root index if no matching subPath first page found', () => {
     const navItems = {
       root: '/',
       'Name of Item': '/',
@@ -182,6 +182,47 @@ describe('App', () => {
           markdown={markdown}
           index="index"
           location={{ pathname: '/', hash: '#foo' }}
+        />
+      )
+    ).toMatchSnapshot();
+  });
+
+  test('renders home page', () => {
+    const home = () => <h1>I am Home</h1>;
+    markdown['home.md'] = home;
+
+    expect(
+      renderToJson(
+        <App markdown={markdown} index="index" location={{ pathname: '/' }} />
+      )
+    ).toMatchSnapshot();
+  });
+
+  test('renders blog index', () => {
+    markdown['blog/index.md'] = () => <h1>Blog Index</h1>;
+    markdown['blog/page.md'] = () => <h1>Blog Page</h1>;
+
+    expect(
+      renderToJson(
+        <App
+          markdown={markdown}
+          index="index"
+          location={{ pathname: '/blog/index.md', hash: '', search: '' }}
+        />
+      )
+    ).toMatchSnapshot();
+  });
+
+  test('renders blog page', () => {
+    markdown['blog/index.md'] = () => <h1>Blog Index</h1>;
+    markdown['blog/page.md'] = () => <h1>Blog Page</h1>;
+
+    expect(
+      renderToJson(
+        <App
+          markdown={markdown}
+          index="index"
+          location={{ pathname: '/blog/page.md', hash: '', search: '' }}
         />
       )
     ).toMatchSnapshot();
