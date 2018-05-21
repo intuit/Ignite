@@ -104,7 +104,7 @@ exports[`markDownPage 1`] = `
     const markDownPage = props => (
       <div className={props.className}>
         <section>
-          <span className=\\"highlighted-line\\"></span>
+          <span className=\\"highlighted-line hero is-primary\\"></span>
         </section>
       </div>
     );

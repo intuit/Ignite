@@ -140,7 +140,7 @@ export function sanitizeJSX(source) {
     '<a target="_blank" href="http'
   );
 
-  source.replace(
+  source = source.replace(
     new RegExp('highlighted-line', 'g'),
     'highlighted-line hero is-primary'
   );
