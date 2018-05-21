@@ -407,7 +407,7 @@ export function markDownPage(rawSource) {
   `;
 }
 
-export function homePage(rawSource, pathToMarkdown, options) {
+export function homePage(rawSource) {
   let { pageStart, source } = initPage(rawSource);
 
   const $source = cheerio.load(

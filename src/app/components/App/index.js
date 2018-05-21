@@ -94,6 +94,12 @@ const BlogHero = ({ location, blogHero }) => (
   </section>
 );
 
+BlogHero.propTypes = {
+  // eslint-disable-next-line react/no-typos
+  location: ReactRouterPropTypes.location.isRequired,
+  blogHero: PropTypes.string.isRequired
+};
+
 class App extends Component {
   componentDidUpdate() {
     this.jumpToHash();
