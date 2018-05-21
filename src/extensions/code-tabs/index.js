@@ -1,5 +1,4 @@
 import container from 'markdown-it-container';
-import highlightjs from 'highlight.js';
 
 const regExp = /codeTabs [\S ]+/;
 
