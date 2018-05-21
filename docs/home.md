@@ -8,7 +8,7 @@
 
 ## Finally, a markdown documentation generation tool built around plugins. /.no-link .has-text-primary .has-text-centered\
 
-Ignite makes documenting your open source project as easy as adding files to a folder. The barrier to writing documentation should be low, encouraging us write more of it! /.has-text-centered\
+Ignite makes documenting your open source project as easy as adding files to a folder. The barrier to writing documentation should be low, encouraging us to write more of it! /.has-text-centered\
 
 ||| row has-text-centered wide
 
