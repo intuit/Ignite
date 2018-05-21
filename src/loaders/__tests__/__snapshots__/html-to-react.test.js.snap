@@ -70,27 +70,36 @@ exports[`index 2`] = `
 exports[`insertBreaks 1`] = `
 "
     <div>
-      <pre><br />        Line<br />        with<br />        breaks<br />      </pre><br />
-      <pre><br />        Another<br />        Line<br />        with<br />        breaks<br />      </pre><br />    </div>
+      <pre><br />        Line<br />        with<br />        breaks<br />      </pre>
+
+      <pre><br />        Another<br />        Line<br />        with<br />        breaks<br />      </pre>
+    </div>
   "
 `;
 
 exports[`markDownPage 1`] = `
 "
-    import React from 'react';
-    import { Link } from 'react-router-dom';
-
-    const PluginProvider = ({plugins, name, options, children}) => {
-      let Plugin = plugins[name];
-      const pluginOptions = Plugin.options;
     
-      if (!Plugin) {
-        return <div />;
-      }
+      import React from 'react';
+      import makeClass from 'classnames';
+      import { Link } from 'react-router-dom';
+      import Gist from 'react-gist';
+      import TweetEmbed from 'react-tweet-embed'
 
-      Plugin = Plugin.component;
-      return <Plugin {...pluginOptions}  children={children} {...options} />;
-    };
+      const PluginProvider = ({plugins, name, options, children}) => {
+        let Plugin = plugins[name];
+        const pluginOptions = Plugin.options;
+
+        if (!Plugin) {
+          return <div />;
+        }
+
+        Plugin = Plugin.component;
+        return <Plugin {...pluginOptions}  children={children} {...options} />;
+      };
+
+      
+    
 
     const markDownPage = props => (
       <div className={props.className}>
@@ -127,5 +136,13 @@ exports[`sanitizeJSX 7`] = `"<input type=\\"checkbox\\" readOnly className=\\"is
 
 exports[`sanitizeJSX 8`] = `
 "
-      <pre><br />        content<br />      </pre><br />    "
+      <pre><br />        content<br />      </pre>
+    "
+`;
+
+exports[`sanitizeJSX- complex 1`] = `
+"
+    <Link className=\\"fas fa-hashtag headerLink\\" to=\\"#zero-hassle-documentation\\" aria-hidden=\\"true\\" />
+    <a href=\\"#/pages/GettingStarted.md\\">&#x1F389; Get Started</a>
+  "
 `;

@@ -127,11 +127,13 @@ module.exports = function(options = {}) {
                   require('./dist/extensions/bulma-hero'),
                   require('./dist/extensions/bulma-message'),
                   require('./dist/extensions/bulma-box'),
+                  require('./dist/extensions/bulma-button'),
                   require('./dist/extensions/bulma-row'),
                   require('./dist/extensions/bulma-tile'),
                   require('./dist/extensions/collapse'),
                   require('./dist/extensions/embed'),
                   require('./dist/extensions/code-tabs'),
+                  require('./dist/extensions/div'),
                   ...pluginTokens,
                   ...markdownPlugins
                 ],

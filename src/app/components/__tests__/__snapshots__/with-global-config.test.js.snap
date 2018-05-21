@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withGlobalConfig renders blog hero 1`] = `
+<component
+  blogHero={null}
+  markdown={
+    Array [
+      Array [
+        "index.md",
+        [Function],
+      ],
+      Array [
+        "page.md",
+        [Function],
+      ],
+    ]
+  }
+  plugins={
+    Array [
+      Array [
+        "somePlugin",
+        [Function],
+      ],
+    ]
+  }
+/>
+`;
+
+exports[`withGlobalConfig renders blog hero 2`] = `
+<component
+  blogHero="http://some.link"
+  markdown={
+    Array [
+      Array [
+        "index.md",
+        [Function],
+      ],
+      Array [
+        "page.md",
+        [Function],
+      ],
+    ]
+  }
+  plugins={
+    Array [
+      Array [
+        "somePlugin",
+        [Function],
+      ],
+    ]
+  }
+/>
+`;
+
+exports[`withGlobalConfig renders component with configuration 1`] = `
+<component
+  blogHero={null}
+  markdown={
+    Array [
+      Array [
+        "index.md",
+        [Function],
+      ],
+      Array [
+        "page.md",
+        [Function],
+      ],
+    ]
+  }
+  plugins={
+    Array [
+      Array [
+        "somePlugin",
+        [Function],
+      ],
+    ]
+  }
+/>
+`;
+
+exports[`withGlobalConfig sets first page 1`] = `
+<component
+  blogHero="http://some.link"
+  markdown={
+    Array [
+      Array [
+        "index.md",
+        [Function],
+      ],
+      Array [
+        "page.md",
+        [Function],
+      ],
+    ]
+  }
+  plugins={
+    Array [
+      Array [
+        "somePlugin",
+        [Function],
+      ],
+    ]
+  }
+/>
+`;
+
+exports[`withGlobalConfig sets first page 2`] = `
+<component
+  blogHero="http://some.link"
+  markdown={
+    Array [
+      Array [
+        "index.md",
+        [Function],
+        undefined,
+        "page.md",
+      ],
+      Array [
+        "page.md",
+        [Function],
+      ],
+    ]
+  }
+  plugins={
+    Array [
+      Array [
+        "somePlugin",
+        [Function],
+      ],
+    ]
+  }
+/>
+`;

@@ -146,6 +146,15 @@ p {
   }
 }
 
+:global h1.has-text-centered,
+:global h2.has-text-centered,
+:global h3.has-text-centered,
+:global h4.has-text-centered,
+:global h5.has-text-centered,
+:global h6.has-text-centered {
+  justify-content: center;
+}
+
 :global .highlighted-line {
   display: block;
   margin: 0 -1rem;
@@ -292,10 +301,6 @@ p {
   margin-top: -7.5rem;
 }
 
-.blogHero :global .title {
-  padding-bottom: 3rem;
-}
-
 :global .collapse-summary {
   display: flex;
   align-items: center;
@@ -331,4 +336,78 @@ p {
   ul {
     margin-left: 0;
   }
+}
+
+:global .hero a.headerLink,
+:global .no-link a.headerLink,
+:global .box a.headerLink {
+  display: none;
+}
+
+:global .homePage .columns {
+  margin-top: 2rem;
+
+  .column {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+:global .homePage .hero:not(:last-of-type) {
+  margin-bottom: 4rem;
+}
+
+:global .columns.wide {
+  @media screen and (min-width: 769px) {
+    margin: 4rem -5rem;
+  }
+}
+
+:global .feature {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 25px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+:global .featureImages {
+  img + img {
+    margin-top: -40px;
+  }
+}
+
+:global .no-margin {
+  margin: 0 !important;
+}
+
+:global .fadeBottom::after {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0,
+    #fff 100%
+  );
+  margin-top: -150px;
+  height: 150px;
+  width: 100%;
+  content: '';
 }

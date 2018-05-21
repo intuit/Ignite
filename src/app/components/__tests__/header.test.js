@@ -29,6 +29,15 @@ test('clicking hamburger changes state', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
+test('clicking hamburger closes menu', () => {
+  window.configuration = { markdown: {} };
+  const component = renderer.create(<Header location={{ pathname: '/' }} />);
+  const inst = component.getInstance();
+
+  inst.closeMenu();
+  expect(component.toJSON()).toMatchSnapshot();
+});
+
 test('renders nav items', () => {
   expect(
     renderToJson(
@@ -57,5 +66,12 @@ test('renders nav items with just a index', () => {
         }}
       />
     )
+  ).toMatchSnapshot();
+});
+
+test('render active for blogs', () => {
+  window.configuration = { markdown: ['blog/page.md'] };
+  expect(
+    renderToJson(<Header location={{ pathname: '/blog/page.md' }} />)
   ).toMatchSnapshot();
 });

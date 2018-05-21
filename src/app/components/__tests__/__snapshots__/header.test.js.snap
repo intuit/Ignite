@@ -47,13 +47,133 @@ exports[`clicking hamburger changes state 1`] = `
       >
         <a
           className="navbar-item is-active"
-          href="#/"
+          href="#/index.md"
         >
           Docs
           <i
             className="fas fa-book"
           />
         </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`clicking hamburger closes menu 1`] = `
+<nav
+  aria-label="main navigation"
+  className="navbar"
+  role="navigation"
+>
+  <div
+    className={undefined}
+  >
+    <div
+      className="navbar-brand"
+    >
+      <a
+        className="navbar-item"
+        href="#/"
+      >
+        <span
+          className="is-hidden-mobile navbar-item"
+        />
+      </a>
+      <a
+        aria-expanded="false"
+        aria-label="menu"
+        className="navbar-burger"
+        onClick={[Function]}
+        role="button"
+      >
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+    <div
+      className="navbar-menu"
+    >
+      <div
+        className="navbar-end"
+        onClick={[Function]}
+      >
+        <a
+          className="navbar-item is-active"
+          href="#/index.md"
+        >
+          Docs
+          <i
+            className="fas fa-book"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`render active for blogs 1`] = `
+<nav
+  aria-label="main navigation"
+  className="navbar"
+  role="navigation"
+>
+  <div
+    className={undefined}
+  >
+    <div
+      className="navbar-brand"
+    >
+      <a
+        className="navbar-item"
+        href="#/"
+      >
+        <span
+          className="is-hidden-mobile navbar-item"
+        />
+      </a>
+      <a
+        aria-expanded="false"
+        aria-label="menu"
+        className="navbar-burger"
+        onClick={[Function]}
+        role="button"
+      >
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+        <span
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+    <div
+      className="navbar-menu"
+    >
+      <div
+        className="navbar-end"
+        onClick={[Function]}
+      >
+        <DocsLink
+          className={false}
+        />
+        <BlogLink
+          className="is-active"
+        />
+        <GithubLink
+          githubURL={null}
+        />
       </div>
     </div>
   </div>

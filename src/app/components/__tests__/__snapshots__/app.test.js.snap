@@ -1,5 +1,119 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`App renders blog index 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    location={
+      Object {
+        "hash": "",
+        "pathname": "/blog/index.md",
+        "search": "",
+      }
+    }
+    logo={undefined}
+    navItems={undefined}
+    title={undefined}
+  />
+  <div>
+    <BlogHero
+      blogHero={null}
+      index="index"
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/blog/index.md",
+          "search": "",
+        }
+      }
+      markdown={
+        Object {
+          "blog/index.md": [Function],
+          "blog/page.md": [Function],
+          "firstPage": [Function],
+          "firstPagePath": "firstPage",
+          "foo": [Function],
+          "home.md": [Function],
+          "index": [Function],
+        }
+      }
+      plugins={Array []}
+    />
+    <div
+      className="columns"
+    >
+      <div
+        className="column content is-two-thirds-tablet is-three-quarters-desktop"
+      >
+        <Unknown
+          className={undefined}
+          plugins={Array []}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App renders blog page 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    location={
+      Object {
+        "hash": "",
+        "pathname": "/blog/page.md",
+        "search": "",
+      }
+    }
+    logo={undefined}
+    navItems={undefined}
+    title={undefined}
+  />
+  <div>
+    <BlogHero
+      blogHero={null}
+      index="index"
+      location={
+        Object {
+          "hash": "",
+          "pathname": "/blog/page.md",
+          "search": "",
+        }
+      }
+      markdown={
+        Object {
+          "blog/index.md": [Function],
+          "blog/page.md": [Function],
+          "firstPage": [Function],
+          "firstPagePath": "firstPage",
+          "foo": [Function],
+          "home.md": [Function],
+          "index": [Function],
+        }
+      }
+      plugins={Array []}
+    />
+    <div
+      className="columns"
+    >
+      <div
+        className="column content is-two-thirds-tablet is-three-quarters-desktop"
+      >
+        <Unknown
+          className={undefined}
+          plugins={Array []}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`App renders first page at index if found 1`] = `
 <div
   className={undefined}
@@ -42,11 +156,34 @@ exports[`App renders first page at index if found 1`] = `
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
       >
         <Page
+          className={undefined}
           plugins={Array []}
         />
       </div>
     </div>
   </div>
+</div>
+`;
+
+exports[`App renders home page 1`] = `
+<div
+  className={undefined}
+>
+  <Header
+    githubURL={undefined}
+    location={
+      Object {
+        "pathname": "/",
+      }
+    }
+    logo={undefined}
+    navItems={undefined}
+    title={undefined}
+  />
+  <home
+    className={undefined}
+    plugins={Array []}
+  />
 </div>
 `;
 
@@ -91,6 +228,7 @@ exports[`App renders matched page 1`] = `
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
       >
         <foo
+          className={undefined}
           plugins={Array []}
         />
       </div>
@@ -137,7 +275,7 @@ exports[`determineComponents render matching page if found 2`] = `
 
 exports[`determineComponents render matching subpath index file and first page if path not found 1`] = `
 <ul>
-   Pages Links 
+   Folder Links 
 </ul>
 `;
 

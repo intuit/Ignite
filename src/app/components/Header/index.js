@@ -76,7 +76,7 @@ BlogLink.defaultProps = {
 };
 
 const DocsLink = ({ className }) => (
-  <a className={makeClass('navbar-item', className)} href="#/">
+  <a className={makeClass('navbar-item', className)} href="#/index.md">
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
   </a>
@@ -173,12 +173,17 @@ class Header extends Component {
                 ))
               ) : (
                 <DocsLink
-                  className={!location.hash.includes('blog/') && 'is-active'}
+                  className={
+                    !this.props.location.pathname.includes('blog/') &&
+                    'is-active'
+                  }
                 />
               )}
 
               <BlogLink
-                className={location.hash.includes('blog/') && 'is-active'}
+                className={
+                  this.props.location.pathname.includes('blog/') && 'is-active'
+                }
               />
               <GithubLink githubURL={this.props.githubURL} />
             </div>
@@ -195,14 +200,18 @@ Header.propTypes = {
   githubURL: PropTypes.string,
   navItems: PropTypes.array,
   // eslint-disable-next-line react/no-typos
-  location: ReactRouterPropTypes.location.isRequired
+  location: ReactRouterPropTypes.location
 };
 
 Header.defaultProps = {
   title: process.env.title,
   logo: process.env.logo,
   navItems: process.env.navItems,
-  githubURL: process.env.githubURL
+  githubURL: process.env.githubURL,
+  location: {
+    pathname: '',
+    hash: ''
+  }
 };
 
 export default Header;

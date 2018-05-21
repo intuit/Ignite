@@ -49,13 +49,18 @@ const replaceAll = (source, regex, search = {}, replace = {}) => {
   while (indexOnPage !== -1) {
     source = replaceAt(source, search.start, replace.start, indexOnPage);
 
-    if (search.end) {
-      source = replaceAt(
-        source,
-        search.end,
-        replace.end,
-        source.indexOf(search.end, indexOnPage)
-      );
+    if (search.end && source.indexOf(search.end, indexOnPage) > -1) {
+      const nextTag = source.indexOf('<', indexOnPage + 1);
+      const close = source.indexOf('/', indexOnPage);
+
+      if (close > nextTag) {
+        source = replaceAt(
+          source,
+          search.end,
+          replace.end,
+          source.indexOf(search.end, indexOnPage)
+        );
+      }
     }
 
     indexOnPage = regexIndexOf(source, regex, indexOnPage);
@@ -135,7 +140,7 @@ export function sanitizeJSX(source) {
     '<a target="_blank" href="http'
   );
 
-  source.replace(
+  source = source.replace(
     new RegExp('highlighted-line', 'g'),
     'highlighted-line hero is-primary'
   );
@@ -402,6 +407,54 @@ export function markDownPage(rawSource) {
   `;
 }
 
+export function homePage(rawSource) {
+  let { pageStart, source } = initPage(rawSource);
+
+  const $source = cheerio.load(
+    `<div class="source">${source}</div>`,
+    libHTMLOptions
+  );
+  const $homePage = cheerio.load(
+    `<div class="homePage"></div>`,
+    libHTMLOptions
+  );
+
+  const contentRow =
+    '<div class="columns"><div class="home column content is-two-thirds-tablet is-three-quarters-desktop"></div></div>';
+  let $currentRow;
+
+  while ($source('.source > :first-child').length > 0) {
+    const isHero = $source('.source > :first-child').hasClass('hero');
+    const $element = $source.html('.source > :first-child');
+    $source('.source > :first-child').remove();
+
+    if (isHero) {
+      if ($currentRow && $currentRow('.home.column').children().length > 0) {
+        $homePage('.homePage').append($currentRow.html());
+      }
+
+      $currentRow = cheerio.load(contentRow, libHTMLOptions);
+      $homePage('.homePage').append($element);
+    } else {
+      $currentRow('.home.column').append($element);
+    }
+  }
+
+  source = sanitizeJSX($homePage.html());
+
+  return `
+    ${pageStart}
+
+    const homePage = props => (
+      <div>
+        ${source}
+      </div>
+    );
+
+    export default homePage;
+  `;
+}
+
 export function detectIndex(resourcePath, pathToMarkdown, options) {
   return (
     resourcePath.includes(options.index) &&
@@ -417,14 +470,16 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
 export default function(source) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
-  const isIndex = detectIndex(this.resourcePath, pathToMarkdown, options);
-  const isBlogPost = this.resourcePath.includes('blog/');
 
-  if (isBlogPost) {
+  if (pathToMarkdown === 'home.md') {
+    return homePage(source, pathToMarkdown, options);
+  }
+
+  if (this.resourcePath.includes('blog/')) {
     return blogPost(source, pathToMarkdown, options);
   }
 
-  if (isIndex) {
+  if (detectIndex(this.resourcePath, pathToMarkdown, options)) {
     return index(source, pathToMarkdown, options);
   }
 
