@@ -94,7 +94,9 @@ class App extends Component {
   render() {
     const { markdown, location, index } = this.props;
     const isBlog = location.pathname.includes('blog/');
-    const isHome = location.pathname === '/' && markdown['home.md'];
+    const isHome =
+      (location.pathname === '/' || location.pathname === '/home.md') &&
+      markdown['home.md'];
     const { SidebarComponent, Page } = determineComponents(
       markdown,
       location,

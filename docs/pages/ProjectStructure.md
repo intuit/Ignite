@@ -1,4 +1,4 @@
-# Project Structure
+# Index Structure
 
 Ignite builds the app from your side bar. Here is where your organize your documentation into overall ideas.
 

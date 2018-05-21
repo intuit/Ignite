@@ -1,8 +1,13 @@
 * [:page_facing_up: Introduction](pages/Introduction.md)
 * [:tada: Getting Started](pages/GettingStarted.md)
-  * [Installation](pages/GettingStarted.md#installation)
-  * [Project Structure](pages/ProjectStructure.md)
-  * [Blog](pages/Blog.md)
+
+---
+
+:construction: Project Structure
+
+* [Index](pages/ProjectStructure.md)
+* [Blog](pages/Blog.md)
+* [Home](pages/home.md)
 
 ---
 

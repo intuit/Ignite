@@ -4,6 +4,22 @@ Ignite is build upon Bulma and exposes some of the elements and components as ma
 
 ## Elements
 
+### [Button](https://bulma.io/documentation/elements/button/)
+
+The classic button, in different colors, sizes, and states
+
+```markdown
+::: button is-large is-bold
+[Get Started :tada:](pages/GettingStarted.md)
+:::
+```
+
+OUTPUT:
+
+::: button is-large is-bold
+[Get Started :tada:](pages/GettingStarted.md)
+:::
+
 ### [Box](https://bulma.io/documentation/elements/box/)
 
 The .box element is simply a container with a shadow, a border, a radius, and some padding.
@@ -255,3 +271,15 @@ The following are used throughout ignite and can be used to easily theme your pl
 ::: message is-success is-three-fifths is-offset-one-fifth has-text-centered
 TIP: Use size and offset to narrow and center any bulma element
 :::
+
+### A Sneaky Div
+
+Sometimes your just really want a div, so we gave you one!
+
+```markdown
+::: div takes classes like this
+:::
+
+::: div /.or .like .this\
+:::
+```
