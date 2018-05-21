@@ -47,7 +47,7 @@ exports[`clicking hamburger changes state 1`] = `
       >
         <a
           className="navbar-item is-active"
-          href="#/"
+          href="#/index.md"
         >
           Docs
           <i

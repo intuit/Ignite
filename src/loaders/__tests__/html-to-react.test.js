@@ -88,7 +88,7 @@ test('sanitizeJSX- complex', () => {
     <a class="fas fa-hashtag headerLink" href="#zero-hassle-documentation" aria-hidden="true" />
     <a href="#/pages/GettingStarted.md">&#x1F389; Get Started</a>
   `)
-  ).toBe();
+  ).toMatchSnapshot();
 });
 
 test('sanitizeJSX', () => {
