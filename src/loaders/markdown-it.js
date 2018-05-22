@@ -4,7 +4,7 @@ import MarkdownIt from 'markdown-it';
 export function renderMarkdown(source, options = {}) {
   const renderer = new MarkdownIt(options);
 
-  if (options.plugins) {
+  if (options && options.plugins) {
     options.plugins.forEach(plugin => {
       let options = {};
 
