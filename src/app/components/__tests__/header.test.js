@@ -20,24 +20,6 @@ test('renders logo', () => {
   ).toMatchSnapshot();
 });
 
-test('clicking hamburger changes state', () => {
-  window.configuration = { markdown: {} };
-  const component = renderer.create(<Header location={{ pathname: '/' }} />);
-  const inst = component.getInstance();
-
-  inst.onClickHamburger();
-  expect(component.toJSON()).toMatchSnapshot();
-});
-
-test('clicking hamburger closes menu', () => {
-  window.configuration = { markdown: {} };
-  const component = renderer.create(<Header location={{ pathname: '/' }} />);
-  const inst = component.getInstance();
-
-  inst.closeMenu();
-  expect(component.toJSON()).toMatchSnapshot();
-});
-
 test('renders nav items', () => {
   expect(
     renderToJson(

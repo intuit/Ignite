@@ -3,7 +3,7 @@
 exports[`BlogHero - index has title 1`] = `
 <section
   className="hero is-info is-medium is-bold"
-  style={null}
+  style={Object {}}
 >
   <div
     className="hero-body"
@@ -59,7 +59,7 @@ exports[`BlogHero - page - hero 1`] = `
 exports[`BlogHero - page - no hero 1`] = `
 <section
   className="hero is-info is-medium is-bold"
-  style={null}
+  style={Object {}}
 >
   <div
     className="hero-body"

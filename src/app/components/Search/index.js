@@ -35,24 +35,27 @@ const getLines = (source, indexes, term) => {
 
 class Search extends Component {
   static propTypes = {
+    indexFiles: PropTypes.bool,
     setSearchResults: PropTypes.func
   };
 
   static defaultProps = {
+    indexFiles: true,
     setSearchResults: () => {}
   };
 
   constructor(props) {
     super(props);
+    if (props.indexFiles) {
+      searchIndex({}, (err, si) => {
+        if (err) {
+          console.log(err);
+        }
 
-    searchIndex({}, (err, si) => {
-      if (err) {
-        console.log(err);
-      }
-
-      this.index = si;
-      this.addPages();
-    });
+        this.index = si;
+        this.addPages();
+      });
+    }
   }
 
   addPages = () => {

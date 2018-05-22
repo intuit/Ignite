@@ -217,12 +217,14 @@ const buildSearchIndex = (entries, options) => {
   const searchIndex = [];
 
   entries.forEach(entry => {
-    const pageContents = fs.readFileSync(entry, 'utf8');
-    const pagePath = path.relative(options.src, entry);
-    searchIndex.push({
-      id: pagePath,
-      body: transform(pageContents, entry, options)
-    });
+    if (fs.existsSync(entry)) {
+      const pageContents = fs.readFileSync(entry, 'utf8');
+      const pagePath = path.relative(options.src, entry);
+      searchIndex.push({
+        id: pagePath,
+        body: transform(pageContents, entry, options)
+      });
+    }
   });
 
   return `window.configuration.searchIndex = ${JSON.stringify(searchIndex)};\n`;

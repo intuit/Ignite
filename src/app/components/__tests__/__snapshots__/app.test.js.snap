@@ -15,6 +15,7 @@ exports[`App renders blog index 1`] = `
     }
     logo={undefined}
     navItems={undefined}
+    setSearchResults={[Function]}
     title={undefined}
   />
   <div>
@@ -72,6 +73,7 @@ exports[`App renders blog page 1`] = `
     }
     logo={undefined}
     navItems={undefined}
+    setSearchResults={[Function]}
     title={undefined}
   />
   <div>
@@ -128,6 +130,7 @@ exports[`App renders first page at index if found 1`] = `
     }
     logo={undefined}
     navItems={undefined}
+    setSearchResults={[Function]}
     title={undefined}
   />
   <div
@@ -178,6 +181,7 @@ exports[`App renders home page 1`] = `
     }
     logo={undefined}
     navItems={undefined}
+    setSearchResults={[Function]}
     title={undefined}
   />
   <home
@@ -200,6 +204,7 @@ exports[`App renders matched page 1`] = `
     }
     logo={undefined}
     navItems={undefined}
+    setSearchResults={[Function]}
     title={undefined}
   />
   <div
