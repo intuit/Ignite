@@ -156,14 +156,21 @@ export function getLink(source, index = 0) {
   const linkIndex = source.indexOf('<a h', index);
 
   if (linkIndex === -1) {
-    return '';
+    return { index: -1, link: '' };
   }
 
   const hrefIndex = source.indexOf('href="', linkIndex);
+  const endIndex = source.indexOf('"', hrefIndex + 6);
   const startIndex = source.indexOf('/', hrefIndex) + 1;
-  const endIndex = source.indexOf('"', startIndex);
 
-  return source.substring(startIndex, endIndex);
+  return {
+    link:
+      source.substring(linkIndex, linkIndex + 10) === '<a href=""' ||
+      startIndex > endIndex
+        ? ''
+        : source.substring(startIndex, endIndex),
+    index: linkIndex
+  };
 }
 
 export function addActive(source, link, firstLink, indexFile) {
@@ -184,11 +191,11 @@ export function addActive(source, link, firstLink, indexFile) {
 }
 
 export function addActiveAll(source, firstLink, indexFile) {
-  let nextLink = getLink(source);
+  let { link, index } = getLink(source);
 
-  while (nextLink !== '') {
-    source = addActive(source, nextLink, firstLink, indexFile);
-    nextLink = getLink(source);
+  while (index !== -1) {
+    source = addActive(source, link, firstLink, indexFile);
+    ({ link, index } = getLink(source, index + 1));
   }
 
   return source;
@@ -383,7 +390,7 @@ export function index(source, pathToMarkdown, options) {
       );
     }
 
-    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink}');
+    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink.link}');
   `;
 }
 
