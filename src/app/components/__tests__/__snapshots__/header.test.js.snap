@@ -46,7 +46,7 @@ exports[`clicking hamburger changes state 1`] = `
         onClick={[Function]}
       >
         <a
-          className="navbar-item is-active"
+          className="navbar-item"
           href="#/index.md"
         >
           Docs
@@ -106,7 +106,7 @@ exports[`clicking hamburger closes menu 1`] = `
         onClick={[Function]}
       >
         <a
-          className="navbar-item is-active"
+          className="navbar-item"
           href="#/index.md"
         >
           Docs
