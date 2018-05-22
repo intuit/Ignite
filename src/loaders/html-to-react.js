@@ -170,13 +170,13 @@ export function addActive(source, link, firstLink, indexFile) {
   source = source.replace(
     new RegExp('<a h'),
     `<a
-      className=!{
+      className={
         '/${link}' === props.currentPage ||
         ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
         ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
           ? 'is-active'
           : null
-      !}
+      }
       h`
   );
 
@@ -364,8 +364,8 @@ export function blogPost(rawSource, pathToMarkdown, options) {
 export function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
-  source = addActiveAll(source, firstLink, options.index);
   source = sanitizeJSX(source);
+  source = addActiveAll(source, firstLink, options.index);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
