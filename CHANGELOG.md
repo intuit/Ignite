@@ -134,3 +134,7 @@
  0.0.34
 
 - fix external links in sidebar #110
+
+ 0.0.35
+
+- Bugs #112
