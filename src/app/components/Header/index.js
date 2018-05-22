@@ -175,6 +175,10 @@ class Header extends Component {
                 <DocsLink
                   className={
                     !this.props.location.pathname.includes('blog/') &&
+                    !(
+                      this.props.location.pathname === '/' &&
+                      !window.configuration.markdown['home.md']
+                    ) &&
                     'is-active'
                   }
                 />

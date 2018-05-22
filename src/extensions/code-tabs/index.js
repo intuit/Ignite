@@ -29,7 +29,7 @@ const codeTabs = {
                 .map(
                   (title, index) => `
                     <li
-                      className=!{this.state.tabIndex === ${index} && 'is-active'!}
+                      className=!{this.state.tabIndex === ${index} ? 'is-active' : undefined!}
                       onClick=!{this.onClick(${index})!}
                     >
                       <a>
