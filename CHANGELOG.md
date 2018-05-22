@@ -118,3 +118,7 @@
  0.0.30
 
 - Home Page #101
+
+ 0.0.31
+
+- Fix minor typos #102
