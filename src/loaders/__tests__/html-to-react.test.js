@@ -13,8 +13,8 @@ import {
 } from '../html-to-react';
 
 test('getLink', () => {
-  expect(getLink('<a href="/foo">Foo</a>')).toBe('foo');
-  expect(getLink('<a>Foo</a>')).toBe('');
+  expect(getLink('<a href="/foo">Foo</a>').link).toBe('foo');
+  expect(getLink('<a>Foo</a>').link).toBe('');
 });
 
 test('replaceAt', () => {
@@ -33,6 +33,7 @@ test('addActiveAll', () => {
   expect(
     addActiveAll(
       `
+      <a href=""></a>'
       <a href="/foo">Foo</a>'
       <a href="/bar">Foo</a>'
     `,

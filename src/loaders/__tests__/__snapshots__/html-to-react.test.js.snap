@@ -16,6 +16,15 @@ exports[`addActiveAll 1`] = `
 "
       <a
       className={
+        '/' === props.currentPage ||
+        ('bar' === '' && '/' === props.currentPage) ||
+        ('bar' === '' && props.currentPage && props.currentPage.includes('index.md'))
+          ? 'is-active'
+          : null
+      }
+      href=\\"\\"></a>'
+      <a
+      className={
         '/foo' === props.currentPage ||
         ('bar' === 'foo' && '/' === props.currentPage) ||
         ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md'))
