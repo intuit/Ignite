@@ -109,10 +109,7 @@ const myPlugin = props => (
   </div>
 );
 
-export default {
-  name: 'boom',
-  componenet: myPlugin
-};
+export myPlugin;
 ```
 
 ## Use It

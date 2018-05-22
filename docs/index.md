@@ -11,7 +11,7 @@
 
 ---
 
-::: collapse Customizations
+::: collapse Customization
 
 * [:nail_care: Theming](pages/Theming.md)
 * [:cake: Plugins](pages/Plugins.md)

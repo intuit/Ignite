@@ -35,7 +35,7 @@ Some text
 
 Collapse in the sidebar defaults to open.
 
-It is possible to make a list or sublist collapsible too. The ending `:::` is not needed in this case.
+It is possible to make a list or sub-list collapsible too. The ending `:::` is not needed in this case.
 
 ```
 * ::: collapse [:package: Publishing](./pages/Publishing.md)
