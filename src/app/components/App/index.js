@@ -110,7 +110,7 @@ class App extends Component {
     } else if (isBlog) {
       content = (
         <div>
-          <BlogHero {...this.props} />
+          <BlogHero key="hero" {...this.props} />
           <div className={makeClass(styles.App, 'columns', styles.blog)}>
             <div
               className={makeClass(
