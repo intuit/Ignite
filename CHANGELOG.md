@@ -122,3 +122,7 @@
  0.0.31
 
 - Fix minor typos #102
+
+ 0.0.32
+
+- update docs #103
