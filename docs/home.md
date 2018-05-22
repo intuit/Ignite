@@ -95,7 +95,7 @@ Ignite has Github-Pages publishing **built in** and setup is [easy](pages/Publis
 Blog
 :::
 
-Blogging shouldn't be hard either! Why host posts about your product anywhere but with your documentation? All information about your project should be accessible from one easy to search location. Ignite makes this easy.
+Blogging shouldn't be hard either! Why host posts about your product anywhere but with your documentation? All information about your project should be accessible from one easy to search location. Ignite makes this simple.
 
 <br>
 
