@@ -1,6 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-
 import Header from '../Header';
 import renderToJson from './utils/render-to-json';
 
@@ -18,24 +16,6 @@ test('renders logo', () => {
   expect(
     renderToJson(<Header logo="https://github.com/sindresorhus/cows" />)
   ).toMatchSnapshot();
-});
-
-test('clicking hamburger changes state', () => {
-  window.configuration = { markdown: {} };
-  const component = renderer.create(<Header location={{ pathname: '/' }} />);
-  const inst = component.getInstance();
-
-  inst.onClickHamburger();
-  expect(component.toJSON()).toMatchSnapshot();
-});
-
-test('clicking hamburger closes menu', () => {
-  window.configuration = { markdown: {} };
-  const component = renderer.create(<Header location={{ pathname: '/' }} />);
-  const inst = component.getInstance();
-
-  inst.closeMenu();
-  expect(component.toJSON()).toMatchSnapshot();
 });
 
 test('renders nav items', () => {

@@ -1,125 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`clicking hamburger changes state 1`] = `
-<nav
-  aria-label="main navigation"
-  className="navbar"
-  role="navigation"
->
-  <div
-    className={undefined}
-  >
-    <div
-      className="navbar-brand"
-    >
-      <a
-        className="navbar-item"
-        href="#/"
-      >
-        <span
-          className="is-hidden-mobile navbar-item"
-        />
-      </a>
-      <a
-        aria-expanded="false"
-        aria-label="menu"
-        className="navbar-burger is-active"
-        onClick={[Function]}
-        role="button"
-      >
-        <span
-          aria-hidden="true"
-        />
-        <span
-          aria-hidden="true"
-        />
-        <span
-          aria-hidden="true"
-        />
-      </a>
-    </div>
-    <div
-      className="navbar-menu is-active"
-    >
-      <div
-        className="navbar-end"
-        onClick={[Function]}
-      >
-        <a
-          className="navbar-item"
-          href="#/index.md"
-        >
-          Docs
-          <i
-            className="fas fa-book"
-          />
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
-`;
-
-exports[`clicking hamburger closes menu 1`] = `
-<nav
-  aria-label="main navigation"
-  className="navbar"
-  role="navigation"
->
-  <div
-    className={undefined}
-  >
-    <div
-      className="navbar-brand"
-    >
-      <a
-        className="navbar-item"
-        href="#/"
-      >
-        <span
-          className="is-hidden-mobile navbar-item"
-        />
-      </a>
-      <a
-        aria-expanded="false"
-        aria-label="menu"
-        className="navbar-burger"
-        onClick={[Function]}
-        role="button"
-      >
-        <span
-          aria-hidden="true"
-        />
-        <span
-          aria-hidden="true"
-        />
-        <span
-          aria-hidden="true"
-        />
-      </a>
-    </div>
-    <div
-      className="navbar-menu"
-    >
-      <div
-        className="navbar-end"
-        onClick={[Function]}
-      >
-        <a
-          className="navbar-item"
-          href="#/index.md"
-        >
-          Docs
-          <i
-            className="fas fa-book"
-          />
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
-`;
-
 exports[`render active for blogs 1`] = `
 <nav
   aria-label="main navigation"
@@ -165,6 +45,10 @@ exports[`render active for blogs 1`] = `
         className="navbar-end"
         onClick={[Function]}
       >
+        <Search
+          indexFiles={true}
+          setSearchResults={[Function]}
+        />
         <DocsLink
           className={false}
         />
@@ -225,6 +109,10 @@ exports[`renders githubURL 1`] = `
         className="navbar-end"
         onClick={[Function]}
       >
+        <Search
+          indexFiles={true}
+          setSearchResults={[Function]}
+        />
         <DocsLink
           className="is-active"
         />
@@ -290,6 +178,10 @@ exports[`renders logo 1`] = `
         className="navbar-end"
         onClick={[Function]}
       >
+        <Search
+          indexFiles={true}
+          setSearchResults={[Function]}
+        />
         <DocsLink
           className="is-active"
         />
@@ -350,6 +242,10 @@ exports[`renders nav items 1`] = `
         className="navbar-end"
         onClick={[Function]}
       >
+        <Search
+          indexFiles={true}
+          setSearchResults={[Function]}
+        />
         <NavItem
           githubURL={undefined}
           item={
@@ -371,6 +267,7 @@ exports[`renders nav items 1`] = `
               "root": "/",
             }
           }
+          setSearchResults={[Function]}
           title={undefined}
         />
         <NavItem
@@ -394,6 +291,7 @@ exports[`renders nav items 1`] = `
               "root": "/",
             }
           }
+          setSearchResults={[Function]}
           title={undefined}
         />
         <NavItem
@@ -417,6 +315,7 @@ exports[`renders nav items 1`] = `
               "root": "/",
             }
           }
+          setSearchResults={[Function]}
           title={undefined}
         />
         <BlogLink
@@ -476,6 +375,10 @@ exports[`renders nav items with just a index 1`] = `
         className="navbar-end"
         onClick={[Function]}
       >
+        <Search
+          indexFiles={true}
+          setSearchResults={[Function]}
+        />
         <NavItem
           githubURL={undefined}
           item={
@@ -497,6 +400,7 @@ exports[`renders nav items with just a index 1`] = `
               "root": "/",
             }
           }
+          setSearchResults={[Function]}
           title={undefined}
         />
         <NavItem
@@ -520,6 +424,7 @@ exports[`renders nav items with just a index 1`] = `
               "root": "/",
             }
           }
+          setSearchResults={[Function]}
           title={undefined}
         />
         <NavItem
@@ -543,6 +448,7 @@ exports[`renders nav items with just a index 1`] = `
               "root": "/",
             }
           }
+          setSearchResults={[Function]}
           title={undefined}
         />
         <BlogLink
@@ -604,6 +510,10 @@ exports[`renders title 1`] = `
         className="navbar-end"
         onClick={[Function]}
       >
+        <Search
+          indexFiles={true}
+          setSearchResults={[Function]}
+        />
         <DocsLink
           className="is-active"
         />

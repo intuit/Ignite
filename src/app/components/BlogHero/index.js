@@ -9,13 +9,15 @@ const BlogHero = ({ location, blogHero }) => (
   <section
     className={makeClass('hero is-info is-medium is-bold', styles.blogHero)}
     style={
-      blogHero && {
-        maxWidth: 1800,
-        margin: 'auto',
-        background: `url(${blogHero})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
-      }
+      blogHero && blogHero !== 'undefined'
+        ? {
+            maxWidth: 1800,
+            margin: 'auto',
+            background: `url(${blogHero})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover'
+          }
+        : {}
     }
   >
     <div className="hero-body">

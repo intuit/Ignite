@@ -3,6 +3,7 @@ import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
+import Search from '../Search';
 import Icon from '../Icon';
 import styles from './header.css';
 
@@ -167,6 +168,7 @@ class Header extends Component {
             )}
           >
             <div className="navbar-end" onClick={this.closeMenu}>
+              <Search setSearchResults={this.props.setSearchResults} />
               {this.props.navItems ? (
                 Object.entries(this.props.navItems).map(item => (
                   <NavItem key={item[0]} item={item} {...this.props} />
@@ -203,11 +205,13 @@ Header.propTypes = {
   logo: PropTypes.string,
   githubURL: PropTypes.string,
   navItems: PropTypes.array,
+  setSearchResults: PropTypes.func,
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location
 };
 
 Header.defaultProps = {
+  setSearchResults: () => {},
   title: process.env.title,
   logo: process.env.logo,
   navItems: process.env.navItems,
