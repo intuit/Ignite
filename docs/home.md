@@ -8,7 +8,7 @@
 
 ## Finally, a markdown documentation generation tool built around plugins. /.no-link .has-text-primary .has-text-centered\
 
-Ignite makes documenting your open source project as easy as adding files to a folder. The barrier to writing documentation should be low, encouraging us write more of it! /.has-text-centered\
+Ignite makes documenting your open source project as easy as adding files to a folder. The barrier to writing documentation should be low, encouraging us to write more of it! /.has-text-centered\
 
 ||| row has-text-centered wide
 
@@ -95,7 +95,7 @@ Ignite has Github-Pages publishing **built in** and setup is [easy](pages/Publis
 Blog
 :::
 
-Blogging shouldn't be hard either! Why host posts about your product anywhere but with your documentation? All infromation about your project should be accessible from one easy to search location. Ignite makes this easy.
+Blogging shouldn't be hard either! Why host posts about your product anywhere but with your documentation? All information about your project should be accessible from one easy to search location. Ignite makes this easy.
 
 <br>
 

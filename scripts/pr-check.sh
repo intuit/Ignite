@@ -5,5 +5,4 @@ fi
 
 PATH=$(npm bin):$PATH
 
-github-pr-check --number $CIRCLE_PR_NUMBER
-
+github-pr-check --number ${CIRCLE_PR_NUMBER:-basename $CI_PULL_REQUEST}
