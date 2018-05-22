@@ -130,3 +130,7 @@
  0.0.33
 
 
+
+ 0.0.34
+
+- fix external links in sidebar #110
