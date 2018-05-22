@@ -5,6 +5,7 @@ import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
+import SearchResult from '../SearchResult';
 import BlogHero from '../BlogHero';
 import Header from '../Header';
 import { default as Sidebar } from '../Sidebar';
@@ -72,8 +73,22 @@ export const determineComponents = (
 };
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchResults: {}
+    };
+  }
+
   componentDidUpdate() {
     this.jumpToHash();
+  }
+
+  static getDerivedStateFromProps() {
+    return {
+      searchResults: {}
+    };
   }
 
   jumpToHash = () => {
@@ -91,6 +106,12 @@ class App extends Component {
     });
   };
 
+  setSearchResults = searchResults => {
+    this.setState({
+      searchResults
+    });
+  };
+
   render() {
     const { markdown, location, index } = this.props;
     const isBlog = location.pathname.includes('blog/');
@@ -105,7 +126,23 @@ class App extends Component {
 
     let content;
 
-    if (isHome) {
+    if (this.state.searchResults.size > 0) {
+      content = (
+        <div className={makeClass(styles.searchResults)}>
+          {[...this.state.searchResults].map(([fileName, results]) => (
+            <SearchResult
+              key={fileName}
+              setResults={searchResults =>
+                location.pathname.includes(fileName) &&
+                this.setState({ searchResults })
+              }
+              fileName={fileName}
+              results={results}
+            />
+          ))}
+        </div>
+      );
+    } else if (isHome) {
       content = <Page plugins={this.props.plugins} className={styles.Page} />;
     } else if (isBlog) {
       content = (
@@ -155,7 +192,10 @@ class App extends Component {
 
     return (
       <div className={styles.root}>
-        <Header location={this.props.location} />
+        <Header
+          location={this.props.location}
+          setSearchResults={this.setSearchResults}
+        />
 
         {content}
       </div>

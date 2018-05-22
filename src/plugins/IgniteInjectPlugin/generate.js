@@ -1,7 +1,9 @@
 import path from 'path';
+import fs from 'fs';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';
+import { transform } from '../../loaders/hash-link';
 
 const { builders } = types;
 
@@ -211,11 +213,27 @@ const initLazyLoad = options => {
   `;
 };
 
+const buildSearchIndex = (entries, options) => {
+  const searchIndex = [];
+
+  entries.forEach(entry => {
+    const pageContents = fs.readFileSync(entry, 'utf8');
+    const pagePath = path.relative(options.src, entry);
+    searchIndex.push({
+      id: pagePath,
+      body: transform(pageContents, entry, options)
+    });
+  });
+
+  return `window.configuration.searchIndex = ${JSON.stringify(searchIndex)};\n`;
+};
+
 export default function generate(entries = [], plugins = [], options = {}) {
   return () => {
     const blogFiles = entries.filter(page => page.includes('blog/'));
     let generated = initLazyLoad(options);
 
+    generated += buildSearchIndex(entries, options);
     generated += registerMarkdown(entries, options);
 
     if (plugins.length > 0) {

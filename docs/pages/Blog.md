@@ -34,7 +34,7 @@ author: Andrew Lisowski
 
 ### Profile Pic
 
-Ignite uses [gravatar](http://en.gravatar.com/) to find a profile pic for you blog posts.
+Ignite uses [gravatar](http://en.gravatar.com/) to find a profile pic for your blog posts.
 
 ```markdown
 ---

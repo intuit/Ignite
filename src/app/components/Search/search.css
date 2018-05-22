@@ -1,0 +1,6 @@
+.root {
+  input,
+  ::-webkit-input-placeholder {
+    text-align: right;
+  }
+}
