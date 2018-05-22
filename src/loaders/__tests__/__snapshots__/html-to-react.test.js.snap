@@ -2,35 +2,35 @@
 
 exports[`addActive 1`] = `
 "<a
-      className=!{
+      className={
         '/foo' === props.currentPage ||
         ('bar' === 'foo' && '/' === props.currentPage) ||
-        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md')) 
+        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md'))
           ? 'is-active'
           : null
-      !}
+      }
       href=\\"/foo\\">Foo</a>"
 `;
 
 exports[`addActiveAll 1`] = `
 "
       <a
-      className=!{
+      className={
         '/foo' === props.currentPage ||
         ('bar' === 'foo' && '/' === props.currentPage) ||
-        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md')) 
+        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md'))
           ? 'is-active'
           : null
-      !}
+      }
       href=\\"/foo\\">Foo</a>'
       <a
-      className=!{
+      className={
         '/bar' === props.currentPage ||
         ('bar' === 'bar' && '/' === props.currentPage) ||
-        ('bar' === 'bar' && props.currentPage && props.currentPage.includes('index.md')) 
+        ('bar' === 'bar' && props.currentPage && props.currentPage.includes('index.md'))
           ? 'is-active'
           : null
-      !}
+      }
       href=\\"/bar\\">Foo</a>'
     "
 `;

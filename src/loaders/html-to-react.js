@@ -173,7 +173,7 @@ export function addActive(source, link, firstLink, indexFile) {
       className={
         '/${link}' === props.currentPage ||
         ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
-        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
+        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
           ? 'is-active'
           : null
       }
