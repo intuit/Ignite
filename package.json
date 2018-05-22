@@ -1,6 +1,6 @@
 {
   "name": "@fuego/ignite",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "Modern markdown documentation generator",
   "main": "dist/ignite.js",
   "bin": {
