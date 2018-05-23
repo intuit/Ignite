@@ -97,7 +97,7 @@ class Search extends Component {
       <div className={makeClass('navbar-item', styles.root)}>
         <div className="control">
           <input
-            className="input is-primary"
+            className="input"
             type="text"
             placeholder="Search"
             onChange={e => this.search(e.target.value)}
