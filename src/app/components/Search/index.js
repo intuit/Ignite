@@ -35,26 +35,17 @@ const getLines = (source, indexes, term) => {
 
 class Search extends Component {
   static propTypes = {
-    indexFiles: PropTypes.bool,
     setSearchResults: PropTypes.func
   };
 
   static defaultProps = {
-    indexFiles: true,
     setSearchResults: () => {}
   };
 
   constructor(props) {
     super(props);
 
-    if (props.indexFiles) {
-      this.index = lunr(function() {
-        this.ref('id');
-        this.field('body');
-
-        window.configuration.searchIndex.forEach(doc => this.add(doc));
-      });
-    }
+    this.index = lunr.Index.load(window.configuration.search.index);
   }
 
   search = throttle(500, term => {
@@ -63,7 +54,7 @@ class Search extends Component {
     }
 
     const results = this.index.search(`*${term}*`).map(result => {
-      const page = window.configuration.searchIndex.find(
+      const page = window.configuration.search.files.find(
         file => file.id === result.ref
       );
       const indexes = indexOfAll(page.body, term);

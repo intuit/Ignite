@@ -3,6 +3,7 @@ import fs from 'fs';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';
+import lunr from 'lunr';
 import { transform } from '../../loaders/hash-link';
 
 const { builders } = types;
@@ -151,6 +152,7 @@ const generateBlogIndex = (blogFiles, options) => {
 const initLazyLoad = options => {
   return `
     window.configuration = {
+      search: {},
       markdown: [],
       plugins: [],
       setFirstLink() {
@@ -214,20 +216,30 @@ const initLazyLoad = options => {
 };
 
 const buildSearchIndex = (entries, options) => {
-  const searchIndex = [];
+  const files = [];
 
   entries.forEach(entry => {
     if (fs.existsSync(entry)) {
       const pageContents = fs.readFileSync(entry, 'utf8');
       const pagePath = path.relative(options.src, entry);
-      searchIndex.push({
+      files.push({
         id: pagePath,
         body: transform(pageContents, entry, options)
       });
     }
   });
 
-  return `window.configuration.searchIndex = ${JSON.stringify(searchIndex)};\n`;
+  const searchIndex = lunr(function() {
+    this.ref('id');
+    this.field('body');
+
+    files.forEach(doc => this.add(doc));
+  });
+
+  return `
+    window.configuration.search.files = ${JSON.stringify(files)};\n
+    window.configuration.search.index = ${JSON.stringify(searchIndex)};\n
+  `;
 };
 
 export default function generate(entries = [], plugins = [], options = {}) {
