@@ -146,3 +146,7 @@
  0.0.37
 
 
+
+ 0.0.38
+
+- Fix name collision with index file #120
