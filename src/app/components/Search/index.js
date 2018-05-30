@@ -58,6 +58,10 @@ class Search extends Component {
   }
 
   search = throttle(500, term => {
+    if (term === '') {
+      return this.props.setSearchResults([]);
+    }
+
     const results = this.index.search(`*${term}*`).map(result => {
       const page = window.configuration.searchIndex.find(
         file => file.id === result.ref
@@ -66,7 +70,7 @@ class Search extends Component {
 
       return [page.id, getLines(page.body, indexes, term)];
     });
-    console.log(results);
+
     this.props.setSearchResults(results);
   });
 
