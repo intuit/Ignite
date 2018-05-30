@@ -20,13 +20,52 @@ const indexOfAll = (source, term) => {
   return indexes;
 };
 
+const inCodeBlock = (line, term) => {
+  if (line.indexOf('`') === -1) {
+    return false;
+  }
+
+  const termIndex = line.indexOf(term);
+  let tickIndex = line.indexOf('`');
+  let inTick = false;
+
+  // console.log(line, tickIndex);
+  const ticks = [];
+
+  while (tickIndex !== -1) {
+    if (ticks.length > 0) {
+      ticks.pop();
+    } else {
+      ticks.push(true);
+    }
+
+    tickIndex = line.indexOf('`', tickIndex + 1);
+    // console.log(tickIndex, termIndex, ticks);
+    if (tickIndex > termIndex && ticks.length > 0) {
+      inTick = true;
+    }
+  }
+
+  return inTick;
+};
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const getLines = (source, indexes, term) => {
   return new Set(
     indexes.map(index => {
       const lineNumber = getLineNumber(source, index);
-      const line = source
-        .split('\n')
-        [lineNumber - 1].replace(new RegExp(` ${term} `, 'g'), ` **${term}** `);
+      let line = source.split('\n')[lineNumber - 1];
+      if (!inCodeBlock(line, term)) {
+        line = line.replace(new RegExp(`${term}`, 'g'), `**${term}**`);
+        line = line.replace(
+          new RegExp(`${capitalizeFirstLetter(term)}`, 'g'),
+          `**${capitalizeFirstLetter(term)}**`
+        );
+        console.log(line);
+      }
 
       return line;
     })
