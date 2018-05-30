@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import throttle from 'throttle-debounce/throttle';
-import searchIndex from 'search-index/dist/search-index';
+import lunr from 'lunr';
 import getLineNumber from 'get-line-from-pos';
 
 import styles from './search.css';
@@ -10,7 +10,7 @@ import styles from './search.css';
 const indexOfAll = (source, term) => {
   const indexes = [];
 
-  let index = source.indexOf(term);
+  let index = source.toLowerCase().indexOf(term);
 
   while (index !== -1) {
     indexes.push(index);
@@ -46,40 +46,28 @@ class Search extends Component {
 
   constructor(props) {
     super(props);
-    if (props.indexFiles) {
-      searchIndex({}, (err, si) => {
-        if (err) {
-          console.log(err);
-        }
 
-        this.index = si;
-        this.addPages();
+    if (props.indexFiles) {
+      this.index = lunr(function() {
+        this.ref('id');
+        this.field('body');
+
+        window.configuration.searchIndex.forEach(doc => this.add(doc));
       });
     }
   }
 
-  addPages = () => {
-    this.index.concurrentAdd({}, window.configuration.searchIndex, err => {
-      console.log(err);
-    });
-  };
-
   search = throttle(500, term => {
-    const results = new Set();
+    const results = this.index.search(`*${term}*`).map(result => {
+      const page = window.configuration.searchIndex.find(
+        file => file.id === result.ref
+      );
+      const indexes = indexOfAll(page.body, term);
 
-    this.index
-      .search({
-        query: {
-          AND: { '*': [term] }
-        }
-      })
-      .on('data', data => {
-        const indexes = indexOfAll(data.document.body, term);
-        results.add([data.id, getLines(data.document.body, indexes, term)]);
-      })
-      .on('end', () => {
-        this.props.setSearchResults(results);
-      });
+      return [page.id, getLines(page.body, indexes, term)];
+    });
+    console.log(results);
+    this.props.setSearchResults(results);
   });
 
   keyDown = event => {

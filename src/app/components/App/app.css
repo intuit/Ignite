@@ -312,8 +312,7 @@ p {
 
 .searchResults {
   max-width: 800px;
-  margin: auto;
-  margin-top: 3rem;
+  margin: 3rem auto;
 }
 
 :global .collapse-summary {
