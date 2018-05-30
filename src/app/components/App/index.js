@@ -54,7 +54,7 @@ export const determineComponents = (
     SidebarComponent = null;
   }
 
-  if (!isBlog && markdown.indexFiles && filePath.includes(indexFile)) {
+  if (!isBlog && markdown.indexFiles && filePath === indexFile) {
     Page = markdown[markdown.indexFiles[filePath]];
   }
 
