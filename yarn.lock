@@ -5582,6 +5582,17 @@ jest-validate@^23.0.0:
     leven "^2.1.0"
     pretty-format "^23.0.0"
 
+jest-watch-typeahead@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.intuit.net/j/jest-watch-typeahead/_attachments/jest-watch-typeahead-0.1.0.tgz#16b6cfe087fc7f181daadea5abeb68a0fcc70eac"
+  dependencies:
+    ansi-escapes "^3.0.0"
+    chalk "^2.3.1"
+    lodash "4.17.5"
+    slash "^1.0.0"
+    string-length "^2.0.0"
+    strip-ansi "^4.0.0"
+
 jest-worker@^23.0.0:
   version "23.0.0"
   resolved "https://registry.npmjs.intuit.net/j/jest-worker/_attachments/jest-worker-23.0.0.tgz#e6b1378b81f8e6a108f3be33a1faa830c22ea450"
@@ -6073,6 +6084,10 @@ lodash.zip@^4.2.0:
 lodash@4.17.4:
   version "4.17.4"
   resolved "https://registry.npmjs.intuit.net/l/lodash/_attachments/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
+
+lodash@4.17.5:
+  version "4.17.5"
+  resolved "https://registry.npmjs.intuit.net/l/lodash/_attachments/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
 lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0, lodash@~4.17.4:
   version "4.17.10"
