@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import throttle from 'throttle-debounce/throttle';
-import searchIndex from 'search-index/dist/search-index';
+import lunr from 'lunr';
 import getLineNumber from 'get-line-from-pos';
+import replaceAt from '../../../utils/replace-at';
 
 import styles from './search.css';
 
 const indexOfAll = (source, term) => {
   const indexes = [];
 
-  let index = source.indexOf(term);
+  let index = source.toLowerCase().indexOf(term);
 
   while (index !== -1) {
     indexes.push(index);
@@ -20,13 +21,53 @@ const indexOfAll = (source, term) => {
   return indexes;
 };
 
+const lineWithCodeBlock = (line, term) => {
+  let tickIndex = line.indexOf('`');
+  let termIndex = line.indexOf(term);
+
+  while (termIndex !== -1) {
+    if (termIndex < tickIndex || tickIndex === -1) {
+      line = replaceAt(line, term, `**${term}**`, termIndex);
+      termIndex = line.indexOf(term, termIndex + 3);
+
+      if (tickIndex !== -1) {
+        tickIndex += 4; // Account for **
+      }
+    } else if (line.indexOf('`', tickIndex + 1) < termIndex) {
+      const paired = line.indexOf('`', tickIndex + 1);
+
+      if (paired === -1) {
+        tickIndex = line.indexOf('`', tickIndex + 1);
+      } else {
+        tickIndex = line.indexOf('`', paired + 1);
+      }
+    } else {
+      termIndex = line.indexOf(term, termIndex + 1);
+    }
+  }
+
+  return line;
+};
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const getLines = (source, indexes, term) => {
   return new Set(
     indexes.map(index => {
       const lineNumber = getLineNumber(source, index);
-      const line = source
-        .split('\n')
-        [lineNumber - 1].replace(new RegExp(` ${term} `, 'g'), ` **${term}** `);
+      let line = source.split('\n')[lineNumber - 1];
+
+      if (line.indexOf('`') > -1) {
+        line = lineWithCodeBlock(line, term);
+      } else if (line.indexOf('![') === -1) {
+        line = line.replace(new RegExp(`${term}`), `**${term}**`);
+        line = line.replace(
+          new RegExp(`${capitalizeFirstLetter(term)}`, 'g'),
+          `**${capitalizeFirstLetter(term)}**`
+        );
+      }
 
       return line;
     })
@@ -35,51 +76,34 @@ const getLines = (source, indexes, term) => {
 
 class Search extends Component {
   static propTypes = {
-    indexFiles: PropTypes.bool,
     setSearchResults: PropTypes.func
   };
 
   static defaultProps = {
-    indexFiles: true,
     setSearchResults: () => {}
   };
 
   constructor(props) {
     super(props);
-    if (props.indexFiles) {
-      searchIndex({}, (err, si) => {
-        if (err) {
-          console.log(err);
-        }
 
-        this.index = si;
-        this.addPages();
-      });
-    }
+    this.index = lunr.Index.load(window.configuration.search.index);
   }
 
-  addPages = () => {
-    this.index.concurrentAdd({}, window.configuration.searchIndex, err => {
-      console.log(err);
-    });
-  };
-
   search = throttle(500, term => {
-    const results = new Set();
+    if (term === '') {
+      return this.props.setSearchResults([]);
+    }
 
-    this.index
-      .search({
-        query: {
-          AND: { '*': [term] }
-        }
-      })
-      .on('data', data => {
-        const indexes = indexOfAll(data.document.body, term);
-        results.add([data.id, getLines(data.document.body, indexes, term)]);
-      })
-      .on('end', () => {
-        this.props.setSearchResults(results);
-      });
+    const results = this.index.search(`*${term}*`).map(result => {
+      const page = window.configuration.search.files.find(
+        file => file.id === result.ref
+      );
+      const indexes = indexOfAll(page.body, term);
+
+      return [page.id, getLines(page.body, indexes, term)];
+    });
+
+    this.props.setSearchResults(results);
   });
 
   keyDown = event => {

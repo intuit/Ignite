@@ -8,44 +8,14 @@ const globby = require('globby');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const highlightjs = require('highlight.js');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 
-const makePlugin = require('./dist/extensions/ignite-plugin').default;
-const renderBlogFrontMatter = require('./dist/extensions/front-matter-render');
-
-const splitPlugins = plugins => {
-  const markdownPlugins = [];
-  const ignitePlugins = [];
-
-  plugins.forEach(plugin => {
-    if (Array.isArray(plugin)) {
-      ignitePlugins.push(plugin);
-    } else {
-      markdownPlugins.push(plugin);
-    }
-  });
-
-  return {
-    markdownPlugins,
-    ignitePlugins
-  };
-};
+const markdownItConfig = require('./markdownit.config');
 
 module.exports = function(options = {}) {
-  let { markdownPlugins, ignitePlugins } = splitPlugins(options.plugins);
+  const { ignitePlugins } = markdownItConfig.splitPlugins(options.plugins);
 
-  ignitePlugins = ignitePlugins.map(plugin => {
-    if (plugin[1][0] === '.' || plugin[1][0] === '/') {
-      plugin[1] = path.resolve(plugin[1]);
-      return plugin;
-    }
-
-    return plugin;
-  });
-
-  const pluginTokens = ignitePlugins.map(plugin => makePlugin(plugin[0]));
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
   const logoExists = fs.existsSync(path.resolve(logoPath));
@@ -81,68 +51,7 @@ module.exports = function(options = {}) {
             },
             {
               loader: path.resolve(__dirname, './dist/loaders/markdown-it.js'),
-              options: {
-                xhtmlOut: true,
-                plugins: [
-                  [
-                    'markdown-it-checkbox',
-                    {
-                      divWrap: true
-                    }
-                  ],
-                  'markdown-it-br',
-                  'markdown-it-sub',
-                  'markdown-it-mark',
-                  'markdown-it-ins',
-                  'markdown-it-sup',
-                  'markdown-it-highlight-lines',
-                  ['markdown-it-front-matter', renderBlogFrontMatter],
-                  [
-                    'markdown-it-anchor',
-                    {
-                      permalink: true,
-                      permalinkSymbol: '',
-                      permalinkClass: 'fas fa-hashtag headerLink',
-                      level: 2
-                    }
-                  ],
-                  'markdown-it-emoji',
-                  [
-                    'markdown-it-attrs',
-                    {
-                      leftDelimiter: '/',
-                      rightDelimiter: '\\'
-                    }
-                  ],
-                  'markdown-it-external-links',
-                  [
-                    'markdown-it-table-of-contents',
-                    {
-                      includeLevel: [2, 3]
-                    }
-                  ],
-                  require('./dist/extensions/font-awesome'),
-                  require('./dist/extensions/bulma-tag'),
-                  require('./dist/extensions/bulma-progress'),
-                  require('./dist/extensions/bulma-hero'),
-                  require('./dist/extensions/bulma-message'),
-                  require('./dist/extensions/bulma-box'),
-                  require('./dist/extensions/bulma-button'),
-                  require('./dist/extensions/bulma-row'),
-                  require('./dist/extensions/bulma-tile'),
-                  require('./dist/extensions/collapse'),
-                  require('./dist/extensions/embed'),
-                  require('./dist/extensions/code-tabs'),
-                  require('./dist/extensions/div'),
-                  ...pluginTokens,
-                  ...markdownPlugins
-                ],
-                highlight: (code, language) => {
-                  return language && highlightjs.getLanguage(language)
-                    ? highlightjs.highlight(language, code).value
-                    : code;
-                }
-              }
+              options: markdownItConfig.generateConfig(options.plugins)
             },
             {
               loader: path.resolve(__dirname, './dist/loaders/hash-link.js'),
@@ -240,7 +149,8 @@ module.exports = function(options = {}) {
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
           navItems: JSON.stringify(options.navItems),
-          logo: JSON.stringify(logoExists ? logoPath : '')
+          logo: JSON.stringify(logoExists ? logoPath : ''),
+          plugins: JSON.stringify(options.plugins)
         }
       }),
       new FriendlyErrorsWebpackPlugin({

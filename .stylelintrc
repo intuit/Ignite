@@ -1,11 +1,21 @@
 {
   "extends": "stylelint-config-recommended-scss",
+  "plugins": ["stylelint-csstree-validator"],
   "rules": {
-    "selector-pseudo-class-no-unknown": [true, {
-      "ignorePseudoClasses": ["global"]
-    }],
-    "selector-pseudo-element-no-unknown": [true, {
-      "ignorePseudoElements": ["global"]
-    }]
+    "csstree/validator": {
+      "ignore": ["composes", "background-image"]
+    },
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["global"]
+      }
+    ]
   }
 }

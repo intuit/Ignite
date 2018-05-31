@@ -32,7 +32,7 @@ export default function renderBlogFrontMatter(tokens) {
   try {
     blogConfig = yaml.safeLoad(blogConfig, 'utf8');
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 
   let { title, image, name, url, email } = parseConfig(blogConfig);

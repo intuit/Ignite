@@ -3,7 +3,6 @@ import {
   addActive,
   addActiveAll,
   index,
-  replaceAt,
   insertBreaks,
   regexIndexOf,
   replaceIdLinks,
@@ -15,12 +14,6 @@ import {
 test('getLink', () => {
   expect(getLink('<a href="/foo">Foo</a>').link).toBe('foo');
   expect(getLink('<a>Foo</a>').link).toBe('');
-});
-
-test('replaceAt', () => {
-  expect(replaceAt('A dog barked loudly', 'dog', 'wolf', 2)).toBe(
-    'A wolf barked loudly'
-  );
 });
 
 test('addActive', () => {

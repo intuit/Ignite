@@ -121,6 +121,17 @@ h4 > code,
 h5 > code,
 h6 > code {
   margin-left: 10px;
+  margin-right: 10px;
+}
+
+h1 > strong:not(:only-child),
+h2 > strong:not(:only-child),
+h3 > strong:not(:only-child),
+h4 > strong:not(:only-child),
+h5 > strong:not(:only-child),
+h6 > strong:not(:only-child) {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 p > code {
@@ -312,8 +323,7 @@ p {
 
 .searchResults {
   max-width: 800px;
-  margin: auto;
-  margin-top: 3rem;
+  margin: 3rem auto;
 }
 
 :global .collapse-summary {

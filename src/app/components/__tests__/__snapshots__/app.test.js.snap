@@ -1,11 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders blog index 1`] = `
-<div
-  className={undefined}
->
+<div>
   <Header
-    githubURL={undefined}
     location={
       Object {
         "hash": "",
@@ -13,10 +10,7 @@ exports[`App renders blog index 1`] = `
         "search": "",
       }
     }
-    logo={undefined}
-    navItems={undefined}
     setSearchResults={[Function]}
-    title={undefined}
   />
   <div>
     <BlogHero
@@ -49,7 +43,6 @@ exports[`App renders blog index 1`] = `
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
       >
         <Unknown
-          className={undefined}
           plugins={Array []}
         />
       </div>
@@ -59,11 +52,8 @@ exports[`App renders blog index 1`] = `
 `;
 
 exports[`App renders blog page 1`] = `
-<div
-  className={undefined}
->
+<div>
   <Header
-    githubURL={undefined}
     location={
       Object {
         "hash": "",
@@ -71,10 +61,7 @@ exports[`App renders blog page 1`] = `
         "search": "",
       }
     }
-    logo={undefined}
-    navItems={undefined}
     setSearchResults={[Function]}
-    title={undefined}
   />
   <div>
     <BlogHero
@@ -107,7 +94,6 @@ exports[`App renders blog page 1`] = `
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
       >
         <Unknown
-          className={undefined}
           plugins={Array []}
         />
       </div>
@@ -117,21 +103,15 @@ exports[`App renders blog page 1`] = `
 `;
 
 exports[`App renders first page at index if found 1`] = `
-<div
-  className={undefined}
->
+<div>
   <Header
-    githubURL={undefined}
     location={
       Object {
         "hash": "#foo",
         "pathname": "/",
       }
     }
-    logo={undefined}
-    navItems={undefined}
     setSearchResults={[Function]}
-    title={undefined}
   />
   <div
     className=""
@@ -159,7 +139,6 @@ exports[`App renders first page at index if found 1`] = `
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
       >
         <Page
-          className={undefined}
           plugins={Array []}
         />
       </div>
@@ -169,43 +148,30 @@ exports[`App renders first page at index if found 1`] = `
 `;
 
 exports[`App renders home page 1`] = `
-<div
-  className={undefined}
->
+<div>
   <Header
-    githubURL={undefined}
     location={
       Object {
         "pathname": "/",
       }
     }
-    logo={undefined}
-    navItems={undefined}
     setSearchResults={[Function]}
-    title={undefined}
   />
   <home
-    className={undefined}
     plugins={Array []}
   />
 </div>
 `;
 
 exports[`App renders matched page 1`] = `
-<div
-  className={undefined}
->
+<div>
   <Header
-    githubURL={undefined}
     location={
       Object {
         "pathname": "/foo",
       }
     }
-    logo={undefined}
-    navItems={undefined}
     setSearchResults={[Function]}
-    title={undefined}
   />
   <div
     className=""
@@ -233,7 +199,6 @@ exports[`App renders matched page 1`] = `
         className="column content is-two-thirds-tablet is-three-quarters-desktop"
       >
         <foo
-          className={undefined}
           plugins={Array []}
         />
       </div>

@@ -6,9 +6,7 @@ exports[`render active for blogs 1`] = `
   className="navbar"
   role="navigation"
 >
-  <div
-    className={undefined}
-  >
+  <div>
     <div
       className="navbar-brand"
     >
@@ -46,7 +44,6 @@ exports[`render active for blogs 1`] = `
         onClick={[Function]}
       >
         <Search
-          indexFiles={true}
           setSearchResults={[Function]}
         />
         <DocsLink
@@ -70,9 +67,7 @@ exports[`renders githubURL 1`] = `
   className="navbar"
   role="navigation"
 >
-  <div
-    className={undefined}
-  >
+  <div>
     <div
       className="navbar-brand"
     >
@@ -110,7 +105,6 @@ exports[`renders githubURL 1`] = `
         onClick={[Function]}
       >
         <Search
-          indexFiles={true}
           setSearchResults={[Function]}
         />
         <DocsLink
@@ -134,9 +128,7 @@ exports[`renders logo 1`] = `
   className="navbar"
   role="navigation"
 >
-  <div
-    className={undefined}
-  >
+  <div>
     <div
       className="navbar-brand"
     >
@@ -179,7 +171,6 @@ exports[`renders logo 1`] = `
         onClick={[Function]}
       >
         <Search
-          indexFiles={true}
           setSearchResults={[Function]}
         />
         <DocsLink
@@ -203,9 +194,7 @@ exports[`renders nav items 1`] = `
   className="navbar"
   role="navigation"
 >
-  <div
-    className={undefined}
-  >
+  <div>
     <div
       className="navbar-brand"
     >
@@ -243,11 +232,9 @@ exports[`renders nav items 1`] = `
         onClick={[Function]}
       >
         <Search
-          indexFiles={true}
           setSearchResults={[Function]}
         />
         <NavItem
-          githubURL={undefined}
           item={
             Array [
               "root",
@@ -259,7 +246,6 @@ exports[`renders nav items 1`] = `
               "pathname": "/",
             }
           }
-          logo={undefined}
           navItems={
             Object {
               "Doc 1": "/",
@@ -268,10 +254,8 @@ exports[`renders nav items 1`] = `
             }
           }
           setSearchResults={[Function]}
-          title={undefined}
         />
         <NavItem
-          githubURL={undefined}
           item={
             Array [
               "Doc 1",
@@ -283,7 +267,6 @@ exports[`renders nav items 1`] = `
               "pathname": "/",
             }
           }
-          logo={undefined}
           navItems={
             Object {
               "Doc 1": "/",
@@ -292,10 +275,8 @@ exports[`renders nav items 1`] = `
             }
           }
           setSearchResults={[Function]}
-          title={undefined}
         />
         <NavItem
-          githubURL={undefined}
           item={
             Array [
               "Doc 2",
@@ -307,7 +288,6 @@ exports[`renders nav items 1`] = `
               "pathname": "/",
             }
           }
-          logo={undefined}
           navItems={
             Object {
               "Doc 1": "/",
@@ -316,7 +296,6 @@ exports[`renders nav items 1`] = `
             }
           }
           setSearchResults={[Function]}
-          title={undefined}
         />
         <BlogLink
           className={false}
@@ -336,9 +315,7 @@ exports[`renders nav items with just a index 1`] = `
   className="navbar"
   role="navigation"
 >
-  <div
-    className={undefined}
-  >
+  <div>
     <div
       className="navbar-brand"
     >
@@ -376,11 +353,9 @@ exports[`renders nav items with just a index 1`] = `
         onClick={[Function]}
       >
         <Search
-          indexFiles={true}
           setSearchResults={[Function]}
         />
         <NavItem
-          githubURL={undefined}
           item={
             Array [
               "root",
@@ -392,7 +367,6 @@ exports[`renders nav items with just a index 1`] = `
               "pathname": "/foo",
             }
           }
-          logo={undefined}
           navItems={
             Object {
               "Doc 1": "other/index.md",
@@ -401,10 +375,8 @@ exports[`renders nav items with just a index 1`] = `
             }
           }
           setSearchResults={[Function]}
-          title={undefined}
         />
         <NavItem
-          githubURL={undefined}
           item={
             Array [
               "Doc 1",
@@ -416,7 +388,6 @@ exports[`renders nav items with just a index 1`] = `
               "pathname": "/foo",
             }
           }
-          logo={undefined}
           navItems={
             Object {
               "Doc 1": "other/index.md",
@@ -425,10 +396,8 @@ exports[`renders nav items with just a index 1`] = `
             }
           }
           setSearchResults={[Function]}
-          title={undefined}
         />
         <NavItem
-          githubURL={undefined}
           item={
             Array [
               "Doc 2",
@@ -440,7 +409,6 @@ exports[`renders nav items with just a index 1`] = `
               "pathname": "/foo",
             }
           }
-          logo={undefined}
           navItems={
             Object {
               "Doc 1": "other/index.md",
@@ -449,7 +417,6 @@ exports[`renders nav items with just a index 1`] = `
             }
           }
           setSearchResults={[Function]}
-          title={undefined}
         />
         <BlogLink
           className={false}
@@ -469,9 +436,7 @@ exports[`renders title 1`] = `
   className="navbar"
   role="navigation"
 >
-  <div
-    className={undefined}
-  >
+  <div>
     <div
       className="navbar-brand"
     >
@@ -511,7 +476,6 @@ exports[`renders title 1`] = `
         onClick={[Function]}
       >
         <Search
-          indexFiles={true}
           setSearchResults={[Function]}
         />
         <DocsLink

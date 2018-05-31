@@ -3,6 +3,7 @@
 exports[`generate should add markdown 1`] = `
 "
     window.configuration = {
+      search: {},
       markdown: [],
       plugins: [],
       setFirstLink() {
@@ -62,8 +63,12 @@ exports[`generate should add markdown 1`] = `
         window.configuration.markdown.push([path, comp]);
       }
     }
-  window.configuration.searchIndex = [];
-registerMarkdown('../path/to/markdown.md', () => import('path/to/markdown.md'));
+  
+    window.configuration.search.files = [];
+
+    window.configuration.search.index = {\\"version\\":\\"2.2.1\\",\\"fields\\":[\\"body\\"],\\"fieldVectors\\":[],\\"invertedIndex\\":[],\\"pipeline\\":[\\"stemmer\\"]};
+
+  registerMarkdown('../path/to/markdown.md', () => import('path/to/markdown.md'));
         
 registerMarkdown('../path/to/another-markdown.md', () => import('path/to/another-markdown.md'));
         "
@@ -72,6 +77,7 @@ registerMarkdown('../path/to/another-markdown.md', () => import('path/to/another
 exports[`generate should add plugins 1`] = `
 "
     window.configuration = {
+      search: {},
       markdown: [],
       plugins: [],
       setFirstLink() {
@@ -131,8 +137,12 @@ exports[`generate should add plugins 1`] = `
         window.configuration.markdown.push([path, comp]);
       }
     }
-  window.configuration.searchIndex = [];
+  
+    window.configuration.search.files = [];
 
+    window.configuration.search.index = {\\"version\\":\\"2.2.1\\",\\"fields\\":[\\"body\\"],\\"fieldVectors\\":[],\\"invertedIndex\\":[],\\"pipeline\\":[\\"stemmer\\"]};
+
+  
       import * as first from 'path/to/plugin.js';
       
       var options = {};

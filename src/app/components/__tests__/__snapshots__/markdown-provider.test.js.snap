@@ -3,8 +3,6 @@
 exports[`Has default route 1`] = `
 <App
   blogHero={null}
-  index={undefined}
-  location={undefined}
   markdown={Object {}}
   plugins={Object {}}
 />
@@ -13,8 +11,6 @@ exports[`Has default route 1`] = `
 exports[`sets first page and root from index file 1`] = `
 <App
   blogHero={null}
-  index={undefined}
-  location={undefined}
   markdown={
     Object {
       "/foo/bar": [Function],
@@ -30,8 +26,6 @@ exports[`sets first page and root from index file 1`] = `
 exports[`update markdown provided 1`] = `
 <App
   blogHero={null}
-  index={undefined}
-  location={undefined}
   markdown={
     Object {
       "/foo/bar": [Function],
@@ -44,8 +38,6 @@ exports[`update markdown provided 1`] = `
 exports[`uses plugins 1`] = `
 <App
   blogHero={null}
-  index={undefined}
-  location={undefined}
   markdown={
     Object {
       "/foo/bar": [Function],
