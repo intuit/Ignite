@@ -107,7 +107,6 @@ class App extends Component {
   };
 
   setSearchResults = searchResults => {
-    console.log('here');
     this.setState({
       searchResults
     });
@@ -128,7 +127,6 @@ class App extends Component {
     let content;
 
     if (this.state.searchResults.length > 0) {
-      console.log(this.state.searchResults);
       content = (
         <div className={makeClass(styles.searchResults)}>
           {this.state.searchResults.map(([fileName, results]) => (

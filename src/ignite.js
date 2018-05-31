@@ -33,7 +33,7 @@ export async function initPlugins(options) {
           pluginOptions
         );
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   });
@@ -136,11 +136,11 @@ function publish(options, user) {
     },
     err => {
       if (err) {
-        console.log(err);
+        console.error(err);
         return;
       }
 
-      console.log('Documentation published to github-pages!');
+      console.warn('Documentation published to github-pages!');
     }
   );
 }
@@ -161,17 +161,17 @@ export default async function build(options) {
 
   if (options.publish) {
     if (!options.githubURL) {
-      console.log('Need to provide githubURL option to publish');
+      console.error('Need to provide githubURL option to publish');
       return;
     }
 
     if (!user.name) {
-      console.log('Need author.name in package.json to publish');
+      console.error('Need author.name in package.json to publish');
       return;
     }
 
     if (!user.email) {
-      console.log('Need author.email in package.json to publish');
+      console.error('Need author.email in package.json to publish');
       return;
     }
   }
@@ -183,7 +183,7 @@ export default async function build(options) {
     const server = new WebpackDevServer(compiler, devServerOptions);
 
     server.listen(options.port, '127.0.0.1', () => {
-      console.log(`Starting server on http://localhost:${options.port}`);
+      console.warn(`Starting server on http://localhost:${options.port}`);
     });
   } else {
     compiler.run((err, stats) => {

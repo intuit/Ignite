@@ -2585,6 +2585,13 @@ css-selector-tokenizer@^0.7.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
+css-tree@1.0.0-alpha.28:
+  version "1.0.0-alpha.28"
+  resolved "https://registry.npmjs.intuit.net/c/css-tree/_attachments/css-tree-1.0.0-alpha.28.tgz#8e8968190d886c9477bc8d61e96f61af3f7ffa7f"
+  dependencies:
+    mdn-data "~1.1.0"
+    source-map "^0.5.3"
+
 css-what@2.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
@@ -6286,6 +6293,10 @@ mdast-util-compact@^1.0.0:
     unist-util-modify-children "^1.0.0"
     unist-util-visit "^1.1.0"
 
+mdn-data@~1.1.0:
+  version "1.1.3"
+  resolved "https://registry.npmjs.intuit.net/m/mdn-data/_attachments/mdn-data-1.1.3.tgz#d0929cdf73db32b0afd6d3ab8ef3da2b29b6f76b"
+
 mdurl@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
@@ -9163,6 +9174,12 @@ stylelint-config-recommended-scss@^3.2.0:
 stylelint-config-recommended@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-2.1.0.tgz#f526d5c771c6811186d9eaedbed02195fee30858"
+
+stylelint-csstree-validator@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.intuit.net/s/stylelint-csstree-validator/_attachments/stylelint-csstree-validator-1.2.2.tgz#b402d63f9967ca3f6556d1065fb706f1fd10aa98"
+  dependencies:
+    css-tree "1.0.0-alpha.28"
 
 stylelint-scss@^3.1.0:
   version "3.1.0"
