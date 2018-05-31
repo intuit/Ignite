@@ -18,7 +18,6 @@ exports[`only renders content if its there 2`] = `
     />
   </button>
   <content
-    className={undefined}
     currentPage={null}
     onClick={[Function]}
   />
