@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 const path = require('path');
 const highlightjs = require('highlight.js');
 
