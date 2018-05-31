@@ -4,6 +4,7 @@ import makeClass from 'classnames';
 import throttle from 'throttle-debounce/throttle';
 import lunr from 'lunr';
 import getLineNumber from 'get-line-from-pos';
+import replaceAt from '../../../utils/replace-at';
 
 import styles from './search.css';
 
@@ -20,33 +21,32 @@ const indexOfAll = (source, term) => {
   return indexes;
 };
 
-const inCodeBlock = (line, term) => {
-  if (line.indexOf('`') === -1) {
-    return false;
-  }
-
-  const termIndex = line.indexOf(term);
+const lineWithCodeBlock = (line, term) => {
   let tickIndex = line.indexOf('`');
-  let inTick = false;
+  let termIndex = line.indexOf(term);
 
-  // console.log(line, tickIndex);
-  const ticks = [];
+  while (termIndex !== -1) {
+    if (termIndex < tickIndex || tickIndex === -1) {
+      line = replaceAt(line, term, `**${term}**`, termIndex);
+      termIndex = line.indexOf(term, termIndex + 3);
 
-  while (tickIndex !== -1) {
-    if (ticks.length > 0) {
-      ticks.pop();
+      if (tickIndex !== -1) {
+        tickIndex += 4; // Account for **
+      }
+    } else if (line.indexOf('`', tickIndex + 1) < termIndex) {
+      const paired = line.indexOf('`', tickIndex + 1);
+
+      if (paired === -1) {
+        tickIndex = line.indexOf('`', tickIndex + 1);
+      } else {
+        tickIndex = line.indexOf('`', paired + 1);
+      }
     } else {
-      ticks.push(true);
-    }
-
-    tickIndex = line.indexOf('`', tickIndex + 1);
-    // console.log(tickIndex, termIndex, ticks);
-    if (tickIndex > termIndex && ticks.length > 0) {
-      inTick = true;
+      termIndex = line.indexOf(term, termIndex + 1);
     }
   }
 
-  return inTick;
+  return line;
 };
 
 function capitalizeFirstLetter(string) {
@@ -58,13 +58,15 @@ const getLines = (source, indexes, term) => {
     indexes.map(index => {
       const lineNumber = getLineNumber(source, index);
       let line = source.split('\n')[lineNumber - 1];
-      if (!inCodeBlock(line, term)) {
-        line = line.replace(new RegExp(`${term}`, 'g'), `**${term}**`);
+
+      if (line.indexOf('`') > -1) {
+        line = lineWithCodeBlock(line, term);
+      } else if (line.indexOf('![') === -1) {
+        line = line.replace(new RegExp(`${term}`), `**${term}**`);
         line = line.replace(
           new RegExp(`${capitalizeFirstLetter(term)}`, 'g'),
           `**${capitalizeFirstLetter(term)}**`
         );
-        console.log(line);
       }
 
       return line;

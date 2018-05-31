@@ -2,18 +2,11 @@ import path from 'path';
 import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
+import replaceAt from '../utils/replace-at';
 
 const libHTMLOptions = {
   xmlMode: true
 };
-
-export function replaceAt(input, search, replace, start) {
-  return (
-    input.slice(0, start) +
-    input.slice(start, start + search.length).replace(search, replace) +
-    input.slice(start + search.length)
-  );
-}
 
 export function insertBreaks(source) {
   let preTeg = source.indexOf('<pre');

@@ -124,6 +124,16 @@ h6 > code {
   margin-right: 10px;
 }
 
+h1 > strong:not(:only-child),
+h2 > strong:not(:only-child),
+h3 > strong:not(:only-child),
+h4 > strong:not(:only-child),
+h5 > strong:not(:only-child),
+h6 > strong:not(:only-child) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 p > code {
   padding: 0.5em;
   font-size: 85%;
