@@ -150,3 +150,7 @@
  0.0.38
 
 - Fix name collision with index file #120
+
+ 0.0.39
+
+- Lunr #122
