@@ -88,6 +88,7 @@
     "postcss-nested": "^3.0.0",
     "postcss-pseudoelements": "^5.0.0",
     "postcss-simple-vars": "^4.1.0",
+    "prerender-loader": "1.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

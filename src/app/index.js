@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import withGlobalConfig from './components/WithGlobalConfig';
 import MarkdownProvider from './components/MarkdownProvider';
@@ -8,11 +8,8 @@ import MarkdownProvider from './components/MarkdownProvider';
 const MarkdownProviderWithConfig = withGlobalConfig(MarkdownProvider);
 
 ReactDOM.render(
-  <HashRouter>
-    <Route
-      path="/"
-      component={props => <MarkdownProviderWithConfig {...props} />}
-    />
-  </HashRouter>,
+  <BrowserRouter>
+    <Route component={props => <MarkdownProviderWithConfig {...props} />} />
+  </BrowserRouter>,
   document.getElementById('index')
 );
