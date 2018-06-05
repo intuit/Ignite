@@ -76,18 +76,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchResults: {}
+      searchResults: []
     };
   }
 
   componentDidUpdate() {
     this.jumpToHash();
-  }
-
-  static getDerivedStateFromProps() {
-    return {
-      searchResults: {}
-    };
   }
 
   jumpToHash = () => {
@@ -115,7 +109,7 @@ class App extends Component {
     const { markdown, location, index } = this.props;
     const isBlog = location.pathname.includes('blog/');
     const isHome =
-      (location.pathname === '/' || location.pathname === '/home.md') &&
+      (location.pathname === '/' || location.pathname === '/home.html') &&
       markdown['home.md'];
     const { SidebarComponent, Page } = determineComponents(
       markdown,
@@ -131,10 +125,7 @@ class App extends Component {
           {this.state.searchResults.map(([fileName, results]) => (
             <SearchResult
               key={fileName}
-              setResults={searchResults =>
-                location.pathname.includes(fileName) &&
-                this.setState({ searchResults })
-              }
+              setResults={searchResults => this.setState({ searchResults })}
               fileName={fileName}
               results={results}
             />
