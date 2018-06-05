@@ -17,7 +17,7 @@ export const determineComponents = (
   indexFile,
   navItems = process.env.navItems
 ) => {
-  const filePath = location.pathname.substring(1) + '.md';
+  const filePath = location.pathname.substring(1).replace('.html', '.md');
   let Page = markdown[filePath];
   const isBlog = filePath.includes('blog/');
   let SidebarComponent = markdown[indexFile];

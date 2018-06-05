@@ -319,7 +319,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
           : i === 4 &&
             `
       <div class='has-text-centered learnMore'>
-        <Link to='/${pathToMarkdown.replace('.md', '')}'>
+        <Link to='/${pathToMarkdown.replace('.md', '.html')}'>
           Read More
         </Link>
       </div>
@@ -396,9 +396,10 @@ export function index(rawSource, pathToMarkdown, options) {
       );
     }
 
-    window.configuration.setFirstLink('${pathToMarkdown}', '${
-    firstLink.link
-  }.md');
+    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink.link.replace(
+    '.html',
+    '.md'
+  )}');
   `;
 }
 

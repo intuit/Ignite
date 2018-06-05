@@ -63,7 +63,7 @@ const hasBlogLink = () =>
 
 const BlogLink = ({ className }) =>
   hasBlogLink() ? (
-    <Link className={makeClass('navbar-item', className)} to="/blog/index">
+    <Link className={makeClass('navbar-item', className)} to="/blog/index.html">
       Blog
       <Icon className={styles.icon} type="fas" icon="rss" />
     </Link>
@@ -78,7 +78,7 @@ BlogLink.defaultProps = {
 };
 
 const DocsLink = ({ className }) => (
-  <Link className={makeClass('navbar-item', className)} to="/index">
+  <Link className={makeClass('navbar-item', className)} to="/index.html">
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
   </Link>
@@ -131,7 +131,7 @@ class Header extends Component {
             <Link to="/" className={makeClass(styles.title, 'navbar-item')}>
               {this.props.logo && (
                 <img
-                  src={`/${this.props.logo}`}
+                  src={`./${this.props.logo}`}
                   alt="logo"
                   className={makeClass(styles.logo, 'navbar-item')}
                 />

@@ -20,6 +20,7 @@ module.exports = function(options = {}) {
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
   const logoExists = fs.existsSync(path.resolve(logoPath));
   const dest = options.dst ? path.resolve(options.dst) : null;
+
   return {
     mode: options.mode,
 
@@ -31,13 +32,15 @@ module.exports = function(options = {}) {
     devtool: 'source-map',
 
     devServer: {
-      historyApiFallback: true
+      historyApiFallback: {
+        rewrites: [{ from: /./, to: path.join(options.dst, 'index.html') }]
+      }
     },
 
     output: {
       path: dest,
       filename: 'bundle.js',
-      publicPath: '/'
+      publicPath: './'
     },
 
     module: {
