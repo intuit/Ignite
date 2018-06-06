@@ -46,7 +46,8 @@ module.exports = function(options = {}) {
     output: {
       path: dest,
       filename: 'bundle.js',
-      publicPath: options.static ? path.join(options.static, '/') : './'
+      publicPath:
+        options.static && !options.watch ? path.join(options.static, '/') : './'
     },
 
     module: {
@@ -153,7 +154,7 @@ module.exports = function(options = {}) {
         }
       ]),
       new HtmlWebPackPlugin({
-        base: baseHREF,
+        base: options.watch ? '/' : baseHREF,
         codeStyle: options.codeStyle,
         bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, './src/index.html'),
@@ -161,9 +162,9 @@ module.exports = function(options = {}) {
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          baseHREF: JSON.stringify(options.baseHREF),
+          baseHREF: JSON.stringify(options.watch ? '/' : options.baseHREF),
           index: JSON.stringify(options.index),
-          static: JSON.stringify(options.static),
+          static: JSON.stringify(options.watch ? false : options.static),
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
           navItems: JSON.stringify(options.navItems),

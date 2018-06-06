@@ -208,11 +208,11 @@ const initLazyLoad = options => {
       const comp = lazyLoad(provider);
       if(isIndex(path)) {
         window.configuration.markdown.push(['${
-          options.baseHREF
+          options.static && !options.watch ? options.baseHREF : '/'
         }' + path, comp, true, null]);
       } else {
         window.configuration.markdown.push(['${
-          options.baseHREF
+          options.static && !options.watch ? options.baseHREF : '/'
         }' + path, comp]);
       }
     }
