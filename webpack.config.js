@@ -45,8 +45,8 @@ module.exports = function(options = {}) {
 
     output: {
       path: dest,
-      filename: 'bundle.js'
-      // PublicPath: './'
+      filename: 'bundle.js',
+      publicPath: options.static ? path.join(options.static, '/') : './'
     },
 
     module: {
