@@ -1,3 +1,4 @@
+import path from 'path';
 import React, { Component } from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
@@ -9,6 +10,7 @@ import Icon from '../Icon';
 import styles from './header.css';
 
 const index = process.env.index.replace('.md', '.html');
+const baseURL = process.env.static ? path.join(process.env.static, '/') : '/';
 
 const makeRouterLink = link => {
   if (link === '/') {
@@ -70,7 +72,10 @@ const hasBlogLink = () =>
 
 const BlogLink = ({ className }) =>
   hasBlogLink() ? (
-    <Link className={makeClass('navbar-item', className)} to="/blog/index.html">
+    <Link
+      className={makeClass('navbar-item', className)}
+      to={path.join(baseURL, '/blog/index.html')}
+    >
       Blog
       <Icon className={styles.icon} type="fas" icon="rss" />
     </Link>
@@ -85,7 +90,10 @@ BlogLink.defaultProps = {
 };
 
 const DocsLink = ({ className }) => (
-  <Link className={makeClass('navbar-item', className)} to={`/${index}`}>
+  <Link
+    className={makeClass('navbar-item', className)}
+    to={path.join(baseURL, index)}
+  >
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
   </Link>
@@ -127,6 +135,10 @@ class Header extends Component {
   };
 
   render() {
+    const baseURL = process.env.static
+      ? path.join(process.env.static, '/')
+      : '/';
+
     return (
       <nav
         className={makeClass('navbar', styles.nav)}
@@ -136,7 +148,7 @@ class Header extends Component {
         <div className={styles.container}>
           <div className="navbar-brand">
             <Link
-              to="/home.html"
+              to={path.join(baseURL, '/home.html')}
               className={makeClass(styles.title, 'navbar-item')}
             >
               {this.props.logo && (
