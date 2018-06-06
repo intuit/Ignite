@@ -1,6 +1,5 @@
 {
   "title": "Ignite",
-  "static": "/_ignite",
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
 
   "plugins": [
