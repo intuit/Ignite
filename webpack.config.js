@@ -21,11 +21,6 @@ module.exports = function(options = {}) {
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
   const logoExists = fs.existsSync(path.resolve(logoPath));
   const dest = options.dst ? path.resolve(options.dst) : null;
-  const baseHREF = options.static ? path.join(options.static, '/') : '/';
-
-  options = Object.assign({}, options, {
-    baseHREF
-  });
 
   return {
     mode: options.mode,
@@ -154,7 +149,7 @@ module.exports = function(options = {}) {
         }
       ]),
       new HtmlWebPackPlugin({
-        base: options.watch ? '/' : baseHREF,
+        base: options.watch || !options.static ? '/' : options.static,
         codeStyle: options.codeStyle,
         bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, './src/index.html'),
@@ -162,7 +157,6 @@ module.exports = function(options = {}) {
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          baseHREF: JSON.stringify(options.watch ? '/' : options.baseHREF),
           index: JSON.stringify(options.index),
           static: JSON.stringify(options.watch ? false : options.static),
           title: JSON.stringify(options.title),

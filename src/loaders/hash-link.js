@@ -17,16 +17,7 @@ export function transformLink(resourcePath, link, options) {
     const pathToLink = path.join(pathToThisSource, link);
     const pathToDocs = path.join(process.cwd(), options.src);
     const correctPath = path.relative(pathToDocs, pathToLink);
-    console.log(
-      path
-        .join(
-          options.static && !options.watch
-            ? path.join(options.static, '/')
-            : '/',
-          correctPath
-        )
-        .replace('.md', '.html')
-    );
+
     return path
       .join(
         options.static && !options.watch ? path.join(options.static, '/') : '/',
