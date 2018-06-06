@@ -49,6 +49,7 @@
     "bulma-checkradio": "1.0.2",
     "cheerio": "1.0.0-rc.2",
     "classnames": "^2.2.5",
+    "clean-webpack-plugin": "0.1.19",
     "copy-webpack-plugin": "^4.5.1",
     "cosmiconfig": "5.0.5",
     "css-loader": "^0.28.11",

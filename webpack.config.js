@@ -10,6 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const markdownItConfig = require('./markdownit.config');
 
@@ -131,6 +132,7 @@ module.exports = function(options = {}) {
     },
 
     plugins: [
+      !options.watch && new CleanWebpackPlugin([dest]),
       new IgnitePlugin({
         entries: docs.map(doc => path.resolve(doc)),
         plugins: ignitePlugins,
@@ -165,6 +167,6 @@ module.exports = function(options = {}) {
         clearConsole: options.mode === 'development',
         compilationSuccessInfo: options.compilationSuccessInfo
       })
-    ]
+    ].filter(Boolean)
   };
 };
