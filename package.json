@@ -27,7 +27,6 @@
     "test": "jest",
     "start": "npm run build -- -w",
     "build": "chmod 777 ./dist/ignite-cli.js && ./dist/ignite-cli.js",
-    "postbuild": "react-snap",
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w",
     "publish:docs": "npm run build -- --publish"
