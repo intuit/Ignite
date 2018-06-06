@@ -156,6 +156,7 @@ module.exports = function(options = {}) {
       new webpack.DefinePlugin({
         'process.env': {
           index: JSON.stringify(options.index),
+          static: JSON.stringify(options.static),
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
           navItems: JSON.stringify(options.navItems),
