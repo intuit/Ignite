@@ -46,7 +46,31 @@ exports[`addActiveAll 1`] = `
 
 exports[`index 1`] = `
 "
-    import makeClass from 'classnames';
+    
+      import React from 'react';
+      import makeClass from 'classnames';
+      import { Link } from 'react-router-dom';
+      import Gist from 'react-gist';
+      import TweetEmbed from 'react-tweet-embed'
+
+      const OptionalLink = props => props.to
+        ? <Link {...props} />
+        : <a { ...props} />;
+
+      const PluginProvider = ({plugins, name, options, children}) => {
+        let Plugin = plugins[name];
+        const pluginOptions = Plugin.options;
+
+        if (!Plugin) {
+          return <div />;
+        }
+
+        Plugin = Plugin.component;
+        return <Plugin {...pluginOptions}  children={children} {...options} />;
+      };
+
+      
+    
 
     export default function markDownPage(props) {
       return (
@@ -62,7 +86,31 @@ exports[`index 1`] = `
 
 exports[`index 2`] = `
 "
-    import makeClass from 'classnames';
+    
+      import React from 'react';
+      import makeClass from 'classnames';
+      import { Link } from 'react-router-dom';
+      import Gist from 'react-gist';
+      import TweetEmbed from 'react-tweet-embed'
+
+      const OptionalLink = props => props.to
+        ? <Link {...props} />
+        : <a { ...props} />;
+
+      const PluginProvider = ({plugins, name, options, children}) => {
+        let Plugin = plugins[name];
+        const pluginOptions = Plugin.options;
+
+        if (!Plugin) {
+          return <div />;
+        }
+
+        Plugin = Plugin.component;
+        return <Plugin {...pluginOptions}  children={children} {...options} />;
+      };
+
+      
+    
 
     export default function markDownPage(props) {
       return (
@@ -95,6 +143,10 @@ exports[`markDownPage 1`] = `
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
+      const OptionalLink = props => props.to
+        ? <Link {...props} />
+        : <a { ...props} />;
+
       const PluginProvider = ({plugins, name, options, children}) => {
         let Plugin = plugins[name];
         const pluginOptions = Plugin.options;
@@ -124,14 +176,14 @@ exports[`markDownPage 1`] = `
 
 exports[`replaceIdLinks 1`] = `
 "
-    <Link to=\\"#some-id\\">Link</Link>
-    <Link className=\\"fas fa-hashtag headerLink\\" to=\\"#some-other-id\\">Link</Link>
+    <OptionalLink to=\\"#some-id\\">Link</OptionalLink>
+    <OptionalLink className=\\"fas fa-hashtag headerLink\\" to=\\"#some-other-id\\">Link</OptionalLink>
   "
 `;
 
-exports[`sanitizeJSX 1`] = `"<a className=\\"/foo\\">&#123;Foo&#125;</a>"`;
+exports[`sanitizeJSX 1`] = `"<OptionalLink className=\\"/foo\\">&#123;Foo&#125;</OptionalLink>"`;
 
-exports[`sanitizeJSX 2`] = `"<a className={\\"/foo\\"}>Foo</a>"`;
+exports[`sanitizeJSX 2`] = `"<OptionalLink className={\\"/foo\\"}>Foo</OptionalLink>"`;
 
 exports[`sanitizeJSX 3`] = `"<br/>"`;
 
@@ -151,7 +203,7 @@ exports[`sanitizeJSX 8`] = `
 
 exports[`sanitizeJSX- complex 1`] = `
 "
-    <Link className=\\"fas fa-hashtag headerLink\\" to=\\"#zero-hassle-documentation\\" aria-hidden=\\"true\\" />
-    <a href=\\"#/pages/GettingStarted.md\\">&#x1F389; Get Started</a>
+    <OptionalLink className=\\"fas fa-hashtag headerLink\\" to=\\"#zero-hassle-documentation\\" aria-hidden=\\"true\\" />
+    <OptionalLink to=\\"#/pages/GettingStarted.md\\">&#x1F389; Get Started</OptionalLink>
   "
 `;

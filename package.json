@@ -190,7 +190,7 @@
       "/__tests__/utils/",
       "/testExtension/"
     ],
-    "testResultsProcessor": "jest-junit",
+    "reporters": [ "default", "jest-junit" ],
     "collectCoverage": true,
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": [

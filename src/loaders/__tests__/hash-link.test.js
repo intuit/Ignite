@@ -27,7 +27,7 @@ describe('transformLink', () => {
   test('should hash link', () => {
     expect(
       transformLink('/docs/example.md', './markdown.md', { src: 'docs/' })
-    ).toBe('../docs/markdown.md');
+    ).toBe('/docs/markdown.html');
   });
 
   test('should make relative paths to images', () => {

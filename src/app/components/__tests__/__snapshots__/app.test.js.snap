@@ -157,9 +157,37 @@ exports[`App renders home page 1`] = `
     }
     setSearchResults={[Function]}
   />
-  <home
-    plugins={Array []}
-  />
+  <div
+    className=""
+    id="root"
+  >
+    <div
+      className="columns"
+    >
+      <OnClickOutside(Sidebar)
+        className="column is-one-third-tablet is-one-quarter-desktop box"
+        content={[Function]}
+        currentPage="/"
+        eventTypes={
+          Array [
+            "mousedown",
+            "touchstart",
+          ]
+        }
+        excludeScrollbar={false}
+        outsideClickIgnoreClass="ignore-react-onclickoutside"
+        preventDefault={false}
+        stopPropagation={false}
+      />
+      <div
+        className="column content is-two-thirds-tablet is-three-quarters-desktop"
+      >
+        <Page
+          plugins={Array []}
+        />
+      </div>
+    </div>
+  </div>
 </div>
 `;
 

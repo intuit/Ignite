@@ -143,6 +143,8 @@ export function sanitizeJSX(source) {
     '<OptionalLink target="_blank" to'
   );
   source = source.replace(new RegExp('<a href', 'g'), '<OptionalLink to');
+  source = source.replace(new RegExp('<a ', 'g'), '<OptionalLink ');
+  source = source.replace(new RegExp('href', 'g'), 'to');
   source = source.replace(new RegExp('<a>', 'g'), '<OptionalLink to="">');
   source = source.replace(new RegExp('</a>', 'g'), '</OptionalLink>');
 
