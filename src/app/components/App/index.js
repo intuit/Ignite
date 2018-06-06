@@ -17,10 +17,10 @@ export const determineComponents = (
   indexFile,
   navItems = process.env.navItems
 ) => {
-  const filePath = location.pathname.substring(1).replace('.html', '.md');
+  const filePath = location.pathname.replace('.html', '.md');
   let Page = markdown[filePath];
   const isBlog = filePath.includes('blog/');
-  let SidebarComponent = markdown[indexFile];
+  let SidebarComponent = markdown[process.env.baseHREF + indexFile];
 
   if (navItems && !filePath.includes('blog/')) {
     const parent =
@@ -42,7 +42,9 @@ export const determineComponents = (
 
     if (!Page && !SidebarComponent && markdown.indexFiles) {
       const rootIndex =
-        navItems.root === '/' ? indexFile : path.join(navItems.root, indexFile);
+        navItems.root === process.env.baseHREF
+          ? indexFile
+          : path.join(navItems.root, indexFile);
       SidebarComponent = markdown[rootIndex];
       Page = markdown[markdown.indexFiles[rootIndex]];
     }
@@ -53,7 +55,7 @@ export const determineComponents = (
   }
 
   if (!Page && markdown.indexFiles) {
-    Page = markdown[markdown.indexFiles[indexFile]];
+    Page = markdown[markdown.indexFiles[process.env.baseHREF + indexFile]];
   }
 
   if (!Page) {

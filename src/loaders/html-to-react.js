@@ -398,10 +398,11 @@ export function index(rawSource, pathToMarkdown, options) {
       );
     }
 
-    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink.link.replace(
-    '.html',
-    '.md'
-  )}');
+    window.configuration.setFirstLink('${
+      options.static
+        ? path.join(options.static, pathToMarkdown)
+        : `/${pathToMarkdown}`
+    }', '/${firstLink.link.replace('.html', '.md')}');
   `;
 }
 

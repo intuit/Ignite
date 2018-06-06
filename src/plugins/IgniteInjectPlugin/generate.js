@@ -207,9 +207,13 @@ const initLazyLoad = options => {
     function registerMarkdown(path, provider) {
       const comp = lazyLoad(provider);
       if(isIndex(path)) {
-        window.configuration.markdown.push([path, comp, true, null]);
+        window.configuration.markdown.push(['${
+          options.baseHREF
+        }' + path, comp, true, null]);
       } else {
-        window.configuration.markdown.push([path, comp]);
+        window.configuration.markdown.push(['${
+          options.baseHREF
+        }' + path, comp]);
       }
     }
   `;
