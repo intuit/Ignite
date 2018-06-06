@@ -48,11 +48,6 @@ export const determineComponents = (
     }
   }
 
-  if (!Page && markdown['home.md'] && location.pathname === '/') {
-    Page = markdown['home.md'];
-    SidebarComponent = null;
-  }
-
   if (!isBlog && markdown.indexFiles && filePath === indexFile) {
     Page = markdown[markdown.indexFiles[filePath]];
   }
@@ -108,9 +103,7 @@ class App extends Component {
   render() {
     const { markdown, location, index } = this.props;
     const isBlog = location.pathname.includes('blog/');
-    const isHome =
-      (location.pathname === '/' || location.pathname === '/home.html') &&
-      markdown['home.md'];
+    const isHome = location.pathname === '/home.html' && markdown['home.md'];
     const { SidebarComponent, Page } = determineComponents(
       markdown,
       location,
