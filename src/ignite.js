@@ -34,7 +34,7 @@ export async function initPlugins(options) {
           pluginOptions
         );
       } catch (err) {
-        console.error(err);
+        console.error(err, '');
       }
     }
   });
