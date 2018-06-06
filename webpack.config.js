@@ -41,7 +41,7 @@ module.exports = function(options = {}) {
     output: {
       path: dest,
       filename: 'bundle.js'
-      // publicPath: './'
+      // PublicPath: './'
     },
 
     module: {
