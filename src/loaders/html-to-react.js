@@ -71,7 +71,8 @@ export const replaceIdLinks = source => {
       end: '</a>'
     },
     {
-      start: '<OptionalLink to="#',
+      start:
+        '<OptionalLink currentPage={(this && this.props || props).currentPage} to="#',
       end: '</OptionalLink>'
     }
   );
@@ -83,7 +84,8 @@ export const replaceIdLinks = source => {
       end: '</a>'
     },
     {
-      start: '<OptionalLink className="fas fa-hashtag headerLink" to="#',
+      start:
+        '<OptionalLink currentPage={(this && this.props || props).currentPage} className="fas fa-hashtag headerLink" to="#',
       end: '</OptionalLink>'
     }
   );
@@ -140,12 +142,21 @@ export function sanitizeJSX(source) {
 
   source = source.replace(
     new RegExp('<a target="_blank" href', 'g'),
-    '<OptionalLink target="_blank" to'
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} target="_blank" to'
   );
-  source = source.replace(new RegExp('<a href', 'g'), '<OptionalLink to');
-  source = source.replace(new RegExp('<a ', 'g'), '<OptionalLink ');
+  source = source.replace(
+    new RegExp('<a href', 'g'),
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} to'
+  );
+  source = source.replace(
+    new RegExp('<a ', 'g'),
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} '
+  );
   source = source.replace(new RegExp('href', 'g'), 'to');
-  source = source.replace(new RegExp('<a>', 'g'), '<OptionalLink to="">');
+  source = source.replace(
+    new RegExp('<a>', 'g'),
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} to="">'
+  );
   source = source.replace(new RegExp('</a>', 'g'), '</OptionalLink>');
 
   // React uses className
