@@ -64,6 +64,7 @@ const { argv } = yargs
     'build website as a static html app. Some features may now work. (search)'
   )
   .default('static', defaults.static)
+  .boolean('static')
 
   .alias('v', 'version')
   .alias('h', 'help')
