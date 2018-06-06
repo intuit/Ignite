@@ -10,7 +10,6 @@ import Icon from '../Icon';
 import styles from './header.css';
 
 const index = process.env.index.replace('.md', '.html');
-const baseURL = process.env.static ? path.join(process.env.static, '/') : '/';
 
 const makeRouterLink = link => {
   if (link === '/') {
@@ -74,7 +73,7 @@ const BlogLink = ({ className }) =>
   hasBlogLink() ? (
     <Link
       className={makeClass('navbar-item', className)}
-      to={path.join(baseURL, '/blog/index.html')}
+      to={path.join(process.env.baseURL, '/blog/index.html')}
     >
       Blog
       <Icon className={styles.icon} type="fas" icon="rss" />
@@ -92,7 +91,7 @@ BlogLink.defaultProps = {
 const DocsLink = ({ className }) => (
   <Link
     className={makeClass('navbar-item', className)}
-    to={path.join(baseURL, index)}
+    to={path.join(process.env.baseURL, index)}
   >
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
@@ -135,10 +134,6 @@ class Header extends Component {
   };
 
   render() {
-    const baseURL = process.env.static
-      ? path.join(process.env.static, '/')
-      : '/';
-
     return (
       <nav
         className={makeClass('navbar', styles.nav)}
@@ -148,7 +143,7 @@ class Header extends Component {
         <div className={styles.container}>
           <div className="navbar-brand">
             <Link
-              to={path.join(baseURL, '/home.html')}
+              to={path.join(process.env.baseURL, '/home.html')}
               className={makeClass(styles.title, 'navbar-item')}
             >
               {this.props.logo && (

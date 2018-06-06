@@ -77,7 +77,6 @@ const findBirthday = (posts, file) => {
 };
 
 const generateBlogIndex = (blogFiles, options) => {
-  const baseURL = options.static ? path.join(options.static, '/') : '/';
   const blogPosts = blogFiles
     .map(blogFile => path.relative(options.src, blogFile))
     .sort(
@@ -130,7 +129,9 @@ const generateBlogIndex = (blogFiles, options) => {
           ${JSON.stringify(
             blogPosts
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
-            const BlogPost = window.configuration.markdown.find(page => page[0] === '${baseURL}' + \`$\{blogFile}\`)[1]
+            const BlogPost = window.configuration.markdown.find(page => page[0] === '${
+              options.baseURL
+            }' + \`$\{blogFile}\`)[1]
             return e(BlogPost, { stub: true, atIndex: true, key: blogFile });
           }),
           ${

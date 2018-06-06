@@ -286,7 +286,6 @@ export const initPage = rawSource => {
 };
 
 export const createStubAndPost = (source, pathToMarkdown, options) => {
-  const baseURL = options.static ? path.join(options.static, '/') : '/';
   const date = options.blogPosts.find(post => post.path === pathToMarkdown)
     .birth;
   const card = `
@@ -323,7 +322,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
             `
       <div class='has-text-centered learnMore'>
         <Link to='${path.join(
-          baseURL,
+          options.baseURL,
           pathToMarkdown.replace('.md', '.html')
         )}'>
           Read More
