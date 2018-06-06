@@ -78,7 +78,10 @@ BlogLink.defaultProps = {
 };
 
 const DocsLink = ({ className }) => (
-  <Link className={makeClass('navbar-item', className)} to="/index.html">
+  <Link
+    className={makeClass('navbar-item', className)}
+    to={`/${process.env.index}`}
+  >
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
   </Link>
