@@ -23,7 +23,8 @@ module.exports = function(options = {}) {
   const dest = options.dst ? path.resolve(options.dst) : null;
 
   options = Object.assign({}, options, {
-    baseURL: options.static ? path.join(options.static, '/') : '/'
+    baseURL:
+      options.static && !options.watch ? path.join(options.static, '/') : '/'
   });
 
   return {

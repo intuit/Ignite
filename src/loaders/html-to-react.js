@@ -179,14 +179,15 @@ export function getLink(source, index = 0) {
 export function addActive(source, link, firstLink, indexFile) {
   source = source.replace(
     new RegExp('<a h'),
-    `<a
-      className={
+    `<a className=!{
         '/${link}' === props.currentPage ||
-        ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
-        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
+        ('${firstLink.link}' === '${link}' && '/' === props.currentPage) ||
+        ('${
+          firstLink.link
+        }' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
           ? 'is-active'
           : null
-      }
+      !}
       h`
   );
 
@@ -382,8 +383,8 @@ export function index(rawSource, pathToMarkdown, options) {
   let { pageStart, source } = initPage(rawSource);
   const firstLink = getLink(source);
 
-  source = sanitizeJSX(source);
   source = addActiveAll(source, firstLink, options.index);
+  source = sanitizeJSX(source);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
