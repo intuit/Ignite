@@ -9,8 +9,8 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 
 const markdownItConfig = require('./markdownit.config');
 

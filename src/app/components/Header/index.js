@@ -50,7 +50,12 @@ const NavItem = ({ item: [key, item], ...props }) => {
 
 const GithubLink = ({ githubURL }) =>
   githubURL ? (
-    <a className="navbar-item" href={githubURL} target="_blank">
+    <a
+      className="navbar-item"
+      href={githubURL}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
       GitHub
       <Icon className={styles.icon} type="fab" icon="github" />
     </a>
