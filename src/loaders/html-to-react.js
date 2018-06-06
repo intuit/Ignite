@@ -192,7 +192,12 @@ export function addActive(source, link, firstLink, indexFile) {
     new RegExp('<a h'),
     `<a className=!{
         '/${link}' === props.currentPage ||
-        ('${firstLink.link}' === '${link}' && '/' === props.currentPage) ||
+        ('${
+          firstLink.link
+        }' === '${link}' && ('/' === props.currentPage || '/${indexFile.replace(
+      '.md',
+      '.html'
+    )}' === props.currentPage)) ||
         ('${
           firstLink.link
         }' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
