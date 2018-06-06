@@ -1,6 +1,6 @@
 {
   "name": "@fuego/ignite",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "Modern markdown documentation generator",
   "main": "dist/ignite.js",
   "bin": {
@@ -190,7 +190,10 @@
       "/__tests__/utils/",
       "/testExtension/"
     ],
-    "reporters": [ "default", "jest-junit" ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "collectCoverage": true,
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": [
