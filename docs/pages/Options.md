@@ -38,6 +38,14 @@ Fill to be used as the index of your website. Is also used as the sidebar. This 
 ignite --index index.md
 ```
 
+## Static (--static)
+
+Build the documentation website as individual static html pages. Search is disabled in this mode. Some other things might be wonky.
+
+```bash
+ignite --static
+```
+
 ## Plugins (--plugins)
 
 A list of plugins (package names or functions) to render your documentation with.

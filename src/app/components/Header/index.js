@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { Link } from 'react-router-dom';
 
 import Search from '../Search';
 import Icon from '../Icon';
@@ -9,14 +10,14 @@ import styles from './header.css';
 
 const makeRouterLink = link => {
   if (link === '/') {
-    return `#/${process.env.index}`;
+    return `/${process.env.index}`;
   }
 
   if (!link.includes(process.env.index)) {
-    return `#/${link}/${process.env.index}`;
+    return `/${link}/${process.env.index}`;
   }
 
-  return `#/${link}`;
+  return `/${link}`;
 };
 
 const NavItem = ({ item: [key, item], ...props }) => {
@@ -36,20 +37,25 @@ const NavItem = ({ item: [key, item], ...props }) => {
 
   return (
     key !== 'root' && (
-      <a
+      <Link
         key={key}
         className={makeClass('navbar-item', isActive && 'is-active')}
-        href={makeRouterLink(item)}
+        to={makeRouterLink(item)}
       >
         {key}
-      </a>
+      </Link>
     )
   );
 };
 
 const GithubLink = ({ githubURL }) =>
   githubURL ? (
-    <a className="navbar-item" href={githubURL} target="_blank">
+    <a
+      className="navbar-item"
+      href={githubURL}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
       GitHub
       <Icon className={styles.icon} type="fab" icon="github" />
     </a>
@@ -62,10 +68,10 @@ const hasBlogLink = () =>
 
 const BlogLink = ({ className }) =>
   hasBlogLink() ? (
-    <a className={makeClass('navbar-item', className)} href="#/blog/index.md">
+    <Link className={makeClass('navbar-item', className)} to="/blog/index.html">
       Blog
       <Icon className={styles.icon} type="fas" icon="rss" />
-    </a>
+    </Link>
   ) : null;
 
 BlogLink.propTypes = {
@@ -77,10 +83,13 @@ BlogLink.defaultProps = {
 };
 
 const DocsLink = ({ className }) => (
-  <a className={makeClass('navbar-item', className)} href="#/index.md">
+  <Link
+    className={makeClass('navbar-item', className)}
+    to={`/${process.env.index}`}
+  >
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
-  </a>
+  </Link>
 );
 
 DocsLink.propTypes = {
@@ -127,10 +136,17 @@ class Header extends Component {
       >
         <div className={styles.container}>
           <div className="navbar-brand">
-            <a href="#/" className={makeClass(styles.title, 'navbar-item')}>
+            <Link
+              to="/home.html"
+              className={makeClass(styles.title, 'navbar-item')}
+            >
               {this.props.logo && (
                 <img
-                  src={this.props.logo}
+                  src={`${
+                    this.props.logo.includes('http')
+                      ? this.props.logo
+                      : `./${this.props.logo}`
+                  }`}
                   alt="logo"
                   className={makeClass(styles.logo, 'navbar-item')}
                 />
@@ -143,7 +159,7 @@ class Header extends Component {
               >
                 {this.props.title}
               </span>
-            </a>
+            </Link>
 
             <a
               role="button"

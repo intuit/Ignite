@@ -117,7 +117,7 @@ class Search extends Component {
   };
 
   render() {
-    return (
+    return process.env.static ? null : (
       <div className={makeClass('navbar-item', styles.root)}>
         <div className="control">
           <input

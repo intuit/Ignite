@@ -71,8 +71,8 @@ export const replaceIdLinks = source => {
       end: '</a>'
     },
     {
-      start: '<Link to="#',
-      end: '</Link>'
+      start: '<OptionalLink to="#',
+      end: '</OptionalLink>'
     }
   );
   source = replaceAll(
@@ -83,8 +83,8 @@ export const replaceIdLinks = source => {
       end: '</a>'
     },
     {
-      start: '<Link className="fas fa-hashtag headerLink" to="#',
-      end: '</Link>'
+      start: '<OptionalLink className="fas fa-hashtag headerLink" to="#',
+      end: '</OptionalLink>'
     }
   );
 
@@ -137,6 +137,16 @@ export function sanitizeJSX(source) {
     new RegExp('highlighted-line', 'g'),
     'highlighted-line hero is-primary'
   );
+
+  source = source.replace(
+    new RegExp('<a target="_blank" href', 'g'),
+    '<OptionalLink target="_blank" to'
+  );
+  source = source.replace(new RegExp('<a href', 'g'), '<OptionalLink to');
+  source = source.replace(new RegExp('<a ', 'g'), '<OptionalLink ');
+  source = source.replace(new RegExp('href', 'g'), 'to');
+  source = source.replace(new RegExp('<a>', 'g'), '<OptionalLink to="">');
+  source = source.replace(new RegExp('</a>', 'g'), '</OptionalLink>');
 
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
@@ -253,6 +263,10 @@ export const initPage = rawSource => {
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
+      const OptionalLink = props => props.to
+        ? <Link {...props} />
+        : <a { ...props} />;
+
       const PluginProvider = ({plugins, name, options, children}) => {
         let Plugin = plugins[name];
         const pluginOptions = Plugin.options;
@@ -307,9 +321,9 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
           : i === 4 &&
             `
       <div class='has-text-centered learnMore'>
-        <a href='#/${pathToMarkdown}'>
+        <Link to='/${pathToMarkdown.replace('.md', '.html')}'>
           Read More
-        </a>
+        </Link>
       </div>
     `
       )
@@ -361,7 +375,8 @@ export function blogPost(rawSource, pathToMarkdown, options) {
   `;
 }
 
-export function index(source, pathToMarkdown, options) {
+export function index(rawSource, pathToMarkdown, options) {
+  let { pageStart, source } = initPage(rawSource);
   const firstLink = getLink(source);
 
   source = sanitizeJSX(source);
@@ -373,7 +388,7 @@ export function index(source, pathToMarkdown, options) {
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
 
   return `
-    import makeClass from 'classnames';
+    ${pageStart}
 
     export default function markDownPage(props) {
       return (
@@ -383,7 +398,10 @@ export function index(source, pathToMarkdown, options) {
       );
     }
 
-    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink.link}');
+    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink.link.replace(
+    '.html',
+    '.md'
+  )}');
   `;
 }
 

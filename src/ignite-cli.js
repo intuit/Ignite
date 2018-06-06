@@ -59,6 +59,13 @@ const { argv } = yargs
   .default('b', defaults.bulmaTheme)
   .alias('b', 'bulmaTheme')
 
+  .describe(
+    'static',
+    'build website as a static html app. Some features may now work. (search)'
+  )
+  .default('static', defaults.static)
+  .boolean('static')
+
   .alias('v', 'version')
   .alias('h', 'help')
   .help();

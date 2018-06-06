@@ -11,6 +11,7 @@ import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
+import createStaticWebsite from 'react-snap';
 
 import config from '../webpack.config';
 import packageJSON from '../package';
@@ -74,6 +75,7 @@ export function getAuthor() {
 
 export const defaults = {
   mode: 'production',
+  static: false,
   src: 'docs/',
   dst: '_ignite/',
   index: 'index.md',
@@ -186,7 +188,7 @@ export default async function build(options) {
       console.warn(`Starting server on http://localhost:${options.port}`);
     });
   } else {
-    compiler.run((err, stats) => {
+    compiler.run(async (err, stats) => {
       if (err) {
         console.error(err.stack || err);
         if (err.details) {
@@ -199,6 +201,12 @@ export default async function build(options) {
 
       if (stats.hasErrors()) {
         return;
+      }
+
+      if (options.static) {
+        await createStaticWebsite.run({
+          source: options.dst
+        });
       }
 
       if (options.publish) {

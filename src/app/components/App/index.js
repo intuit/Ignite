@@ -17,8 +17,7 @@ export const determineComponents = (
   indexFile,
   navItems = process.env.navItems
 ) => {
-  const filePath = location.pathname.substring(1);
-
+  const filePath = location.pathname.substring(1).replace('.html', '.md');
   let Page = markdown[filePath];
   const isBlog = filePath.includes('blog/');
   let SidebarComponent = markdown[indexFile];
@@ -49,11 +48,6 @@ export const determineComponents = (
     }
   }
 
-  if (!Page && markdown['home.md'] && location.pathname === '/') {
-    Page = markdown['home.md'];
-    SidebarComponent = null;
-  }
-
   if (!isBlog && markdown.indexFiles && filePath === indexFile) {
     Page = markdown[markdown.indexFiles[filePath]];
   }
@@ -77,18 +71,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchResults: {}
+      searchResults: []
     };
   }
 
   componentDidUpdate() {
     this.jumpToHash();
-  }
-
-  static getDerivedStateFromProps() {
-    return {
-      searchResults: {}
-    };
   }
 
   jumpToHash = () => {
@@ -115,9 +103,7 @@ class App extends Component {
   render() {
     const { markdown, location, index } = this.props;
     const isBlog = location.pathname.includes('blog/');
-    const isHome =
-      (location.pathname === '/' || location.pathname === '/home.md') &&
-      markdown['home.md'];
+    const isHome = location.pathname === '/home.html' && markdown['home.md'];
     const { SidebarComponent, Page } = determineComponents(
       markdown,
       location,
@@ -132,10 +118,7 @@ class App extends Component {
           {this.state.searchResults.map(([fileName, results]) => (
             <SearchResult
               key={fileName}
-              setResults={searchResults =>
-                location.pathname.includes(fileName) &&
-                this.setState({ searchResults })
-              }
+              setResults={searchResults => this.setState({ searchResults })}
               fileName={fileName}
               results={results}
             />

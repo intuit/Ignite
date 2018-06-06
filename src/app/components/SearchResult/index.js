@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import MarkdownIt from 'markdown-it';
+import { Link } from 'react-router-dom';
 
 import styles from './searchResult.css';
 
@@ -12,13 +13,13 @@ const renderer = new MarkdownIt();
 const SearchResult = ({ fileName, results, setResults }) => (
   <div key={fileName} className="card">
     <div key={fileName} className="card-content">
-      <a
+      <Link
         className={makeClass('subtitle', 'has-text-link', styles.title)}
-        href={`#/${fileName}`}
+        to={`/${fileName.replace('.md', '.html')}`}
         onClick={() => setResults({})}
       >
         {fileName}
-      </a>
+      </Link>
 
       {[...results].map(result => (
         <div key={result}>

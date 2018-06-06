@@ -9,6 +9,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 
 const markdownItConfig = require('./markdownit.config');
@@ -19,6 +20,7 @@ module.exports = function(options = {}) {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
   const logoExists = fs.existsSync(path.resolve(logoPath));
+  const dest = options.dst ? path.resolve(options.dst) : null;
 
   return {
     mode: options.mode,
@@ -30,9 +32,16 @@ module.exports = function(options = {}) {
 
     devtool: 'source-map',
 
+    devServer: {
+      historyApiFallback: {
+        rewrites: [{ from: /./, to: path.join(options.dst, 'index.html') }]
+      }
+    },
+
     output: {
-      path: options.dst ? path.resolve(options.dst) : null,
-      filename: 'bundle.js'
+      path: dest,
+      filename: 'bundle.js',
+      publicPath: './'
     },
 
     module: {
@@ -123,6 +132,7 @@ module.exports = function(options = {}) {
     },
 
     plugins: [
+      !options.watch && new CleanWebpackPlugin([dest]),
       new IgnitePlugin({
         entries: docs.map(doc => path.resolve(doc)),
         plugins: ignitePlugins,
@@ -146,6 +156,7 @@ module.exports = function(options = {}) {
       new webpack.DefinePlugin({
         'process.env': {
           index: JSON.stringify(options.index),
+          static: JSON.stringify(options.static),
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
           navItems: JSON.stringify(options.navItems),
@@ -157,6 +168,6 @@ module.exports = function(options = {}) {
         clearConsole: options.mode === 'development',
         compilationSuccessInfo: options.compilationSuccessInfo
       })
-    ]
+    ].filter(Boolean)
   };
 };
