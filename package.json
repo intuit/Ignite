@@ -172,6 +172,7 @@
           ]
         }
       ],
+      "max-params": [1, 5],
       "react/jsx-tag-spacing": {
         "closingSlash": "never",
         "beforeSelfClosing": "always",
