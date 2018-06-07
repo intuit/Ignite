@@ -43,7 +43,6 @@ exports[`generate should add markdown 1`] = `
     }
 
     const INDEX_PAGE = 'index.md';
-    import path from 'path';
 
     function isIndex(p) {
       return p.includes(INDEX_PAGE) && 
@@ -56,12 +55,12 @@ exports[`generate should add markdown 1`] = `
           );
     }
 
-    function registerMarkdown(path, provider) {
+    function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
-      if(isIndex(path)) {
-        window.configuration.markdown.push([path.join('/', path), comp, true, null]);
+      if(isIndex(markdownPath)) {
+        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('/', path), comp]);
+        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
     }
   
@@ -118,7 +117,6 @@ exports[`generate should add plugins 1`] = `
     }
 
     const INDEX_PAGE = 'index.md';
-    import path from 'path';
 
     function isIndex(p) {
       return p.includes(INDEX_PAGE) && 
@@ -131,12 +129,12 @@ exports[`generate should add plugins 1`] = `
           );
     }
 
-    function registerMarkdown(path, provider) {
+    function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
-      if(isIndex(path)) {
-        window.configuration.markdown.push([path.join('/', path), comp, true, null]);
+      if(isIndex(markdownPath)) {
+        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('/', path), comp]);
+        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
     }
   

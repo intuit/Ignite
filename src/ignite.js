@@ -75,6 +75,7 @@ export function getAuthor() {
 
 export const defaults = {
   mode: 'production',
+  baseURL: '/',
   static: false,
   src: 'docs/',
   dst: '_ignite/',
@@ -95,6 +96,10 @@ function initOptions(options) {
   if (igniteRc) {
     options = Object.assign({}, options, igniteRc.config);
   }
+
+  options = Object.assign({}, options, {
+    baseURL: options.watch ? '/' : path.join('/', options.baseURL, '/')
+  });
 
   return Object.assign({}, defaults, options);
 }

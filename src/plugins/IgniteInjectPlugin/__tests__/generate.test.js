@@ -19,6 +19,7 @@ test('stringify', () => {
 describe('generate', () => {
   const options = {
     src: 'docs/',
+    baseURL: '/',
     index: 'index.md'
   };
 

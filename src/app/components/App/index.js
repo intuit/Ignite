@@ -55,7 +55,7 @@ export const determineComponents = (
   if (
     !isBlog &&
     markdown.indexFiles &&
-    filePath === path.join('/', indexFile)
+    filePath === path.join(process.env.baseURL, indexFile)
   ) {
     Page = markdown[markdown.indexFiles[filePath]];
   }

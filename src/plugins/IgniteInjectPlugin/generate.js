@@ -152,8 +152,6 @@ const generateBlogIndex = (blogFiles, options) => {
 };
 
 const initLazyLoad = options => {
-  const basePath =
-    options.static && !options.watch ? path.join(options.static, './') : '/';
   return `
     window.configuration = {
       search: {},
@@ -196,7 +194,6 @@ const initLazyLoad = options => {
     }
 
     const INDEX_PAGE = '${options.index}';
-    import path from 'path';
 
     function isIndex(p) {
       return p.includes(INDEX_PAGE) && 
@@ -209,12 +206,16 @@ const initLazyLoad = options => {
           );
     }
 
-    function registerMarkdown(path, provider) {
+    function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
-      if(isIndex(path)) {
-        window.configuration.markdown.push([path.join('${basePath}', path), comp, true, null]);
+      if(isIndex(markdownPath)) {
+        window.configuration.markdown.push([path.join('${
+          options.baseURL
+        }', markdownPath), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('${basePath}', path), comp]);
+        window.configuration.markdown.push([path.join('${
+          options.baseURL
+        }', markdownPath), comp]);
       }
     }
   `;
