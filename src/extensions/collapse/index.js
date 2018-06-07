@@ -9,6 +9,7 @@ const collapse = md => ({
 
   render(tokens, idx) {
     const m = tokens[idx].info.trim().match(/^collapse\s+(.*)$/);
+    let childLinks = [];
 
     if (tokens[idx].nesting === 1) {
       let isOpen;
@@ -17,6 +18,18 @@ const collapse = md => ({
       if (m && m[1]) {
         isOpen = m[1].split(' ')[0] === 'open';
         let [, rest] = m;
+
+        childLinks = tokens
+          .slice(
+            idx,
+            idx +
+              tokens
+                .slice(idx)
+                .findIndex(token => token.type === 'container_collapse_close')
+          )
+          .map(token => token.content)
+          .filter(content => content !== '' && content.includes('.html'))
+          .map(link => link.slice(link.indexOf('(') + 1, link.indexOf(')')));
 
         if (isOpen) {
           rest = m[1]
@@ -29,7 +42,17 @@ const collapse = md => ({
       }
 
       return `
-        <details ${isOpen ? 'open' : ''}>
+        <details
+          open=!{
+            ${isOpen} ||
+            ${JSON.stringify(childLinks)}.find(link => (
+              link === ((this && this.props) || props).currentPage ||
+              (((this && this.props) || props).currentPage === process.env.baseURL &&
+                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+              )
+            )
+          !}
+        >
           <summary className='collapse-summary'>
             <p>${children}</p>
           </summary>
