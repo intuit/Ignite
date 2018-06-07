@@ -198,3 +198,7 @@
  0.0.50
 
 - Sidebar collapse on reload #132
+
+ 0.0.51
+
+- Reuse Chrome Tab #133
