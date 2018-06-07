@@ -9,8 +9,7 @@ import Search from '../Search';
 import Icon from '../Icon';
 import styles from './header.css';
 
-const getIndex = (index = process.env.index) =>
-  process.env.index.replace('.md', '.html');
+const getIndex = (index = process.env.index) => index.replace('.md', '.html');
 
 const makeRouterLink = link => {
   const index = getIndex();
@@ -94,7 +93,7 @@ BlogLink.defaultProps = {
 const DocsLink = ({ className }) => (
   <Link
     className={makeClass('navbar-item', className)}
-    to={path.join(process.env.baseURL, index)}
+    to={path.join(process.env.baseURL, getIndex())}
   >
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
