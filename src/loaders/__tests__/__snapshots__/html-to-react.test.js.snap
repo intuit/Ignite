@@ -49,8 +49,8 @@ exports[`index 1`] = `
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
-      const OptionalLink = props => props.to
-        ? <Link {...props} />
+      const OptionalLink = ({ currentPage, ...props }) => props.to
+        ? <Link {...props} currentPage={currentPage} />
         : <a { ...props} />;
 
       const PluginProvider = ({plugins, name, options, children}) => {
@@ -68,7 +68,7 @@ exports[`index 1`] = `
       
     
 
-    export default function markDownPage(props) {
+    export default function index(props) {
       return (
         <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
           <ul className=\\"menu-list\\"></ul>
@@ -89,8 +89,8 @@ exports[`index 2`] = `
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
-      const OptionalLink = props => props.to
-        ? <Link {...props} />
+      const OptionalLink = ({ currentPage, ...props }) => props.to
+        ? <Link {...props} currentPage={currentPage} />
         : <a { ...props} />;
 
       const PluginProvider = ({plugins, name, options, children}) => {
@@ -108,7 +108,7 @@ exports[`index 2`] = `
       
     
 
-    export default function markDownPage(props) {
+    export default function index(props) {
       return (
         <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
           <p className=\\"menu-label\\"></p>
@@ -139,8 +139,8 @@ exports[`markDownPage 1`] = `
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
-      const OptionalLink = props => props.to
-        ? <Link {...props} />
+      const OptionalLink = ({ currentPage, ...props }) => props.to
+        ? <Link {...props} currentPage={currentPage} />
         : <a { ...props} />;
 
       const PluginProvider = ({plugins, name, options, children}) => {
