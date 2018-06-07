@@ -182,3 +182,7 @@
  0.0.46
 
 - keep n segments for base url #128
+
+ 0.0.47
+
+- [bug] search results use base url #129
