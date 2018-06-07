@@ -52,7 +52,11 @@ export const determineComponents = (
     }
   }
 
-  if (!isBlog && markdown.indexFiles && filePath === `/${indexFile}`) {
+  if (
+    !isBlog &&
+    markdown.indexFiles &&
+    filePath === path.join('/', indexFile)
+  ) {
     Page = markdown[markdown.indexFiles[filePath]];
   }
 

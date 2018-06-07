@@ -165,6 +165,7 @@ const initLazyLoad = options => {
     };
 
     import React from 'react';
+    import path from 'path';
 
     const e = React.createElement;
 
@@ -211,9 +212,9 @@ const initLazyLoad = options => {
     function registerMarkdown(path, provider) {
       const comp = lazyLoad(provider);
       if(isIndex(path)) {
-        window.configuration.markdown.push(['${basePath}' + path, comp, true, null]);
+        window.configuration.markdown.push([path.join('${basePath}', path), comp, true, null]);
       } else {
-        window.configuration.markdown.push(['${basePath}' + path, comp]);
+        window.configuration.markdown.push([path.join('${basePath}', path), comp]);
       }
     }
   `;

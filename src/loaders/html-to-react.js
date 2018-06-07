@@ -421,7 +421,7 @@ export function index(rawSource, pathToMarkdown, options) {
     window.configuration.setFirstLink('${
       options.static && !options.watch
         ? path.join(options.static, pathToMarkdown)
-        : `/${pathToMarkdown}`
+        : path.join('/', pathToMarkdown)
     }', '/${firstLink.link.replace('.html', '.md')}');
   `;
 }

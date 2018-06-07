@@ -9,9 +9,12 @@ import Search from '../Search';
 import Icon from '../Icon';
 import styles from './header.css';
 
-const index = process.env.index.replace('.md', '.html');
+const getIndex = (index = process.env.index) =>
+  process.env.index.replace('.md', '.html');
 
 const makeRouterLink = link => {
+  const index = getIndex();
+
   if (link === '/') {
     return `/${index}`;
   }

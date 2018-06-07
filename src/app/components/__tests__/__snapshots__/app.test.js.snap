@@ -15,7 +15,7 @@ exports[`App renders blog index 1`] = `
   <div>
     <BlogHero
       blogHero={null}
-      index="index"
+      index="/index"
       location={
         Object {
           "hash": "",
@@ -25,13 +25,13 @@ exports[`App renders blog index 1`] = `
       }
       markdown={
         Object {
-          "blog/index.md": [Function],
-          "blog/page.md": [Function],
-          "firstPage": [Function],
-          "firstPagePath": "firstPage",
-          "foo": [Function],
-          "home.md": [Function],
-          "index": [Function],
+          "/blog/index.md": [Function],
+          "/blog/page.md": [Function],
+          "/firstPage": [Function],
+          "/firstPagePath": "/firstPage",
+          "/foo": [Function],
+          "/home.md": [Function],
+          "/index": [Function],
         }
       }
       plugins={Array []}
@@ -66,7 +66,7 @@ exports[`App renders blog page 1`] = `
   <div>
     <BlogHero
       blogHero={null}
-      index="index"
+      index="/index"
       location={
         Object {
           "hash": "",
@@ -76,13 +76,13 @@ exports[`App renders blog page 1`] = `
       }
       markdown={
         Object {
-          "blog/index.md": [Function],
-          "blog/page.md": [Function],
-          "firstPage": [Function],
-          "firstPagePath": "firstPage",
-          "foo": [Function],
-          "home.md": [Function],
-          "index": [Function],
+          "/blog/index.md": [Function],
+          "/blog/page.md": [Function],
+          "/firstPage": [Function],
+          "/firstPagePath": "/firstPage",
+          "/foo": [Function],
+          "/home.md": [Function],
+          "/index": [Function],
         }
       }
       plugins={Array []}

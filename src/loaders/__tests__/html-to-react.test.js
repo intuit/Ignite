@@ -18,7 +18,7 @@ test('getLink', () => {
 
 test('addActive', () => {
   expect(
-    addActive('<a href="/foo">Foo</a>', 'foo', 'bar', 'index.md')
+    addActive('<a href="/foo">Foo</a>', 'foo', { link: 'bar' }, 'index.md')
   ).toMatchSnapshot();
 });
 
@@ -30,7 +30,7 @@ test('addActiveAll', () => {
       <a href="/foo">Foo</a>'
       <a href="/bar">Foo</a>'
     `,
-      'bar',
+      { link: 'bar' },
       'index.md'
     )
   ).toMatchSnapshot();
