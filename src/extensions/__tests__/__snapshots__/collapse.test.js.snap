@@ -2,7 +2,17 @@
 
 exports[`collapse 1`] = `
 "
-        <details >
+        <details
+          open=!{
+            undefined ||
+            [].find(link => (
+              link === ((this && this.props) || props).currentPage ||
+              (((this && this.props) || props).currentPage === process.env.baseURL &&
+                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+              )
+            )
+          !}
+        >
           <summary className='collapse-summary'>
             <p></p>
           </summary>
@@ -15,7 +25,17 @@ exports[`collapse 1`] = `
 
 exports[`collapse 2`] = `
 "
-        <details open>
+        <details
+          open=!{
+            true ||
+            [].find(link => (
+              link === ((this && this.props) || props).currentPage ||
+              (((this && this.props) || props).currentPage === process.env.baseURL &&
+                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+              )
+            )
+          !}
+        >
           <summary className='collapse-summary'>
             <p></p>
           </summary>
@@ -30,7 +50,17 @@ exports[`collapse 3`] = `
 "<ul>
 <li>
 
-        <details >
+        <details
+          open=!{
+            false ||
+            [].find(link => (
+              link === ((this && this.props) || props).currentPage ||
+              (((this && this.props) || props).currentPage === process.env.baseURL &&
+                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+              )
+            )
+          !}
+        >
           <summary className='collapse-summary'>
             <p><a href=\\"./pages/Publishing.md\\">:package: Publishing</a></p>
           </summary>

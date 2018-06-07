@@ -32,6 +32,7 @@ exports[`App renders blog index 1`] = `
           "/foo": [Function],
           "/home.md": [Function],
           "/index": [Function],
+          "indexFiles": Object {},
         }
       }
       plugins={Array []}
@@ -83,6 +84,7 @@ exports[`App renders blog page 1`] = `
           "/foo": [Function],
           "/home.md": [Function],
           "/index": [Function],
+          "indexFiles": Object {},
         }
       }
       plugins={Array []}
