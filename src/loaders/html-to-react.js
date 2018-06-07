@@ -71,7 +71,8 @@ export const replaceIdLinks = source => {
       end: '</a>'
     },
     {
-      start: '<OptionalLink to="#',
+      start:
+        '<OptionalLink currentPage={(this && this.props || props).currentPage} to="#',
       end: '</OptionalLink>'
     }
   );
@@ -83,7 +84,8 @@ export const replaceIdLinks = source => {
       end: '</a>'
     },
     {
-      start: '<OptionalLink className="fas fa-hashtag headerLink" to="#',
+      start:
+        '<OptionalLink currentPage={(this && this.props || props).currentPage} className="fas fa-hashtag headerLink" to="#',
       end: '</OptionalLink>'
     }
   );
@@ -140,12 +142,21 @@ export function sanitizeJSX(source) {
 
   source = source.replace(
     new RegExp('<a target="_blank" href', 'g'),
-    '<OptionalLink target="_blank" to'
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} target="_blank" to'
   );
-  source = source.replace(new RegExp('<a href', 'g'), '<OptionalLink to');
-  source = source.replace(new RegExp('<a ', 'g'), '<OptionalLink ');
+  source = source.replace(
+    new RegExp('<a href', 'g'),
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} to'
+  );
+  source = source.replace(
+    new RegExp('<a ', 'g'),
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} '
+  );
   source = source.replace(new RegExp('href', 'g'), 'to');
-  source = source.replace(new RegExp('<a>', 'g'), '<OptionalLink to="">');
+  source = source.replace(
+    new RegExp('<a>', 'g'),
+    '<OptionalLink currentPage={(this && this.props || props).currentPage} to="">'
+  );
   source = source.replace(new RegExp('</a>', 'g'), '</OptionalLink>');
 
   // React uses className
@@ -179,14 +190,20 @@ export function getLink(source, index = 0) {
 export function addActive(source, link, firstLink, indexFile) {
   source = source.replace(
     new RegExp('<a h'),
-    `<a
-      className={
+    `<a className=!{
         '/${link}' === props.currentPage ||
-        ('${firstLink}' === '${link}' && '/' === props.currentPage) ||
-        ('${firstLink}' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
+        ('${
+          firstLink.link
+        }' === '${link}' && ('/' === props.currentPage || '/${indexFile.replace(
+      '.md',
+      '.html'
+    )}' === props.currentPage)) ||
+        ('${
+          firstLink.link
+        }' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
           ? 'is-active'
           : null
-      }
+      !}
       h`
   );
 
@@ -321,7 +338,10 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
           : i === 4 &&
             `
       <div class='has-text-centered learnMore'>
-        <Link to='/${pathToMarkdown.replace('.md', '.html')}'>
+        <Link to='${path.join(
+          options.baseURL,
+          pathToMarkdown.replace('.md', '.html')
+        )}'>
           Read More
         </Link>
       </div>
@@ -379,8 +399,8 @@ export function index(rawSource, pathToMarkdown, options) {
   let { pageStart, source } = initPage(rawSource);
   const firstLink = getLink(source);
 
-  source = sanitizeJSX(source);
   source = addActiveAll(source, firstLink, options.index);
+  source = sanitizeJSX(source);
   source = source.replace(
     new RegExp('<ul>', 'g'),
     '<ul className="menu-list">'
@@ -398,10 +418,11 @@ export function index(rawSource, pathToMarkdown, options) {
       );
     }
 
-    window.configuration.setFirstLink('${pathToMarkdown}', '${firstLink.link.replace(
-    '.html',
-    '.md'
-  )}');
+    window.configuration.setFirstLink('${
+      options.static && !options.watch
+        ? path.join(options.static, pathToMarkdown)
+        : path.join('/', pathToMarkdown)
+    }', '/${firstLink.link.replace('.html', '.md')}');
   `;
 }
 

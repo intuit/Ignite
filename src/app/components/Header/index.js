@@ -1,3 +1,4 @@
+import path from 'path';
 import React, { Component } from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
@@ -8,13 +9,17 @@ import Search from '../Search';
 import Icon from '../Icon';
 import styles from './header.css';
 
+const getIndex = (index = process.env.index) => index.replace('.md', '.html');
+
 const makeRouterLink = link => {
+  const index = getIndex();
+
   if (link === '/') {
-    return `/${process.env.index}`;
+    return `/${index}`;
   }
 
-  if (!link.includes(process.env.index)) {
-    return `/${link}/${process.env.index}`;
+  if (!link.includes(index)) {
+    return `/${link}/${index}`;
   }
 
   return `/${link}`;
@@ -68,7 +73,10 @@ const hasBlogLink = () =>
 
 const BlogLink = ({ className }) =>
   hasBlogLink() ? (
-    <Link className={makeClass('navbar-item', className)} to="/blog/index.html">
+    <Link
+      className={makeClass('navbar-item', className)}
+      to={path.join(process.env.baseURL, '/blog/index.html')}
+    >
       Blog
       <Icon className={styles.icon} type="fas" icon="rss" />
     </Link>
@@ -85,7 +93,7 @@ BlogLink.defaultProps = {
 const DocsLink = ({ className }) => (
   <Link
     className={makeClass('navbar-item', className)}
-    to={`/${process.env.index}`}
+    to={path.join(process.env.baseURL, getIndex())}
   >
     Docs
     <Icon className={styles.icon} type="fas" icon="book" />
@@ -137,7 +145,7 @@ class Header extends Component {
         <div className={styles.container}>
           <div className="navbar-brand">
             <Link
-              to="/home.html"
+              to={path.join(process.env.baseURL, '/home.html')}
               className={makeClass(styles.title, 'navbar-item')}
             >
               {this.props.logo && (

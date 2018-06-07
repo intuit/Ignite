@@ -129,7 +129,9 @@ const generateBlogIndex = (blogFiles, options) => {
           ${JSON.stringify(
             blogPosts
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
-            const BlogPost = window.configuration.markdown.find(page => page[0] === blogFile)[1]
+            const BlogPost = window.configuration.markdown.find(page => page[0] === '${
+              options.baseURL
+            }' + \`$\{blogFile}\`)[1]
             return e(BlogPost, { stub: true, atIndex: true, key: blogFile });
           }),
           ${
@@ -150,6 +152,8 @@ const generateBlogIndex = (blogFiles, options) => {
 };
 
 const initLazyLoad = options => {
+  const basePath =
+    options.static && !options.watch ? path.join(options.static, './') : '/';
   return `
     window.configuration = {
       search: {},
@@ -161,6 +165,7 @@ const initLazyLoad = options => {
     };
 
     import React from 'react';
+    import path from 'path';
 
     const e = React.createElement;
 
@@ -207,9 +212,9 @@ const initLazyLoad = options => {
     function registerMarkdown(path, provider) {
       const comp = lazyLoad(provider);
       if(isIndex(path)) {
-        window.configuration.markdown.push([path, comp, true, null]);
+        window.configuration.markdown.push([path.join('${basePath}', path), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path, comp]);
+        window.configuration.markdown.push([path.join('${basePath}', path), comp]);
       }
     }
   `;

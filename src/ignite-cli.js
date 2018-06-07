@@ -61,10 +61,9 @@ const { argv } = yargs
 
   .describe(
     'static',
-    'build website as a static html app. Some features may now work. (search)'
+    'build website as a static html app. argument should be base url where your static site is served from Some features may now work. (search)'
   )
   .default('static', defaults.static)
-  .boolean('static')
 
   .alias('v', 'version')
   .alias('h', 'help')

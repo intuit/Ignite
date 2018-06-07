@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render active for blogs 1`] = `
+exports[`header render active for blogs 1`] = `
 <nav
   aria-label="main navigation"
   className="navbar"
@@ -62,7 +62,7 @@ exports[`render active for blogs 1`] = `
 </nav>
 `;
 
-exports[`renders githubURL 1`] = `
+exports[`header renders githubURL 1`] = `
 <nav
   aria-label="main navigation"
   className="navbar"
@@ -124,7 +124,7 @@ exports[`renders githubURL 1`] = `
 </nav>
 `;
 
-exports[`renders logo 1`] = `
+exports[`header renders logo 1`] = `
 <nav
   aria-label="main navigation"
   className="navbar"
@@ -191,7 +191,7 @@ exports[`renders logo 1`] = `
 </nav>
 `;
 
-exports[`renders nav items 1`] = `
+exports[`header renders nav items 1`] = `
 <nav
   aria-label="main navigation"
   className="navbar"
@@ -313,7 +313,7 @@ exports[`renders nav items 1`] = `
 </nav>
 `;
 
-exports[`renders nav items with just a index 1`] = `
+exports[`header renders nav items with just a index 1`] = `
 <nav
   aria-label="main navigation"
   className="navbar"
@@ -435,7 +435,7 @@ exports[`renders nav items with just a index 1`] = `
 </nav>
 `;
 
-exports[`renders title 1`] = `
+exports[`header renders title 1`] = `
 <nav
   aria-label="main navigation"
   className="navbar"

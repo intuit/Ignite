@@ -12,6 +12,7 @@ exports[`generate should add markdown 1`] = `
     };
 
     import React from 'react';
+    import path from 'path';
 
     const e = React.createElement;
 
@@ -58,9 +59,9 @@ exports[`generate should add markdown 1`] = `
     function registerMarkdown(path, provider) {
       const comp = lazyLoad(provider);
       if(isIndex(path)) {
-        window.configuration.markdown.push([path, comp, true, null]);
+        window.configuration.markdown.push([path.join('/', path), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path, comp]);
+        window.configuration.markdown.push([path.join('/', path), comp]);
       }
     }
   
@@ -86,6 +87,7 @@ exports[`generate should add plugins 1`] = `
     };
 
     import React from 'react';
+    import path from 'path';
 
     const e = React.createElement;
 
@@ -132,9 +134,9 @@ exports[`generate should add plugins 1`] = `
     function registerMarkdown(path, provider) {
       const comp = lazyLoad(provider);
       if(isIndex(path)) {
-        window.configuration.markdown.push([path, comp, true, null]);
+        window.configuration.markdown.push([path.join('/', path), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path, comp]);
+        window.configuration.markdown.push([path.join('/', path), comp]);
       }
     }
   

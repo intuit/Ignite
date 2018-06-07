@@ -205,7 +205,8 @@ export default async function build(options) {
 
       if (options.static) {
         await createStaticWebsite.run({
-          source: options.dst
+          source: options.dst,
+          publicPath: path.join(options.static, '/')
         });
       }
 

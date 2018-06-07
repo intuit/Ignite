@@ -17,10 +17,12 @@ export const determineComponents = (
   indexFile,
   navItems = process.env.navItems
 ) => {
-  const filePath = location.pathname.substring(1).replace('.html', '.md');
-  let Page = markdown[filePath];
+  const filePath = location.pathname.replace('.html', '.md');
   const isBlog = filePath.includes('blog/');
-  let SidebarComponent = markdown[indexFile];
+  const index = path.join(process.env.baseURL, indexFile);
+
+  let Page = markdown[filePath];
+  let SidebarComponent = markdown[index];
 
   if (navItems && !filePath.includes('blog/')) {
     const parent =
@@ -42,18 +44,24 @@ export const determineComponents = (
 
     if (!Page && !SidebarComponent && markdown.indexFiles) {
       const rootIndex =
-        navItems.root === '/' ? indexFile : path.join(navItems.root, indexFile);
+        navItems.root === process.env.baseURL
+          ? indexFile
+          : path.join(navItems.root, indexFile);
       SidebarComponent = markdown[rootIndex];
       Page = markdown[markdown.indexFiles[rootIndex]];
     }
   }
 
-  if (!isBlog && markdown.indexFiles && filePath === indexFile) {
+  if (
+    !isBlog &&
+    markdown.indexFiles &&
+    filePath === path.join('/', indexFile)
+  ) {
     Page = markdown[markdown.indexFiles[filePath]];
   }
 
   if (!Page && markdown.indexFiles) {
-    Page = markdown[markdown.indexFiles[indexFile]];
+    Page = markdown[markdown.indexFiles[index]];
   }
 
   if (!Page) {
@@ -103,7 +111,8 @@ class App extends Component {
   render() {
     const { markdown, location, index } = this.props;
     const isBlog = location.pathname.includes('blog/');
-    const isHome = location.pathname === '/home.html' && markdown['home.md'];
+    const isHome =
+      location.pathname === path.join(process.env.baseURL, '/home.html');
     const { SidebarComponent, Page } = determineComponents(
       markdown,
       location,

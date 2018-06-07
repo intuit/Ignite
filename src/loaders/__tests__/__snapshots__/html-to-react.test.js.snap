@@ -1,45 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`addActive 1`] = `
-"<a
-      className={
+"<a className=!{
         '/foo' === props.currentPage ||
-        ('bar' === 'foo' && '/' === props.currentPage) ||
+        ('bar' === 'foo' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
         ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md'))
           ? 'is-active'
           : null
-      }
+      !}
       href=\\"/foo\\">Foo</a>"
 `;
 
 exports[`addActiveAll 1`] = `
 "
-      <a
-      className={
+      <a className=!{
         '/' === props.currentPage ||
-        ('bar' === '' && '/' === props.currentPage) ||
+        ('bar' === '' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
         ('bar' === '' && props.currentPage && props.currentPage.includes('index.md'))
           ? 'is-active'
           : null
-      }
+      !}
       href=\\"\\"></a>'
-      <a
-      className={
+      <a className=!{
         '/foo' === props.currentPage ||
-        ('bar' === 'foo' && '/' === props.currentPage) ||
+        ('bar' === 'foo' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
         ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md'))
           ? 'is-active'
           : null
-      }
+      !}
       href=\\"/foo\\">Foo</a>'
-      <a
-      className={
+      <a className=!{
         '/bar' === props.currentPage ||
-        ('bar' === 'bar' && '/' === props.currentPage) ||
+        ('bar' === 'bar' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
         ('bar' === 'bar' && props.currentPage && props.currentPage.includes('index.md'))
           ? 'is-active'
           : null
-      }
+      !}
       href=\\"/bar\\">Foo</a>'
     "
 `;
@@ -80,7 +76,7 @@ exports[`index 1`] = `
       );
     }
 
-    window.configuration.setFirstLink('/path', '');
+    window.configuration.setFirstLink('/path', '/');
   "
 `;
 
@@ -120,7 +116,7 @@ exports[`index 2`] = `
       );
     }
 
-    window.configuration.setFirstLink('/path', '');
+    window.configuration.setFirstLink('/path', '/');
   "
 `;
 
@@ -176,14 +172,14 @@ exports[`markDownPage 1`] = `
 
 exports[`replaceIdLinks 1`] = `
 "
-    <OptionalLink to=\\"#some-id\\">Link</OptionalLink>
-    <OptionalLink className=\\"fas fa-hashtag headerLink\\" to=\\"#some-other-id\\">Link</OptionalLink>
+    <OptionalLink currentPage={(this && this.props || props).currentPage} to=\\"#some-id\\">Link</OptionalLink>
+    <OptionalLink currentPage={(this && this.props || props).currentPage} className=\\"fas fa-hashtag headerLink\\" to=\\"#some-other-id\\">Link</OptionalLink>
   "
 `;
 
-exports[`sanitizeJSX 1`] = `"<OptionalLink className=\\"/foo\\">&#123;Foo&#125;</OptionalLink>"`;
+exports[`sanitizeJSX 1`] = `"<OptionalLink currentPage={(this && this.props || props).currentPage} className=\\"/foo\\">&#123;Foo&#125;</OptionalLink>"`;
 
-exports[`sanitizeJSX 2`] = `"<OptionalLink className={\\"/foo\\"}>Foo</OptionalLink>"`;
+exports[`sanitizeJSX 2`] = `"<OptionalLink currentPage={(this && this.props || props).currentPage} className={\\"/foo\\"}>Foo</OptionalLink>"`;
 
 exports[`sanitizeJSX 3`] = `"<br/>"`;
 
@@ -203,7 +199,7 @@ exports[`sanitizeJSX 8`] = `
 
 exports[`sanitizeJSX- complex 1`] = `
 "
-    <OptionalLink className=\\"fas fa-hashtag headerLink\\" to=\\"#zero-hassle-documentation\\" aria-hidden=\\"true\\" />
-    <OptionalLink to=\\"#/pages/GettingStarted.md\\">&#x1F389; Get Started</OptionalLink>
+    <OptionalLink currentPage={(this && this.props || props).currentPage} className=\\"fas fa-hashtag headerLink\\" to=\\"#zero-hassle-documentation\\" aria-hidden=\\"true\\" />
+    <OptionalLink currentPage={(this && this.props || props).currentPage} to=\\"#/pages/GettingStarted.md\\">&#x1F389; Get Started</OptionalLink>
   "
 `;

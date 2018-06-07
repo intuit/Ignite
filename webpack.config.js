@@ -22,6 +22,11 @@ module.exports = function(options = {}) {
   const logoExists = fs.existsSync(path.resolve(logoPath));
   const dest = options.dst ? path.resolve(options.dst) : null;
 
+  options = Object.assign({}, options, {
+    baseURL:
+      options.static && !options.watch ? path.join(options.static, '/') : '/'
+  });
+
   return {
     mode: options.mode,
 
@@ -40,8 +45,9 @@ module.exports = function(options = {}) {
 
     output: {
       path: dest,
-      filename: 'bundle.js'
-      // PublicPath: './'
+      filename: 'bundle.js',
+      publicPath:
+        options.static && !options.watch ? path.join(options.static, '/') : './'
     },
 
     module: {
@@ -148,6 +154,7 @@ module.exports = function(options = {}) {
         }
       ]),
       new HtmlWebPackPlugin({
+        base: options.watch || !options.static ? '/' : options.static,
         codeStyle: options.codeStyle,
         bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, './src/index.html'),
@@ -156,7 +163,8 @@ module.exports = function(options = {}) {
       new webpack.DefinePlugin({
         'process.env': {
           index: JSON.stringify(options.index),
-          static: JSON.stringify(options.static),
+          static: JSON.stringify(options.watch ? false : options.static),
+          baseURL: JSON.stringify(options.baseURL),
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
           navItems: JSON.stringify(options.navItems),
