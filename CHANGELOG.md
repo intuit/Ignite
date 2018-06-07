@@ -202,3 +202,7 @@
  0.0.51
 
 - Reuse Chrome Tab #133
+
+ 0.0.52
+
+- update packages #134
