@@ -58,9 +58,9 @@ exports[`generate should add markdown 1`] = `
     function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
       if(isIndex(markdownPath)) {
-        window.configuration.markdown.push([path.join('undefined', markdownPath), comp, true, null]);
+        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('undefined', markdownPath), comp]);
+        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
     }
   
@@ -132,9 +132,9 @@ exports[`generate should add plugins 1`] = `
     function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
       if(isIndex(markdownPath)) {
-        window.configuration.markdown.push([path.join('undefined', markdownPath), comp, true, null]);
+        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('undefined', markdownPath), comp]);
+        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
     }
   
