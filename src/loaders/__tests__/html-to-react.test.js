@@ -37,8 +37,8 @@ test('addActiveAll', () => {
 });
 
 test('index', () => {
-  expect(index('<ul></ul>', '/path', {})).toMatchSnapshot();
-  expect(index('<p></p>', '/path', {})).toMatchSnapshot();
+  expect(index('<ul></ul>', '/path', { baseURL: '/' })).toMatchSnapshot();
+  expect(index('<p></p>', '/path', { baseURL: '/' })).toMatchSnapshot();
 });
 
 test('insertBreaks', () => {

@@ -26,13 +26,19 @@ describe('transformLink', () => {
 
   test('should hash link', () => {
     expect(
-      transformLink('/docs/example.md', './markdown.md', { src: 'docs/' })
+      transformLink('/docs/example.md', './markdown.md', {
+        src: 'docs/',
+        baseURL: '/'
+      })
     ).toBe('/docs/markdown.html');
   });
 
   test('should make relative paths to images', () => {
     expect(
-      transformLink('/path/', './link/to/image.png', { src: 'docs/' })
+      transformLink('/path/', './link/to/image.png', {
+        src: 'docs/',
+        baseURL: '/'
+      })
     ).toBe('../link/to/image.png ');
     expect(
       transformLink('/path/', './link/to/image.png "With a description"', {
@@ -44,7 +50,8 @@ describe('transformLink', () => {
 
 describe('transform', () => {
   const options = {
-    src: './docs/'
+    src: './docs/',
+    baseURL: '/'
   };
 
   expect(
