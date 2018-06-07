@@ -419,10 +419,10 @@ export function index(rawSource, pathToMarkdown, options) {
     }
 
     window.configuration.setFirstLink('${
-      options.static && !options.watch
-        ? path.join(options.static, pathToMarkdown)
-        : path.join('/', pathToMarkdown)
-    }', '/${firstLink.link.replace('.html', '.md')}');
+      options.watch
+        ? path.join('/', pathToMarkdown)
+        : path.join(options.baseURL, pathToMarkdown)
+    }', '${path.join('/', firstLink.link.replace('.html', '.md'))}');
   `;
 }
 

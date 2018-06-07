@@ -22,11 +22,6 @@ module.exports = function(options = {}) {
   const logoExists = fs.existsSync(path.resolve(logoPath));
   const dest = options.dst ? path.resolve(options.dst) : null;
 
-  options = Object.assign({}, options, {
-    baseURL:
-      options.static && !options.watch ? path.join(options.static, '/') : '/'
-  });
-
   return {
     mode: options.mode,
 
@@ -46,8 +41,7 @@ module.exports = function(options = {}) {
     output: {
       path: dest,
       filename: 'bundle.js',
-      publicPath:
-        options.static && !options.watch ? path.join(options.static, '/') : './'
+      publicPath: options.baseURL
     },
 
     module: {
@@ -154,7 +148,7 @@ module.exports = function(options = {}) {
         }
       ]),
       new HtmlWebPackPlugin({
-        base: options.watch || !options.static ? '/' : options.static,
+        base: options.baseURL,
         codeStyle: options.codeStyle,
         bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, './src/index.html'),

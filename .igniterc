@@ -1,6 +1,7 @@
 {
   "title": "Ignite",
   "githubURL": "https://github.intuit.com/Fuego/Ignite",
+  "baseURL": "/pages/Fuego/Ignite",
 
   "plugins": [
     ["test", "./src/extensions/testExtension", {

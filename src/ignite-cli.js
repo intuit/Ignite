@@ -19,6 +19,12 @@ const { argv } = yargs
 
   .describe('publish', 'publish the docs to the githubURL')
 
+  .describe(
+    'baseURL',
+    'base url where your docs will be served from. needed if docs served on a sub path.'
+  )
+  .default('baseURL', defaults.baseURL)
+
   .describe('w', 'watch documentation files for changes')
   .alias('w', 'watch')
   .boolean('w')
