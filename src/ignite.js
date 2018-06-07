@@ -193,7 +193,6 @@ export default async function build(options) {
     serve({
       config: webpackConfig,
       port: options.port,
-      open: true,
       logLevel: 'silent',
       dev: { logLevel: 'silent' },
       hot: { logLevel: 'silent' },
