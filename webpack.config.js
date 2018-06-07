@@ -154,6 +154,10 @@ module.exports = function(options = {}) {
         template: path.resolve(__dirname, './src/index.html'),
         filename: './index.html'
       }),
+      new HtmlWebPackPlugin({
+        template: path.resolve(__dirname, './src/404.html'),
+        filename: './404.html'
+      }),
       new webpack.DefinePlugin({
         'process.env': {
           index: JSON.stringify(options.index),
