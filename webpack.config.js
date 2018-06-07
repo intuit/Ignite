@@ -41,7 +41,9 @@ module.exports = function(options) {
     devServer: {
       quiet: true,
       historyApiFallback: {
-        rewrites: [{ from: /./, to: path.join(options.baseURL, 'index.html') }]
+        rewrites: [
+          { from: /.html/, to: path.join(options.baseURL, 'index.html') }
+        ]
       }
     },
 

@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
+import { execSync } from 'child_process';
 import path from 'path';
+
+import history from 'connect-history-api-fallback';
+import convert from 'koa-connect';
 import git from 'simple-git/promise';
 import dayjs from 'dayjs';
 import globby from 'globby';
@@ -12,6 +16,7 @@ import webpack from 'webpack';
 import serve from 'webpack-serve';
 import ghpages from 'gh-pages';
 import createStaticWebsite from 'react-snap';
+import webpackServeWaitpage from 'webpack-serve-waitpage';
 
 import config from '../webpack.config';
 import packageJSON from '../package';
@@ -188,10 +193,39 @@ export default async function build(options) {
     serve({
       config: webpackConfig,
       port: options.port,
-      open: true,
       logLevel: 'silent',
       dev: { logLevel: 'silent' },
-      hot: { logLevel: 'silent' }
+      hot: { logLevel: 'silent' },
+      add: (app, middleware, options) => {
+        app.use(
+          webpackServeWaitpage(options, {
+            title: 'Ignite Dev Server',
+            theme: 'material'
+          })
+        );
+
+        app.use(
+          convert(
+            history({
+              ...webpackConfig.devServer.historyApiFallback
+            })
+          )
+        );
+      },
+      on: {
+        listening: () => {
+          execSync('ps cax | grep "Google Chrome"');
+          execSync(
+            `osascript ../src/chrome.applescript "${encodeURI(
+              `http://localhost:${options.port}`
+            )}"`,
+            {
+              cwd: __dirname,
+              stdio: 'ignore'
+            }
+          );
+        }
+      }
     });
   } else {
     const compiler = webpack(webpackConfig);
