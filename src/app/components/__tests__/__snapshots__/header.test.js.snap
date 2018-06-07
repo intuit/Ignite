@@ -12,6 +12,7 @@ exports[`header render active for blogs 1`] = `
     >
       <Link
         className="navbar-item"
+        onClick={[Function]}
         replace={false}
         to="/home.html"
       >
@@ -42,19 +43,23 @@ exports[`header render active for blogs 1`] = `
     >
       <div
         className="navbar-end"
-        onClick={[Function]}
       >
         <Search
+          endSearch={[Function]}
           setSearchResults={[Function]}
         />
         <DocsLink
           className={false}
+          onClick={[Function]}
         />
         <BlogLink
           className="is-active"
+          onClick={[Function]}
         />
         <GithubLink
+          className={null}
           githubURL={null}
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -74,6 +79,7 @@ exports[`header renders githubURL 1`] = `
     >
       <Link
         className="navbar-item"
+        onClick={[Function]}
         replace={false}
         to="/home.html"
       >
@@ -104,19 +110,23 @@ exports[`header renders githubURL 1`] = `
     >
       <div
         className="navbar-end"
-        onClick={[Function]}
       >
         <Search
+          endSearch={[Function]}
           setSearchResults={[Function]}
         />
         <DocsLink
           className="is-active"
+          onClick={[Function]}
         />
         <BlogLink
           className={false}
+          onClick={[Function]}
         />
         <GithubLink
+          className={null}
           githubURL="https://github.com/sindresorhus/cows"
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -136,6 +146,7 @@ exports[`header renders logo 1`] = `
     >
       <Link
         className="navbar-item"
+        onClick={[Function]}
         replace={false}
         to="/home.html"
       >
@@ -171,19 +182,23 @@ exports[`header renders logo 1`] = `
     >
       <div
         className="navbar-end"
-        onClick={[Function]}
       >
         <Search
+          endSearch={[Function]}
           setSearchResults={[Function]}
         />
         <DocsLink
           className="is-active"
+          onClick={[Function]}
         />
         <BlogLink
           className={false}
+          onClick={[Function]}
         />
         <GithubLink
+          className={null}
           githubURL={null}
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -203,6 +218,7 @@ exports[`header renders nav items 1`] = `
     >
       <Link
         className="navbar-item"
+        onClick={[Function]}
         replace={false}
         to="/home.html"
       >
@@ -233,9 +249,9 @@ exports[`header renders nav items 1`] = `
     >
       <div
         className="navbar-end"
-        onClick={[Function]}
       >
         <Search
+          endSearch={[Function]}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -303,9 +319,12 @@ exports[`header renders nav items 1`] = `
         />
         <BlogLink
           className={false}
+          onClick={[Function]}
         />
         <GithubLink
+          className={null}
           githubURL={null}
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -325,6 +344,7 @@ exports[`header renders nav items with just a index 1`] = `
     >
       <Link
         className="navbar-item"
+        onClick={[Function]}
         replace={false}
         to="/home.html"
       >
@@ -355,9 +375,9 @@ exports[`header renders nav items with just a index 1`] = `
     >
       <div
         className="navbar-end"
-        onClick={[Function]}
       >
         <Search
+          endSearch={[Function]}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -425,9 +445,12 @@ exports[`header renders nav items with just a index 1`] = `
         />
         <BlogLink
           className={false}
+          onClick={[Function]}
         />
         <GithubLink
+          className={null}
           githubURL={null}
+          onClick={[Function]}
         />
       </div>
     </div>
@@ -447,6 +470,7 @@ exports[`header renders title 1`] = `
     >
       <Link
         className="navbar-item"
+        onClick={[Function]}
         replace={false}
         to="/home.html"
       >
@@ -479,19 +503,23 @@ exports[`header renders title 1`] = `
     >
       <div
         className="navbar-end"
-        onClick={[Function]}
       >
         <Search
+          endSearch={[Function]}
           setSearchResults={[Function]}
         />
         <DocsLink
           className="is-active"
+          onClick={[Function]}
         />
         <BlogLink
           className={false}
+          onClick={[Function]}
         />
         <GithubLink
+          className={null}
           githubURL={null}
+          onClick={[Function]}
         />
       </div>
     </div>
