@@ -2265,6 +2265,10 @@ configstore@^3.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
+connect-history-api-fallback@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.intuit.net/c/connect-history-api-fallback/_attachments/connect-history-api-fallback-1.5.0.tgz#b06873934bc5e344fef611a196a6faae0aee015a"
+
 console-browserify@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.1.0.tgz#f0241c45730a9fc6323b206dbf38edc741d0bb10"
@@ -5477,6 +5481,10 @@ koa-compose@^3.0.0:
 koa-compose@^4.0.0:
   version "4.1.0"
   resolved "https://registry.npmjs.intuit.net/k/koa-compose/_attachments/koa-compose-4.1.0.tgz#507306b9371901db41121c812e923d0d67d3e877"
+
+koa-connect@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.intuit.net/k/koa-connect/_attachments/koa-connect-2.0.1.tgz#2acad159c33862de1d73aa4562a48de13f137c0f"
 
 koa-convert@^1.2.0:
   version "1.2.0"

@@ -4,6 +4,8 @@ import fs from 'fs';
 import { execSync } from 'child_process';
 import path from 'path';
 
+import history from 'connect-history-api-fallback';
+import convert from 'koa-connect';
 import git from 'simple-git/promise';
 import dayjs from 'dayjs';
 import globby from 'globby';
@@ -202,6 +204,11 @@ export default async function build(options) {
             theme: 'material'
           })
         );
+        const historyOptions = {
+          ...webpackConfig.devServer.historyApiFallback
+        };
+
+        app.use(convert(history(historyOptions)));
       },
       on: {
         listening: () => {
