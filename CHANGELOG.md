@@ -186,3 +186,7 @@
  0.0.47
 
 - [bug] search results use base url #129
+
+ 0.0.48
+
+- mobile menu bugs #130
