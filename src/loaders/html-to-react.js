@@ -187,14 +187,14 @@ export function getLink(source, index = 0) {
   };
 }
 
-export function addActive(source, link, firstLink, indexFile) {
+export function addActive(source, link, firstLink, indexFile, options) {
   source = source.replace(
     new RegExp('<a h'),
     `<a className=!{
         '/${link}' === props.currentPage ||
-        ('${
-          firstLink.link
-        }' === '${link}' && ('/' === props.currentPage || '/${indexFile.replace(
+        ('${firstLink.link}' === '${link}' && ('${
+      options.baseURL
+    }' === props.currentPage || '/${indexFile.replace(
       '.md',
       '.html'
     )}' === props.currentPage)) ||
@@ -210,11 +210,11 @@ export function addActive(source, link, firstLink, indexFile) {
   return source;
 }
 
-export function addActiveAll(source, firstLink, indexFile) {
+export function addActiveAll(source, firstLink, indexFile, options) {
   let { link, index } = getLink(source);
 
   while (index !== -1) {
-    source = addActive(source, link, firstLink, indexFile);
+    source = addActive(source, link, firstLink, indexFile, options);
     ({ link, index } = getLink(source, index + 1));
   }
 
@@ -280,8 +280,8 @@ export const initPage = rawSource => {
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
-      const OptionalLink = props => props.to
-        ? <Link {...props} />
+      const OptionalLink = ({ currentPage, ...props }) => props.to
+        ? <Link {...props} currentPage={currentPage} />
         : <a { ...props} />;
 
       const PluginProvider = ({plugins, name, options, children}) => {
@@ -399,7 +399,7 @@ export function index(rawSource, pathToMarkdown, options) {
   let { pageStart, source } = initPage(rawSource);
   const firstLink = getLink(source);
 
-  source = addActiveAll(source, firstLink, options.index);
+  source = addActiveAll(source, firstLink, options.index, options);
   source = sanitizeJSX(source);
   source = source.replace(
     new RegExp('<ul>', 'g'),
@@ -410,7 +410,7 @@ export function index(rawSource, pathToMarkdown, options) {
   return `
     ${pageStart}
 
-    export default function markDownPage(props) {
+    export default function index(props) {
       return (
         <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
           ${source}
