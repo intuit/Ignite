@@ -178,3 +178,7 @@
  0.0.45
 
 - add 404 for github redirect #127
+
+ 0.0.46
+
+- keep n segments for base url #128
