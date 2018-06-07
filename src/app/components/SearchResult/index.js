@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 
+import path from 'path';
 import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
@@ -15,7 +16,7 @@ const SearchResult = ({ fileName, results, setResults }) => (
     <div key={fileName} className="card-content">
       <Link
         className={makeClass('subtitle', 'has-text-link', styles.title)}
-        to={`/${fileName.replace('.md', '.html')}`}
+        to={path.join(process.env.baseURL, fileName.replace('.md', '.html'))}
         onClick={() => setResults({})}
       >
         {fileName}
