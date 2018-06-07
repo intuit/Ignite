@@ -203,11 +203,14 @@ export default async function build(options) {
             theme: 'material'
           })
         );
-        const historyOptions = {
-          ...webpackConfig.devServer.historyApiFallback
-        };
 
-        app.use(convert(history(historyOptions)));
+        app.use(
+          convert(
+            history({
+              ...webpackConfig.devServer.historyApiFallback
+            })
+          )
+        );
       },
       on: {
         listening: () => {
