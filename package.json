@@ -110,7 +110,8 @@
     "transform-markdown-links": "^2.0.0",
     "webpack": "^4.11.0",
     "webpack-inject-plugin": "~0.4.0",
-    "webpack-serve": "1.0.3"
+    "webpack-serve": "1.0.3",
+    "webpack-serve-waitpage": "1.0.0"
   },
   "devDependencies": {
     "@fuego/github-release": "^2.1.4",
