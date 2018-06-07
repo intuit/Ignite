@@ -9,9 +9,9 @@ The default configuration looks for a file named `index.md` in your `docs/` dire
 **_Changing the [default configuration](./Options.md#source-src-s)_**
 
 ```markdown
-* [Introduction](./Introduction.md)
-* [Page 1](./pages/Page1.md)
-* [Page 2](./pages/Page2.md)
+- [Introduction](./Introduction.md)
+- [Page 1](./pages/Page1.md)
+- [Page 2](./pages/Page2.md)
 ```
 
 ## Sub-Headings
@@ -19,9 +19,9 @@ The default configuration looks for a file named `index.md` in your `docs/` dire
 You can have sub-lists in your navigation which will create nested navigation lists.
 
 ```markdown
-* [Introduction](./Introduction.md)
-  * [Page 1](./pages/Page1.md)
-  * [Page 2](./pages/Page2.md)
+- [Introduction](./Introduction.md)
+  - [Page 1](./pages/Page1.md)
+  - [Page 2](./pages/Page2.md)
 ```
 
 ## List Title
@@ -33,13 +33,13 @@ You can add context to your navigation by adding paragraphs between sections of 
 ```markdown
 Intro
 
-* [Introduction](./Introduction.md)
-  * [Page 1](./pages/Page1.md)
-  * [Page 2](./pages/Page2.md)
+- [Introduction](./Introduction.md)
+  - [Page 1](./pages/Page1.md)
+  - [Page 2](./pages/Page2.md)
 
 Some Other Nav Section
 
-* [Something Else](./Bees.md)
+- [Something Else](./Bees.md)
   ...
 ```
 
@@ -74,5 +74,11 @@ folder2/
 :warning: All index files must have the same name specified in [configuration](Options.md#index-index-i).
 
 :warning: All paths to NavItems use [source folder](Options.md#source-src-s) as root.
+
+:::
+
+::: message is-success is-three-fifths is-offset-one-fifth
+
+If you aren't using GitHub pages make sure to redirect 404s to the 404.html.
 
 :::
