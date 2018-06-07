@@ -260,7 +260,7 @@ export default function generate(entries = [], plugins = [], options = {}) {
       generated += generatePlugins(plugins);
     }
 
-    if (blogFiles.length > 0) {
+    if (blogFiles.length > 0 && options.blogPosts) {
       generated += generateBlogIndex(blogFiles, options);
     }
 

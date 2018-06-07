@@ -115,6 +115,7 @@ export function sanitizeJSX(source) {
 
   // Uppercase to use as react component
   source = source.replace(new RegExp('pluginprovider', 'g'), 'PluginProvider');
+  source = source.replace(new RegExp('details', 'g'), 'Details');
 
   // Use Bulma Checkboxes
   source = source.replace(
@@ -274,7 +275,7 @@ export const initPage = rawSource => {
 
   return {
     pageStart: `
-      import React from 'react';
+      import React, { Component } from 'react';
       import makeClass from 'classnames';
       import { Link } from 'react-router-dom';
       import Gist from 'react-gist';
@@ -296,6 +297,24 @@ export const initPage = rawSource => {
         return <Plugin {...pluginOptions}  children={children} {...options} />;
       };
 
+      class Details extends Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            open: props.open
+          }
+        }
+
+        render() {
+          return (
+            <details open={this.state.open}>
+              {this.props.children}
+            </details>
+          )
+        }
+      }
+
       ${codeTabsComponent}
     `,
     source
@@ -303,8 +322,9 @@ export const initPage = rawSource => {
 };
 
 export const createStubAndPost = (source, pathToMarkdown, options) => {
-  const date = options.blogPosts.find(post => post.path === pathToMarkdown)
-    .birth;
+  const date = options.blogPosts
+    ? options.blogPosts.find(post => post.path === pathToMarkdown).birth
+    : '';
   const card = `
   <div class="card">
     <div class="card-content">

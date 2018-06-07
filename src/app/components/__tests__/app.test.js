@@ -8,6 +8,7 @@ describe('determineComponents', () => {
 
   beforeEach(() => {
     process.env.baseURL = '/';
+    window.configuration = {};
     markdown = {
       '/index.md': () => <ul>List of Links</ul>,
       '/firstPage.md': () => <h1> First Page </h1>,
@@ -19,7 +20,7 @@ describe('determineComponents', () => {
 
   test('renders nothing if no pages found', () => {
     const { SidebarComponent, Page } = determineComponents(
-      {},
+      { indexFiles: {} },
       { pathname: 'notFound' },
       'index.md'
     );
@@ -154,6 +155,7 @@ describe('determineComponents', () => {
 
 describe('App', () => {
   const markdown = {
+    indexFiles: {},
     '/index': () => <h1>Index</h1>
   };
 

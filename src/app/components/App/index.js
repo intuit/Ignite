@@ -22,6 +22,7 @@ export const determineComponents = (
   const index = path.join(process.env.baseURL, indexFile);
 
   let Page = markdown[filePath];
+  let currentFirstPage = markdown.indexFiles[index];
   let SidebarComponent = markdown[index];
 
   if (navItems && !filePath.includes('blog/')) {
@@ -35,10 +36,12 @@ export const determineComponents = (
       });
 
     if (parent) {
-      SidebarComponent = markdown[parent[0]];
+      const [parentIndex, parentPageFirstPage] = parent;
+      SidebarComponent = markdown[parentIndex];
+      currentFirstPage = parentPageFirstPage;
 
       if (!Page || filePath.includes(indexFile)) {
-        Page = markdown[parent[1]];
+        Page = markdown[parentPageFirstPage];
       }
     }
 
@@ -48,7 +51,8 @@ export const determineComponents = (
           ? indexFile
           : path.join(navItems.root, indexFile);
       SidebarComponent = markdown[rootIndex];
-      Page = markdown[markdown.indexFiles[rootIndex]];
+      currentFirstPage = markdown.indexFiles[rootIndex];
+      Page = markdown[currentFirstPage];
     }
   }
 
@@ -57,7 +61,8 @@ export const determineComponents = (
     markdown.indexFiles &&
     filePath === path.join(process.env.baseURL, indexFile)
   ) {
-    Page = markdown[markdown.indexFiles[filePath]];
+    currentFirstPage = markdown.indexFiles[filePath];
+    Page = markdown[currentFirstPage];
   }
 
   if (!Page && markdown.indexFiles) {
@@ -67,6 +72,8 @@ export const determineComponents = (
   if (!Page) {
     Page = () => null;
   }
+
+  window.configuration.currentFirstPage = currentFirstPage;
 
   return {
     SidebarComponent,

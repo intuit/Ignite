@@ -43,7 +43,7 @@ exports[`addActiveAll 1`] = `
 exports[`index 1`] = `
 "
     
-      import React from 'react';
+      import React, { Component } from 'react';
       import makeClass from 'classnames';
       import { Link } from 'react-router-dom';
       import Gist from 'react-gist';
@@ -64,6 +64,24 @@ exports[`index 1`] = `
         Plugin = Plugin.component;
         return <Plugin {...pluginOptions}  children={children} {...options} />;
       };
+
+      class Details extends Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            open: props.open
+          }
+        }
+
+        render() {
+          return (
+            <details open={this.state.open}>
+              {this.props.children}
+            </details>
+          )
+        }
+      }
 
       
     
@@ -83,7 +101,7 @@ exports[`index 1`] = `
 exports[`index 2`] = `
 "
     
-      import React from 'react';
+      import React, { Component } from 'react';
       import makeClass from 'classnames';
       import { Link } from 'react-router-dom';
       import Gist from 'react-gist';
@@ -104,6 +122,24 @@ exports[`index 2`] = `
         Plugin = Plugin.component;
         return <Plugin {...pluginOptions}  children={children} {...options} />;
       };
+
+      class Details extends Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            open: props.open
+          }
+        }
+
+        render() {
+          return (
+            <details open={this.state.open}>
+              {this.props.children}
+            </details>
+          )
+        }
+      }
 
       
     
@@ -133,7 +169,7 @@ exports[`insertBreaks 1`] = `
 exports[`markDownPage 1`] = `
 "
     
-      import React from 'react';
+      import React, { Component } from 'react';
       import makeClass from 'classnames';
       import { Link } from 'react-router-dom';
       import Gist from 'react-gist';
@@ -154,6 +190,24 @@ exports[`markDownPage 1`] = `
         Plugin = Plugin.component;
         return <Plugin {...pluginOptions}  children={children} {...options} />;
       };
+
+      class Details extends Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            open: props.open
+          }
+        }
+
+        render() {
+          return (
+            <details open={this.state.open}>
+              {this.props.children}
+            </details>
+          )
+        }
+      }
 
       
     

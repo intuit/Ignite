@@ -11,15 +11,21 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
+const { defaults } = require('./dist/ignite');
 
 const markdownItConfig = require('./markdownit.config');
 
-module.exports = function(options = {}) {
+module.exports = function(options) {
+  options = {
+    ...defaults,
+    ...options
+  };
+
   const { ignitePlugins } = markdownItConfig.splitPlugins(options.plugins);
 
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
-  const logoExists = fs.existsSync(path.resolve(logoPath));
+  const logoExists = logoPath && fs.existsSync(path.resolve(logoPath));
   const dest = options.dst ? path.resolve(options.dst) : null;
 
   return {
@@ -33,8 +39,9 @@ module.exports = function(options = {}) {
     devtool: 'source-map',
 
     devServer: {
+      quiet: true,
       historyApiFallback: {
-        rewrites: [{ from: /./, to: path.join(options.dst, 'index.html') }]
+        rewrites: [{ from: /./, to: path.join(options.baseURL, 'index.html') }]
       }
     },
 
