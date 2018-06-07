@@ -194,3 +194,7 @@
  0.0.49
 
 - fix subpath highlight index #131
+
+ 0.0.50
+
+- Sidebar collapse on reload #132
