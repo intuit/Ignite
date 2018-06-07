@@ -155,6 +155,7 @@ module.exports = function(options = {}) {
         filename: './index.html'
       }),
       new HtmlWebPackPlugin({
+        baseURL: options.baseURL,
         template: path.resolve(__dirname, './src/404.html'),
         filename: './404.html'
       }),
