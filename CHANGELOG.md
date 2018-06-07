@@ -190,3 +190,7 @@
  0.0.48
 
 - mobile menu bugs #130
+
+ 0.0.49
+
+- fix subpath highlight index #131
