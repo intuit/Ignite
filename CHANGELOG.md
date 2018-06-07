@@ -174,3 +174,7 @@
  0.0.44
 
 - Fix2 #126
+
+ 0.0.45
+
+- add 404 for github redirect #127
