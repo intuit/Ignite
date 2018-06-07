@@ -9,7 +9,7 @@ import register from 'babel-register';
 import root from 'root-path';
 import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
+import serve from 'webpack-serve';
 import ghpages from 'gh-pages';
 import createStaticWebsite from 'react-snap';
 
@@ -75,6 +75,7 @@ export function getAuthor() {
 
 export const defaults = {
   mode: 'production',
+  plugins: [],
   baseURL: '/',
   static: false,
   src: 'docs/',
@@ -88,21 +89,6 @@ export const defaults = {
   logo: 'logo.svg',
   bulmaTheme: 'default'
 };
-
-function initOptions(options) {
-  const explorer = cosmiconfig('ignite');
-  const igniteRc = explorer.searchSync();
-
-  if (igniteRc) {
-    options = Object.assign({}, options, igniteRc.config);
-  }
-
-  options = Object.assign({}, options, {
-    baseURL: options.watch ? '/' : path.join('/', options.baseURL, '/')
-  });
-
-  return Object.assign({}, defaults, options);
-}
 
 function initBuildMessages(options) {
   if (options.watch) {
@@ -152,10 +138,18 @@ function publish(options, user) {
   );
 }
 
-export default async function build(options) {
-  const user = getAuthor();
+async function initOptions(options) {
+  const explorer = cosmiconfig('ignite');
+  const igniteRc = explorer.searchSync();
 
-  options = initOptions(options);
+  if (igniteRc) {
+    options = Object.assign({}, options, igniteRc.config);
+  }
+
+  options = Object.assign({}, options, {
+    baseURL: options.watch ? '/' : path.join('/', options.baseURL, '/')
+  });
+
   options = initBuildMessages(options);
   options.blogPosts = await blogPosts(options);
 
@@ -163,8 +157,13 @@ export default async function build(options) {
     options = await initPlugins(options);
   }
 
-  const webpackConfig = config(options);
-  const compiler = webpack(webpackConfig);
+  return Object.assign({}, defaults, options);
+}
+
+export default async function build(options) {
+  const user = getAuthor();
+
+  options = await initOptions(options);
 
   if (options.publish) {
     if (!options.githubURL) {
@@ -183,16 +182,20 @@ export default async function build(options) {
     }
   }
 
-  if (options.watch) {
-    const devServerOptions = Object.assign({}, webpackConfig.devServer, {
-      quiet: true
-    });
-    const server = new WebpackDevServer(compiler, devServerOptions);
+  const webpackConfig = config(options);
 
-    server.listen(options.port, '127.0.0.1', () => {
-      console.warn(`Starting server on http://localhost:${options.port}`);
+  if (options.watch) {
+    serve({
+      config: webpackConfig,
+      port: options.port,
+      open: true,
+      logLevel: 'silent',
+      dev: { logLevel: 'silent' },
+      hot: { logLevel: 'silent' }
     });
   } else {
+    const compiler = webpack(webpackConfig);
+
     compiler.run(async (err, stats) => {
       if (err) {
         console.error(err.stack || err);
