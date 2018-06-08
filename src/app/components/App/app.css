@@ -1,27 +1,3 @@
-.App {
-  display: flex;
-  justify-content: center;
-
-  &:global(.columns) {
-    margin: 0;
-  }
-
-  h2:not(:last-child),
-  h1:not(:last-child) {
-    margin-bottom: 1.5rem;
-  }
-
-  :global .tag {
-    margin-left: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-
-    &:first-of-type {
-      margin-left: 15px;
-    }
-  }
-}
-
 .Page {
   padding-left: 45px;
   padding-right: 45px;
@@ -142,6 +118,30 @@ p {
     display: block;
     text-align: center;
     margin: auto;
+  }
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+
+  &:global(.columns) {
+    margin: 0;
+  }
+
+  h2:not(:last-child),
+  h1:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  :global .tag {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    &:first-of-type {
+      margin-left: 15px;
+    }
   }
 }
 
