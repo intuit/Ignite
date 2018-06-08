@@ -11,74 +11,93 @@ import Header from '../Header';
 import { default as Sidebar } from '../Sidebar';
 import styles from './app.css';
 
-export const determineComponents = (
+const getParent = (markdown, navItems, filePath) =>
+  markdown.indexFiles &&
+  Object.entries(markdown.indexFiles).find(([key]) => {
+    return (
+      Object.values(navItems).includes(path.dirname(key)) &&
+      path.dirname(key) === path.dirname(filePath)
+    );
+  });
+
+export const determineSidebar = (
   markdown,
   location,
   indexFile,
   navItems = process.env.navItems
 ) => {
   const filePath = location.pathname.replace('.html', '.md');
-  const isBlog = filePath.includes('blog/');
   const index = path.join(process.env.baseURL, indexFile);
 
-  let Page = markdown[filePath];
-  let currentFirstPage = markdown.indexFiles[index];
   let SidebarComponent = markdown[index];
+  let currentFirstPage = markdown.indexFiles[index];
 
-  if (navItems && !filePath.includes('blog/')) {
-    const parent =
-      markdown.indexFiles &&
-      Object.entries(markdown.indexFiles).find(([key]) => {
-        return (
-          Object.values(navItems).includes(path.dirname(key)) &&
-          path.dirname(key) === path.dirname(filePath)
-        );
-      });
+  if (navItems) {
+    const parent = getParent(markdown, navItems, filePath);
 
     if (parent) {
       const [parentIndex, parentPageFirstPage] = parent;
       SidebarComponent = markdown[parentIndex];
       currentFirstPage = parentPageFirstPage;
+    }
+
+    if (!SidebarComponent && markdown.indexFiles) {
+      const rootIndex =
+        navItems.root === process.env.baseURL
+          ? indexFile
+          : path.join(navItems.root, indexFile);
+
+      SidebarComponent = markdown[rootIndex];
+      currentFirstPage = markdown.indexFiles[rootIndex];
+    }
+  }
+
+  window.configuration.currentFirstPage = currentFirstPage;
+
+  return SidebarComponent;
+};
+
+export const determinePage = (
+  markdown,
+  location,
+  indexFile,
+  navItems = process.env.navItems
+) => {
+  const filePath = location.pathname.replace('.html', '.md');
+
+  if (filePath.includes('blog/')) {
+    return markdown[filePath];
+  }
+
+  let Page = markdown[filePath];
+
+  if (navItems) {
+    const parent = getParent(markdown, navItems, filePath);
+
+    if (parent) {
+      const [, parentPageFirstPage] = parent;
 
       if (!Page || filePath.includes(indexFile)) {
         Page = markdown[parentPageFirstPage];
       }
     }
 
-    if (!Page && !SidebarComponent && markdown.indexFiles) {
+    if (!Page && markdown.indexFiles) {
       const rootIndex =
         navItems.root === process.env.baseURL
           ? indexFile
           : path.join(navItems.root, indexFile);
-      SidebarComponent = markdown[rootIndex];
-      currentFirstPage = markdown.indexFiles[rootIndex];
-      Page = markdown[currentFirstPage];
+      Page = markdown[markdown.indexFiles[rootIndex]];
     }
   }
 
-  if (
-    !isBlog &&
-    markdown.indexFiles &&
-    filePath === path.join(process.env.baseURL, indexFile)
-  ) {
-    currentFirstPage = markdown.indexFiles[filePath];
-    Page = markdown[currentFirstPage];
-  }
+  const index = path.join(process.env.baseURL, indexFile);
 
-  if (!Page && markdown.indexFiles) {
+  if ((!Page || index === filePath) && markdown.indexFiles) {
     Page = markdown[markdown.indexFiles[index]];
   }
 
-  if (!Page) {
-    Page = () => null;
-  }
-
-  window.configuration.currentFirstPage = currentFirstPage;
-
-  return {
-    SidebarComponent,
-    Page
-  };
+  return Page ? Page : () => null;
 };
 
 function SearchResults({ searchResults }) {
@@ -180,11 +199,7 @@ class App extends Component {
     const isBlog = location.pathname.includes('blog/');
     const isHome =
       location.pathname === path.join(process.env.baseURL, '/home.html');
-    const { SidebarComponent, Page } = determineComponents(
-      markdown,
-      location,
-      index
-    );
+    const Page = determinePage(markdown, location, index);
 
     return (
       <div className={styles.root}>
@@ -206,7 +221,7 @@ class App extends Component {
           />
         ) : (
           <DocsPage
-            SidebarComponent={SidebarComponent}
+            SidebarComponent={determineSidebar(markdown, location, index)}
             Page={Page}
             location={location}
             plugins={this.props.plugins}
