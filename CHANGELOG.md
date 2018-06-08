@@ -210,3 +210,7 @@
  0.0.53
 
 - update readme #135
+
+ 0.0.54
+
+- Various Refactoring + Add Examples #136
