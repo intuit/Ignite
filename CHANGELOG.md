@@ -206,3 +206,7 @@
  0.0.52
 
 - update packages #134
+
+ 0.0.53
+
+- update readme #135
