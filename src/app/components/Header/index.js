@@ -99,6 +99,10 @@ class Header extends Component {
   };
 
   render() {
+    const hasHomePage = window.configuration.markdown.find(
+      ([key]) => key === path.join(process.env.baseURL, 'home.md')
+    );
+
     return (
       <nav
         className={makeClass('navbar', styles.nav)}
@@ -109,7 +113,10 @@ class Header extends Component {
           <div className="navbar-brand">
             <Link
               onClick={this.closeMenu}
-              to={path.join(process.env.baseURL, '/home.html')}
+              to={path.join(
+                process.env.baseURL,
+                hasHomePage ? '/home.html' : '/'
+              )}
               className={makeClass(styles.title, 'navbar-item')}
             >
               {this.props.logo && (
