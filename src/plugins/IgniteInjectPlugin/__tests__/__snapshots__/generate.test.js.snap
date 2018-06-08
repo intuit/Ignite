@@ -71,6 +71,29 @@ exports[`generate should add markdown 1`] = `
         window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
     }
+
+    loadPolyfills()
+ 
+    /**
+    * Do feature detection, to figure out which polyfills needs to be imported.
+    **/
+    function loadPolyfills() {
+      const polyfills = []
+    
+      if (!supportsIntersectionObserver()) {
+        polyfills.push(import('intersection-observer'))
+      }
+    
+      return Promise.all(polyfills)
+    }
+    
+    function supportsIntersectionObserver() {
+      return (
+        'IntersectionObserver' in global &&
+        'IntersectionObserverEntry' in global &&
+        'intersectionRatio' in IntersectionObserverEntry.prototype
+      )
+    }
   
     window.configuration.search.files = [];
 
@@ -152,6 +175,29 @@ exports[`generate should add plugins 1`] = `
       } else {
         window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
+    }
+
+    loadPolyfills()
+ 
+    /**
+    * Do feature detection, to figure out which polyfills needs to be imported.
+    **/
+    function loadPolyfills() {
+      const polyfills = []
+    
+      if (!supportsIntersectionObserver()) {
+        polyfills.push(import('intersection-observer'))
+      }
+    
+      return Promise.all(polyfills)
+    }
+    
+    function supportsIntersectionObserver() {
+      return (
+        'IntersectionObserver' in global &&
+        'IntersectionObserverEntry' in global &&
+        'intersectionRatio' in IntersectionObserverEntry.prototype
+      )
     }
   
     window.configuration.search.files = [];
