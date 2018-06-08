@@ -298,12 +298,8 @@ export const initPage = rawSource => {
       };
 
       class Details extends Component {
-        constructor(props) {
-          super(props);
-
-          this.state = {
-            open: props.open
-          }
+        state = {
+          open: this.props.open
         }
 
         render() {

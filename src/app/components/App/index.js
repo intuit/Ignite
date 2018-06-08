@@ -82,13 +82,9 @@ export const determineComponents = (
 };
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchResults: []
-    };
-  }
+  state = {
+    searchResults: []
+  };
 
   componentDidUpdate() {
     this.jumpToHash();
