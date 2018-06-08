@@ -3,7 +3,7 @@ import React from 'react';
 import { determinePage, determineSidebar } from '../App/determine-components';
 import renderToJson from './utils/render-to-json';
 
-describe.skip('determineComponents', () => {
+describe('determineComponents', () => {
   let markdown;
 
   beforeEach(() => {
@@ -20,8 +20,8 @@ describe.skip('determineComponents', () => {
 
   test('renders nothing if no pages found', () => {
     const args = [{ indexFiles: {} }, { pathname: 'notFound' }, 'index.md'];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(SidebarComponent).toBeUndefined();
     expect(() => renderToJson(<Page />)).not.toThrow();
@@ -29,8 +29,8 @@ describe.skip('determineComponents', () => {
 
   test('renders first page if it exists and no pages found', () => {
     const args = [markdown, { pathname: '/notFound' }, '/index.md'];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(renderToJson(<SidebarComponent />)).toMatchSnapshot();
     expect(renderToJson(<Page />)).toMatchSnapshot();
@@ -38,8 +38,8 @@ describe.skip('determineComponents', () => {
 
   test('renders matching index file if filePath matches index filename pattern', () => {
     const args = [markdown, { pathname: '/index.md' }, '/index.md'];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(renderToJson(<SidebarComponent />)).toMatchSnapshot();
     expect(renderToJson(<Page />)).toMatchSnapshot();
@@ -54,8 +54,8 @@ describe.skip('determineComponents', () => {
     markdown['/file.md'] = () => <p> foo </p>;
 
     const args = [markdown, { pathname: '/file.md' }, '/index.md', navItems];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(renderToJson(<SidebarComponent />)).toMatchSnapshot();
     expect(renderToJson(<Page />)).toMatchSnapshot();
@@ -77,8 +77,8 @@ describe.skip('determineComponents', () => {
       '/index.md',
       navItems
     ];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(renderToJson(<SidebarComponent />)).toMatchSnapshot();
     expect(renderToJson(<Page />)).toMatchSnapshot();
@@ -100,8 +100,8 @@ describe.skip('determineComponents', () => {
       '/index.md',
       navItems
     ];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(renderToJson(<SidebarComponent />)).toMatchSnapshot();
     expect(renderToJson(<Page />)).toMatchSnapshot();
@@ -121,8 +121,8 @@ describe.skip('determineComponents', () => {
       '/index.md',
       navItems
     ];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(renderToJson(<SidebarComponent />)).toMatchSnapshot();
     expect(renderToJson(<Page />)).toMatchSnapshot();
@@ -145,8 +145,8 @@ describe.skip('determineComponents', () => {
       '/index.md',
       navItems
     ];
-    const Page = determinePage(args);
-    const SidebarComponent = determinePage(args);
+    const Page = determinePage(...args);
+    const SidebarComponent = determineSidebar(...args);
 
     expect(renderToJson(<SidebarComponent />)).toMatchSnapshot();
     expect(renderToJson(<Page />)).toMatchSnapshot();

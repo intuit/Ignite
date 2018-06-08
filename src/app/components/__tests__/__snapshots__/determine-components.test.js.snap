@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`determineComponents render matching index file and first page if path not found 1`] = `
+<ul>
+   Folder Links 
+</ul>
+`;
+
+exports[`determineComponents render matching index file and first page if path not found 2`] = `
+<p>
+   Folder First 
+</p>
+`;
+
+exports[`determineComponents render matching index file in subpath 1`] = `
+<ul>
+   Folder Links 
+</ul>
+`;
+
+exports[`determineComponents render matching index file in subpath 2`] = `
+<p>
+   foo 
+</p>
+`;
+
+exports[`determineComponents render matching page if found 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents render matching page if found 2`] = `
+<p>
+   foo 
+</p>
+`;
+
+exports[`determineComponents render matching subpath index file and first page if path not found 1`] = `
+<ul>
+   Folder Links 
+</ul>
+`;
+
+exports[`determineComponents render matching subpath index file and first page if path not found 2`] = `
+<h1>
+   First Page 
+</h1>
+`;
+
+exports[`determineComponents renders first page if it exists and no pages found 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents renders first page if it exists and no pages found 2`] = `
+<h1>
+   First Page 
+</h1>
+`;
+
+exports[`determineComponents renders matching index file if filePath matches index filename pattern 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents renders matching index file if filePath matches index filename pattern 2`] = `
+<h1>
+   First Page 
+</h1>
+`;
+
+exports[`determineComponents renders root index if no matching subPath first page found 1`] = `
+<ul>
+  List of Links
+</ul>
+`;
+
+exports[`determineComponents renders root index if no matching subPath first page found 2`] = `
+<h1>
+   First Page 
+</h1>
+`;
