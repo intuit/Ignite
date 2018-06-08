@@ -200,7 +200,7 @@ export function addActive(source, link, firstLink, indexFile, options) {
         '/${indexFile}' === props.currentPage)) ||
         ('${
           firstLink.link
-        }' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
+        }' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}') || !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
         !}
