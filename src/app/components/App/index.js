@@ -37,20 +37,16 @@ export const determineSidebar = (
   let currentFirstPage = markdown.indexFiles[index];
 
   if (navItems) {
-    const parent = getParent(markdown, navItems, filePath);
+    const [parentIndex, parentPageFirstPage] =
+      getParent(markdown, navItems, filePath) || [];
 
-    if (parent) {
-      const [parentIndex, parentPageFirstPage] = parent;
+    if (parentIndex && parentPageFirstPage) {
       SidebarComponent = markdown[parentIndex];
       currentFirstPage = parentPageFirstPage;
     }
 
     if (!SidebarComponent && markdown.indexFiles) {
-      const rootIndex =
-        navItems.root === process.env.baseURL
-          ? indexFile
-          : path.join(navItems.root, indexFile);
-
+      const rootIndex = path.join(navItems.root, indexFile);
       SidebarComponent = markdown[rootIndex];
       currentFirstPage = markdown.indexFiles[rootIndex];
     }
@@ -76,21 +72,15 @@ export const determinePage = (
   let Page = markdown[filePath];
 
   if (navItems) {
-    const parent = getParent(markdown, navItems, filePath);
+    const [, parentPageFirstPage] =
+      getParent(markdown, navItems, filePath) || [];
 
-    if (parent) {
-      const [, parentPageFirstPage] = parent;
-
-      if (!Page || filePath.includes(indexFile)) {
-        Page = markdown[parentPageFirstPage];
-      }
+    if (parentPageFirstPage && (!Page || filePath.includes(indexFile))) {
+      Page = markdown[parentPageFirstPage];
     }
 
     if (!Page && markdown.indexFiles) {
-      const rootIndex =
-        navItems.root === process.env.baseURL
-          ? indexFile
-          : path.join(navItems.root, indexFile);
+      const rootIndex = path.join(navItems.root, indexFile);
       Page = markdown[markdown.indexFiles[rootIndex]];
     }
   }
