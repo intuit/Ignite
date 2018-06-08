@@ -81,6 +81,69 @@ export const determineComponents = (
   };
 };
 
+function SearchResults({ searchResults }) {
+  return (
+    <div className={makeClass(styles.searchResults)}>
+      {searchResults.map(([fileName, results]) => (
+        <SearchResult
+          key={fileName}
+          setResults={searchResults => this.setState({ searchResults })}
+          fileName={fileName}
+          results={results}
+        />
+      ))}
+    </div>
+  );
+}
+
+function BlogPage({ Page, location, plugins, blogHero }) {
+  return (
+    <div>
+      <BlogHero key="hero" location={location} blogHero={blogHero} />
+      <div className={makeClass(styles.App, 'columns', styles.blog)}>
+        <div
+          className={makeClass(
+            'column',
+            'content',
+            'is-two-thirds-tablet',
+            'is-three-quarters-desktop'
+          )}
+        >
+          <Page plugins={plugins} className={styles.Page} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DocsPage({ Page, SidebarComponent, location, plugins }) {
+  return (
+    <div id="root" className={makeClass(styles.contentArea)}>
+      <div className={makeClass(styles.App, 'columns')}>
+        <Sidebar
+          className="column is-one-third-tablet is-one-quarter-desktop box"
+          content={SidebarComponent}
+          currentPage={`${location.pathname}${
+            location.hash ? location.hash : ''
+          }`}
+        />
+
+        <div
+          className={makeClass(
+            !styles.content,
+            'column',
+            'content',
+            'is-two-thirds-tablet',
+            'is-three-quarters-desktop'
+          )}
+        >
+          <Page plugins={plugins} className={styles.Page} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 class App extends Component {
   state = {
     searchResults: []
@@ -93,6 +156,7 @@ class App extends Component {
   jumpToHash = () => {
     setImmediate(() => {
       const { hash } = this.props.location;
+
       if (hash && document.querySelector(hash)) {
         scrollToElement(hash, {
           duration: 500
@@ -122,69 +186,6 @@ class App extends Component {
       index
     );
 
-    let content;
-
-    if (this.state.searchResults.length > 0) {
-      content = (
-        <div className={makeClass(styles.searchResults)}>
-          {this.state.searchResults.map(([fileName, results]) => (
-            <SearchResult
-              key={fileName}
-              setResults={searchResults => this.setState({ searchResults })}
-              fileName={fileName}
-              results={results}
-            />
-          ))}
-        </div>
-      );
-    } else if (isHome) {
-      content = <Page plugins={this.props.plugins} className={styles.Page} />;
-    } else if (isBlog) {
-      content = (
-        <div>
-          <BlogHero key="hero" {...this.props} />
-          <div className={makeClass(styles.App, 'columns', styles.blog)}>
-            <div
-              className={makeClass(
-                'column',
-                'content',
-                'is-two-thirds-tablet',
-                'is-three-quarters-desktop'
-              )}
-            >
-              <Page plugins={this.props.plugins} className={styles.Page} />
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      content = (
-        <div id="root" className={makeClass(styles.contentArea)}>
-          <div className={makeClass(styles.App, 'columns')}>
-            <Sidebar
-              className="column is-one-third-tablet is-one-quarter-desktop box"
-              content={SidebarComponent}
-              currentPage={`${location.pathname}${
-                location.hash ? location.hash : ''
-              }`}
-            />
-
-            <div
-              className={makeClass(
-                !styles.content,
-                'column',
-                'content',
-                'is-two-thirds-tablet',
-                'is-three-quarters-desktop'
-              )}
-            >
-              <Page plugins={this.props.plugins} className={styles.Page} />
-            </div>
-          </div>
-        </div>
-      );
-    }
-
     return (
       <div className={styles.root}>
         <Header
@@ -192,7 +193,25 @@ class App extends Component {
           setSearchResults={this.setSearchResults}
         />
 
-        {content}
+        {this.state.searchResults.length > 0 ? (
+          <SearchResults searchResults={this.state.searchResults} />
+        ) : isHome ? (
+          <Page plugins={this.props.plugins} className={styles.Page} />
+        ) : isBlog ? (
+          <BlogPage
+            Page={Page}
+            plugins={this.props.plugins}
+            location={location}
+            blogHero={this.props.blogHero}
+          />
+        ) : (
+          <DocsPage
+            SidebarComponent={SidebarComponent}
+            Page={Page}
+            location={location}
+            plugins={this.props.plugins}
+          />
+        )}
       </div>
     );
   }
