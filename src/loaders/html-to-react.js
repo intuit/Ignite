@@ -2,7 +2,9 @@ import path from 'path';
 import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
+
 import replaceAt from '../utils/replace-at';
+import trimChar from '../utils/trim-char';
 
 const libHTMLOptions = {
   xmlMode: true
@@ -189,23 +191,22 @@ export function getLink(source, index = 0) {
 }
 
 export function addActive(source, link, firstLink, indexFile, options) {
+  indexFile = indexFile.replace('.md', '.html');
   source = source.replace(
     new RegExp('<a h'),
     `<a className=!{
-        '/${link}' === props.currentPage ||
+        '/${link}' === props.currentPage || 
         ('${firstLink.link}' === '${link}' && ('${
       options.baseURL
-    }' === props.currentPage || '/${indexFile.replace(
-      '.md',
-      '.html'
-    )}' === props.currentPage)) ||
+    }' === props.currentPage ||
+        '/${indexFile}' === props.currentPage)) ||
         ('${
           firstLink.link
-        }' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
+        }' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}') || !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-      !}
-      h`
+        !}
+        h`
   );
 
   return source;
@@ -298,12 +299,8 @@ export const initPage = rawSource => {
       };
 
       class Details extends Component {
-        constructor(props) {
-          super(props);
-
-          this.state = {
-            open: props.open
-          }
+        state = {
+          open: this.props.open
         }
 
         render() {
@@ -323,7 +320,7 @@ export const initPage = rawSource => {
 
 export const createStubAndPost = (source, pathToMarkdown, options) => {
   const date = options.blogPosts
-    ? options.blogPosts.find(post => post.path === pathToMarkdown).birth
+    ? (options.blogPosts.find(post => post.path === pathToMarkdown) || {}).birth
     : '';
   const card = `
   <div class="card">
@@ -520,7 +517,9 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
     (!options.navItems ||
       Object.values(options.navItems)
         .map(item => {
-          return item === '/' ? options.index : path.join(item, options.index);
+          return item === '/'
+            ? options.index
+            : path.join(trimChar(item, '/'), options.index);
         })
         .includes(pathToMarkdown))
   );
@@ -534,7 +533,7 @@ export default function(source) {
     return homePage(source, pathToMarkdown, options);
   }
 
-  if (this.resourcePath.includes('blog/')) {
+  if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
     return blogPost(source, pathToMarkdown, options);
   }
 

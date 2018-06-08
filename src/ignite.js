@@ -58,13 +58,17 @@ export async function blogPosts(options) {
     blogPosts
       .map(blogFile => path.relative(options.src, blogFile))
       .map(async blogFile => {
-        const docLog = await git().log({ file: 'docs/' + blogFile });
-        const birth = docLog.all[docLog.all.length - 1].date;
+        try {
+          const docLog = await git().log({ file: 'docs/' + blogFile });
+          const birth = docLog.all[docLog.all.length - 1].date;
 
-        return {
-          path: blogFile,
-          birth: Number(dayjs(birth))
-        };
+          return {
+            path: blogFile,
+            birth: Number(dayjs(birth))
+          };
+        } catch (error) {
+          return {};
+        }
       })
   );
 

@@ -73,7 +73,8 @@ const generatePlugins = plugins => {
 };
 
 const findBirthday = (posts, file) => {
-  return posts.find(post => post.path === file).birth;
+  const post = posts.find(post => post.path === file);
+  return post ? post.birth : '';
 };
 
 const generateBlogIndex = (blogFiles, options) => {
@@ -195,12 +196,20 @@ const initLazyLoad = options => {
 
     const INDEX_PAGE = '${options.index}';
 
+    function trim(s, c) {
+      if (c === "]") c = "\\\\]";
+      if (c === "\\\\") c = "\\\\\\\\";
+      return s.replace(new RegExp(
+        "^[" + c + "]+|[" + c + "]+$", "g"
+      ), "");
+    }
+
     function isIndex(p) {
       return p.includes(INDEX_PAGE) && 
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+              return item === '/' ? INDEX_PAGE : path.join(trim(item, '/'), INDEX_PAGE);
             })
             .includes(p)
           );
@@ -250,8 +259,10 @@ const buildSearchIndex = (entries, options) => {
 
 export default function generate(entries = [], plugins = [], options = {}) {
   return () => {
-    const blogFiles = entries.filter(page => page.includes('blog/'));
     let generated = initLazyLoad(options);
+    const blogFiles = entries.filter(page =>
+      page.includes(path.join(options.src, 'blog/'))
+    );
 
     generated += buildSearchIndex(entries, options);
     generated += registerMarkdown(entries, options);

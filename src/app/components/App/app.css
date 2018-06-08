@@ -1,19 +1,14 @@
+.Page {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
 body {
   height: 100vh;
 }
 
 .root {
   height: 100%;
-}
-
-.contentArea {
-  min-height: calc(100% - 60px - 97px);
-
-  @media screen and (min-width: 1500px) {
-    max-width: 1344px;
-    width: 1344px;
-    margin: auto;
-  }
 }
 
 h1,
@@ -25,35 +20,6 @@ h6 {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.App {
-  display: flex;
-  justify-content: center;
-
-  &:global(.columns) {
-    margin: 0;
-  }
-
-  h2:not(:last-child),
-  h1:not(:last-child) {
-    margin-bottom: 1.5rem;
-  }
-
-  :global .tag {
-    margin-left: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-
-    &:first-of-type {
-      margin-left: 15px;
-    }
-  }
-}
-
-.Page {
-  padding-left: 45px;
-  padding-right: 45px;
 }
 
 section {
@@ -152,6 +118,30 @@ p {
     display: block;
     text-align: center;
     margin: auto;
+  }
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+
+  &:global(.columns) {
+    margin: 0;
+  }
+
+  h2:not(:last-child),
+  h1:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  :global .tag {
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    &:first-of-type {
+      margin-left: 15px;
+    }
   }
 }
 
@@ -299,31 +289,6 @@ p {
   margin-left: -30px;
   border: 3px solid #ccc;
   border-radius: 50%;
-}
-
-.content {
-  max-width: 100%;
-  margin: 0 auto 15px;
-  padding-top: 0;
-  padding-top: 3rem;
-  padding-bottom: 5rem;
-
-  details {
-    padding-bottom: 20px;
-  }
-
-  @media screen and (min-width: 769px) {
-    max-width: 950px;
-  }
-}
-
-.App.blog {
-  margin-top: -7.5rem;
-}
-
-.searchResults {
-  max-width: 800px;
-  margin: 3rem auto;
 }
 
 :global .collapse-summary {

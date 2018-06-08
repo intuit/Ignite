@@ -8,18 +8,14 @@ import MarkdownProvider from './components/MarkdownProvider';
 const MarkdownProviderWithConfig = withGlobalConfig(MarkdownProvider);
 const rootElement = document.getElementById('index');
 
+const IgniteApp = (
+  <BrowserRouter>
+    <Route component={props => <MarkdownProviderWithConfig {...props} />} />
+  </BrowserRouter>
+);
+
 if (rootElement.hasChildNodes()) {
-  hydrate(
-    <BrowserRouter>
-      <Route component={props => <MarkdownProviderWithConfig {...props} />} />
-    </BrowserRouter>,
-    rootElement
-  );
+  hydrate(IgniteApp, rootElement);
 } else {
-  render(
-    <BrowserRouter>
-      <Route component={props => <MarkdownProviderWithConfig {...props} />} />
-    </BrowserRouter>,
-    rootElement
-  );
+  render(IgniteApp, rootElement);
 }

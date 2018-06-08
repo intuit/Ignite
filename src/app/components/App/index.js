@@ -1,94 +1,20 @@
 import path from 'path';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
-import SearchResult from '../SearchResult';
-import BlogHero from '../BlogHero';
+import DocsPage from '../DocsPage';
+import SearchResults from '../SearchResults';
+import BlogPage from '../BlogPage';
 import Header from '../Header';
-import { default as Sidebar } from '../Sidebar';
 import styles from './app.css';
-
-export const determineComponents = (
-  markdown,
-  location,
-  indexFile,
-  navItems = process.env.navItems
-) => {
-  const filePath = location.pathname.replace('.html', '.md');
-  const isBlog = filePath.includes('blog/');
-  const index = path.join(process.env.baseURL, indexFile);
-
-  let Page = markdown[filePath];
-  let currentFirstPage = markdown.indexFiles[index];
-  let SidebarComponent = markdown[index];
-
-  if (navItems && !filePath.includes('blog/')) {
-    const parent =
-      markdown.indexFiles &&
-      Object.entries(markdown.indexFiles).find(([key]) => {
-        return (
-          Object.values(navItems).includes(path.dirname(key)) &&
-          path.dirname(key) === path.dirname(filePath)
-        );
-      });
-
-    if (parent) {
-      const [parentIndex, parentPageFirstPage] = parent;
-      SidebarComponent = markdown[parentIndex];
-      currentFirstPage = parentPageFirstPage;
-
-      if (!Page || filePath.includes(indexFile)) {
-        Page = markdown[parentPageFirstPage];
-      }
-    }
-
-    if (!Page && !SidebarComponent && markdown.indexFiles) {
-      const rootIndex =
-        navItems.root === process.env.baseURL
-          ? indexFile
-          : path.join(navItems.root, indexFile);
-      SidebarComponent = markdown[rootIndex];
-      currentFirstPage = markdown.indexFiles[rootIndex];
-      Page = markdown[currentFirstPage];
-    }
-  }
-
-  if (
-    !isBlog &&
-    markdown.indexFiles &&
-    filePath === path.join(process.env.baseURL, indexFile)
-  ) {
-    currentFirstPage = markdown.indexFiles[filePath];
-    Page = markdown[currentFirstPage];
-  }
-
-  if (!Page && markdown.indexFiles) {
-    Page = markdown[markdown.indexFiles[index]];
-  }
-
-  if (!Page) {
-    Page = () => null;
-  }
-
-  window.configuration.currentFirstPage = currentFirstPage;
-
-  return {
-    SidebarComponent,
-    Page
-  };
-};
+import { determinePage, determineSidebar } from './determine-components';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchResults: []
-    };
-  }
+  state = {
+    searchResults: []
+  };
 
   componentDidUpdate() {
     this.jumpToHash();
@@ -97,6 +23,7 @@ class App extends Component {
   jumpToHash = () => {
     setImmediate(() => {
       const { hash } = this.props.location;
+
       if (hash && document.querySelector(hash)) {
         scrollToElement(hash, {
           duration: 500
@@ -120,74 +47,7 @@ class App extends Component {
     const isBlog = location.pathname.includes('blog/');
     const isHome =
       location.pathname === path.join(process.env.baseURL, '/home.html');
-    const { SidebarComponent, Page } = determineComponents(
-      markdown,
-      location,
-      index
-    );
-
-    let content;
-
-    if (this.state.searchResults.length > 0) {
-      content = (
-        <div className={makeClass(styles.searchResults)}>
-          {this.state.searchResults.map(([fileName, results]) => (
-            <SearchResult
-              key={fileName}
-              setResults={searchResults => this.setState({ searchResults })}
-              fileName={fileName}
-              results={results}
-            />
-          ))}
-        </div>
-      );
-    } else if (isHome) {
-      content = <Page plugins={this.props.plugins} className={styles.Page} />;
-    } else if (isBlog) {
-      content = (
-        <div>
-          <BlogHero key="hero" {...this.props} />
-          <div className={makeClass(styles.App, 'columns', styles.blog)}>
-            <div
-              className={makeClass(
-                'column',
-                'content',
-                'is-two-thirds-tablet',
-                'is-three-quarters-desktop'
-              )}
-            >
-              <Page plugins={this.props.plugins} className={styles.Page} />
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      content = (
-        <div id="root" className={makeClass(styles.contentArea)}>
-          <div className={makeClass(styles.App, 'columns')}>
-            <Sidebar
-              className="column is-one-third-tablet is-one-quarter-desktop box"
-              content={SidebarComponent}
-              currentPage={`${location.pathname}${
-                location.hash ? location.hash : ''
-              }`}
-            />
-
-            <div
-              className={makeClass(
-                !styles.content,
-                'column',
-                'content',
-                'is-two-thirds-tablet',
-                'is-three-quarters-desktop'
-              )}
-            >
-              <Page plugins={this.props.plugins} className={styles.Page} />
-            </div>
-          </div>
-        </div>
-      );
-    }
+    const Page = determinePage(markdown, location, index);
 
     return (
       <div className={styles.root}>
@@ -196,7 +56,27 @@ class App extends Component {
           setSearchResults={this.setSearchResults}
         />
 
-        {content}
+        {this.state.searchResults.length > 0 ? (
+          <SearchResults searchResults={this.state.searchResults} />
+        ) : isHome ? (
+          <Page plugins={this.props.plugins} className={styles.Page} />
+        ) : isBlog ? (
+          <BlogPage
+            className={styles.App}
+            Page={Page}
+            plugins={this.props.plugins}
+            location={location}
+            blogHero={this.props.blogHero}
+          />
+        ) : (
+          <DocsPage
+            className={styles.App}
+            SidebarComponent={determineSidebar(markdown, location, index)}
+            Page={Page}
+            location={location}
+            plugins={this.props.plugins}
+          />
+        )}
       </div>
     );
   }

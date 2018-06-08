@@ -5,52 +5,21 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Link } from 'react-router-dom';
 
+import NavItem from '../NavItem';
 import Search from '../Search';
 import Icon from '../Icon';
 import styles from './header.css';
 
 const getIndex = (index = process.env.index) => index.replace('.md', '.html');
 
-const makeRouterLink = link => {
-  const index = getIndex();
-
-  if (link === '/') {
-    return `/${index}`;
-  }
-
-  if (!link.includes(index)) {
-    return `/${link}/${index}`;
-  }
-
-  return `/${link}`;
+const linkProps = {
+  className: PropTypes.string,
+  onClick: PropTypes.func
 };
 
-const NavItem = ({ item: [key, item], ...props }) => {
-  const otherPaths = Object.values(props.navItems).filter(val => val !== '/');
-
-  let isActive;
-
-  if (
-    (item !== '/' && props.location.pathname.includes(item)) ||
-    (props.location.pathname === '/' && props.navItems.root === item) ||
-    (item === '/' &&
-      !otherPaths.find(path => props.location.pathname.includes(path)) &&
-      !props.location.pathname.includes('blog/'))
-  ) {
-    isActive = true;
-  }
-
-  return (
-    key !== 'root' && (
-      <Link
-        key={key}
-        className={makeClass('navbar-item', isActive && 'is-active')}
-        to={makeRouterLink(item)}
-      >
-        {key}
-      </Link>
-    )
-  );
+const defaultLinkProps = {
+  className: null,
+  onClick: () => {}
 };
 
 const GithubLink = ({ githubURL, onClick }) =>
@@ -67,50 +36,6 @@ const GithubLink = ({ githubURL, onClick }) =>
     </a>
   ) : null;
 
-const hasBlogLink = () =>
-  Object.values(window.configuration.markdown).find(([page]) =>
-    page.includes('blog/')
-  );
-
-const BlogLink = ({ className, onClick }) =>
-  hasBlogLink() ? (
-    <Link
-      onClick={onClick}
-      className={makeClass('navbar-item', className)}
-      to={path.join(process.env.baseURL, '/blog/index.html')}
-    >
-      Blog
-      <Icon className={styles.icon} type="fas" icon="rss" />
-    </Link>
-  ) : null;
-
-const linkProps = {
-  className: PropTypes.string,
-  onClick: PropTypes.func
-};
-
-const defaultLinkProps = {
-  className: null,
-  onClick: () => {}
-};
-
-BlogLink.propTypes = linkProps;
-BlogLink.defaultProps = defaultLinkProps;
-
-const DocsLink = ({ className, onClick }) => (
-  <Link
-    onClick={onClick}
-    className={makeClass('navbar-item', className)}
-    to={path.join(process.env.baseURL, getIndex())}
-  >
-    Docs
-    <Icon className={styles.icon} type="fas" icon="book" />
-  </Link>
-);
-
-DocsLink.propTypes = linkProps;
-DocsLink.defaultProps = defaultLinkProps;
-
 GithubLink.propTypes = {
   ...linkProps,
   githubURL: PropTypes.string
@@ -120,6 +45,38 @@ GithubLink.defaultProps = {
   ...defaultLinkProps,
   githubURL: null
 };
+
+const hasBlogLink = () =>
+  Object.values(window.configuration.markdown).find(([page]) =>
+    page.includes('blog/')
+  );
+
+const BlogLink = ({ className, onClick }) =>
+  hasBlogLink() ? (
+    <NavItem
+      location={location}
+      className={className}
+      onClick={onClick}
+      item={['Blog', path.join(process.env.baseURL, '/blog/index.html')]}
+      icon={<Icon className={styles.icon} type="fas" icon="rss" />}
+    />
+  ) : null;
+
+BlogLink.propTypes = linkProps;
+BlogLink.defaultProps = defaultLinkProps;
+
+const DocsLink = ({ className, onClick }) => (
+  <NavItem
+    location={location}
+    className={className}
+    onClick={onClick}
+    item={['Docs', path.join(process.env.baseURL, getIndex())]}
+    icon={<Icon className={styles.icon} type="fas" icon="book" />}
+  />
+);
+
+DocsLink.propTypes = linkProps;
+DocsLink.defaultProps = defaultLinkProps;
 
 class Header extends Component {
   state = {
@@ -142,6 +99,10 @@ class Header extends Component {
   };
 
   render() {
+    const hasHomePage = window.configuration.markdown.find(
+      ([key]) => key === path.join(process.env.baseURL, 'home.md')
+    );
+
     return (
       <nav
         className={makeClass('navbar', styles.nav)}
@@ -152,7 +113,10 @@ class Header extends Component {
           <div className="navbar-brand">
             <Link
               onClick={this.closeMenu}
-              to={path.join(process.env.baseURL, '/home.html')}
+              to={path.join(
+                process.env.baseURL,
+                hasHomePage ? '/home.html' : '/'
+              )}
               className={makeClass(styles.title, 'navbar-item')}
             >
               {this.props.logo && (

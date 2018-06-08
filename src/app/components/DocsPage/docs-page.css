@@ -1,0 +1,30 @@
+.contentArea {
+  min-height: calc(100% - 60px - 97px);
+
+  @media screen and (min-width: 1500px) {
+    max-width: 1344px;
+    width: 1344px;
+    margin: auto;
+  }
+}
+
+.content {
+  max-width: 100%;
+  margin: 0 auto 15px;
+  padding-top: 0;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+
+  details {
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 769px) {
+    max-width: 950px;
+  }
+}
+
+.Page {
+  padding-left: 45px;
+  padding-right: 45px;
+}
