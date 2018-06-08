@@ -2,7 +2,9 @@ import path from 'path';
 import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
+
 import replaceAt from '../utils/replace-at';
+import trimChar from '../utils/trim-char';
 
 const libHTMLOptions = {
   xmlMode: true
@@ -509,12 +511,6 @@ export function homePage(rawSource) {
   `;
 }
 
-function trim(s, c) {
-  if (c === ']') c = '\\]';
-  if (c === '\\') c = '\\\\';
-  return s.replace(new RegExp('^[' + c + ']+|[' + c + ']+$', 'g'), '');
-}
-
 export function detectIndex(resourcePath, pathToMarkdown, options) {
   return (
     resourcePath.includes(options.index) &&
@@ -523,7 +519,7 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
         .map(item => {
           return item === '/'
             ? options.index
-            : path.join(trim(item, '/'), options.index);
+            : path.join(trimChar(item, '/'), options.index);
         })
         .includes(pathToMarkdown))
   );

@@ -5,6 +5,7 @@ import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
+import trimChar from '../../../utils/trim-char';
 import SearchResult from '../SearchResult';
 import BlogHero from '../BlogHero';
 import Header from '../Header';
@@ -14,9 +15,13 @@ import styles from './app.css';
 const getParent = (markdown, navItems, filePath) =>
   markdown.indexFiles &&
   Object.entries(markdown.indexFiles).find(([key]) => {
+    const currentDir = filePath.includes('.md')
+      ? path.dirname(filePath)
+      : filePath;
+
     return (
       Object.values(navItems).includes(path.dirname(key)) &&
-      path.dirname(key) === path.dirname(filePath)
+      trimChar(path.dirname(key), '/') === trimChar(currentDir, '/')
     );
   });
 
