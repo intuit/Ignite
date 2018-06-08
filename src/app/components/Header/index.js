@@ -12,6 +12,16 @@ import styles from './header.css';
 
 const getIndex = (index = process.env.index) => index.replace('.md', '.html');
 
+const linkProps = {
+  className: PropTypes.string,
+  onClick: PropTypes.func
+};
+
+const defaultLinkProps = {
+  className: null,
+  onClick: () => {}
+};
+
 const GithubLink = ({ githubURL, onClick }) =>
   githubURL ? (
     <a
@@ -26,46 +36,6 @@ const GithubLink = ({ githubURL, onClick }) =>
     </a>
   ) : null;
 
-const hasBlogLink = () =>
-  Object.values(window.configuration.markdown).find(([page]) =>
-    page.includes('blog/')
-  );
-
-const BlogLink = ({ className, onClick }) =>
-  hasBlogLink() ? (
-    <NavItem
-      className={className}
-      onClick={onClick}
-      item={['Blog', path.join(process.env.baseURL, '/blog/index.html')]}
-      icon={<Icon className={styles.icon} type="fas" icon="rss" />}
-    />
-  ) : null;
-
-const linkProps = {
-  className: PropTypes.string,
-  onClick: PropTypes.func
-};
-
-const defaultLinkProps = {
-  className: null,
-  onClick: () => {}
-};
-
-BlogLink.propTypes = linkProps;
-BlogLink.defaultProps = defaultLinkProps;
-
-const DocsLink = ({ className, onClick }) => (
-  <NavItem
-    className={className}
-    onClick={onClick}
-    item={['Docs', path.join(process.env.baseURL, getIndex())]}
-    icon={<Icon className={styles.icon} type="fas" icon="book" />}
-  />
-);
-
-DocsLink.propTypes = linkProps;
-DocsLink.defaultProps = defaultLinkProps;
-
 GithubLink.propTypes = {
   ...linkProps,
   githubURL: PropTypes.string
@@ -75,6 +45,38 @@ GithubLink.defaultProps = {
   ...defaultLinkProps,
   githubURL: null
 };
+
+const hasBlogLink = () =>
+  Object.values(window.configuration.markdown).find(([page]) =>
+    page.includes('blog/')
+  );
+
+const BlogLink = ({ className, onClick }) =>
+  hasBlogLink() ? (
+    <NavItem
+      location={location}
+      className={className}
+      onClick={onClick}
+      item={['Blog', path.join(process.env.baseURL, '/blog/index.html')]}
+      icon={<Icon className={styles.icon} type="fas" icon="rss" />}
+    />
+  ) : null;
+
+BlogLink.propTypes = linkProps;
+BlogLink.defaultProps = defaultLinkProps;
+
+const DocsLink = ({ className, onClick }) => (
+  <NavItem
+    location={location}
+    className={className}
+    onClick={onClick}
+    item={['Docs', path.join(process.env.baseURL, getIndex())]}
+    icon={<Icon className={styles.icon} type="fas" icon="book" />}
+  />
+);
+
+DocsLink.propTypes = linkProps;
+DocsLink.defaultProps = defaultLinkProps;
 
 class Header extends Component {
   state = {
