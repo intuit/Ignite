@@ -50,18 +50,16 @@ class MarkdownProvider extends Component {
     plugins: []
   };
 
-  constructor(props) {
-    super(props);
+  state = {
+    markdown: setMarkdown(this.props.markdown),
+    plugins: setPlugins(this.props.plugins)
+  };
 
-    this.state = {
-      markdown: setMarkdown(props.markdown),
-      plugins: setPlugins(props.plugins)
+  static getDerivedStateFromProps(newProps, state) {
+    return {
+      ...state,
+      markdown: setMarkdown(newProps.markdown)
     };
-  }
-
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(newProps) {
-    this.setState({ markdown: setMarkdown(newProps.markdown) });
   }
 
   render() {
