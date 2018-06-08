@@ -533,7 +533,7 @@ export default function(source) {
     return homePage(source, pathToMarkdown, options);
   }
 
-  if (this.resourcePath.includes('blog/')) {
+  if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
     return blogPost(source, pathToMarkdown, options);
   }
 

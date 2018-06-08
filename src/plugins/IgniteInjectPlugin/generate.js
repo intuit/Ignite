@@ -259,8 +259,10 @@ const buildSearchIndex = (entries, options) => {
 
 export default function generate(entries = [], plugins = [], options = {}) {
   return () => {
-    const blogFiles = entries.filter(page => page.includes('blog/'));
     let generated = initLazyLoad(options);
+    const blogFiles = entries.filter(page =>
+      page.includes(path.join(options.src, 'blog/'))
+    );
 
     generated += buildSearchIndex(entries, options);
     generated += registerMarkdown(entries, options);
