@@ -1,7 +1,55 @@
-# Ignite [![CircleCI](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite.svg?style=shield)](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite) [![codecov](https://codecov.tools.a.intuit.com/ghe/Fuego/Ignite/branch/master/graph/badge.svg)](https://codecov.tools.a.intuit.com/ghe/Fuego/Ignite)
+[![CircleCI](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite.svg?style=shield)](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite) [![codecov](https://codecov.tools.a.intuit.com/ghe/Fuego/Ignite/branch/master/graph/badge.svg)](https://codecov.tools.a.intuit.com/ghe/Fuego/Ignite)
 
-Modern markdown documentation generator
+<div align="center">
+  <a href="https://github.com/webpack/webpack">
+    <img width="200" height="200"
+      src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-11/256/fire.png">
+  </a>
+  <h1>
+    <a href="https://github.intuit.com/pages/Fuego/Ignite/">
+      Ignite
+    </a>
+  </h1>
+  <p>Modern markdown documentation generation.</p>
+</div>
 
-Documentation for Ignite built with Ignite!
+<h2 align="center">Developing</h2>
 
-=> [:fire::fire::fire:](https://github.intuit.com/pages/Fuego/Ignite/) <=
+To start developing Ignite, first start up a terminal and run the library build. It's useful to run it in `watch` mode to rebuild on file changes. Be sure to restart the dev server when changing any non-React or non-markdown file, since webpack doesn't handle them.
+
+```bash
+yarn build:lib:watch
+```
+
+Then start the development server.
+
+```bash
+yarn start
+```
+
+<h3 align="center">Debugging</h3>
+
+To debug your build run
+
+```bash
+yarn build
+```
+
+Then use your favorite HTTP server to emulate a server environment.
+
+```bash
+python -m SimpleHTTPServer
+```
+
+:warning: All urls are relative to `options.baseURL.` Make sure to change baseURL if your website isn't served from '/'.
+
+<h2 align="center">Publishing</h2>
+
+Releasing and publishing are handled automatically. Any time a PR is merged or code is pushed to master a new version of Ignite is released along with publishing a new version of the documentation to GitHub Pages.
+
+<h2 align="center">Contributing / Bug Reporting</h2>
+
+<p align="center">
+  <a href="https://github.intuit.com/Fuego/Ignite/pulls">Pull Requests</a> welcome! Submit any bug report or feature enhancement as an
+  <a href="https://github.intuit.com/Fuego/Ignite/issues">issue</a>.
+</p>
