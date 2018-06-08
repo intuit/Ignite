@@ -87,7 +87,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
   return `
     import scrollToElement from 'scroll-to-element';
-    import VisibilitySensor from 'react-visibility-sensor';
+    import Observer from 'react-intersection-observer'
 
     class blogIndex extends React.Component {
       constructor(props) {
@@ -126,7 +126,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
       render() {
         return e('div', null, [
-          e(VisibilitySensor, { key: 'visibilitySensor', onChange: this.toggleScrollTopButton, scrollCheck: true }, e('div')),
+          e(Observer, { key: 'Observer', onChange: this.toggleScrollTopButton }, e('div')),
           ${JSON.stringify(
             blogPosts
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
