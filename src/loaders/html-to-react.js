@@ -189,23 +189,22 @@ export function getLink(source, index = 0) {
 }
 
 export function addActive(source, link, firstLink, indexFile, options) {
+  indexFile = indexFile.replace('.md', '.html');
   source = source.replace(
     new RegExp('<a h'),
     `<a className=!{
-        '/${link}' === props.currentPage ||
+        '/${link}' === props.currentPage || 
         ('${firstLink.link}' === '${link}' && ('${
       options.baseURL
-    }' === props.currentPage || '/${indexFile.replace(
-      '.md',
-      '.html'
-    )}' === props.currentPage)) ||
+    }' === props.currentPage ||
+        '/${indexFile}' === props.currentPage)) ||
         ('${
           firstLink.link
-        }' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}'))
+        }' === '${link}' && props.currentPage && props.currentPage.includes('${indexFile}')) 
           ? 'is-active'
           : null
-      !}
-      h`
+        !}
+        h`
   );
 
   return source;
