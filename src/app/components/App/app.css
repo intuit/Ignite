@@ -6,10 +6,6 @@
     margin: 0;
   }
 
-  &.blog {
-    margin-top: -7.5rem;
-  }
-
   h2:not(:last-child),
   h1:not(:last-child) {
     margin-bottom: 1.5rem;
@@ -24,6 +20,11 @@
       margin-left: 15px;
     }
   }
+}
+
+.Page {
+  padding-left: 45px;
+  padding-right: 45px;
 }
 
 body {

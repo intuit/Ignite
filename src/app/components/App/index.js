@@ -1,14 +1,13 @@
 import path from 'path';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
 import trimChar from '../../../utils/trim-char';
 import DocsPage from '../DocsPage';
 import SearchResults from '../SearchResults';
-import BlogHero from '../BlogHero';
+import BlogPage from '../BlogPage';
 import Header from '../Header';
 import styles from './app.css';
 
@@ -105,26 +104,6 @@ export const determinePage = (
   return Page ? Page : () => null;
 };
 
-function BlogPage({ Page, location, plugins, blogHero }) {
-  return (
-    <div>
-      <BlogHero key="hero" location={location} blogHero={blogHero} />
-      <div className={makeClass(styles.App, 'columns', styles.blog)}>
-        <div
-          className={makeClass(
-            'column',
-            'content',
-            'is-two-thirds-tablet',
-            'is-three-quarters-desktop'
-          )}
-        >
-          <Page plugins={plugins} className={styles.Page} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 class App extends Component {
   state = {
     searchResults: []
@@ -176,6 +155,7 @@ class App extends Component {
           <Page plugins={this.props.plugins} className={styles.Page} />
         ) : isBlog ? (
           <BlogPage
+            className={styles.App}
             Page={Page}
             plugins={this.props.plugins}
             location={location}
