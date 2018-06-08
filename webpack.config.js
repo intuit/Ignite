@@ -32,6 +32,7 @@ module.exports = function(options) {
     mode: options.mode,
 
     entry: [
+      'intersection-observer',
       logoExists ? path.resolve(logoPath) : null,
       path.resolve(__dirname, './src/app/index.js')
     ].filter(Boolean),
