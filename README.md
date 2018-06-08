@@ -12,3 +12,41 @@
   </h1>
   <p>Modern markdown documentation generation.</p>
 </div>
+
+<h2 align="center">Developing</h2>
+
+To start developing Ignite, first start up a terminal and run the library build. It's useful to run it in `watch` mode to rebuild on file changes. Be sure to restart the dev server when changing any non-React or non-markdown file, since webpack doesn't handle them.
+
+```bash
+yarn build:lib:watch
+```
+
+Then start the development server.
+
+```bash
+yarn start
+```
+
+<h3 align="center">Debugging</h3>
+
+To debug your build run
+
+```bash
+yarn build
+```
+
+Then use your favorite HTTP server to emulate a server environment.
+
+```bash
+python -m SimpleHTTPServer
+```
+
+:warning: : All urls are relative to `options.baseURL.` Make sure to change baseURL if your website isn't served from '/'.
+
+<h2 align="center">Publishing</h2>
+
+Releasing and publishing are handled automatically. Any time a PR is merged or code is pushed to master a new version of Ignite is released along with publishing a new version of the documentation to GitHub Pages.
+
+<h2 align="center">Contributing / Bug Reporting</h2>
+
+[Pull Requests](https://github.intuit.com/Fuego/Ignite/pulls) welcome! Submit any bug report or feature enhancement as an [issue](https://github.intuit.com/Fuego/Ignite/issues).
