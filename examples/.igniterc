@@ -1,0 +1,9 @@
+{
+  "title": "Multi Root",
+
+  "navItems": {
+    "root": "/Root1",
+    "First": "/Root1",
+    "Second": "/Root2",
+  }
+}
