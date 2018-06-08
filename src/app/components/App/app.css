@@ -1,38 +1,13 @@
-body {
-  height: 100vh;
-}
-
-.root {
-  height: 100%;
-}
-
-.contentArea {
-  min-height: calc(100% - 60px - 97px);
-
-  @media screen and (min-width: 1500px) {
-    max-width: 1344px;
-    width: 1344px;
-    margin: auto;
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
 .App {
   display: flex;
   justify-content: center;
 
   &:global(.columns) {
     margin: 0;
+  }
+
+  &.blog {
+    margin-top: -7.5rem;
   }
 
   h2:not(:last-child),
@@ -51,9 +26,23 @@ h6 {
   }
 }
 
-.Page {
-  padding-left: 45px;
-  padding-right: 45px;
+body {
+  height: 100vh;
+}
+
+.root {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 section {
@@ -299,26 +288,6 @@ p {
   margin-left: -30px;
   border: 3px solid #ccc;
   border-radius: 50%;
-}
-
-.content {
-  max-width: 100%;
-  margin: 0 auto 15px;
-  padding-top: 0;
-  padding-top: 3rem;
-  padding-bottom: 5rem;
-
-  details {
-    padding-bottom: 20px;
-  }
-
-  @media screen and (min-width: 769px) {
-    max-width: 950px;
-  }
-}
-
-.App.blog {
-  margin-top: -7.5rem;
 }
 
 .searchResults {

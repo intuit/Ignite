@@ -6,10 +6,10 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import scrollToElement from 'scroll-to-element';
 
 import trimChar from '../../../utils/trim-char';
+import DocsPage from '../DocsPage';
 import SearchResult from '../SearchResult';
 import BlogHero from '../BlogHero';
 import Header from '../Header';
-import { default as Sidebar } from '../Sidebar';
 import styles from './app.css';
 
 const getParent = (markdown, navItems, filePath) =>
@@ -140,34 +140,6 @@ function BlogPage({ Page, location, plugins, blogHero }) {
   );
 }
 
-function DocsPage({ Page, SidebarComponent, location, plugins }) {
-  return (
-    <div id="root" className={makeClass(styles.contentArea)}>
-      <div className={makeClass(styles.App, 'columns')}>
-        <Sidebar
-          className="column is-one-third-tablet is-one-quarter-desktop box"
-          content={SidebarComponent}
-          currentPage={`${location.pathname}${
-            location.hash ? location.hash : ''
-          }`}
-        />
-
-        <div
-          className={makeClass(
-            !styles.content,
-            'column',
-            'content',
-            'is-two-thirds-tablet',
-            'is-three-quarters-desktop'
-          )}
-        >
-          <Page plugins={plugins} className={styles.Page} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 class App extends Component {
   state = {
     searchResults: []
@@ -226,6 +198,7 @@ class App extends Component {
           />
         ) : (
           <DocsPage
+            className={styles.App}
             SidebarComponent={determineSidebar(markdown, location, index)}
             Page={Page}
             location={location}
