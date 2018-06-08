@@ -41,7 +41,7 @@ Then use your favorite HTTP server to emulate a server environment.
 python -m SimpleHTTPServer
 ```
 
-:warning: : All urls are relative to `options.baseURL.` Make sure to change baseURL if your website isn't served from '/'.
+:warning: All urls are relative to `options.baseURL.` Make sure to change baseURL if your website isn't served from '/'.
 
 <h2 align="center">Publishing</h2>
 
@@ -49,4 +49,7 @@ Releasing and publishing are handled automatically. Any time a PR is merged or c
 
 <h2 align="center">Contributing / Bug Reporting</h2>
 
-[Pull Requests](https://github.intuit.com/Fuego/Ignite/pulls) welcome! Submit any bug report or feature enhancement as an [issue](https://github.intuit.com/Fuego/Ignite/issues).
+<p align="center">
+  <a href="https://github.intuit.com/Fuego/Ignite/pulls">Pull Requests</a> welcome! Submit any bug report or feature enhancement as an
+  <a href="https://github.intuit.com/Fuego/Ignite/issues">issue</a>.
+</p>
