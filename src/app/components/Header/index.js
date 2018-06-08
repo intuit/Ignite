@@ -15,14 +15,14 @@ const makeRouterLink = link => {
   const index = getIndex();
 
   if (link === '/') {
-    return `/${index}`;
+    return index;
   }
 
   if (!link.includes(index)) {
-    return `/${link}/${index}`;
+    return `${link}/${index}`;
   }
 
-  return `/${link}`;
+  return link;
 };
 
 const NavItem = ({ item: [key, item], ...props }) => {

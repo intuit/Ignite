@@ -510,13 +510,21 @@ export function homePage(rawSource) {
   `;
 }
 
+function trim(s, c) {
+  if (c === ']') c = '\\]';
+  if (c === '\\') c = '\\\\';
+  return s.replace(new RegExp('^[' + c + ']+|[' + c + ']+$', 'g'), '');
+}
+
 export function detectIndex(resourcePath, pathToMarkdown, options) {
   return (
     resourcePath.includes(options.index) &&
     (!options.navItems ||
       Object.values(options.navItems)
         .map(item => {
-          return item === '/' ? options.index : path.join(item, options.index);
+          return item === '/'
+            ? options.index
+            : path.join(trim(item, '/'), options.index);
         })
         .includes(pathToMarkdown))
   );

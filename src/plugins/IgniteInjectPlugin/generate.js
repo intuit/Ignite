@@ -195,12 +195,20 @@ const initLazyLoad = options => {
 
     const INDEX_PAGE = '${options.index}';
 
+    function trim(s, c) {
+      if (c === "]") c = "\\\\]";
+      if (c === "\\\\") c = "\\\\\\\\";
+      return s.replace(new RegExp(
+        "^[" + c + "]+|[" + c + "]+$", "g"
+      ), "");
+    }
+
     function isIndex(p) {
       return p.includes(INDEX_PAGE) && 
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+              return item === '/' ? INDEX_PAGE : path.join(trim(item, '/'), INDEX_PAGE);
             })
             .includes(p)
           );
