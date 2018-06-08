@@ -320,7 +320,7 @@ export const initPage = rawSource => {
 
 export const createStubAndPost = (source, pathToMarkdown, options) => {
   const date = options.blogPosts
-    ? options.blogPosts.find(post => post.path === pathToMarkdown).birth
+    ? (options.blogPosts.find(post => post.path === pathToMarkdown) || {}).birth
     : '';
   const card = `
   <div class="card">

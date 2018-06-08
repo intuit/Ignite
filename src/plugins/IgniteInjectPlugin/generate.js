@@ -73,7 +73,8 @@ const generatePlugins = plugins => {
 };
 
 const findBirthday = (posts, file) => {
-  return posts.find(post => post.path === file).birth;
+  const post = posts.find(post => post.path === file);
+  return post ? post.birth : '';
 };
 
 const generateBlogIndex = (blogFiles, options) => {
