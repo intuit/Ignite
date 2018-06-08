@@ -7,7 +7,7 @@ import scrollToElement from 'scroll-to-element';
 
 import trimChar from '../../../utils/trim-char';
 import DocsPage from '../DocsPage';
-import SearchResult from '../SearchResult';
+import SearchResults from '../SearchResults';
 import BlogHero from '../BlogHero';
 import Header from '../Header';
 import styles from './app.css';
@@ -104,21 +104,6 @@ export const determinePage = (
 
   return Page ? Page : () => null;
 };
-
-function SearchResults({ searchResults }) {
-  return (
-    <div className={makeClass(styles.searchResults)}>
-      {searchResults.map(([fileName, results]) => (
-        <SearchResult
-          key={fileName}
-          setResults={searchResults => this.setState({ searchResults })}
-          fileName={fileName}
-          results={results}
-        />
-      ))}
-    </div>
-  );
-}
 
 function BlogPage({ Page, location, plugins, blogHero }) {
   return (

@@ -290,11 +290,6 @@ p {
   border-radius: 50%;
 }
 
-.searchResults {
-  max-width: 800px;
-  margin: 3rem auto;
-}
-
 :global .collapse-summary {
   display: flex;
   align-items: center;
