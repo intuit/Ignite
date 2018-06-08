@@ -2,41 +2,45 @@
 
 exports[`addActive 1`] = `
 "<a className=!{
-        '/foo' === props.currentPage ||
-        ('bar' === 'foo' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
-        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md'))
+        '/foo' === props.currentPage || 
+        ('bar' === 'foo' && ('/' === props.currentPage ||
+        '/index.html' === props.currentPage)) ||
+        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-      !}
-      href=\\"/foo\\">Foo</a>"
+        !}
+        href=\\"/foo\\">Foo</a>"
 `;
 
 exports[`addActiveAll 1`] = `
 "
       <a className=!{
-        '/' === props.currentPage ||
-        ('bar' === '' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
-        ('bar' === '' && props.currentPage && props.currentPage.includes('index.md'))
+        '/' === props.currentPage || 
+        ('bar' === '' && ('/' === props.currentPage ||
+        '/index.html' === props.currentPage)) ||
+        ('bar' === '' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-      !}
-      href=\\"\\"></a>'
+        !}
+        href=\\"\\"></a>'
       <a className=!{
-        '/foo' === props.currentPage ||
-        ('bar' === 'foo' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
-        ('bar' === 'foo' && props.currentPage && props.currentPage.includes('index.md'))
+        '/foo' === props.currentPage || 
+        ('bar' === 'foo' && ('/' === props.currentPage ||
+        '/index.html' === props.currentPage)) ||
+        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-      !}
-      href=\\"/foo\\">Foo</a>'
+        !}
+        href=\\"/foo\\">Foo</a>'
       <a className=!{
-        '/bar' === props.currentPage ||
-        ('bar' === 'bar' && ('/' === props.currentPage || '/index.html' === props.currentPage)) ||
-        ('bar' === 'bar' && props.currentPage && props.currentPage.includes('index.md'))
+        '/bar' === props.currentPage || 
+        ('bar' === 'bar' && ('/' === props.currentPage ||
+        '/index.html' === props.currentPage)) ||
+        ('bar' === 'bar' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-      !}
-      href=\\"/bar\\">Foo</a>'
+        !}
+        href=\\"/bar\\">Foo</a>'
     "
 `;
 
@@ -66,12 +70,8 @@ exports[`index 1`] = `
       };
 
       class Details extends Component {
-        constructor(props) {
-          super(props);
-
-          this.state = {
-            open: props.open
-          }
+        state = {
+          open: this.props.open
         }
 
         render() {
@@ -124,12 +124,8 @@ exports[`index 2`] = `
       };
 
       class Details extends Component {
-        constructor(props) {
-          super(props);
-
-          this.state = {
-            open: props.open
-          }
+        state = {
+          open: this.props.open
         }
 
         render() {
@@ -192,12 +188,8 @@ exports[`markDownPage 1`] = `
       };
 
       class Details extends Component {
-        constructor(props) {
-          super(props);
-
-          this.state = {
-            open: props.open
-          }
+        state = {
+          open: this.props.open
         }
 
         render() {

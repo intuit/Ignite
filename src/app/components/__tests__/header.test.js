@@ -5,6 +5,7 @@ import renderToJson from './utils/render-to-json';
 describe('header', () => {
   beforeAll(() => {
     process.env.baseURL = '/';
+    window.configuration = { markdown: [] };
   });
 
   test('renders title', () => {
@@ -27,7 +28,7 @@ describe('header', () => {
     expect(
       renderToJson(
         <Header
-          location={{ pathname: '/' }}
+          location={{ hash: '', search: '', pathname: '/' }}
           navItems={{
             root: '/',
             'Doc 1': '/',
@@ -43,7 +44,7 @@ describe('header', () => {
     expect(
       renderToJson(
         <Header
-          location={{ pathname: '/foo' }}
+          location={{ hash: '', search: '', pathname: '/foo' }}
           navItems={{
             root: '/',
             'Doc 1': 'other/index.md',
@@ -57,7 +58,11 @@ describe('header', () => {
   test('render active for blogs', () => {
     window.configuration = { markdown: ['/blog/page.md'] };
     expect(
-      renderToJson(<Header location={{ pathname: '/blog/page.md' }} />)
+      renderToJson(
+        <Header
+          location={{ hash: '', search: '', pathname: '/blog/page.md' }}
+        />
+      )
     ).toMatchSnapshot();
   });
 });

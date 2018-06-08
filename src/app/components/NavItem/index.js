@@ -57,10 +57,7 @@ NavItem.propTypes = {
   navItems: PropTypes.object,
   icon: PropTypes.node,
   onClick: PropTypes.func,
-  item: PropTypes.shape({
-    key: PropTypes.string,
-    item: PropTypes.string
-  }).isRequired
+  item: PropTypes.array.isRequired
 };
 
 NavItem.defaultProps = {

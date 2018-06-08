@@ -14,7 +14,7 @@ exports[`header render active for blogs 1`] = `
         className="navbar-item"
         onClick={[Function]}
         replace={false}
-        to="/home.html"
+        to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
@@ -81,7 +81,7 @@ exports[`header renders githubURL 1`] = `
         className="navbar-item"
         onClick={[Function]}
         replace={false}
-        to="/home.html"
+        to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
@@ -148,7 +148,7 @@ exports[`header renders logo 1`] = `
         className="navbar-item"
         onClick={[Function]}
         replace={false}
-        to="/home.html"
+        to="/"
       >
         <img
           alt="logo"
@@ -220,7 +220,7 @@ exports[`header renders nav items 1`] = `
         className="navbar-item"
         onClick={[Function]}
         replace={false}
-        to="/home.html"
+        to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
@@ -255,6 +255,7 @@ exports[`header renders nav items 1`] = `
           setSearchResults={[Function]}
         />
         <NavItem
+          icon={null}
           item={
             Array [
               "root",
@@ -263,7 +264,9 @@ exports[`header renders nav items 1`] = `
           }
           location={
             Object {
+              "hash": "",
               "pathname": "/",
+              "search": "",
             }
           }
           navItems={
@@ -273,9 +276,11 @@ exports[`header renders nav items 1`] = `
               "root": "/",
             }
           }
+          onClick={[Function]}
           setSearchResults={[Function]}
         />
         <NavItem
+          icon={null}
           item={
             Array [
               "Doc 1",
@@ -284,7 +289,9 @@ exports[`header renders nav items 1`] = `
           }
           location={
             Object {
+              "hash": "",
               "pathname": "/",
+              "search": "",
             }
           }
           navItems={
@@ -294,9 +301,11 @@ exports[`header renders nav items 1`] = `
               "root": "/",
             }
           }
+          onClick={[Function]}
           setSearchResults={[Function]}
         />
         <NavItem
+          icon={null}
           item={
             Array [
               "Doc 2",
@@ -305,7 +314,9 @@ exports[`header renders nav items 1`] = `
           }
           location={
             Object {
+              "hash": "",
               "pathname": "/",
+              "search": "",
             }
           }
           navItems={
@@ -315,6 +326,7 @@ exports[`header renders nav items 1`] = `
               "root": "/",
             }
           }
+          onClick={[Function]}
           setSearchResults={[Function]}
         />
         <BlogLink
@@ -346,7 +358,7 @@ exports[`header renders nav items with just a index 1`] = `
         className="navbar-item"
         onClick={[Function]}
         replace={false}
-        to="/home.html"
+        to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
@@ -381,6 +393,7 @@ exports[`header renders nav items with just a index 1`] = `
           setSearchResults={[Function]}
         />
         <NavItem
+          icon={null}
           item={
             Array [
               "root",
@@ -389,7 +402,9 @@ exports[`header renders nav items with just a index 1`] = `
           }
           location={
             Object {
+              "hash": "",
               "pathname": "/foo",
+              "search": "",
             }
           }
           navItems={
@@ -399,9 +414,11 @@ exports[`header renders nav items with just a index 1`] = `
               "root": "/",
             }
           }
+          onClick={[Function]}
           setSearchResults={[Function]}
         />
         <NavItem
+          icon={null}
           item={
             Array [
               "Doc 1",
@@ -410,7 +427,9 @@ exports[`header renders nav items with just a index 1`] = `
           }
           location={
             Object {
+              "hash": "",
               "pathname": "/foo",
+              "search": "",
             }
           }
           navItems={
@@ -420,9 +439,11 @@ exports[`header renders nav items with just a index 1`] = `
               "root": "/",
             }
           }
+          onClick={[Function]}
           setSearchResults={[Function]}
         />
         <NavItem
+          icon={null}
           item={
             Array [
               "Doc 2",
@@ -431,7 +452,9 @@ exports[`header renders nav items with just a index 1`] = `
           }
           location={
             Object {
+              "hash": "",
               "pathname": "/foo",
+              "search": "",
             }
           }
           navItems={
@@ -441,6 +464,7 @@ exports[`header renders nav items with just a index 1`] = `
               "root": "/",
             }
           }
+          onClick={[Function]}
           setSearchResults={[Function]}
         />
         <BlogLink
@@ -472,7 +496,7 @@ exports[`header renders title 1`] = `
         className="navbar-item"
         onClick={[Function]}
         replace={false}
-        to="/home.html"
+        to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"

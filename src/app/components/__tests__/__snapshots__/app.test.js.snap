@@ -1,57 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders blog index 1`] = `
-<div>
-  <Header
-    location={
-      Object {
-        "hash": "",
-        "pathname": "/blog/index.md",
-        "search": "",
-      }
-    }
-    setSearchResults={[Function]}
-  />
-  <div>
-    <BlogHero
-      blogHero={null}
-      index="/index"
-      location={
-        Object {
-          "hash": "",
-          "pathname": "/blog/index.md",
-          "search": "",
-        }
-      }
-      markdown={
-        Object {
-          "/blog/index.md": [Function],
-          "/blog/page.md": [Function],
-          "/firstPage": [Function],
-          "/firstPagePath": "/firstPage",
-          "/foo": [Function],
-          "/home.md": [Function],
-          "/index": [Function],
-          "indexFiles": Object {},
-        }
-      }
-      plugins={Array []}
-    />
-    <div
-      className="columns"
-    >
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Unknown
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`App renders blog page 1`] = `
 <div>
   <Header
@@ -64,43 +12,19 @@ exports[`App renders blog page 1`] = `
     }
     setSearchResults={[Function]}
   />
-  <div>
-    <BlogHero
-      blogHero={null}
-      index="/index"
-      location={
-        Object {
-          "hash": "",
-          "pathname": "/blog/page.md",
-          "search": "",
-        }
+  <BlogPage
+    Page={[Function]}
+    blogHero={null}
+    className={null}
+    location={
+      Object {
+        "hash": "",
+        "pathname": "/blog/page.md",
+        "search": "",
       }
-      markdown={
-        Object {
-          "/blog/index.md": [Function],
-          "/blog/page.md": [Function],
-          "/firstPage": [Function],
-          "/firstPagePath": "/firstPage",
-          "/foo": [Function],
-          "/home.md": [Function],
-          "/index": [Function],
-          "indexFiles": Object {},
-        }
-      }
-      plugins={Array []}
-    />
-    <div
-      className="columns"
-    >
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Unknown
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
+    }
+    plugins={Array []}
+  />
 </div>
 `;
 
@@ -115,37 +39,18 @@ exports[`App renders first page at index if found 1`] = `
     }
     setSearchResults={[Function]}
   />
-  <div
-    className=""
-    id="root"
-  >
-    <div
-      className="columns"
-    >
-      <OnClickOutside(Sidebar)
-        className="column is-one-third-tablet is-one-quarter-desktop box"
-        content={[Function]}
-        currentPage="/#foo"
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        excludeScrollbar={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      />
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Page
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
+  <DocsPage
+    Page={[Function]}
+    SidebarComponent={[Function]}
+    className={null}
+    location={
+      Object {
+        "hash": "#foo",
+        "pathname": "/",
+      }
+    }
+    plugins={Array []}
+  />
 </div>
 `;
 
@@ -154,42 +59,14 @@ exports[`App renders home page 1`] = `
   <Header
     location={
       Object {
-        "pathname": "/",
+        "pathname": "/home.html",
       }
     }
     setSearchResults={[Function]}
   />
-  <div
-    className=""
-    id="root"
-  >
-    <div
-      className="columns"
-    >
-      <OnClickOutside(Sidebar)
-        className="column is-one-third-tablet is-one-quarter-desktop box"
-        content={[Function]}
-        currentPage="/"
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        excludeScrollbar={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      />
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <Page
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
+  <home
+    plugins={Array []}
+  />
 </div>
 `;
 
@@ -203,120 +80,16 @@ exports[`App renders matched page 1`] = `
     }
     setSearchResults={[Function]}
   />
-  <div
-    className=""
-    id="root"
-  >
-    <div
-      className="columns"
-    >
-      <OnClickOutside(Sidebar)
-        className="column is-one-third-tablet is-one-quarter-desktop box"
-        content={[Function]}
-        currentPage="/foo"
-        eventTypes={
-          Array [
-            "mousedown",
-            "touchstart",
-          ]
-        }
-        excludeScrollbar={false}
-        outsideClickIgnoreClass="ignore-react-onclickoutside"
-        preventDefault={false}
-        stopPropagation={false}
-      />
-      <div
-        className="column content is-two-thirds-tablet is-three-quarters-desktop"
-      >
-        <foo
-          plugins={Array []}
-        />
-      </div>
-    </div>
-  </div>
+  <DocsPage
+    Page={[Function]}
+    SidebarComponent={[Function]}
+    className={null}
+    location={
+      Object {
+        "pathname": "/foo",
+      }
+    }
+    plugins={Array []}
+  />
 </div>
-`;
-
-exports[`determineComponents render matching index file and first page if path not found 1`] = `
-<ul>
-   Folder Links 
-</ul>
-`;
-
-exports[`determineComponents render matching index file and first page if path not found 2`] = `
-<p>
-   Folder First 
-</p>
-`;
-
-exports[`determineComponents render matching index file in subpath 1`] = `
-<ul>
-   Folder Links 
-</ul>
-`;
-
-exports[`determineComponents render matching index file in subpath 2`] = `
-<p>
-   foo 
-</p>
-`;
-
-exports[`determineComponents render matching page if found 1`] = `
-<ul>
-  List of Links
-</ul>
-`;
-
-exports[`determineComponents render matching page if found 2`] = `
-<p>
-   foo 
-</p>
-`;
-
-exports[`determineComponents render matching subpath index file and first page if path not found 1`] = `
-<ul>
-   Folder Links 
-</ul>
-`;
-
-exports[`determineComponents render matching subpath index file and first page if path not found 2`] = `
-<h1>
-   First Page 
-</h1>
-`;
-
-exports[`determineComponents renders first page if it exists and no pages found 1`] = `
-<ul>
-  List of Links
-</ul>
-`;
-
-exports[`determineComponents renders first page if it exists and no pages found 2`] = `
-<h1>
-   First Page 
-</h1>
-`;
-
-exports[`determineComponents renders matching index file if filePath matches index filename pattern 1`] = `
-<ul>
-  List of Links
-</ul>
-`;
-
-exports[`determineComponents renders matching index file if filePath matches index filename pattern 2`] = `
-<h1>
-   First Page 
-</h1>
-`;
-
-exports[`determineComponents renders root index if no matching subPath first page found 1`] = `
-<ul>
-  List of Links
-</ul>
-`;
-
-exports[`determineComponents renders root index if no matching subPath first page found 2`] = `
-<h1>
-   First Page 
-</h1>
 `;
