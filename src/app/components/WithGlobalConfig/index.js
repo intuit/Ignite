@@ -15,8 +15,8 @@ const withGlobalConfig = Comp =>
       window.configuration.setBlogHero = this.setBlogHeader.bind(this);
     }
 
-    setBlogHeader(link) {
-      this.setState({ blogHeroImage: link });
+    setBlogHeader(blogHeroImage) {
+      this.setState({ blogHeroImage });
     }
 
     setFirstLink(pathToMarkdown, firstLink) {
