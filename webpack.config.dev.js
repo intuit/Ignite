@@ -5,12 +5,9 @@ const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
 
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 const { defaults } = require('./dist/ignite');
 
@@ -38,46 +35,9 @@ module.exports = function(options) {
       path.resolve(__dirname, './src/app/index.js')
     ].filter(Boolean),
 
+    devtool: 'source-map',
+
     optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            parse: {
-              // We want uglify-js to parse ecma 8 code. However, we don't want it
-              // to apply any minfication steps that turns valid ecma 5 code
-              // into invalid ecma 5 code. This is why the 'compress' and 'output'
-              // sections only apply transformations that are ecma 5 safe
-              // https://github.com/facebook/create-react-app/pull/4234
-              ecma: 8
-            },
-            compress: {
-              ecma: 5,
-              warnings: false,
-              // Disabled because of an issue with Uglify breaking seemingly valid code:
-              // https://github.com/facebook/create-react-app/issues/2376
-              // Pending further investigation:
-              // https://github.com/mishoo/UglifyJS2/issues/2011
-              comparisons: false
-            },
-            mangle: {
-              safari10: true
-            },
-            output: {
-              ecma: 5,
-              comments: false,
-              // Turned on because emoji and regex is not minified properly using default
-              // https://github.com/facebook/create-react-app/issues/2488
-              // eslint-disable-next-line camelcase
-              ascii_only: true
-            }
-          },
-          // Use multi-process parallel running to improve the build speed
-          // Default number of concurrent runs: os.cpus().length - 1
-          parallel: true,
-          // Enable file caching
-          cache: true
-        })
-      ],
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
@@ -85,9 +45,15 @@ module.exports = function(options) {
         chunks: 'all',
         name: 'vendors'
       }
-      // Keep the runtime chunk seperated to enable long term caching
-      // https://twitter.com/wSokra/status/969679223278505985
-      // runtimeChunk: true
+    },
+
+    devServer: {
+      quiet: true,
+      historyApiFallback: {
+        rewrites: [
+          { from: /.html/, to: path.join(options.baseURL, 'index.html') }
+        ]
+      }
     },
 
     output: {
@@ -126,6 +92,19 @@ module.exports = function(options) {
           exclude: /node_modules\/(?!.*ignite\/src)/,
           use: 'babel-loader'
         },
+        // Images - Might not be needed
+
+        {
+          test: /\.(svg)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]'
+              }
+            }
+          ]
+        },
         // CSS
         {
           test: /\.css$/,
@@ -136,7 +115,7 @@ module.exports = function(options) {
               options: {
                 modules: true,
                 importLoaders: 1,
-                localIdentName: '[sha1:hash:hex:4]',
+                localIdentName: '[name]_[local]_[hash:base64]',
                 sourceMap: true,
                 minimize: true
               }
@@ -172,7 +151,6 @@ module.exports = function(options) {
     },
 
     plugins: [
-      new CleanWebpackPlugin([dest]),
       new IgnitePlugin({
         entries: docs.map(doc => path.resolve(doc)),
         plugins: ignitePlugins,
@@ -187,29 +165,11 @@ module.exports = function(options) {
         codeStyle: options.codeStyle,
         bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, './src/index.html'),
-        filename: './index.html',
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          useShortDoctype: true,
-          removeEmptyAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          keepClosingSlash: true,
-          minifyJS: true,
-          minifyCSS: true,
-          minifyURLs: true
-        }
-      }),
-      new HtmlWebPackPlugin({
-        baseURL: options.baseURL,
-        template: path.resolve(__dirname, './src/404.html'),
-        filename: './404.html'
+        filename: './index.html'
       }),
       new webpack.DefinePlugin({
         'process.env': {
           index: JSON.stringify(options.index),
-          static: JSON.stringify(options.static),
           baseURL: JSON.stringify(options.baseURL),
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
@@ -219,9 +179,9 @@ module.exports = function(options) {
         }
       }),
       new FriendlyErrorsWebpackPlugin({
+        clearConsole: true,
         compilationSuccessInfo: options.compilationSuccessInfo
       }),
-      new BundleAnalyzerPlugin(),
       ...options.webpackPlugins
     ].filter(Boolean)
   };

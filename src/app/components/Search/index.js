@@ -88,7 +88,7 @@ class Search extends Component {
 
     this.index = new SearchApi();
 
-    window.configuration.search.files.map(file => {
+    window.configuration.search.files.forEach(file => {
       this.index.indexDocument(file.id, file.body);
     });
   }

@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import dayjs from 'dayjs';
 import cheerio from 'cheerio';
@@ -6,7 +5,6 @@ import { getOptions } from 'loader-utils';
 
 import replaceAt from '../utils/replace-at';
 import trimChar from '../utils/trim-char';
-import { transform } from './hash-link';
 
 const libHTMLOptions = {
   xmlMode: true

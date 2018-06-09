@@ -18,6 +18,7 @@ import ghpages from 'gh-pages';
 import createStaticWebsite from 'react-snap';
 import webpackServeWaitpage from 'webpack-serve-waitpage';
 
+import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
 import packageJSON from '../package';
 
@@ -192,9 +193,9 @@ export default async function build(options) {
     }
   }
 
-  const webpackConfig = config(options);
-
   if (options.watch) {
+    const webpackConfig = configDev(options);
+
     serve({
       config: webpackConfig,
       port: options.port,
@@ -233,6 +234,7 @@ export default async function build(options) {
       }
     });
   } else {
+    const webpackConfig = config(options);
     const compiler = webpack(webpackConfig);
 
     compiler.run(async (err, stats) => {
