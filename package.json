@@ -53,6 +53,7 @@
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "0.1.19",
     "connect-history-api-fallback": "1.5.0",
+    "copy-webpack-plugin": "^4.5.1",
     "cosmiconfig": "5.0.5",
     "css-loader": "^0.28.11",
     "dayjs": "1.6.6",

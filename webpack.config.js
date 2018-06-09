@@ -8,6 +8,7 @@ const globby = require('globby');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -182,6 +183,11 @@ module.exports = function(options) {
         filename: '[name].css',
         chunkFilename: '[id].css'
       }),
+      new CopyWebpackPlugin([
+        {
+          from: path.join(options.src, '**/*.{jpg,png,gif}')
+        }
+      ]),
       new HtmlWebPackPlugin({
         base: options.baseURL,
         codeStyle: options.codeStyle,
