@@ -278,7 +278,7 @@ export const initPage = rawSource => {
     pageStart: `
       import React, { Component } from 'react';
       import makeClass from 'classnames';
-      import { Link } from 'react-router-dom';
+      import { Link } from '@reach/router';
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 

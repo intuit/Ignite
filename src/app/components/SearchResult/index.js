@@ -5,7 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import MarkdownIt from 'markdown-it';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 
 import styles from './searchResult.css';
 
