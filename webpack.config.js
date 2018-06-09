@@ -28,7 +28,7 @@ module.exports = function(options) {
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
   const logoExists = logoPath && fs.existsSync(path.resolve(logoPath));
   const dest = options.dst ? path.resolve(options.dst) : null;
-  const isProd = options.mode === 'production';
+  const isProd = options.mode === 'production' || options.analyze;
 
   return {
     mode: options.mode,
@@ -252,7 +252,8 @@ module.exports = function(options) {
       new FriendlyErrorsWebpackPlugin({
         clearConsole: !isProd,
         compilationSuccessInfo: options.compilationSuccessInfo
-      })
+      }),
+      ...options.webpackPlugins
     ].filter(Boolean)
   };
 };

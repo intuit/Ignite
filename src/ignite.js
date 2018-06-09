@@ -84,6 +84,7 @@ export function getAuthor() {
 
 export const defaults = {
   mode: 'production',
+  webpackPlugins: [],
   plugins: [],
   baseURL: '/',
   static: false,
