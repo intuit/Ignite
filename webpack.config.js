@@ -160,7 +160,9 @@ module.exports = function(options) {
               options: {
                 modules: true,
                 importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64]',
+                localIdentName: isProd
+                  ? '[sha1:hash:hex:4]'
+                  : '[name]_[local]_[hash:base64]',
                 sourceMap: true,
                 minimize: true
               }
