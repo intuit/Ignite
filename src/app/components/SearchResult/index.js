@@ -4,12 +4,10 @@ import path from 'path';
 import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
-import MarkdownIt from 'markdown-it';
+import markdown from 'zeedown';
 import { Link } from '@reach/router';
 
 import styles from './searchResult.css';
-
-const renderer = new MarkdownIt();
 
 const SearchResult = ({ fileName, results, setResults }) => (
   <div key={fileName} className="card">
@@ -26,7 +24,7 @@ const SearchResult = ({ fileName, results, setResults }) => (
         <div key={result}>
           <p
             dangerouslySetInnerHTML={{
-              __html: renderer.render(result)
+              __html: markdown(result)
             }}
           />
           <br />

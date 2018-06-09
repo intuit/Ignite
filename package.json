@@ -113,7 +113,8 @@
     "webpack": "^4.11.1",
     "webpack-inject-plugin": "~0.4.0",
     "webpack-serve": "1.0.3",
-    "webpack-serve-waitpage": "1.0.0"
+    "webpack-serve-waitpage": "1.0.0",
+    "zeedown": "2.0.1"
   },
   "devDependencies": {
     "@fuego/github-release": "^2.1.5",
