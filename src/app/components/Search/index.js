@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import throttle from 'throttle-debounce/throttle';
-import lunr from 'lunr';
+import SearchApi from 'js-worker-search';
 import getLineNumber from 'get-line-from-pos';
 import replaceAt from '../../../utils/replace-at';
 
@@ -86,17 +86,22 @@ class Search extends Component {
   constructor(props) {
     super(props);
 
-    this.index = lunr.Index.load(window.configuration.search.index);
+    this.index = new SearchApi();
+
+    window.configuration.search.files.map(file => {
+      this.index.indexDocument(file.id, file.body);
+    });
   }
 
-  search = throttle(500, term => {
+  search = throttle(500, async term => {
     if (term === '') {
       return this.props.setSearchResults([]);
     }
 
-    const results = this.index.search(`*${term}*`).map(result => {
+    let results = await this.index.search(term);
+    results = results.map(result => {
       const page = window.configuration.search.files.find(
-        file => file.id === result.ref
+        file => file.id === result
       );
       const indexes = indexOfAll(page.body, term);
 

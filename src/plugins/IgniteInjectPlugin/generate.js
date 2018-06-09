@@ -3,7 +3,6 @@ import fs from 'fs';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';
-import lunr from 'lunr';
 import { transform } from '../../loaders/hash-link';
 
 const { builders } = types;
@@ -260,6 +259,7 @@ const buildSearchIndex = (entries, options) => {
     if (fs.existsSync(entry)) {
       const pageContents = fs.readFileSync(entry, 'utf8');
       const pagePath = path.relative(options.src, entry);
+
       files.push({
         id: pagePath,
         body: transform(pageContents, entry, options)
@@ -267,16 +267,8 @@ const buildSearchIndex = (entries, options) => {
     }
   });
 
-  const searchIndex = lunr(function() {
-    this.ref('id');
-    this.field('body');
-
-    files.forEach(doc => this.add(doc));
-  });
-
   return `
     window.configuration.search.files = ${JSON.stringify(files)};\n
-    window.configuration.search.index = ${JSON.stringify(searchIndex)};\n
   `;
 };
 

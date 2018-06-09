@@ -3728,6 +3728,10 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+flow-bin@^0.50.0:
+  version "0.50.0"
+  resolved "https://registry.npmjs.intuit.net/f/flow-bin/_attachments/flow-bin-0.50.0.tgz#d4cdb2430dee1a3599f0eb6fe551146e3027256a"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -5284,6 +5288,13 @@ js-types@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/js-types/-/js-types-1.0.0.tgz#d242e6494ed572ad3c92809fc8bed7f7687cbf03"
 
+js-worker-search@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npmjs.intuit.net/j/js-worker-search/_attachments/js-worker-search-1.2.1.tgz#c3a8b826ef90d1ed40ed4d202c992e182e370a6f"
+  dependencies:
+    flow-bin "^0.50.0"
+    uuid "^2.0.1"
+
 js-yaml@3.12.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
@@ -5839,10 +5850,6 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
   dependencies:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
-
-lunr@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.intuit.net/l/lunr/_attachments/lunr-2.2.1.tgz#62c62947bf83619450e94abf26061f1ce3baaa47"
 
 macaddress@^0.2.8:
   version "0.2.8"
@@ -9256,6 +9263,10 @@ utila@~0.4:
 utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
+
+uuid@^2.0.1:
+  version "2.0.3"
+  resolved "https://registry.npmjs.intuit.net/u/uuid/_attachments/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
 uuid@^3.1.0:
   version "3.2.1"
