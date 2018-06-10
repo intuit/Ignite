@@ -318,19 +318,46 @@ export const initPage = rawSource => {
 
       import IdealImage from 'react-ideal-image'
 
-      const LoadImageComponent = ({ src, ...props }) => {
-        const image = require(\`/$\{src}\`);
+      const getImage = src => () => {};
 
-        console.log(image,src,props)
+      function lazyLoadImage(ImageProvider) {
+        return class extends React.Component {
+          state = {
+            image: null
+          }
+
+          // componentDidMount() {
+          //   if (!this.state.image) {
+          //     ImageProvider().then(c => {
+          //       this.setState({
+          //         image: c.default
+          //       });
+          //     });
+          //   }
+          // }
+
+          render() {
+            const { image } = this.state;
+
+            return image ? (
+              <IdealImage
+                placeholder={{lqip:image.preSrc}}
+                srcSet={[{src: image.src, width: image.width}]}
+                src={image.src}
+                alt={this.props.alt}
+                width={image.width}
+                height={image.height}
+              />
+            ) : null;
+          }
+        }
+      }
+
+      const LoadImageComponent = ({ src, ...props }) => {
+        const ImageComponent = lazyLoadImage(getImage(src));
+
         return (
-          <IdealImage
-            placeholder={{lqip:image.preSrc}}
-            srcSet={[{src: image.src, width: image.width}]}
-            src={image.src}
-            alt={props.alt}
-            width={image.width}
-            height={image.height}
-          />
+          <ImageComponent alt={props.alt} />
         )
       }
     `,
