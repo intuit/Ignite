@@ -86,7 +86,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
   return `
     import scrollToElement from 'scroll-to-element';
-    import Observer from 'react-intersection-observer'
+    import Waypoint from 'react-waypoint';
 
     class blogIndex extends React.Component {
       constructor(props) {
@@ -113,7 +113,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
       toggleScrollTopButton(isVisible) {
         this.setState({
-          showScrollButton: !isVisible
+          showScrollButton: isVisible
         });
       }
 
@@ -125,7 +125,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
       render() {
         return e('div', null, [
-          e(Observer, { key: 'Observer', onChange: this.toggleScrollTopButton }, e('div')),
+          e(Waypoint, { key: 'Waypoint', onLeave: () => this.toggleScrollTopButton(true), onEnter: () => this.toggleScrollTopButton(false) }, e('div')),
           ${JSON.stringify(
             blogPosts
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
@@ -225,29 +225,6 @@ const initLazyLoad = options => {
           options.baseURL
         }', markdownPath), comp]);
       }
-    }
-
-    loadPolyfills()
- 
-    /**
-    * Do feature detection, to figure out which polyfills needs to be imported.
-    **/
-    function loadPolyfills() {
-      const polyfills = []
-    
-      if (!supportsIntersectionObserver()) {
-        polyfills.push(import('intersection-observer'))
-      }
-    
-      return Promise.all(polyfills)
-    }
-    
-    function supportsIntersectionObserver() {
-      return (
-        'IntersectionObserver' in global &&
-        'IntersectionObserverEntry' in global &&
-        'intersectionRatio' in IntersectionObserverEntry.prototype
-      )
     }
   `;
 };
