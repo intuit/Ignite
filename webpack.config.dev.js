@@ -93,7 +93,25 @@ module.exports = function(options) {
           use: 'babel-loader'
         },
         // Images - Might not be needed
-
+        {
+          test: /\.(gif|png|jpe?g)$/i,
+          use: [
+            path.resolve(__dirname, './dist/loaders/image-size.js'),
+            {
+              loader: 'lqip-loader',
+              options: {
+                base64: true,
+                palette: false
+              }
+            },
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]'
+              }
+            }
+          ]
+        },
         {
           test: /\.(svg)$/i,
           use: [

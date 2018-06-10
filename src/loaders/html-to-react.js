@@ -166,6 +166,8 @@ export function sanitizeJSX(source) {
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
 
+  source = source.replace(new RegExp('img', 'g'), 'LoadImageComponent');
+
   return source;
 }
 
@@ -313,6 +315,24 @@ export const initPage = rawSource => {
       }
 
       ${codeTabsComponent}
+
+      import IdealImage from 'react-ideal-image'
+
+      const LoadImageComponent = ({ src, ...props }) => {
+        const image = require(\`/$\{src}\`);
+
+        console.log(image,src,props)
+        return (
+          <IdealImage
+            placeholder={{lqip:image.preSrc}}
+            srcSet={[{src: image.src, width: image.width}]}
+            src={image.src}
+            alt={props.alt}
+            width={image.width}
+            height={image.height}
+          />
+        )
+      }
     `,
     source
   };

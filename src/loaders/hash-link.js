@@ -21,11 +21,7 @@ export function transformLink(resourcePath, link, options) {
     return path.join(options.baseURL, correctPath).replace('.md', '.html');
   }
 
-  const [filePath, ...description] = link.split(' ');
-  const pathToLink = path.join(pathToThisSource, filePath);
-  const correctPath = path.relative(process.cwd(), pathToLink);
-
-  return `${correctPath} ${description.join(' ')}`;
+  return link;
 }
 
 export function transform(source, resourcePath, options) {

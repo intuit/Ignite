@@ -8,7 +8,6 @@ const globby = require('globby');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -121,6 +120,37 @@ module.exports = function(options) {
             }
           ]
         },
+        // Image
+        {
+          test: /\.(gif|png|jpe?g)$/i,
+          use: [
+            path.resolve(__dirname, './dist/loaders/image-size.js'),
+            {
+              loader: 'lqip-loader',
+              options: {
+                base64: true,
+                palette: false
+              }
+            },
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]'
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(svg)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]'
+              }
+            }
+          ]
+        },
         // Javascript
         {
           test: /\.js$/,
@@ -183,11 +213,6 @@ module.exports = function(options) {
         filename: '[name].css',
         chunkFilename: '[id].css'
       }),
-      new CopyWebpackPlugin([
-        {
-          from: path.join(options.src, '**/*.{jpg,png,gif}')
-        }
-      ]),
       new HtmlWebPackPlugin({
         base: options.baseURL,
         codeStyle: options.codeStyle,
