@@ -58,7 +58,13 @@ module.exports = function(options) {
               // https://github.com/facebook/create-react-app/issues/2376
               // Pending further investigation:
               // https://github.com/mishoo/UglifyJS2/issues/2011
-              comparisons: false
+              comparisons: false,
+              unused: true,
+              // eslint-disable-next-line camelcase
+              dead_code: true
+            },
+            minify: {
+              toplevel: true
             },
             mangle: {
               safari10: true
@@ -253,7 +259,6 @@ module.exports = function(options) {
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: options.compilationSuccessInfo
       }),
-      new BundleAnalyzerPlugin(),
       ...options.webpackPlugins
     ].filter(Boolean)
   };

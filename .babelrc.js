@@ -6,7 +6,6 @@ module.exports = function(params) {
       [
         '@babel/preset-env',
         {
-          modules: isProd ? false : 'commonjs',
           targets: {
             node: 'current'
           }
