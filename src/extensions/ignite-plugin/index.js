@@ -61,7 +61,7 @@ function joinJSON(rawOptions) {
 export const parseArgs = rawOptions => {
   [, ...rawOptions] = rawOptions.trim().split(' ');
   const options = [];
-  const properties = {};
+  const props = {};
 
   joinJSON(rawOptions).forEach(rawOption => {
     if (rawOption.includes('=')) {
@@ -80,7 +80,7 @@ export const parseArgs = rawOptions => {
         value = JSON.parse(value);
       }
 
-      properties[property] = value;
+      props[property] = value;
     } else {
       options.push(rawOption);
     }
@@ -88,7 +88,7 @@ export const parseArgs = rawOptions => {
 
   return {
     options,
-    properties
+    props
   };
 };
 

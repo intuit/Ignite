@@ -297,7 +297,14 @@ export const initPage = rawSource => {
         }
 
         Plugin = Plugin.component;
-        return <Plugin {...pluginOptions}  children={children} {...options} />;
+        return (
+          <Plugin
+            {...pluginOptions} 
+            children={children}
+            {...options.props}
+            options={options.options}
+          />
+        );
       };
 
       class Details extends Component {
