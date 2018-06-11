@@ -186,6 +186,7 @@ module.exports = function(options) {
       }),
       new webpack.DefinePlugin({
         'process.env': {
+          SEARCH: JSON.stringify(options.searchIndex),
           index: JSON.stringify(options.index),
           baseURL: JSON.stringify(options.baseURL),
           title: JSON.stringify(options.title),

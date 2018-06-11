@@ -31,7 +31,7 @@
     "build:lib": "babel src -d dist --ignore '/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w",
     "publish:docs": "npm run build -- --publish",
-    "analyze": "webpack --config webpack.config.analyze.js"
+    "analyze": "npm run build -- --analyze"
   },
   "license": "ISC",
   "dependencies": {

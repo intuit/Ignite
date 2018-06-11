@@ -1,9 +1,7 @@
 import path from 'path';
-import fs from 'fs';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';
-import { transform } from '../../loaders/hash-link';
 
 const { builders } = types;
 
@@ -153,11 +151,14 @@ const generateBlogIndex = (blogFiles, options) => {
 const initLazyLoad = options => {
   return `
     window.configuration = {
-      search: {},
+      searchIndex: [],
       markdown: [],
       plugins: [],
       setFirstLink() {
         console.log('Called setFirstLink before it was configured');
+      },
+      setSearchIndex() {
+        console.log('Called setSearchIndex before it was configured');
       }
     };
 
@@ -228,23 +229,11 @@ const initLazyLoad = options => {
   `;
 };
 
-const buildSearchIndex = (entries, options) => {
-  const files = [];
-
-  entries.forEach(entry => {
-    if (fs.existsSync(entry)) {
-      const pageContents = fs.readFileSync(entry, 'utf8');
-      const pagePath = path.relative(options.src, entry);
-
-      files.push({
-        id: pagePath,
-        body: transform(pageContents, entry, options)
-      });
-    }
-  });
-
+const buildSearchIndex = () => {
   return `
-    window.configuration.search.files = ${JSON.stringify(files)};\n
+    import('${__dirname}/search').then((files) => {
+      window.configuration.setSearchIndex(files.default);
+    })
   `;
 };
 
@@ -255,7 +244,7 @@ export default function generate(entries = [], plugins = [], options = {}) {
       page.includes(path.join(options.src, 'blog/'))
     );
 
-    generated += buildSearchIndex(entries, options);
+    generated += buildSearchIndex();
     generated += registerMarkdown(entries, options);
 
     if (plugins.length > 0) {

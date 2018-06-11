@@ -164,6 +164,7 @@ class Header extends Component {
           >
             <div className="navbar-end">
               <Search
+                searchIndex={this.props.searchIndex}
                 setSearchResults={this.props.setSearchResults}
                 endSearch={this.closeMenu}
               />

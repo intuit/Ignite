@@ -6,17 +6,23 @@ const withGlobalConfig = Comp =>
       super(props);
 
       this.state = {
+        searchIndex: window.configuration.searchIndex,
         markdown: window.configuration.markdown,
         plugins: window.configuration.plugins,
         blogHeroImage: null
       };
 
       window.configuration.setFirstLink = this.setFirstLink.bind(this);
+      window.configuration.setSearchIndex = this.setSearchIndex.bind(this);
       window.configuration.setBlogHero = this.setBlogHeader.bind(this);
     }
 
     setBlogHeader(blogHeroImage) {
       this.setState({ blogHeroImage });
+    }
+
+    setSearchIndex(searchIndex) {
+      this.setState({ searchIndex });
     }
 
     setFirstLink(pathToMarkdown, firstLink) {
@@ -36,6 +42,7 @@ const withGlobalConfig = Comp =>
       return (
         <Comp
           {...this.props}
+          searchIndex={this.state.searchIndex}
           markdown={this.state.markdown}
           plugins={this.state.plugins}
           blogHero={this.state.blogHeroImage}

@@ -58,10 +58,7 @@ module.exports = function(options) {
               // https://github.com/facebook/create-react-app/issues/2376
               // Pending further investigation:
               // https://github.com/mishoo/UglifyJS2/issues/2011
-              comparisons: false,
-              unused: true,
-              // eslint-disable-next-line camelcase
-              dead_code: true
+              comparisons: false
             },
             minify: {
               toplevel: true
@@ -246,6 +243,7 @@ module.exports = function(options) {
       }),
       new webpack.DefinePlugin({
         'process.env': {
+          SEARCH: JSON.stringify(options.searchIndex),
           index: JSON.stringify(options.index),
           static: JSON.stringify(options.static),
           baseURL: JSON.stringify(options.baseURL),
@@ -259,6 +257,7 @@ module.exports = function(options) {
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: options.compilationSuccessInfo
       }),
+      options.analyze && new BundleAnalyzerPlugin(),
       ...options.webpackPlugins
     ].filter(Boolean)
   };

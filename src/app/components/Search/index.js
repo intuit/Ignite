@@ -87,11 +87,18 @@ class Search extends Component {
     super(props);
 
     this.index = new SearchApi();
+    this.constructIndex();
+  }
 
-    window.configuration.search.files.forEach(file => {
+  constructIndex = () => {
+    this.props.searchIndex.forEach(file => {
       this.index.indexDocument(file.id, file.body);
     });
-  }
+  };
+
+  componentDidUpdate = () => {
+    this.constructIndex();
+  };
 
   search = throttle(500, async term => {
     if (term === '') {
@@ -100,9 +107,7 @@ class Search extends Component {
 
     let results = await this.index.search(term);
     results = results.map(result => {
-      const page = window.configuration.search.files.find(
-        file => file.id === result
-      );
+      const page = this.props.searchIndex.find(file => file.id === result);
       const indexes = indexOfAll(page.body, term);
 
       return [page.id, getLines(page.body, indexes, term)];

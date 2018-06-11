@@ -41,13 +41,15 @@ class MarkdownProvider extends Component {
     location: ReactRouterPropTypes.location.isRequired,
     markdown: PropTypes.array,
     blogHero: PropTypes.string,
-    plugins: PropTypes.array
+    plugins: PropTypes.array,
+    searchIndex: PropTypes.array
   };
 
   static defaultProps = {
     blogHero: null,
     markdown: [],
-    plugins: []
+    plugins: [],
+    searchIndex: []
   };
 
   state = {
@@ -58,13 +60,15 @@ class MarkdownProvider extends Component {
   static getDerivedStateFromProps(newProps, state) {
     return {
       ...state,
-      markdown: setMarkdown(newProps.markdown)
+      markdown: setMarkdown(newProps.markdown),
+      searchIndex: newProps.searchIndex
     };
   }
 
   render() {
     return (
       <App
+        searchIndex={this.props.searchIndex}
         markdown={this.state.markdown}
         location={this.props.location}
         plugins={this.state.plugins}

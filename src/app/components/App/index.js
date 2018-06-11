@@ -51,6 +51,7 @@ class App extends Component {
         <Header
           location={this.props.location}
           setSearchResults={this.setSearchResults}
+          searchIndex={this.props.searchIndex}
         />
 
         {this.state.searchResults.length > 0 ? (

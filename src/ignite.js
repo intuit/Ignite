@@ -21,6 +21,7 @@ import webpackServeWaitpage from 'webpack-serve-waitpage';
 import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
 import packageJSON from '../package';
+import { transform } from './loaders/hash-link';
 
 register(packageJSON.babel || {});
 
@@ -149,6 +150,25 @@ function publish(options, user) {
   );
 }
 
+async function initSearchIndex(options) {
+  const entries = await globby([path.join(options.src, '**/*.md')]);
+  const files = [];
+
+  entries.forEach(entry => {
+    if (fs.existsSync(entry)) {
+      const pageContents = fs.readFileSync(entry, 'utf8');
+      const pagePath = path.relative(options.src, entry);
+
+      files.push({
+        id: pagePath,
+        body: transform(pageContents, entry, options)
+      });
+    }
+  });
+
+  return files;
+}
+
 async function initOptions(options) {
   const explorer = cosmiconfig('ignite');
   const igniteRc = explorer.searchSync();
@@ -163,6 +183,7 @@ async function initOptions(options) {
 
   options = initBuildMessages(options);
   options.blogPosts = await blogPosts(options);
+  options.searchIndex = await initSearchIndex(options);
 
   if (options.plugins) {
     options = await initPlugins(options);
