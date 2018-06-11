@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import onClickOutside from 'react-onclickoutside';
 import makeClass from 'classnames';
 
 import Icon from '../Icon';
@@ -23,7 +22,19 @@ export class Sidebar extends Component {
     open: false
   };
 
-  handleClickOutside = () => {
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside, false);
+  }
+
+  componentUnWillMount() {
+    document.removeEventListener('mousedown', this.handleClickOutside, false);
+  }
+
+  handleClickOutside = e => {
+    if (this.sidebar.contains(e.target)) {
+      return;
+    }
+
     this.setState({
       open: false
     });
@@ -44,6 +55,9 @@ export class Sidebar extends Component {
 
     return (
       <div
+        ref={ref => {
+          this.sidebar = ref;
+        }}
         className={makeClass(
           styles.root,
           this.props.className,
@@ -78,4 +92,4 @@ export class Sidebar extends Component {
   }
 }
 
-export default onClickOutside(Sidebar);
+export default Sidebar;
