@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
-import throttle from 'throttle-debounce/throttle';
+import { throttle } from 'throttle-debounce';
 import SearchApi from 'js-worker-search';
 import getLineNumber from 'get-line-from-pos';
 import replaceAt from '../../../utils/replace-at';
