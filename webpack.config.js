@@ -17,6 +17,8 @@ const { defaults } = require('./dist/ignite');
 const markdownItConfig = require('./markdownit.config');
 
 module.exports = function(options) {
+  process.env.BABEL_ENV = 'production';
+
   options = {
     ...defaults,
     ...options

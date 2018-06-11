@@ -9,7 +9,7 @@ import convert from 'koa-connect';
 import git from 'simple-git/promise';
 import dayjs from 'dayjs';
 import globby from 'globby';
-import register from 'babel-register';
+import register from '@babel/register';
 import root from 'root-path';
 import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
