@@ -2,7 +2,6 @@ import path from 'path';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import scrollToElement from 'scroll-to-element';
 
 import DocsPage from '../DocsPage';
 import SearchResults from '../SearchResults';
@@ -25,13 +24,11 @@ class App extends Component {
       const { hash } = this.props.location;
 
       if (hash && document.querySelector(hash)) {
-        scrollToElement(hash, {
-          duration: 500
+        document.querySelector(hash).scrollIntoView({
+          behavior: 'smooth'
         });
       } else if (!hash) {
-        scrollToElement('body', {
-          duration: 1
-        });
+        document.querySelector('body').scrollIntoView();
       }
     });
   };

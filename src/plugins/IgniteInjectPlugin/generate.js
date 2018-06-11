@@ -85,7 +85,6 @@ const generateBlogIndex = (blogFiles, options) => {
     );
 
   return `
-    import scrollToElement from 'scroll-to-element';
     import Waypoint from 'react-waypoint';
 
     class blogIndex extends React.Component {
@@ -106,9 +105,9 @@ const generateBlogIndex = (blogFiles, options) => {
       }
 
       scrollTop() {
-        scrollToElement('body', {
-          duration: 750
-        })
+        document.querySelector('body').scrollIntoView({
+          behavior: 'smooth'
+        });
       }
 
       toggleScrollTopButton(isVisible) {
