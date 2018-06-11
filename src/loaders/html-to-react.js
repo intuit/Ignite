@@ -166,7 +166,7 @@ export function sanitizeJSX(source) {
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
 
-  source = source.replace(new RegExp('img', 'g'), 'LoadImageComponent');
+  source = source.replace(new RegExp('img', 'g'), 'LazyImageComponent');
 
   return source;
 }
@@ -273,16 +273,41 @@ export function codeTabs(source) {
   };
 }
 
-export const initPage = rawSource => {
+function getSources(markup) {
+  const srcRegex = /src="([\S]+)"/g;
+  const sources = [];
+
+  let match = srcRegex.exec(markup);
+
+  while (match) {
+    sources.push(match[1]);
+    match = srcRegex.exec(markup);
+  }
+
+  return sources;
+}
+
+export const initPage = (rawSource, options) => {
   const { codeTabsComponent, source } = codeTabs(rawSource);
+  const imageSources = getSources(rawSource).map(
+    src =>
+      `'${src}': () => ${
+        src.includes('//')
+          ? `{ src:'${src}' }`
+          : `import('${src.replace('images', './images')}')`
+      },`
+  );
 
   return {
     pageStart: `
+      import path from 'path';
       import React, { Component } from 'react';
       import makeClass from 'classnames';
       import { Link } from '@reach/router';
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
+
+      const imageSources = { ${imageSources.join('')} };
 
       const OptionalLink = ({ currentPage, ...props }) => props.to
         ? <Link {...props} currentPage={currentPage} />
@@ -325,47 +350,36 @@ export const initPage = rawSource => {
 
       import IdealImage from 'react-ideal-image'
 
-      const getImage = src => () => {};
+      class LazyImageComponent extends React.Component {
+        state = {
+          image: null,
+          ImageProvider: imageSources[this.props.src]
+        }
 
-      function lazyLoadImage(ImageProvider) {
-        return class extends React.Component {
-          state = {
-            image: null
-          }
-
-          // componentDidMount() {
-          //   if (!this.state.image) {
-          //     ImageProvider().then(c => {
-          //       this.setState({
-          //         image: c.default
-          //       });
-          //     });
-          //   }
-          // }
-
-          render() {
-            const { image } = this.state;
-
-            return image ? (
-              <IdealImage
-                placeholder={{lqip:image.preSrc}}
-                srcSet={[{src: image.src, width: image.width}]}
-                src={image.src}
-                alt={this.props.alt}
-                width={image.width}
-                height={image.height}
-              />
-            ) : null;
+        componentDidMount() {
+          if (!this.state.image) {
+            this.state.ImageProvider().then(c => {
+              this.setState({
+                image: c.default
+              });
+            });
           }
         }
-      }
 
-      const LoadImageComponent = ({ src, ...props }) => {
-        const ImageComponent = lazyLoadImage(getImage(src));
+        render() {
+          let { image } = this.state;
 
-        return (
-          <ImageComponent alt={props.alt} />
-        )
+          return image ? (
+            <IdealImage
+              placeholder={{lqip:image.preSrc}}
+              srcSet={[{src: image.src, width: image.width}]}
+              src={image.src}
+              alt={this.props.alt}
+              width={image.width}
+              height={image.height}
+            />
+          ) : null;
+        }
       }
     `,
     source
@@ -430,7 +444,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
 };
 
 export function blogPost(rawSource, pathToMarkdown, options) {
-  const { pageStart, source } = initPage(rawSource);
+  const { pageStart, source } = initPage(rawSource, options);
   let { heroUrl, stub, post } = createStubAndPost(
     source,
     pathToMarkdown,
@@ -467,7 +481,7 @@ export function blogPost(rawSource, pathToMarkdown, options) {
 }
 
 export function index(rawSource, pathToMarkdown, options) {
-  let { pageStart, source } = initPage(rawSource);
+  let { pageStart, source } = initPage(rawSource, options);
   const firstLink = getLink(source);
 
   source = addActiveAll(source, firstLink, options.index, options);
@@ -497,8 +511,8 @@ export function index(rawSource, pathToMarkdown, options) {
   `;
 }
 
-export function markDownPage(rawSource) {
-  let { pageStart, source } = initPage(rawSource);
+export function markDownPage(rawSource, options) {
+  let { pageStart, source } = initPage(rawSource, options);
 
   source = sanitizeJSX(source);
 
@@ -517,8 +531,8 @@ export function markDownPage(rawSource) {
   `;
 }
 
-export function homePage(rawSource) {
-  let { pageStart, source } = initPage(rawSource);
+export function homePage(rawSource, options) {
+  let { pageStart, source } = initPage(rawSource, options);
 
   const $source = cheerio.load(
     `<div class="source">${source}</div>`,
@@ -584,7 +598,7 @@ export default function(source) {
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
 
   if (pathToMarkdown === 'home.md') {
-    return homePage(source, pathToMarkdown, options);
+    return homePage(source, options);
   }
 
   if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
@@ -595,5 +609,5 @@ export default function(source) {
     return index(source, pathToMarkdown, options);
   }
 
-  return markDownPage(source);
+  return markDownPage(source, options);
 }
