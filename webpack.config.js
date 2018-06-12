@@ -128,7 +128,7 @@ module.exports = function(options) {
         {
           test: /\.(gif|png|jpe?g)$/i,
           use: [
-            path.resolve(__dirname, './dist/loaders/image-size.js'),
+            path.resolve(__dirname, './dist/loaders/probe-image-size.js'),
             {
               loader: 'lqip-loader',
               options: {
