@@ -222,3 +222,7 @@
  0.0.56
 
 - Static bugs #142
+
+ 0.1.0
+
+- JSX in markdown #143
