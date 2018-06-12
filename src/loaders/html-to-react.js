@@ -2,6 +2,7 @@ import path from 'path';
 import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
+import probe from 'probe-image-size';
 
 import replaceAt from '../utils/replace-at';
 import trimChar from '../utils/trim-char';
@@ -196,19 +197,18 @@ export function addActive(source, link, firstLink, indexFile, options) {
   indexFile = indexFile.replace('.md', '.html');
   source = source.replace(
     new RegExp('<a h'),
+    // prettier-ignore
     `<a className=!{
-        '/${link}' === props.currentPage || 
-        ('${firstLink.link}' === '${link}' && ('${
-      options.baseURL
-    }' === props.currentPage ||
+        '/${link}' === props.currentPage ||
+        props.currentPage.includes('#') && '/${link}' === props.currentPage.split('#')[0] ||
+        ('${firstLink.link}' === '${link}' && ('${options.baseURL}' === props.currentPage ||
         '/${indexFile}' === props.currentPage)) ||
-        ('${
-          firstLink.link
-        }' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}') || !props.currentPage.includes('.html'))) 
+        ('${firstLink.link}' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}') ||
+        !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-        !}
-        h`
+      !}
+      h`
   );
 
   return source;
@@ -287,16 +287,36 @@ function getSources(markup) {
   return sources;
 }
 
-export const initPage = (rawSource, options) => {
+const loadImages = rawSource => {
+  return getSources(rawSource).map(async src => {
+    if (src.includes('//')) {
+      if (!src.includes('http')) {
+        src = 'http:' + src;
+      }
+
+      const dimensions = await probe(src);
+
+      return new Promise(resolve => {
+        resolve(
+          `'${src}': () => Promise.resolve({
+              default: {
+                src:'${src}',
+                preSrc: '${src}',
+                height: ${dimensions.height},
+                width: ${dimensions.width}
+              }
+            })`
+        );
+      });
+    }
+
+    return `'${src}': () => import('${src.replace('images', './images')}')`;
+  });
+};
+
+export const initPage = async (rawSource, pathToMarkdown) => {
   const { codeTabsComponent, source } = codeTabs(rawSource);
-  const imageSources = getSources(rawSource).map(
-    src =>
-      `'${src}': () => ${
-        src.includes('//')
-          ? `{ src:'${src}' }`
-          : `import('${src.replace('images', './images')}')`
-      },`
-  );
+  const imageSources = await Promise.all(loadImages(rawSource));
 
   return {
     pageStart: `
@@ -307,11 +327,17 @@ export const initPage = (rawSource, options) => {
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
-      const imageSources = { ${imageSources.join('')} };
+      const imageSources = { ${imageSources.join(',')} };
 
-      const OptionalLink = ({ currentPage, ...props }) => props.to
-        ? <Link {...props} currentPage={currentPage} />
-        : <a { ...props} />;
+      const OptionalLink = ({ currentPage, ...props }) => {
+        let to = props.to;
+
+        if (to[0] === '#') {
+          to = '${pathToMarkdown.replace('.md', '.html')}' + to;
+        }
+
+        return <Link {...props} currentPage={currentPage} to={to} />;
+      }
 
       const PluginProvider = ({plugins, name, options, children}) => {
         let Plugin = plugins[name];
@@ -443,8 +469,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
   };
 };
 
-export function blogPost(rawSource, pathToMarkdown, options) {
-  const { pageStart, source } = initPage(rawSource, options);
+export function blogPost(source, pathToMarkdown, options) {
   let { heroUrl, stub, post } = createStubAndPost(
     source,
     pathToMarkdown,
@@ -455,8 +480,6 @@ export function blogPost(rawSource, pathToMarkdown, options) {
   stub = sanitizeJSX(stub);
 
   return `
-    ${pageStart}
-
     class blogPost extends React.Component {
       componentDidMount() {
         if (!this.props.atIndex) {
@@ -480,8 +503,7 @@ export function blogPost(rawSource, pathToMarkdown, options) {
   `;
 }
 
-export function index(rawSource, pathToMarkdown, options) {
-  let { pageStart, source } = initPage(rawSource, options);
+export function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
   source = addActiveAll(source, firstLink, options.index, options);
@@ -493,8 +515,6 @@ export function index(rawSource, pathToMarkdown, options) {
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
 
   return `
-    ${pageStart}
-
     export default function index(props) {
       return (
         <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
@@ -511,14 +531,10 @@ export function index(rawSource, pathToMarkdown, options) {
   `;
 }
 
-export function markDownPage(rawSource, options) {
-  let { pageStart, source } = initPage(rawSource, options);
-
+export function markDownPage(source) {
   source = sanitizeJSX(source);
 
   return `
-    ${pageStart}
-
     const markDownPage = props => (
       <div className={props.className}>
         <section>
@@ -531,9 +547,7 @@ export function markDownPage(rawSource, options) {
   `;
 }
 
-export function homePage(rawSource, options) {
-  let { pageStart, source } = initPage(rawSource, options);
-
+export function homePage(source) {
   const $source = cheerio.load(
     `<div class="source">${source}</div>`,
     libHTMLOptions
@@ -567,8 +581,6 @@ export function homePage(rawSource, options) {
   source = sanitizeJSX($homePage.html());
 
   return `
-    ${pageStart}
-
     const homePage = props => (
       <div>
         ${source}
@@ -593,21 +605,27 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
   );
 }
 
-export default function(source) {
+export default async function(rawSource) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
+  let { pageStart, source } = await initPage(
+    rawSource,
+    pathToMarkdown,
+    options
+  );
 
   if (pathToMarkdown === 'home.md') {
-    return homePage(source, options);
+    source = homePage(source);
+  } else if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
+    source = blogPost(source, pathToMarkdown, options);
+  } else if (detectIndex(this.resourcePath, pathToMarkdown, options)) {
+    source = index(source, pathToMarkdown, options);
+  } else {
+    source = markDownPage(source);
   }
 
-  if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
-    return blogPost(source, pathToMarkdown, options);
-  }
-
-  if (detectIndex(this.resourcePath, pathToMarkdown, options)) {
-    return index(source, pathToMarkdown, options);
-  }
-
-  return markDownPage(source, options);
+  return `
+    ${pageStart}
+    ${source}
+  `;
 }
