@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-export default function bulmaMessage(md) {
+export default function jsxInline(md) {
   md.renderer.rules.jsx_inline = function(tokens, idx) {
     let { content } = tokens[idx];
 

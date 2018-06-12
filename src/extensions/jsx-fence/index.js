@@ -8,7 +8,7 @@ function escape_code(defaultRenderer) {
   };
 }
 
-export default function bulmaMessage(md) {
+export default function jsxFence(md) {
   md.renderer.rules.fence = escape_code(md.renderer.rules.fence);
   md.renderer.rules.code_inline = escape_code(md.renderer.rules.code_inline);
   md.renderer.rules.code_block = escape_code(md.renderer.rules.code_block);
