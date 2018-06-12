@@ -10,16 +10,15 @@ exports[`header render active for blogs 1`] = `
     <div
       className="navbar-brand"
     >
-      <Link
+      <ForwardRef
         className="navbar-item"
         onClick={[Function]}
-        replace={false}
         to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
         />
-      </Link>
+      </ForwardRef>
       <a
         aria-expanded="false"
         aria-label="menu"
@@ -46,6 +45,7 @@ exports[`header render active for blogs 1`] = `
       >
         <Search
           endSearch={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <DocsLink
@@ -77,16 +77,15 @@ exports[`header renders githubURL 1`] = `
     <div
       className="navbar-brand"
     >
-      <Link
+      <ForwardRef
         className="navbar-item"
         onClick={[Function]}
-        replace={false}
         to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
         />
-      </Link>
+      </ForwardRef>
       <a
         aria-expanded="false"
         aria-label="menu"
@@ -113,6 +112,7 @@ exports[`header renders githubURL 1`] = `
       >
         <Search
           endSearch={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <DocsLink
@@ -144,10 +144,9 @@ exports[`header renders logo 1`] = `
     <div
       className="navbar-brand"
     >
-      <Link
+      <ForwardRef
         className="navbar-item"
         onClick={[Function]}
-        replace={false}
         to="/"
       >
         <img
@@ -158,7 +157,7 @@ exports[`header renders logo 1`] = `
         <span
           className="is-hidden-mobile navbar-item"
         />
-      </Link>
+      </ForwardRef>
       <a
         aria-expanded="false"
         aria-label="menu"
@@ -185,6 +184,7 @@ exports[`header renders logo 1`] = `
       >
         <Search
           endSearch={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <DocsLink
@@ -216,16 +216,15 @@ exports[`header renders nav items 1`] = `
     <div
       className="navbar-brand"
     >
-      <Link
+      <ForwardRef
         className="navbar-item"
         onClick={[Function]}
-        replace={false}
         to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
         />
-      </Link>
+      </ForwardRef>
       <a
         aria-expanded="false"
         aria-label="menu"
@@ -252,6 +251,7 @@ exports[`header renders nav items 1`] = `
       >
         <Search
           endSearch={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -277,6 +277,7 @@ exports[`header renders nav items 1`] = `
             }
           }
           onClick={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -302,6 +303,7 @@ exports[`header renders nav items 1`] = `
             }
           }
           onClick={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -327,6 +329,7 @@ exports[`header renders nav items 1`] = `
             }
           }
           onClick={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <BlogLink
@@ -354,16 +357,15 @@ exports[`header renders nav items with just a index 1`] = `
     <div
       className="navbar-brand"
     >
-      <Link
+      <ForwardRef
         className="navbar-item"
         onClick={[Function]}
-        replace={false}
         to="/"
       >
         <span
           className="is-hidden-mobile navbar-item"
         />
-      </Link>
+      </ForwardRef>
       <a
         aria-expanded="false"
         aria-label="menu"
@@ -390,6 +392,7 @@ exports[`header renders nav items with just a index 1`] = `
       >
         <Search
           endSearch={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -415,6 +418,7 @@ exports[`header renders nav items with just a index 1`] = `
             }
           }
           onClick={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -440,6 +444,7 @@ exports[`header renders nav items with just a index 1`] = `
             }
           }
           onClick={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <NavItem
@@ -465,6 +470,7 @@ exports[`header renders nav items with just a index 1`] = `
             }
           }
           onClick={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <BlogLink
@@ -492,10 +498,9 @@ exports[`header renders title 1`] = `
     <div
       className="navbar-brand"
     >
-      <Link
+      <ForwardRef
         className="navbar-item"
         onClick={[Function]}
-        replace={false}
         to="/"
       >
         <span
@@ -503,7 +508,7 @@ exports[`header renders title 1`] = `
         >
           Super Cool Docs
         </span>
-      </Link>
+      </ForwardRef>
       <a
         aria-expanded="false"
         aria-label="menu"
@@ -530,6 +535,7 @@ exports[`header renders title 1`] = `
       >
         <Search
           endSearch={[Function]}
+          searchIndex={Array []}
           setSearchResults={[Function]}
         />
         <DocsLink

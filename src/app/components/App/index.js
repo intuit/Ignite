@@ -85,12 +85,14 @@ App.propTypes = {
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired,
   plugins: PropTypes.array,
+  searchIndex: PropTypes.array,
   index: PropTypes.string,
   blogHero: PropTypes.string
 };
 
 App.defaultProps = {
   plugins: [],
+  searchIndex: [],
   blogHero: null,
   index: process.env.index
 };

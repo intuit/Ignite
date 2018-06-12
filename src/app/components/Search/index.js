@@ -76,10 +76,12 @@ const getLines = (source, indexes, term) => {
 
 class Search extends Component {
   static propTypes = {
+    searchIndex: PropTypes.array,
     setSearchResults: PropTypes.func
   };
 
   static defaultProps = {
+    searchIndex: [],
     setSearchResults: () => {}
   };
 

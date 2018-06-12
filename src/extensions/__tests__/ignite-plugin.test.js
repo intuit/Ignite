@@ -6,27 +6,27 @@ describe('parseArgs', () => {
   test('should parse options', () => {
     expect(parseArgs('somePlugin name')).toEqual({
       options: ['name'],
-      properties: {}
+      props: {}
     });
 
     expect(parseArgs('somePlugin name email password')).toEqual({
       options: ['name', 'email', 'password'],
-      properties: {}
+      props: {}
     });
   });
 
-  describe('propertiesd', () => {
+  describe('propsd', () => {
     test('should parse strings', () => {
       expect(parseArgs('somePlugin name=Andrew')).toEqual({
         options: [],
-        properties: {
+        props: {
           name: 'Andrew'
         }
       });
 
       expect(parseArgs('somePlugin name="Andrew"')).toEqual({
         options: [],
-        properties: {
+        props: {
           name: 'Andrew'
         }
       });
@@ -35,7 +35,7 @@ describe('parseArgs', () => {
     test('should parse numbers', () => {
       expect(parseArgs('somePlugin number=666')).toEqual({
         options: [],
-        properties: {
+        props: {
           number: 666
         }
       });
@@ -44,7 +44,7 @@ describe('parseArgs', () => {
     test('should parse booleans', () => {
       expect(parseArgs('somePlugin on=true off=false')).toEqual({
         options: [],
-        properties: {
+        props: {
           on: true,
           off: false
         }
@@ -56,14 +56,14 @@ describe('parseArgs', () => {
         parseArgs('somePlugin array=["Some string", "Some Other String"]')
       ).toEqual({
         options: [],
-        properties: {
+        props: {
           array: ['Some string', 'Some Other String']
         }
       });
 
       expect(parseArgs('somePlugin array=[1, 5, true, false]')).toEqual({
         options: [],
-        properties: {
+        props: {
           array: [1, 5, true, false]
         }
       });
@@ -76,7 +76,7 @@ describe('parseArgs', () => {
         )
       ).toEqual({
         options: [],
-        properties: {
+        props: {
           object: { foo: ['Some string', 'Some Other String'] }
         }
       });
@@ -90,6 +90,6 @@ test('makePlugin', () => {
 
   expect(md.render('::: test')).toMatchSnapshot();
   expect(md.render('::: test with some options')).toMatchSnapshot();
-  expect(md.render('::: test with=some properties=10')).toMatchSnapshot();
-  expect(md.render('::: test with both properties=options')).toMatchSnapshot();
+  expect(md.render('::: test with=some props=10')).toMatchSnapshot();
+  expect(md.render('::: test with both props=options')).toMatchSnapshot();
 });

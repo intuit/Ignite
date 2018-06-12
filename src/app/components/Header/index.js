@@ -209,6 +209,7 @@ Header.propTypes = {
   logo: PropTypes.string,
   githubURL: PropTypes.string,
   navItems: PropTypes.array,
+  searchIndex: PropTypes.array,
   setSearchResults: PropTypes.func,
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location
@@ -218,6 +219,7 @@ Header.defaultProps = {
   setSearchResults: () => {},
   title: process.env.title,
   logo: process.env.logo,
+  searchIndex: [],
   navItems: process.env.navItems,
   githubURL: process.env.githubURL,
   location: {

@@ -5,6 +5,7 @@ exports[`Has default route 1`] = `
   blogHero={null}
   markdown={Object {}}
   plugins={Object {}}
+  searchIndex={Array []}
 />
 `;
 
@@ -20,6 +21,7 @@ exports[`sets first page and root from index file 1`] = `
     }
   }
   plugins={Object {}}
+  searchIndex={Array []}
 />
 `;
 
@@ -32,6 +34,7 @@ exports[`update markdown provided 1`] = `
     }
   }
   plugins={Object {}}
+  searchIndex={Array []}
 />
 `;
 
@@ -55,5 +58,6 @@ exports[`uses plugins 1`] = `
       },
     }
   }
+  searchIndex={Array []}
 />
 `;

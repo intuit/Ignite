@@ -10,6 +10,7 @@ exports[`App renders blog page 1`] = `
         "search": "",
       }
     }
+    searchIndex={Array []}
     setSearchResults={[Function]}
   />
   <BlogPage
@@ -37,6 +38,7 @@ exports[`App renders first page at index if found 1`] = `
         "pathname": "/",
       }
     }
+    searchIndex={Array []}
     setSearchResults={[Function]}
   />
   <DocsPage
@@ -62,6 +64,7 @@ exports[`App renders home page 1`] = `
         "pathname": "/home.html",
       }
     }
+    searchIndex={Array []}
     setSearchResults={[Function]}
   />
   <home
@@ -78,6 +81,7 @@ exports[`App renders matched page 1`] = `
         "pathname": "/foo",
       }
     }
+    searchIndex={Array []}
     setSearchResults={[Function]}
   />
   <DocsPage

@@ -31,7 +31,7 @@ export class Sidebar extends Component {
   }
 
   handleClickOutside = e => {
-    if (this.sidebar.contains(e.target)) {
+    if (this.sidebar && this.sidebar.contains(e.target)) {
       return;
     }
 
