@@ -2,7 +2,6 @@ import path from 'path';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import scrollToElement from 'scroll-to-element';
 
 import DocsPage from '../DocsPage';
 import SearchResults from '../SearchResults';
@@ -25,13 +24,11 @@ class App extends Component {
       const { hash } = this.props.location;
 
       if (hash && document.querySelector(hash)) {
-        scrollToElement(hash, {
-          duration: 500
+        document.querySelector(hash).scrollIntoView({
+          behavior: 'smooth'
         });
       } else if (!hash) {
-        scrollToElement('body', {
-          duration: 1
-        });
+        document.querySelector('body').scrollIntoView();
       }
     });
   };
@@ -54,6 +51,7 @@ class App extends Component {
         <Header
           location={this.props.location}
           setSearchResults={this.setSearchResults}
+          searchIndex={this.props.searchIndex}
         />
 
         {this.state.searchResults.length > 0 ? (
@@ -87,12 +85,14 @@ App.propTypes = {
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired,
   plugins: PropTypes.array,
+  searchIndex: PropTypes.array,
   index: PropTypes.string,
   blogHero: PropTypes.string
 };
 
 App.defaultProps = {
   plugins: [],
+  searchIndex: [],
   blogHero: null,
   index: process.env.index
 };

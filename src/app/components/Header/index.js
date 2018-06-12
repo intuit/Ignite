@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 
 import NavItem from '../NavItem';
 import Search from '../Search';
@@ -164,6 +164,7 @@ class Header extends Component {
           >
             <div className="navbar-end">
               <Search
+                searchIndex={this.props.searchIndex}
                 setSearchResults={this.props.setSearchResults}
                 endSearch={this.closeMenu}
               />
@@ -208,6 +209,7 @@ Header.propTypes = {
   logo: PropTypes.string,
   githubURL: PropTypes.string,
   navItems: PropTypes.array,
+  searchIndex: PropTypes.array,
   setSearchResults: PropTypes.func,
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location
@@ -217,6 +219,7 @@ Header.defaultProps = {
   setSearchResults: () => {},
   title: process.env.title,
   logo: process.env.logo,
+  searchIndex: [],
   navItems: process.env.navItems,
   githubURL: process.env.githubURL,
   location: {

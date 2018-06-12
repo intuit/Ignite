@@ -2,90 +2,58 @@
 
 exports[`addActive 1`] = `
 "<a className=!{
-        '/foo' === props.currentPage || 
+        '/foo' === props.currentPage ||
+        props.currentPage.includes('#') && '/foo' === props.currentPage.split('#')[0] ||
         ('bar' === 'foo' && ('/' === props.currentPage ||
         '/index.html' === props.currentPage)) ||
-        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
+        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') ||
+        !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-        !}
-        href=\\"/foo\\">Foo</a>"
+      !}
+      href=\\"/foo\\">Foo</a>"
 `;
 
 exports[`addActiveAll 1`] = `
 "
       <a className=!{
-        '/' === props.currentPage || 
+        '/' === props.currentPage ||
+        props.currentPage.includes('#') && '/' === props.currentPage.split('#')[0] ||
         ('bar' === '' && ('/' === props.currentPage ||
         '/index.html' === props.currentPage)) ||
-        ('bar' === '' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
+        ('bar' === '' && props.currentPage && (props.currentPage.includes('index.html') ||
+        !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-        !}
-        href=\\"\\"></a>'
+      !}
+      href=\\"\\"></a>'
       <a className=!{
-        '/foo' === props.currentPage || 
+        '/foo' === props.currentPage ||
+        props.currentPage.includes('#') && '/foo' === props.currentPage.split('#')[0] ||
         ('bar' === 'foo' && ('/' === props.currentPage ||
         '/index.html' === props.currentPage)) ||
-        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
+        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') ||
+        !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-        !}
-        href=\\"/foo\\">Foo</a>'
+      !}
+      href=\\"/foo\\">Foo</a>'
       <a className=!{
-        '/bar' === props.currentPage || 
+        '/bar' === props.currentPage ||
+        props.currentPage.includes('#') && '/bar' === props.currentPage.split('#')[0] ||
         ('bar' === 'bar' && ('/' === props.currentPage ||
         '/index.html' === props.currentPage)) ||
-        ('bar' === 'bar' && props.currentPage && (props.currentPage.includes('index.html') || !props.currentPage.includes('.html'))) 
+        ('bar' === 'bar' && props.currentPage && (props.currentPage.includes('index.html') ||
+        !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-        !}
-        href=\\"/bar\\">Foo</a>'
+      !}
+      href=\\"/bar\\">Foo</a>'
     "
 `;
 
 exports[`index 1`] = `
 "
-    
-      import React, { Component } from 'react';
-      import makeClass from 'classnames';
-      import { Link } from 'react-router-dom';
-      import Gist from 'react-gist';
-      import TweetEmbed from 'react-tweet-embed'
-
-      const OptionalLink = ({ currentPage, ...props }) => props.to
-        ? <Link {...props} currentPage={currentPage} />
-        : <a { ...props} />;
-
-      const PluginProvider = ({plugins, name, options, children}) => {
-        let Plugin = plugins[name];
-        const pluginOptions = Plugin.options;
-
-        if (!Plugin) {
-          return <div />;
-        }
-
-        Plugin = Plugin.component;
-        return <Plugin {...pluginOptions}  children={children} {...options} />;
-      };
-
-      class Details extends Component {
-        state = {
-          open: this.props.open
-        }
-
-        render() {
-          return (
-            <details open={this.state.open}>
-              {this.props.children}
-            </details>
-          )
-        }
-      }
-
-      
-    
-
     export default function index(props) {
       return (
         <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
@@ -100,46 +68,6 @@ exports[`index 1`] = `
 
 exports[`index 2`] = `
 "
-    
-      import React, { Component } from 'react';
-      import makeClass from 'classnames';
-      import { Link } from 'react-router-dom';
-      import Gist from 'react-gist';
-      import TweetEmbed from 'react-tweet-embed'
-
-      const OptionalLink = ({ currentPage, ...props }) => props.to
-        ? <Link {...props} currentPage={currentPage} />
-        : <a { ...props} />;
-
-      const PluginProvider = ({plugins, name, options, children}) => {
-        let Plugin = plugins[name];
-        const pluginOptions = Plugin.options;
-
-        if (!Plugin) {
-          return <div />;
-        }
-
-        Plugin = Plugin.component;
-        return <Plugin {...pluginOptions}  children={children} {...options} />;
-      };
-
-      class Details extends Component {
-        state = {
-          open: this.props.open
-        }
-
-        render() {
-          return (
-            <details open={this.state.open}>
-              {this.props.children}
-            </details>
-          )
-        }
-      }
-
-      
-    
-
     export default function index(props) {
       return (
         <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
@@ -164,46 +92,6 @@ exports[`insertBreaks 1`] = `
 
 exports[`markDownPage 1`] = `
 "
-    
-      import React, { Component } from 'react';
-      import makeClass from 'classnames';
-      import { Link } from 'react-router-dom';
-      import Gist from 'react-gist';
-      import TweetEmbed from 'react-tweet-embed'
-
-      const OptionalLink = ({ currentPage, ...props }) => props.to
-        ? <Link {...props} currentPage={currentPage} />
-        : <a { ...props} />;
-
-      const PluginProvider = ({plugins, name, options, children}) => {
-        let Plugin = plugins[name];
-        const pluginOptions = Plugin.options;
-
-        if (!Plugin) {
-          return <div />;
-        }
-
-        Plugin = Plugin.component;
-        return <Plugin {...pluginOptions}  children={children} {...options} />;
-      };
-
-      class Details extends Component {
-        state = {
-          open: this.props.open
-        }
-
-        render() {
-          return (
-            <details open={this.state.open}>
-              {this.props.children}
-            </details>
-          )
-        }
-      }
-
-      
-    
-
     const markDownPage = props => (
       <div className={props.className}>
         <section>

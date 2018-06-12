@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
-import throttle from 'throttle-debounce/throttle';
-import lunr from 'lunr';
+import { throttle } from 'throttle-debounce';
+import SearchApi from 'js-worker-search';
 import getLineNumber from 'get-line-from-pos';
 import replaceAt from '../../../utils/replace-at';
 
@@ -76,28 +76,40 @@ const getLines = (source, indexes, term) => {
 
 class Search extends Component {
   static propTypes = {
+    searchIndex: PropTypes.array,
     setSearchResults: PropTypes.func
   };
 
   static defaultProps = {
+    searchIndex: [],
     setSearchResults: () => {}
   };
 
   constructor(props) {
     super(props);
 
-    this.index = lunr.Index.load(window.configuration.search.index);
+    this.index = new SearchApi();
+    this.constructIndex();
   }
 
-  search = throttle(500, term => {
+  constructIndex = () => {
+    this.props.searchIndex.forEach(file => {
+      this.index.indexDocument(file.id, file.body);
+    });
+  };
+
+  componentDidUpdate = () => {
+    this.constructIndex();
+  };
+
+  search = throttle(500, async term => {
     if (term === '') {
       return this.props.setSearchResults([]);
     }
 
-    const results = this.index.search(`*${term}*`).map(result => {
-      const page = window.configuration.search.files.find(
-        file => file.id === result.ref
-      );
+    let results = await this.index.search(term);
+    results = results.map(result => {
+      const page = this.props.searchIndex.find(file => file.id === result);
       const indexes = indexOfAll(page.body, term);
 
       return [page.id, getLines(page.body, indexes, term)];

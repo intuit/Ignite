@@ -2,6 +2,7 @@ import path from 'path';
 import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
+import probe from 'probe-image-size';
 
 import replaceAt from '../utils/replace-at';
 import trimChar from '../utils/trim-char';
@@ -166,6 +167,8 @@ export function sanitizeJSX(source) {
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
 
+  source = source.replace(new RegExp('img', 'g'), 'LazyImageComponent');
+
   return source;
 }
 
@@ -194,19 +197,18 @@ export function addActive(source, link, firstLink, indexFile, options) {
   indexFile = indexFile.replace('.md', '.html');
   source = source.replace(
     new RegExp('<a h'),
+    // prettier-ignore
     `<a className=!{
-        '/${link}' === props.currentPage || 
-        ('${firstLink.link}' === '${link}' && ('${
-      options.baseURL
-    }' === props.currentPage ||
+        '/${link}' === props.currentPage ||
+        props.currentPage.includes('#') && '/${link}' === props.currentPage.split('#')[0] ||
+        ('${firstLink.link}' === '${link}' && ('${options.baseURL}' === props.currentPage ||
         '/${indexFile}' === props.currentPage)) ||
-        ('${
-          firstLink.link
-        }' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}') || !props.currentPage.includes('.html'))) 
+        ('${firstLink.link}' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}') ||
+        !props.currentPage.includes('.html'))) 
           ? 'is-active'
           : null
-        !}
-        h`
+      !}
+      h`
   );
 
   return source;
@@ -271,20 +273,71 @@ export function codeTabs(source) {
   };
 }
 
-export const initPage = rawSource => {
+function getSources(markup) {
+  const srcRegex = /src="([\S]+)"/g;
+  const sources = [];
+
+  let match = srcRegex.exec(markup);
+
+  while (match) {
+    sources.push(match[1]);
+    match = srcRegex.exec(markup);
+  }
+
+  return sources;
+}
+
+const loadImages = rawSource => {
+  return getSources(rawSource).map(async src => {
+    if (src.includes('//')) {
+      if (!src.includes('http')) {
+        src = 'http:' + src;
+      }
+
+      const dimensions = await probe(src);
+
+      return new Promise(resolve => {
+        resolve(
+          `'${src}': () => Promise.resolve({
+              default: {
+                src:'${src}',
+                preSrc: '${src}',
+                height: ${dimensions.height},
+                width: ${dimensions.width}
+              }
+            })`
+        );
+      });
+    }
+
+    return `'${src}': () => import('${src.replace('images', './images')}')`;
+  });
+};
+
+export const initPage = async (rawSource, pathToMarkdown) => {
   const { codeTabsComponent, source } = codeTabs(rawSource);
+  const imageSources = await Promise.all(loadImages(rawSource));
 
   return {
     pageStart: `
+      import path from 'path';
       import React, { Component } from 'react';
       import makeClass from 'classnames';
-      import { Link } from 'react-router-dom';
+      import { Link } from '@reach/router';
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
 
-      const OptionalLink = ({ currentPage, ...props }) => props.to
-        ? <Link {...props} currentPage={currentPage} />
-        : <a { ...props} />;
+      const imageSources = { ${imageSources.join(',')} };
+
+      const OptionalLink = ({ currentPage, ...props }) => {
+        let to = props.to;
+
+        if (to[0] === '#') {
+          to = '${pathToMarkdown.replace('.md', '.html')}' + to;
+        }
+
+        return <Link {...props} currentPage={currentPage} to={to} />;
+      }
 
       const PluginProvider = ({plugins, name, options, children}) => {
         let Plugin = plugins[name];
@@ -295,7 +348,14 @@ export const initPage = rawSource => {
         }
 
         Plugin = Plugin.component;
-        return <Plugin {...pluginOptions}  children={children} {...options} />;
+        return (
+          <Plugin
+            {...pluginOptions} 
+            children={children}
+            {...options.props}
+            options={options.options}
+          />
+        );
       };
 
       class Details extends Component {
@@ -313,6 +373,40 @@ export const initPage = rawSource => {
       }
 
       ${codeTabsComponent}
+
+      import IdealImage from 'react-ideal-image'
+
+      class LazyImageComponent extends React.Component {
+        state = {
+          image: null,
+          ImageProvider: imageSources[this.props.src]
+        }
+
+        componentDidMount() {
+          if (!this.state.image) {
+            this.state.ImageProvider().then(c => {
+              this.setState({
+                image: c.default
+              });
+            });
+          }
+        }
+
+        render() {
+          let { image } = this.state;
+
+          return image ? (
+            <IdealImage
+              placeholder={{lqip:image.preSrc}}
+              srcSet={[{src: image.src, width: image.width}]}
+              src={image.src}
+              alt={this.props.alt}
+              width={image.width}
+              height={image.height}
+            />
+          ) : null;
+        }
+      }
     `,
     source
   };
@@ -375,8 +469,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
   };
 };
 
-export function blogPost(rawSource, pathToMarkdown, options) {
-  const { pageStart, source } = initPage(rawSource);
+export function blogPost(source, pathToMarkdown, options) {
   let { heroUrl, stub, post } = createStubAndPost(
     source,
     pathToMarkdown,
@@ -387,8 +480,6 @@ export function blogPost(rawSource, pathToMarkdown, options) {
   stub = sanitizeJSX(stub);
 
   return `
-    ${pageStart}
-
     class blogPost extends React.Component {
       componentDidMount() {
         if (!this.props.atIndex) {
@@ -412,8 +503,7 @@ export function blogPost(rawSource, pathToMarkdown, options) {
   `;
 }
 
-export function index(rawSource, pathToMarkdown, options) {
-  let { pageStart, source } = initPage(rawSource);
+export function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
 
   source = addActiveAll(source, firstLink, options.index, options);
@@ -425,8 +515,6 @@ export function index(rawSource, pathToMarkdown, options) {
   source = source.replace(new RegExp('<p>', 'g'), '<p className="menu-label">');
 
   return `
-    ${pageStart}
-
     export default function index(props) {
       return (
         <aside className={makeClass('menu', props.className)} onClick={props.onClick}>
@@ -443,14 +531,10 @@ export function index(rawSource, pathToMarkdown, options) {
   `;
 }
 
-export function markDownPage(rawSource) {
-  let { pageStart, source } = initPage(rawSource);
-
+export function markDownPage(source) {
   source = sanitizeJSX(source);
 
   return `
-    ${pageStart}
-
     const markDownPage = props => (
       <div className={props.className}>
         <section>
@@ -463,9 +547,7 @@ export function markDownPage(rawSource) {
   `;
 }
 
-export function homePage(rawSource) {
-  let { pageStart, source } = initPage(rawSource);
-
+export function homePage(source) {
   const $source = cheerio.load(
     `<div class="source">${source}</div>`,
     libHTMLOptions
@@ -499,8 +581,6 @@ export function homePage(rawSource) {
   source = sanitizeJSX($homePage.html());
 
   return `
-    ${pageStart}
-
     const homePage = props => (
       <div>
         ${source}
@@ -525,21 +605,27 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
   );
 }
 
-export default function(source) {
+export default async function(rawSource) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
+  let { pageStart, source } = await initPage(
+    rawSource,
+    pathToMarkdown,
+    options
+  );
 
   if (pathToMarkdown === 'home.md') {
-    return homePage(source, pathToMarkdown, options);
+    source = homePage(source);
+  } else if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
+    source = blogPost(source, pathToMarkdown, options);
+  } else if (detectIndex(this.resourcePath, pathToMarkdown, options)) {
+    source = index(source, pathToMarkdown, options);
+  } else {
+    source = markDownPage(source);
   }
 
-  if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
-    return blogPost(source, pathToMarkdown, options);
-  }
-
-  if (detectIndex(this.resourcePath, pathToMarkdown, options)) {
-    return index(source, pathToMarkdown, options);
-  }
-
-  return markDownPage(source);
+  return `
+    ${pageStart}
+    ${source}
+  `;
 }

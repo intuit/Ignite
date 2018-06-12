@@ -11,6 +11,6 @@
         "one"
       ]
     }],
-    ["pell", "react-pell"]
+    ["gist", "react-gist"]
   ]
 }

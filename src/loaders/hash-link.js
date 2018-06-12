@@ -13,19 +13,15 @@ export function transformLink(resourcePath, link, options) {
     return link;
   }
 
-  if (path.extname(link).includes('.md')) {
-    const pathToLink = path.join(pathToThisSource, link);
-    const pathToDocs = path.join(process.cwd(), options.src);
-    const correctPath = path.relative(pathToDocs, pathToLink);
+  const pathToLink = path.join(pathToThisSource, link);
+  const pathToDocs = path.join(process.cwd(), options.src);
+  const correctPath = path.relative(pathToDocs, pathToLink);
 
+  if (path.extname(link).includes('.md')) {
     return path.join(options.baseURL, correctPath).replace('.md', '.html');
   }
 
-  const [filePath, ...description] = link.split(' ');
-  const pathToLink = path.join(pathToThisSource, filePath);
-  const correctPath = path.relative(process.cwd(), pathToLink);
-
-  return `${correctPath} ${description.join(' ')}`;
+  return correctPath;
 }
 
 export function transform(source, resourcePath, options) {

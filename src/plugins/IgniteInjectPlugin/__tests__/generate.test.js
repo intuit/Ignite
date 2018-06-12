@@ -20,7 +20,8 @@ describe('generate', () => {
   const options = {
     src: 'docs/',
     baseURL: '/',
-    index: 'index.md'
+    index: 'index.md',
+    dir: '/folder'
   };
 
   const entries = ['path/to/markdown.md', 'path/to/another-markdown.md'];

@@ -1,10 +1,7 @@
 import path from 'path';
-import fs from 'fs';
 import { parseScript } from 'esprima';
 import types from 'ast-types';
 import escodegen from 'escodegen';
-import lunr from 'lunr';
-import { transform } from '../../loaders/hash-link';
 
 const { builders } = types;
 
@@ -86,8 +83,7 @@ const generateBlogIndex = (blogFiles, options) => {
     );
 
   return `
-    import scrollToElement from 'scroll-to-element';
-    import VisibilitySensor from 'react-visibility-sensor';
+    import Waypoint from 'react-waypoint';
 
     class blogIndex extends React.Component {
       constructor(props) {
@@ -107,14 +103,14 @@ const generateBlogIndex = (blogFiles, options) => {
       }
 
       scrollTop() {
-        scrollToElement('body', {
-          duration: 750
-        })
+        document.querySelector('body').scrollIntoView({
+          behavior: 'smooth'
+        });
       }
 
       toggleScrollTopButton(isVisible) {
         this.setState({
-          showScrollButton: !isVisible
+          showScrollButton: isVisible
         });
       }
 
@@ -126,7 +122,7 @@ const generateBlogIndex = (blogFiles, options) => {
 
       render() {
         return e('div', null, [
-          e(VisibilitySensor, { key: 'visibilitySensor', onChange: this.toggleScrollTopButton, scrollCheck: true }, e('div')),
+          e(Waypoint, { key: 'Waypoint', onLeave: () => this.toggleScrollTopButton(true), onEnter: () => this.toggleScrollTopButton(false) }, e('div')),
           ${JSON.stringify(
             blogPosts
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
@@ -155,11 +151,14 @@ const generateBlogIndex = (blogFiles, options) => {
 const initLazyLoad = options => {
   return `
     window.configuration = {
-      search: {},
+      searchIndex: [],
       markdown: [],
       plugins: [],
       setFirstLink() {
         console.log('Called setFirstLink before it was configured');
+      },
+      setSearchIndex() {
+        console.log('Called setSearchIndex before it was configured');
       }
     };
 
@@ -230,30 +229,11 @@ const initLazyLoad = options => {
   `;
 };
 
-const buildSearchIndex = (entries, options) => {
-  const files = [];
-
-  entries.forEach(entry => {
-    if (fs.existsSync(entry)) {
-      const pageContents = fs.readFileSync(entry, 'utf8');
-      const pagePath = path.relative(options.src, entry);
-      files.push({
-        id: pagePath,
-        body: transform(pageContents, entry, options)
-      });
-    }
-  });
-
-  const searchIndex = lunr(function() {
-    this.ref('id');
-    this.field('body');
-
-    files.forEach(doc => this.add(doc));
-  });
-
+const buildSearchIndex = (dir = __dirname) => {
   return `
-    window.configuration.search.files = ${JSON.stringify(files)};\n
-    window.configuration.search.index = ${JSON.stringify(searchIndex)};\n
+    import('${dir}/search').then((files) => {
+      window.configuration.setSearchIndex(files.default);
+    })
   `;
 };
 
@@ -264,7 +244,7 @@ export default function generate(entries = [], plugins = [], options = {}) {
       page.includes(path.join(options.src, 'blog/'))
     );
 
-    generated += buildSearchIndex(entries, options);
+    generated += buildSearchIndex(options.dir);
     generated += registerMarkdown(entries, options);
 
     if (plugins.length > 0) {

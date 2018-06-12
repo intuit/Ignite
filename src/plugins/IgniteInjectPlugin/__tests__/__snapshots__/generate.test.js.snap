@@ -3,11 +3,14 @@
 exports[`generate should add markdown 1`] = `
 "
     window.configuration = {
-      search: {},
+      searchIndex: [],
       markdown: [],
       plugins: [],
       setFirstLink() {
         console.log('Called setFirstLink before it was configured');
+      },
+      setSearchIndex() {
+        console.log('Called setSearchIndex before it was configured');
       }
     };
 
@@ -72,10 +75,9 @@ exports[`generate should add markdown 1`] = `
       }
     }
   
-    window.configuration.search.files = [];
-
-    window.configuration.search.index = {\\"version\\":\\"2.2.1\\",\\"fields\\":[\\"body\\"],\\"fieldVectors\\":[],\\"invertedIndex\\":[],\\"pipeline\\":[\\"stemmer\\"]};
-
+    import('/folder/search').then((files) => {
+      window.configuration.setSearchIndex(files.default);
+    })
   registerMarkdown('../path/to/markdown.md', () => import('path/to/markdown.md'));
         
 registerMarkdown('../path/to/another-markdown.md', () => import('path/to/another-markdown.md'));
@@ -85,11 +87,14 @@ registerMarkdown('../path/to/another-markdown.md', () => import('path/to/another
 exports[`generate should add plugins 1`] = `
 "
     window.configuration = {
-      search: {},
+      searchIndex: [],
       markdown: [],
       plugins: [],
       setFirstLink() {
         console.log('Called setFirstLink before it was configured');
+      },
+      setSearchIndex() {
+        console.log('Called setSearchIndex before it was configured');
       }
     };
 
@@ -154,10 +159,9 @@ exports[`generate should add plugins 1`] = `
       }
     }
   
-    window.configuration.search.files = [];
-
-    window.configuration.search.index = {\\"version\\":\\"2.2.1\\",\\"fields\\":[\\"body\\"],\\"fieldVectors\\":[],\\"invertedIndex\\":[],\\"pipeline\\":[\\"stemmer\\"]};
-
+    import('/folder/search').then((files) => {
+      window.configuration.setSearchIndex(files.default);
+    })
   
       import * as first from 'path/to/plugin.js';
       

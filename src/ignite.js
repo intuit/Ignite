@@ -9,7 +9,7 @@ import convert from 'koa-connect';
 import git from 'simple-git/promise';
 import dayjs from 'dayjs';
 import globby from 'globby';
-import register from 'babel-register';
+import register from '@babel/register';
 import root from 'root-path';
 import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
@@ -18,8 +18,10 @@ import ghpages from 'gh-pages';
 import createStaticWebsite from 'react-snap';
 import webpackServeWaitpage from 'webpack-serve-waitpage';
 
+import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
 import packageJSON from '../package';
+import { transform } from './loaders/hash-link';
 
 register(packageJSON.babel || {});
 
@@ -84,6 +86,7 @@ export function getAuthor() {
 
 export const defaults = {
   mode: 'production',
+  webpackPlugins: [],
   plugins: [],
   baseURL: '/',
   static: false,
@@ -147,6 +150,25 @@ function publish(options, user) {
   );
 }
 
+async function initSearchIndex(options) {
+  const entries = await globby([path.join(options.src, '**/*.md')]);
+  const files = [];
+
+  entries.forEach(entry => {
+    if (fs.existsSync(entry)) {
+      const pageContents = fs.readFileSync(entry, 'utf8');
+      const pagePath = path.relative(options.src, entry);
+
+      files.push({
+        id: pagePath,
+        body: transform(pageContents, entry, options)
+      });
+    }
+  });
+
+  return files;
+}
+
 async function initOptions(options) {
   const explorer = cosmiconfig('ignite');
   const igniteRc = explorer.searchSync();
@@ -161,6 +183,7 @@ async function initOptions(options) {
 
   options = initBuildMessages(options);
   options.blogPosts = await blogPosts(options);
+  options.searchIndex = await initSearchIndex(options);
 
   if (options.plugins) {
     options = await initPlugins(options);
@@ -191,9 +214,9 @@ export default async function build(options) {
     }
   }
 
-  const webpackConfig = config(options);
-
   if (options.watch) {
+    const webpackConfig = configDev(options);
+
     serve({
       config: webpackConfig,
       port: options.port,
@@ -232,6 +255,7 @@ export default async function build(options) {
       }
     });
   } else {
+    const webpackConfig = config(options);
     const compiler = webpack(webpackConfig);
 
     compiler.run(async (err, stats) => {

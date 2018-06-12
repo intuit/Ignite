@@ -134,10 +134,10 @@ Since we can render a react component as a plugin that means something cool. We 
 
 ## Download
 
-Find some random react component you would like to use in your docs. Here we are gonna use [react-pell](https://github.com/ControlGap/react-pell) a wysiwyg editor for HTML and Markdown.
+Find some random react component you would like to use in your docs. Here we are gonna use [react-gist](https://github.com/tleunen/react-gist) a react gist componetn
 
 ```bash
-yarn add react-pell
+yarn add react-gist
 ```
 
 ## Definition
@@ -146,7 +146,7 @@ Add an entry to your configuration's plugin section. The first item in the entry
 
 ```json
 {
-  "plugins": [["pell", "react-pell"]]
+  "plugins": [["gist", "react-gist"]]
 }
 ```
 
@@ -155,9 +155,9 @@ Add an entry to your configuration's plugin section. The first item in the entry
 Now you can use the new component anywhere! The possibilities for new components in your app is endless.
 
 ```markdown
-::: pell
+::: gist id="5995ea726914f280afb3" file="Chef-Dockerfile"
 :::
 ```
 
-::: pell {.has-background-white}
+::: gist id="5995ea726914f280afb3" file="Chef-Dockerfile"
 :::
