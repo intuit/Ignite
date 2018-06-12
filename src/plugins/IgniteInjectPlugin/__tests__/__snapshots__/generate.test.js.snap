@@ -163,25 +163,32 @@ exports[`generate should add plugins 1`] = `
       window.configuration.setSearchIndex(files.default);
     })
   
-      import * as first from 'path/to/plugin.js';
-      
-      var options = {};
+        import first from 'path/to/plugin.js';
 
-      window.configuration.plugins.push(['first', first.default, options]);
-      
+        var options = {};
 
-      import * as second from 'path/to/another-plugin.js';
-      
-      var options = { 'options': '1337' };;
-
-      window.configuration.plugins.push(['second', second.default, options]);
+        window.configuration.plugins.push(['first', first.default || first, options]);
       
 
-      import * as npm from 'npm-package';
-      
-      var options = {};
+        import second from 'path/to/another-plugin.js';
 
-      window.configuration.plugins.push(['npm', npm.default, options]);
+        var options = { 'options': '1337' };;
+
+        window.configuration.plugins.push(['second', second.default || second, options]);
+      
+
+        import npm from 'npm-package';
+
+        var options = {};
+
+        window.configuration.plugins.push(['npm', npm.default || npm, options]);
+      
+
+        import { es6 } from 'modules';
+
+        var options = {};
+
+        window.configuration.plugins.push(['{ es6 }', { es6 }.default || { es6 }, options]);
       "
 `;
 
