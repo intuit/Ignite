@@ -7,12 +7,11 @@ export function transformLink(resourcePath, link, options) {
     return link;
   }
 
-  const pathToThisSource = path.dirname(path.resolve(resourcePath));
-
   if (link[0] === '#') {
     return link;
   }
 
+  const pathToThisSource = path.dirname(path.resolve(resourcePath));
   const pathToLink = path.join(pathToThisSource, link);
   const pathToDocs = path.join(process.cwd(), options.src);
   const correctPath = path.relative(pathToDocs, pathToLink);
