@@ -290,6 +290,8 @@ function getSources(markup) {
 const loadImages = rawSource => {
   return getSources(rawSource).map(async src => {
     if (src.includes('//')) {
+      const rawSrc = src;
+
       if (!src.includes('http')) {
         src = 'http:' + src;
       }
@@ -298,7 +300,7 @@ const loadImages = rawSource => {
 
       return new Promise(resolve => {
         resolve(
-          `'${src}': () => Promise.resolve({
+          `'${rawSrc}': () => Promise.resolve({
               default: {
                 src:'${src}',
                 preSrc: '${src}',
@@ -385,8 +387,8 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
         state = {
           image: ${options.static}
             ? {
-              src: path.join('${options.src}', this.props.src),
-              preSrc: path.join('${options.src}', this.props.src)
+              src: this.props.src.includes('//') ? this.props.src : path.join('${options.src}', this.props.src),
+              preSrc: this.props.src.includes('//') ? this.props.src : path.join('${options.src}', this.props.src)
             }
             : null,
           ImageProvider: imageSources[this.props.src]
@@ -409,6 +411,7 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
 
           return image ? (
             <ImageComponent
+              {...this.props}
               placeholder={{lqip:image.preSrc}}
               srcSet={[{src: image.src, width: image.width || 100}]}
               src={image.src}
