@@ -35,7 +35,8 @@ describe('generate', () => {
         options: 1337
       }
     ],
-    ['npm', 'npm-package']
+    ['npm', 'npm-package'],
+    ['{ es6 }', 'modules']
   ];
 
   test('should add markdown', () => {

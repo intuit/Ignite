@@ -51,19 +51,14 @@ const registerMarkdown = (entries, options) => {
 };
 
 const generatePlugins = plugins => {
-  // E0: Name of plugin
-  // E1: Path to plugin (can be npm module name)
-  // E2: Options for plugin
   return plugins
-    .map(e => {
-      const options = e && e[2] ? stringify(e[2]) : 'var options = {}';
-
+    .map(([name, path, options]) => {
       return `
-      import * as ${e[0]} from '${e[1]}';
-      
-      ${options};
+        import ${name} from '${path}';
 
-      window.configuration.plugins.push(['${e[0]}', ${e[0]}.default, options]);
+        ${options ? stringify(options) : 'var options = {}'};
+
+        window.configuration.plugins.push(['${name}', ${name}.default || ${name}, options]);
       `;
     })
     .join('\n');

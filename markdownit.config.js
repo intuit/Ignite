@@ -40,6 +40,8 @@ const generateConfig = plugins => {
   return {
     xhtmlOut: true,
     plugins: [
+      require('./dist/extensions/jsx-fence'),
+      'markdown-it-jsx',
       [
         'markdown-it-checkbox',
         {
@@ -77,6 +79,7 @@ const generateConfig = plugins => {
           includeLevel: [2, 3]
         }
       ],
+      require('./dist/extensions/jsx-inline'),
       require('./dist/extensions/font-awesome'),
       require('./dist/extensions/bulma-tag'),
       require('./dist/extensions/bulma-progress'),
