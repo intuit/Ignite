@@ -168,3 +168,13 @@ Now you can use the new component anywhere! The possibilities for new components
 ```
 
 <Gist id="5995ea726914f280afb3" file="Chef-Dockerfile" />
+
+## ES6 Imports
+
+```json
+{
+  "plugins": [["{ SketchPicker }", "react-color"]]
+}
+```
+
+<SketchPicker />
