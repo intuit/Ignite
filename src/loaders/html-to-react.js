@@ -314,11 +314,12 @@ const loadImages = rawSource => {
   });
 };
 
-export const initPage = async (rawSource, pathToMarkdown) => {
+export const initPage = async (rawSource, pathToMarkdown, options) => {
   const { codeTabsComponent, source } = codeTabs(rawSource);
   const imageSources = await Promise.all(loadImages(rawSource));
 
   return {
+    // prettier-ignore
     pageStart: `
       import path from 'path';
       import React, { Component } from 'react';
@@ -332,8 +333,12 @@ export const initPage = async (rawSource, pathToMarkdown) => {
       const OptionalLink = ({ currentPage, ...props }) => {
         let to = props.to;
 
+        if (to.includes('http')) {
+          return <a {...props} href={to} />
+        }
+
         if (to[0] === '#') {
-          to = '${pathToMarkdown.replace('.md', '.html')}' + to;
+          to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '.html')}') + to;
         }
 
         return <Link {...props} currentPage={currentPage} to={to} />;
@@ -378,12 +383,17 @@ export const initPage = async (rawSource, pathToMarkdown) => {
 
       class LazyImageComponent extends React.Component {
         state = {
-          image: null,
+          image: ${options.static}
+            ? {
+              src: path.join('${options.src}', this.props.src),
+              preSrc: path.join('${options.src}', this.props.src)
+            }
+            : null,
           ImageProvider: imageSources[this.props.src]
         }
 
         componentDidMount() {
-          if (!this.state.image) {
+          if (!this.state.image && ${!options.static}) {
             this.state.ImageProvider().then(c => {
               this.setState({
                 image: c.default
@@ -395,10 +405,12 @@ export const initPage = async (rawSource, pathToMarkdown) => {
         render() {
           let { image } = this.state;
 
+          const ImageComponent = ${options.static} ? 'img' : IdealImage;
+
           return image ? (
-            <IdealImage
+            <ImageComponent
               placeholder={{lqip:image.preSrc}}
-              srcSet={[{src: image.src, width: image.width}]}
+              srcSet={[{src: image.src, width: image.width || 100}]}
               src={image.src}
               alt={this.props.alt}
               width={image.width}

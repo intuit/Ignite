@@ -15,16 +15,10 @@
 
 <h2 align="center">Developing</h2>
 
-To start developing Ignite, first start up a terminal and run the library build. It's useful to run it in `watch` mode to rebuild on file changes. Be sure to restart the dev server when changing any non-React or non-markdown file, since webpack doesn't handle them.
+To start developing Ignite, start up a terminal and rn the following command. Be sure to restart the dev server when changing any non-React or non-markdown file, since webpack doesn't handle them.
 
 ```bash
-yarn build:lib:watch
-```
-
-Then start the development server.
-
-```bash
-yarn start
+yarn build:lib && yarn start
 ```
 
 <h3 align="center">Debugging</h3>

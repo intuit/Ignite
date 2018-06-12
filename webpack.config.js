@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
@@ -257,6 +258,13 @@ module.exports = function(options) {
       new FriendlyErrorsWebpackPlugin({
         compilationSuccessInfo: options.compilationSuccessInfo
       }),
+      options.static &&
+        new CopyWebpackPlugin([
+          {
+            from: path.join(options.src, '**/*.{jpg,png,gif}')
+          }
+        ]),
+
       options.analyze && new BundleAnalyzerPlugin(),
       ...options.webpackPlugins
     ].filter(Boolean)
