@@ -319,6 +319,11 @@ const loadImages = rawSource => {
 export const initPage = async (rawSource, pathToMarkdown, options) => {
   const { codeTabsComponent, source } = codeTabs(rawSource);
   const imageSources = await Promise.all(loadImages(rawSource));
+  const pluginImports = options.plugins
+    .map(([name, path]) => {
+      return `import ${name} from '${path}'`;
+    })
+    .join(';\n');
 
   return {
     // prettier-ignore
@@ -329,6 +334,7 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
       import { Link } from '@reach/router';
       import Gist from 'react-gist';
       import TweetEmbed from 'react-tweet-embed'
+      ${pluginImports}
 
       const imageSources = { ${imageSources.join(',')} };
 

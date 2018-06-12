@@ -101,6 +101,7 @@
     "probe-image-size": "4.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
+    "react-color": "2.14.1",
     "react-dom": "^16.4.0",
     "react-gist": "1.2.1",
     "react-ideal-image": "0.0.5",

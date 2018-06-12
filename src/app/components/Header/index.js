@@ -211,7 +211,6 @@ Header.propTypes = {
   navItems: PropTypes.array,
   searchIndex: PropTypes.array,
   setSearchResults: PropTypes.func,
-  // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location
 };
 
