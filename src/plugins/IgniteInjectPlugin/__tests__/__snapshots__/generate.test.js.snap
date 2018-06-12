@@ -75,7 +75,7 @@ exports[`generate should add markdown 1`] = `
       }
     }
   
-    import('/Users/alisowski/Documents/Ignite/src/plugins/IgniteInjectPlugin/search').then((files) => {
+    import('/folder/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   registerMarkdown('../path/to/markdown.md', () => import('path/to/markdown.md'));
@@ -159,7 +159,7 @@ exports[`generate should add plugins 1`] = `
       }
     }
   
-    import('/Users/alisowski/Documents/Ignite/src/plugins/IgniteInjectPlugin/search').then((files) => {
+    import('/folder/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   

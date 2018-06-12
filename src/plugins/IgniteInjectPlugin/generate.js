@@ -229,9 +229,9 @@ const initLazyLoad = options => {
   `;
 };
 
-const buildSearchIndex = () => {
+const buildSearchIndex = (dir = __dirname) => {
   return `
-    import('${__dirname}/search').then((files) => {
+    import('${dir}/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   `;
@@ -244,7 +244,7 @@ export default function generate(entries = [], plugins = [], options = {}) {
       page.includes(path.join(options.src, 'blog/'))
     );
 
-    generated += buildSearchIndex();
+    generated += buildSearchIndex(options.dir);
     generated += registerMarkdown(entries, options);
 
     if (plugins.length > 0) {
