@@ -6105,6 +6105,12 @@ markdown-it-ins@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-ins/-/markdown-it-ins-2.0.0.tgz#a5aa6a30f1e2f71e9497567cfdff40f1fde67483"
 
+markdown-it-jsx@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.intuit.net/m/markdown-it-jsx/_attachments/markdown-it-jsx-1.1.0.tgz#3530292bf307fa071bff786e977f6047e0a55042"
+  dependencies:
+    parsimmon "^1.2.0"
+
 markdown-it-mark@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-mark/-/markdown-it-mark-2.0.0.tgz#46a1aa947105aed8188978e0a016179e404f42c7"
@@ -7040,6 +7046,10 @@ parse5@^3.0.1:
 parseurl@^1.3.0, parseurl@~1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
+
+parsimmon@^1.2.0:
+  version "1.8.0"
+  resolved "https://registry.npmjs.intuit.net/p/parsimmon/_attachments/parsimmon-1.8.0.tgz#9aa1072b6ed9116ae746cdbd3a8db0bb680d57e8"
 
 pascalcase@^0.1.1:
   version "0.1.1"

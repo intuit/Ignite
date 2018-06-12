@@ -15,7 +15,7 @@
 
 <h2 align="center">Developing</h2>
 
-To start developing Ignite, start up a terminal and rn the following command. Be sure to restart the dev server when changing any non-React or non-markdown file, since webpack doesn't handle them.
+To start developing Ignite, start up a terminal and run the following command. Be sure to restart the dev server when changing any non-React or non-markdown file, since webpack doesn't handle them.
 
 ```bash
 yarn build:lib && yarn start

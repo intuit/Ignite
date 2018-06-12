@@ -85,6 +85,7 @@
     "markdown-it-front-matter": "git+https://github.com/hipstersmoothie/markdown-it-front-matter.git#use-callback",
     "markdown-it-highlight-lines": "^1.0.1",
     "markdown-it-ins": "^2.0.0",
+    "markdown-it-jsx": "1.1.0",
     "markdown-it-mark": "^2.0.0",
     "markdown-it-regexp": "^0.4.0",
     "markdown-it-sub": "^1.0.0",
