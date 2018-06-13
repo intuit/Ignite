@@ -95,7 +95,7 @@ ignite --title 'My Cool Docs'
 Logo for app. Displayed in title bar.
 
 ```bash
-ignite --title 'logo.svg'
+ignite --logo 'logo.svg'
 ```
 
 ## GitHub URL (--githubURL)
