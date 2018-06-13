@@ -86,19 +86,19 @@ exports[`generate should add markdown 1`] = `
       ]);
     }
   
-    import('/folder/search').then((files) => {
+    import(/* webpackChunkName: \\"search-files\\" */ '/folder/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   
         registerMarkdown(
           '../path/to/markdown.md',
-          () => import('path/to/markdown.md')
+          () => import(/* webpackChunkName: \\"markdown\\" */ 'path/to/markdown.md')
         );
       
 
         registerMarkdown(
           '../path/to/another-markdown.md',
-          () => import('path/to/another-markdown.md')
+          () => import(/* webpackChunkName: \\"another-markdown\\" */ 'path/to/another-markdown.md')
         );
       "
 `;
@@ -189,7 +189,7 @@ exports[`generate should add plugins 1`] = `
       ]);
     }
   
-    import('/folder/search').then((files) => {
+    import(/* webpackChunkName: \\"search-files\\" */ '/folder/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   
@@ -198,7 +198,7 @@ exports[`generate should add plugins 1`] = `
         
           registerPlugin(
             'first',
-            () => import('path/to/plugin.js'),
+            () => import(/* webpackChunkName: \\"plugin-first\\" */ 'path/to/plugin.js'),
             options
           );
         
@@ -211,7 +211,7 @@ exports[`generate should add plugins 1`] = `
         
           registerPlugin(
             'second',
-            () => import('path/to/another-plugin.js'),
+            () => import(/* webpackChunkName: \\"plugin-second\\" */ 'path/to/another-plugin.js'),
             options
           );
         
@@ -224,7 +224,7 @@ exports[`generate should add plugins 1`] = `
         
           registerPlugin(
             'npm',
-            () => import('npm-package'),
+            () => import(/* webpackChunkName: \\"plugin-npm\\" */ 'npm-package'),
             options
           );
         
@@ -239,7 +239,7 @@ exports[`generate should add plugins 1`] = `
         
             registerPlugin(
               'es6',
-              () => import('modules').then((res) => ({
+              () => import(/* webpackChunkName: \\"plugin-es6\\" */ 'modules').then((res) => ({
                 default: res['es6']
               })),
               options
@@ -252,7 +252,7 @@ exports[`generate should add plugins 1`] = `
         
           registerPlugin(
             'Default',
-            () => import('another-package'),
+            () => import(/* webpackChunkName: \\"plugin-Default\\" */ 'another-package'),
             options
           );
         
@@ -260,7 +260,7 @@ exports[`generate should add plugins 1`] = `
         
             registerPlugin(
               'AnExport',
-              () => import('another-package').then((res) => ({
+              () => import(/* webpackChunkName: \\"plugin-AnExport\\" */ 'another-package').then((res) => ({
                 default: res['AnExport']
               })),
               options
@@ -269,7 +269,7 @@ exports[`generate should add plugins 1`] = `
 
             registerPlugin(
               'AnotherExport',
-              () => import('another-package').then((res) => ({
+              () => import(/* webpackChunkName: \\"plugin-AnotherExport\\" */ 'another-package').then((res) => ({
                 default: res['AnotherExport']
               })),
               options
