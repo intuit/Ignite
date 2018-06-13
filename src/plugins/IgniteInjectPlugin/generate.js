@@ -41,11 +41,12 @@ export const stringify = code => {
 const registerMarkdown = (entries, options) => {
   return entries
     .map(
-      e => `registerMarkdown('${path.relative(
-        options.src,
-        e
-      )}', () => import('${e}'));
-        `
+      pathToMarkdown => `
+        registerMarkdown(
+          '${path.relative(options.src, pathToMarkdown)}',
+          () => import('${pathToMarkdown}')
+        );
+      `
     )
     .join('\n');
 };
@@ -54,11 +55,13 @@ const generatePlugins = plugins => {
   return plugins
     .map(([name, path, options]) => {
       return `
-        import ${name} from '${path}';
+        ${options ? stringify(options) : 'var options = {}'}
 
-        ${options ? stringify(options) : 'var options = {}'};
-
-        window.configuration.plugins.push(['${name}', ${name}.default || ${name}, options]);
+        registerPlugin(
+          '${name}',
+          () => import('${path}'),
+          options
+        );
       `;
     })
     .join('\n');
@@ -211,6 +214,7 @@ const initLazyLoad = options => {
 
     function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
+
       if(isIndex(markdownPath)) {
         window.configuration.markdown.push([path.join('${
           options.baseURL
@@ -220,6 +224,16 @@ const initLazyLoad = options => {
           options.baseURL
         }', markdownPath), comp]);
       }
+    }
+
+    function registerPlugin(name, provider, options) {
+      const comp = lazyLoad(provider);
+
+      window.configuration.plugins.push([
+        name,
+        lazyLoad(provider),
+        options
+      ]);
     }
   `;
 };
