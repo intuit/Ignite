@@ -230,3 +230,7 @@
  0.2.0
 
 - Lazy Load plugins #145
+
+ 0.2.1
+
+- Bugs and Typos #146
