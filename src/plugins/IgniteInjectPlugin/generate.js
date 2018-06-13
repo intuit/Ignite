@@ -54,14 +54,37 @@ const registerMarkdown = (entries, options) => {
 const generatePlugins = plugins => {
   return plugins
     .map(([name, path, options]) => {
+      let [defaultImport, es6Imports = ''] = name.split('{');
+      defaultImport = defaultImport.replace(',', '').trim();
+      es6Imports = es6Imports
+        .replace('}', '')
+        .split(',')
+        .map(
+          importName =>
+            importName === ''
+              ? ''
+              : `
+                registerPlugin(
+                  '${importName.trim()}',
+                  () => import('${path}').then((res) => ({
+                    default: res['${importName.trim()}']
+                  })),
+                  options
+                );
+              `
+        )
+        .join('\n');
+
       return `
         ${options ? stringify(options) : 'var options = {}'}
 
         registerPlugin(
-          '${name}',
+          '${defaultImport}',
           () => import('${path}'),
           options
         );
+
+        ${es6Imports}
       `;
     })
     .join('\n');
