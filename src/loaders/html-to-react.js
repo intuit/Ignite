@@ -412,6 +412,7 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
           return image ? (
             <ImageComponent
               {...this.props}
+              className='image'
               placeholder={{lqip:image.preSrc}}
               srcSet={[{src: image.src, width: image.width || 100}]}
               src={image.src}
