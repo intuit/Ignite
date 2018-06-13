@@ -56,33 +56,38 @@ const generatePlugins = plugins => {
     .map(([name, path, options]) => {
       let [defaultImport, es6Imports = ''] = name.split('{');
       defaultImport = defaultImport.replace(',', '').trim();
+
+      if (defaultImport !== '') {
+        defaultImport = `
+          registerPlugin(
+            '${defaultImport}',
+            () => import('${path}'),
+            options
+          );
+        `;
+      }
+
       es6Imports = es6Imports
         .replace('}', '')
         .split(',')
+        .filter(str => str !== '')
         .map(
-          importName =>
-            importName === ''
-              ? ''
-              : `
-                registerPlugin(
-                  '${importName.trim()}',
-                  () => import('${path}').then((res) => ({
-                    default: res['${importName.trim()}']
-                  })),
-                  options
-                );
-              `
+          importName => `
+            registerPlugin(
+              '${importName.trim()}',
+              () => import('${path}').then((res) => ({
+                default: res['${importName.trim()}']
+              })),
+              options
+            );
+          `
         )
         .join('\n');
 
       return `
         ${options ? stringify(options) : 'var options = {}'}
 
-        registerPlugin(
-          '${defaultImport}',
-          () => import('${path}'),
-          options
-        );
+        ${defaultImport}
 
         ${es6Imports}
       `;
