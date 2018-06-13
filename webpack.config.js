@@ -207,6 +207,9 @@ module.exports = function(options) {
     },
 
     plugins: [
+      new webpack.PrefetchPlugin('', 'react-ideal-image'),
+      new webpack.PrefetchPlugin('', 'react-color'),
+      new webpack.PrefetchPlugin('', 'react-waypoint'),
       new CleanWebpackPlugin([dest]),
       new IgnitePlugin({
         entries: docs.map(doc => path.resolve(doc)),
