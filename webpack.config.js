@@ -34,6 +34,7 @@ module.exports = function(options) {
 
   return {
     mode: options.mode,
+    profile: options.json,
 
     entry: [
       logoExists ? path.resolve(logoPath) : null,

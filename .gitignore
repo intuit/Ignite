@@ -4,6 +4,7 @@ _ignite
 package-lock.json
 
 # Logs
+stats.json
 logs
 *.log
 npm-debug.log*
