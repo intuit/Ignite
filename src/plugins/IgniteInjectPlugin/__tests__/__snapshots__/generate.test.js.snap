@@ -245,6 +245,36 @@ exports[`generate should add plugins 1`] = `
               options
             );
           
+      
+
+        var options = {}
+
+        
+          registerPlugin(
+            'Default',
+            () => import('another-package'),
+            options
+          );
+        
+
+        
+            registerPlugin(
+              'AnExport',
+              () => import('another-package').then((res) => ({
+                default: res['AnExport']
+              })),
+              options
+            );
+          
+
+            registerPlugin(
+              'AnotherExport',
+              () => import('another-package').then((res) => ({
+                default: res['AnotherExport']
+              })),
+              options
+            );
+          
       "
 `;
 
