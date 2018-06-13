@@ -226,3 +226,7 @@
  0.1.0
 
 - JSX in markdown #143
+
+ 0.2.0
+
+- Lazy Load plugins #145
