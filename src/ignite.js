@@ -259,6 +259,16 @@ export default async function build(options) {
     const compiler = webpack(webpackConfig);
 
     compiler.run(async (err, stats) => {
+      if (options.json) {
+        fs.writeFile(
+          'stats.json',
+          JSON.stringify(stats.toJson(), null, 2),
+          () => {
+            console.warn('Wrote `stats.json` to root.');
+          }
+        );
+      }
+
       if (err) {
         console.error(err.stack || err);
         if (err.details) {

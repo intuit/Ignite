@@ -108,13 +108,16 @@ p > code {
   white-space: normal;
 }
 
-p {
-  img[alt='caption'] {
+:global p {
+  .image {
+    max-width: 80% !important;
+    max-height: 65% !important;
     display: block;
     margin: auto;
+    margin-bottom: 10px;
   }
 
-  img + em {
+  .image + em {
     display: block;
     text-align: center;
     margin: auto;

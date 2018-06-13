@@ -2,20 +2,23 @@
 
 ## Embed
 
-Format = \{SERVICE\}(ARGS)
+Format = \[SERVICE|ARGS\]
 
 Supported Embeds:
 
 ```markdown
-{github}(ID:FILE)
-{youtube}(ID)
-{twitter}(ID)
-{soundcloud}(ID)
+[github|ID:FILE]
+
+[youtube|id]
+
+[twitter|ID]
+
+[soundcloud|id]
 ```
 
 OUTPUT:
 
-{twitter}(989197113648037888)
+[twitter|989197113648037888]
 
 ## Collapse
 

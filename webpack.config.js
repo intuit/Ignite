@@ -34,6 +34,7 @@ module.exports = function(options) {
 
   return {
     mode: options.mode,
+    profile: options.json,
 
     entry: [
       logoExists ? path.resolve(logoPath) : null,
@@ -96,7 +97,6 @@ module.exports = function(options) {
 
     output: {
       path: dest,
-      filename: 'bundle.js',
       publicPath: options.baseURL
     },
 
@@ -207,6 +207,9 @@ module.exports = function(options) {
     },
 
     plugins: [
+      new webpack.PrefetchPlugin('', 'react-ideal-image'),
+      new webpack.PrefetchPlugin('', 'react-color'),
+      new webpack.PrefetchPlugin('', 'react-waypoint'),
       new CleanWebpackPlugin([dest]),
       new IgnitePlugin({
         entries: docs.map(doc => path.resolve(doc)),

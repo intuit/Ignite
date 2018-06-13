@@ -31,14 +31,9 @@ const services = {
 
 export default function embed(md) {
   md.use(
-    makePlugin(/{[\S ]+}\([\S]+\)/, match => {
-      const [token] = match;
-      const config = token.substring(
-        token.indexOf('(') + 1,
-        token.indexOf(')')
-      );
-      const service = token.substring(1, token.indexOf('}'));
-      const [id, ...options] = config.split(':');
+    makePlugin(/\[([\S ]+)\|([\S]+)\]/, match => {
+      const [, service, rawOptions] = match;
+      const [id, ...options] = rawOptions.split(':');
 
       return services[service](id, options);
     })
