@@ -20,7 +20,7 @@ function DocsPage({ Page, SidebarComponent, location, plugins, className }) {
 
         <div
           className={makeClass(
-            !styles.content,
+            styles.content,
             'column',
             'content',
             'is-two-thirds-tablet',
