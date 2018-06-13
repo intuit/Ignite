@@ -11,7 +11,7 @@
         "one"
       ]
     }],
-    ["gist", "react-gist"],
-    ["{ SketchPicker }", "react-color"]
+    ["Gist", "react-gist"],
+    ["ColorPicker, { SketchPicker, AlphaPicker }", "react-color"]
   ]
 }

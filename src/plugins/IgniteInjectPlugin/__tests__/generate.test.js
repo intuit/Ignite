@@ -36,7 +36,8 @@ describe('generate', () => {
       }
     ],
     ['npm', 'npm-package'],
-    ['{ es6 }', 'modules']
+    ['{ es6 }', 'modules'],
+    ['Default, { AnExport, AnotherExport }', 'another-package']
   ];
 
   test('should add markdown', () => {

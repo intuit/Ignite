@@ -173,8 +173,22 @@ Now you can use the new component anywhere! The possibilities for new components
 
 ```json
 {
-  "plugins": [["{ SketchPicker }", "react-color"]]
+  "plugins": ["ColorPicker, { SketchPicker, AlphaPicker }", "react-color"]
 }
 ```
 
-<SketchPicker />
+ColorPicker:
+
+<ColorPicker />
+
+<br />
+
+SketchPicker:
+
+<SketchPicker style={{ paddingBottom: 20 }} />
+
+<br />
+
+AlphaPicker:
+
+<AlphaPicker />

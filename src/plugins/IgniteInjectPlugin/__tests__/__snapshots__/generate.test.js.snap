@@ -68,20 +68,39 @@ exports[`generate should add markdown 1`] = `
 
     function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
+
       if(isIndex(markdownPath)) {
         window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
       } else {
         window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
     }
+
+    function registerPlugin(name, provider, options) {
+      const comp = lazyLoad(provider);
+
+      window.configuration.plugins.push([
+        name,
+        lazyLoad(provider),
+        options
+      ]);
+    }
   
     import('/folder/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
-  registerMarkdown('../path/to/markdown.md', () => import('path/to/markdown.md'));
-        
-registerMarkdown('../path/to/another-markdown.md', () => import('path/to/another-markdown.md'));
-        "
+  
+        registerMarkdown(
+          '../path/to/markdown.md',
+          () => import('path/to/markdown.md')
+        );
+      
+
+        registerMarkdown(
+          '../path/to/another-markdown.md',
+          () => import('path/to/another-markdown.md')
+        );
+      "
 `;
 
 exports[`generate should add plugins 1`] = `
@@ -152,43 +171,110 @@ exports[`generate should add plugins 1`] = `
 
     function registerMarkdown(markdownPath, provider) {
       const comp = lazyLoad(provider);
+
       if(isIndex(markdownPath)) {
         window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
       } else {
         window.configuration.markdown.push([path.join('/', markdownPath), comp]);
       }
     }
+
+    function registerPlugin(name, provider, options) {
+      const comp = lazyLoad(provider);
+
+      window.configuration.plugins.push([
+        name,
+        lazyLoad(provider),
+        options
+      ]);
+    }
   
     import('/folder/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   
-        import first from 'path/to/plugin.js';
+        var options = {}
 
-        var options = {};
+        
+          registerPlugin(
+            'first',
+            () => import('path/to/plugin.js'),
+            options
+          );
+        
 
-        window.configuration.plugins.push(['first', first.default || first, options]);
+        
       
 
-        import second from 'path/to/another-plugin.js';
+        var options = { 'options': '1337' };
 
-        var options = { 'options': '1337' };;
+        
+          registerPlugin(
+            'second',
+            () => import('path/to/another-plugin.js'),
+            options
+          );
+        
 
-        window.configuration.plugins.push(['second', second.default || second, options]);
+        
       
 
-        import npm from 'npm-package';
+        var options = {}
 
-        var options = {};
+        
+          registerPlugin(
+            'npm',
+            () => import('npm-package'),
+            options
+          );
+        
 
-        window.configuration.plugins.push(['npm', npm.default || npm, options]);
+        
       
 
-        import { es6 } from 'modules';
+        var options = {}
 
-        var options = {};
+        
 
-        window.configuration.plugins.push(['{ es6 }', { es6 }.default || { es6 }, options]);
+        
+            registerPlugin(
+              'es6',
+              () => import('modules').then((res) => ({
+                default: res['es6']
+              })),
+              options
+            );
+          
+      
+
+        var options = {}
+
+        
+          registerPlugin(
+            'Default',
+            () => import('another-package'),
+            options
+          );
+        
+
+        
+            registerPlugin(
+              'AnExport',
+              () => import('another-package').then((res) => ({
+                default: res['AnExport']
+              })),
+              options
+            );
+          
+
+            registerPlugin(
+              'AnotherExport',
+              () => import('another-package').then((res) => ({
+                default: res['AnotherExport']
+              })),
+              options
+            );
+          
       "
 `;
 
