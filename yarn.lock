@@ -7882,9 +7882,9 @@ react-color@2.14.1:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-react-dom@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.npmjs.intuit.net/r/react-dom/_attachments/react-dom-16.4.0.tgz#099f067dd5827ce36a29eaf9a6cdc7cbf6216b1e"
+react-dom@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.npmjs.intuit.net/r/react-dom/_attachments/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7901,9 +7901,9 @@ react-ideal-image@0.0.5:
   version "0.0.5"
   resolved "https://registry.npmjs.intuit.net/r/react-ideal-image/_attachments/react-ideal-image-0.0.5.tgz#92a1d6e7e6d5a32b2a6a41e82ffb7f122ed9bddf"
 
-react-is@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.npmjs.intuit.net/r/react-is/_attachments/react-is-16.4.0.tgz#cc9fdc855ac34d2e7d9d2eb7059bbc240d35ffcf"
+react-is@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.npmjs.intuit.net/r/react-is/_attachments/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -7931,14 +7931,14 @@ react-snap@1.13.0:
     serve-static "^1.13.1"
     sourcemapped-stacktrace-node "^2.1.6"
 
-react-test-renderer@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.npmjs.intuit.net/r/react-test-renderer/_attachments/react-test-renderer-16.4.0.tgz#0dbe0e24263e94e1830c7afb1f403707fad313a3"
+react-test-renderer@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.npmjs.intuit.net/r/react-test-renderer/_attachments/react-test-renderer-16.4.1.tgz#f2fb30c2c7b517db6e5b10ed20bb6b0a7ccd8d70"
   dependencies:
     fbjs "^0.8.16"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
-    react-is "^16.4.0"
+    react-is "^16.4.1"
 
 react-tweet-embed@1.1.0:
   version "1.1.0"
@@ -7951,9 +7951,9 @@ react-waypoint@8.0.1:
     consolidated-events "^1.1.0"
     prop-types "^15.0.0"
 
-react@^16.4.0:
-  version "16.4.0"
-  resolved "https://registry.npmjs.intuit.net/r/react/_attachments/react-16.4.0.tgz#402c2db83335336fba1962c08b98c6272617d585"
+react@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.npmjs.intuit.net/r/react/_attachments/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -9832,7 +9832,7 @@ webpack-bundle-analyzer@2.13.1:
     opener "^1.4.3"
     ws "^4.0.0"
 
-webpack-cli@^3.0.4:
+webpack-cli@^3.0.5:
   version "3.0.5"
   resolved "https://registry.npmjs.intuit.net/w/webpack-cli/_attachments/webpack-cli-3.0.5.tgz#0523412b5b6e5b0d6fa799881c58081318ec5eda"
   dependencies:
