@@ -312,117 +312,172 @@ const loadImages = rawSource => {
       });
     }
 
-    return `'${src}': () => import('${src.replace('images', './images')}')`;
+    return `
+      '${src}': () => import(
+        /* webpackChunkName: "image-${path.basename(src)}" */
+        '${src.replace('images', './images')}'
+      )
+    `;
   });
 };
 
-export const initPage = async (rawSource, pathToMarkdown, options) => {
-  const { codeTabsComponent, source } = codeTabs(rawSource);
+// prettier-ignore
+const createOptionalLink = (pathToMarkdown, options) =>`
+  const OptionalLink = ({ currentPage, ...props }) => {
+    let to = props.to;
+
+    if (to.includes('http')) {
+      return <a {...props} href={to} />
+    }
+
+    if (to[0] === '#') {
+      to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '.html')}') + to;
+    }
+
+    return <Link {...props} currentPage={currentPage} to={to} />;
+  };
+`;
+
+const createPluginProvider = () => `
+  const PluginProvider = ({plugins, name, options, children, ...props}) => {
+    let Plugin = plugins[name];
+    const pluginOptions = Plugin.options;
+
+    if (!Plugin) {
+      return <div />;
+    }
+
+    Plugin = Plugin.component;
+    return (
+      <Plugin
+        {...pluginOptions} 
+        options={options ? options.options : {}}
+        {...(options ? options.props : props)}
+        children={children}
+      />
+    );
+  };
+`;
+
+const createDetailsComponent = () => `
+  class Details extends Component {
+    state = {
+      open: this.props.open
+    }
+
+    render() {
+      return (
+        <details open={this.state.open}>
+          {this.props.children}
+        </details>
+      )
+    }
+  };
+`;
+
+const createImageRenderer = async (rawSource, options) => {
   const imageSources = await Promise.all(loadImages(rawSource));
 
+  return `
+    import IdealImage from 'react-ideal-image';
+
+    const imageSources = { ${imageSources.join(',')} };
+
+    class LazyImageComponent extends React.Component {
+      state = {
+        image: ${options.static}
+          ? {
+            src: this.props.src.includes('//') ? this.props.src : path.join('${
+              options.src
+            }', this.props.src),
+            preSrc: this.props.src.includes('//') ? this.props.src : path.join('${
+              options.src
+            }', this.props.src)
+          }
+          : null,
+        ImageProvider: imageSources[this.props.src]
+      }
+
+      componentDidMount() {
+        if (!this.state.image && ${!options.static}) {
+          this.state.ImageProvider().then(c => {
+            this.setState({
+              image: c.default
+            });
+          });
+        }
+      }
+
+      render() {
+        let { image } = this.state;
+
+        const ImageComponent = ${options.static} ? 'img' : IdealImage;
+
+        return image ? (
+          <ImageComponent
+            {...this.props}
+            className='image'
+            placeholder={{lqip:image.preSrc}}
+            srcSet={[{src: image.src, width: image.width || 100}]}
+            src={image.src}
+            alt={this.props.alt}
+            width={image.width}
+            height={image.height}
+          />
+        ) : null;
+      }
+    }
+  `;
+};
+
+const createLazyComponent = () => `
+  const lazyComponent = provider =>
+    class extends React.Component {
+      static defaultProps = {
+        shouldLoad: true
+      };
+  
+      state = {
+        Comp: null
+      };
+  
+      componentDidMount() {
+        if (!this.state.Comp && this.props.shouldLoad) {
+          provider().then(c => {
+            this.setState({
+              Comp: c.default
+            });
+          });
+        }
+      }
+  
+      render() {
+        const { Comp } = this.state;
+        return Comp ? React.createElement(Comp, this.props, null) : null;
+      }
+    };
+`;
+
+export const initPage = async (rawSource, pathToMarkdown, options) => {
+  const { codeTabsComponent, source } = codeTabs(rawSource);
+  const imageRenderer = await createImageRenderer(rawSource, options);
+
   return {
-    // prettier-ignore
     pageStart: `
       import path from 'path';
       import React, { Component } from 'react';
       import makeClass from 'classnames';
       import { Link } from '@reach/router';
-      import Gist from 'react-gist';
-      import TweetEmbed from 'react-tweet-embed'
 
-      const imageSources = { ${imageSources.join(',')} };
-
-      const OptionalLink = ({ currentPage, ...props }) => {
-        let to = props.to;
-
-        if (to.includes('http')) {
-          return <a {...props} href={to} />
-        }
-
-        if (to[0] === '#') {
-          to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '.html')}') + to;
-        }
-
-        return <Link {...props} currentPage={currentPage} to={to} />;
-      }
-
-      const PluginProvider = ({plugins, name, options, children, ...props}) => {
-        let Plugin = plugins[name];
-        const pluginOptions = Plugin.options;
-
-        if (!Plugin) {
-          return <div />;
-        }
-
-        Plugin = Plugin.component;
-        return (
-          <Plugin
-            {...pluginOptions} 
-            options={options ? options.options : {}}
-            {...(options ? options.props : props)}
-            children={children}
-          />
-        );
-      };
-
-      class Details extends Component {
-        state = {
-          open: this.props.open
-        }
-
-        render() {
-          return (
-            <details open={this.state.open}>
-              {this.props.children}
-            </details>
-          )
-        }
-      }
-
+      ${createOptionalLink(pathToMarkdown, options)}
+      ${createPluginProvider()}
+      ${createDetailsComponent()}
       ${codeTabsComponent}
+      ${imageRenderer}
+      ${createLazyComponent()}
 
-      import IdealImage from 'react-ideal-image'
-
-      class LazyImageComponent extends React.Component {
-        state = {
-          image: ${options.static}
-            ? {
-              src: this.props.src.includes('//') ? this.props.src : path.join('${options.src}', this.props.src),
-              preSrc: this.props.src.includes('//') ? this.props.src : path.join('${options.src}', this.props.src)
-            }
-            : null,
-          ImageProvider: imageSources[this.props.src]
-        }
-
-        componentDidMount() {
-          if (!this.state.image && ${!options.static}) {
-            this.state.ImageProvider().then(c => {
-              this.setState({
-                image: c.default
-              });
-            });
-          }
-        }
-
-        render() {
-          let { image } = this.state;
-
-          const ImageComponent = ${options.static} ? 'img' : IdealImage;
-
-          return image ? (
-            <ImageComponent
-              {...this.props}
-              className='image'
-              placeholder={{lqip:image.preSrc}}
-              srcSet={[{src: image.src, width: image.width || 100}]}
-              src={image.src}
-              alt={this.props.alt}
-              width={image.width}
-              height={image.height}
-            />
-          ) : null;
-        }
-      }
+      const Gist = lazyComponent(() => import(/* webpackChunkName: "plugin-embed" */ 'react-gist'))
+      const TweetEmbed = lazyComponent(() => import(/* webpackChunkName: "plugin-embed" */ 'react-tweet-embed'))
     `,
     source
   };
@@ -433,14 +488,14 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
     ? (options.blogPosts.find(post => post.path === pathToMarkdown) || {}).birth
     : '';
   const card = `
-  <div class="card">
-    <div class="card-content">
-      <div class="blogBody">
-        
+    <div class="card">
+      <div class="card-content">
+        <div class="blogBody">
+          
+        </div>
       </div>
-    </div>
-  </div>    
-`;
+    </div>    
+  `;
   const $source = cheerio.load(`<div>${source}</div>`, libHTMLOptions);
   const $fullPage = cheerio.load(card, libHTMLOptions);
   const $stub = cheerio.load(card, libHTMLOptions);

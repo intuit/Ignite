@@ -44,7 +44,10 @@ const registerMarkdown = (entries, options) => {
       pathToMarkdown => `
         registerMarkdown(
           '${path.relative(options.src, pathToMarkdown)}',
-          () => import('${pathToMarkdown}')
+          () => import(/* webpackChunkName: "${path.basename(
+            pathToMarkdown,
+            '.md'
+          )}" */ '${pathToMarkdown}')
         );
       `
     )
@@ -61,7 +64,7 @@ const generatePlugins = plugins => {
         defaultImport = `
           registerPlugin(
             '${defaultImport}',
-            () => import('${path}'),
+            () => import(/* webpackChunkName: "plugin-${defaultImport}" */ '${path}'),
             options
           );
         `;
@@ -75,7 +78,7 @@ const generatePlugins = plugins => {
           importName => `
             registerPlugin(
               '${importName.trim()}',
-              () => import('${path}').then((res) => ({
+              () => import(/* webpackChunkName: "plugin-${importName.trim()}" */ '${path}').then((res) => ({
                 default: res['${importName.trim()}']
               })),
               options
@@ -268,7 +271,7 @@ const initLazyLoad = options => {
 
 const buildSearchIndex = (dir = __dirname) => {
   return `
-    import('${dir}/search').then((files) => {
+    import(/* webpackChunkName: "search-files" */ '${dir}/search').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   `;
