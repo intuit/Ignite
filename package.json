@@ -28,7 +28,7 @@
     "serve": "webpack-serve",
     "start": "npm run build -- -w",
     "build": "chmod 777 ./dist/ignite-cli.js && ./dist/ignite-cli.js",
-    "build:lib": "babel src -d dist --ignore '/__tests__/'",
+    "build:lib": "babel src -d dist --ignore '**/__tests__/'",
     "build:lib:watch": "npm run build:lib -- -w --verbose",
     "publish:docs": "npm run build -- --publish",
     "analyze": "npm run build -- --analyze"
