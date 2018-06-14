@@ -15,12 +15,12 @@ export default function(contentBuffer) {
     content = splice(
       content,
       content.indexOf('};') - 1,
-      `, "height": ${size.height}`
+      `, height: ${size.height}`
     );
     content = splice(
       content,
       content.indexOf('};') - 1,
-      `, "width": ${size.width}`
+      `, width: ${size.width}`
     );
   } else {
     const src = content.substring(
@@ -30,8 +30,8 @@ export default function(contentBuffer) {
 
     content = `
       module.exports = {
-        src: '${src}',
-        height: '${size.height}',
+        src: ${src},
+        height: ${size.height},
         width: ${size.width}
       }
     `;
