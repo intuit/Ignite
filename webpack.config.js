@@ -129,7 +129,6 @@ module.exports = function(options) {
         {
           test: /\.(gif|png|jpe?g)$/i,
           use: [
-            path.resolve(__dirname, './dist/loaders/probe-image-size.js'),
             {
               loader: 'lqip-loader',
               options: {
@@ -138,9 +137,10 @@ module.exports = function(options) {
               }
             },
             {
-              loader: 'file-loader',
+              loader: 'responsive-loader',
               options: {
-                name: '[path][name].[ext]'
+                sizes: [300, 600, 900, 1200],
+                name: '[path][name]-[width].[ext]'
               }
             },
             'image-webpack-loader'

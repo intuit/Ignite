@@ -236,6 +236,7 @@ p > code {
 
 :global .navbar-item img {
   max-height: 3rem;
+  height: 100%;
 }
 
 :global .headerLink {
