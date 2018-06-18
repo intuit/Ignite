@@ -91,7 +91,7 @@ module.exports = function(options) {
           exclude: /node_modules\/(?!.*ignite\/src)/,
           use: 'babel-loader'
         },
-        // Images - Might not be needed
+        // Images
         {
           test: /\.(gif|png|jpe?g)$/i,
           use: [
@@ -108,7 +108,8 @@ module.exports = function(options) {
               options: {
                 name: '[path][name].[ext]'
               }
-            }
+            },
+            'image-webpack-loader'
           ]
         },
         {
@@ -119,7 +120,8 @@ module.exports = function(options) {
               options: {
                 name: '[path][name].[ext]'
               }
-            }
+            },
+            'image-webpack-loader'
           ]
         },
         // CSS
@@ -132,7 +134,7 @@ module.exports = function(options) {
               options: {
                 modules: true,
                 importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64]',
+                localIdentName: '[name]_[local]_[sha1:hash:hex:4]',
                 sourceMap: true,
                 minimize: true
               }
