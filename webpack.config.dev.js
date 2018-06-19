@@ -95,13 +95,7 @@ module.exports = function(options) {
         {
           test: /\.(gif|png|jpe?g)$/i,
           use: [
-            {
-              loader: 'lqip-loader',
-              options: {
-                base64: true,
-                palette: false
-              }
-            },
+            'lqip-loader',
             {
               loader: 'responsive-loader',
               options: {
