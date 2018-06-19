@@ -25,6 +25,7 @@ const defaultLinkProps = {
 const GithubLink = ({ githubURL, onClick }) =>
   githubURL ? (
     <a
+      aria-label="Github Repo"
       onClick={onClick}
       className="navbar-item"
       href={githubURL}
@@ -47,7 +48,7 @@ GithubLink.defaultProps = {
 };
 
 const hasBlogLink = () =>
-  Object.values(window.configuration.markdown).find(([page]) =>
+  Object.values(window.configuration.markdown).find(page =>
     page.includes('blog/')
   );
 
@@ -102,7 +103,6 @@ class Header extends Component {
     const hasHomePage = window.configuration.markdown.find(
       ([key]) => key === path.join(process.env.baseURL, 'home.md')
     );
-
     return (
       <nav
         className={makeClass('navbar', styles.nav)}
