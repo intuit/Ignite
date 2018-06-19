@@ -91,11 +91,10 @@ module.exports = function(options) {
           exclude: /node_modules\/(?!.*ignite\/src)/,
           use: 'babel-loader'
         },
-        // Images - Might not be needed
+        // Images
         {
           test: /\.(gif|png|jpe?g)$/i,
           use: [
-            path.resolve(__dirname, './dist/loaders/probe-image-size.js'),
             {
               loader: 'lqip-loader',
               options: {
@@ -104,11 +103,13 @@ module.exports = function(options) {
               }
             },
             {
-              loader: 'file-loader',
+              loader: 'responsive-loader',
               options: {
-                name: '[path][name].[ext]'
+                sizes: [300, 600, 900, 1200],
+                name: '[path][name]-[width].[ext]'
               }
-            }
+            },
+            'image-webpack-loader'
           ]
         },
         {
@@ -119,7 +120,8 @@ module.exports = function(options) {
               options: {
                 name: '[path][name].[ext]'
               }
-            }
+            },
+            'image-webpack-loader'
           ]
         },
         // CSS
@@ -132,7 +134,7 @@ module.exports = function(options) {
               options: {
                 modules: true,
                 importLoaders: 1,
-                localIdentName: '[name]_[local]_[hash:base64]',
+                localIdentName: '[name]_[local]_[sha1:hash:hex:4]',
                 sourceMap: true,
                 minimize: true
               }

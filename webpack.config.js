@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
 
+const WebpackCdnPlugin = require('webpack-cdn-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -128,7 +129,6 @@ module.exports = function(options) {
         {
           test: /\.(gif|png|jpe?g)$/i,
           use: [
-            path.resolve(__dirname, './dist/loaders/probe-image-size.js'),
             {
               loader: 'lqip-loader',
               options: {
@@ -137,11 +137,13 @@ module.exports = function(options) {
               }
             },
             {
-              loader: 'file-loader',
+              loader: 'responsive-loader',
               options: {
-                name: '[path][name].[ext]'
+                sizes: [300, 600, 900, 1200],
+                name: '[path][name]-[width].[ext]'
               }
-            }
+            },
+            'image-webpack-loader'
           ]
         },
         {
@@ -152,7 +154,8 @@ module.exports = function(options) {
               options: {
                 name: '[path][name].[ext]'
               }
-            }
+            },
+            'image-webpack-loader'
           ]
         },
         // Javascript
@@ -246,6 +249,7 @@ module.exports = function(options) {
       }),
       new webpack.DefinePlugin({
         'process.env': {
+          NODE_ENV: JSON.stringify(options.mode),
           SEARCH: JSON.stringify(options.searchIndex),
           index: JSON.stringify(options.index),
           static: JSON.stringify(options.static),
@@ -266,7 +270,23 @@ module.exports = function(options) {
             from: path.join(options.src, '**/*.{jpg,png,gif}')
           }
         ]),
-
+      new WebpackCdnPlugin({
+        modules: {
+          react: [
+            {
+              name: 'react',
+              var: 'React',
+              path: `umd/react.${options.mode}.min.js`
+            },
+            {
+              name: 'react-dom',
+              var: 'ReactDOM',
+              path: `umd/react-dom.${options.mode}.min.js`
+            }
+          ]
+        },
+        publicPath: options.baseURL
+      }),
       options.analyze && new BundleAnalyzerPlugin(),
       ...options.webpackPlugins
     ].filter(Boolean)

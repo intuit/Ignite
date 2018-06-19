@@ -377,7 +377,6 @@ const createDetailsComponent = () => `
 
 const createImageRenderer = async (rawSource, options) => {
   const imageSources = await Promise.all(loadImages(rawSource));
-
   return `
     import IdealImage from 'react-ideal-image';
 
@@ -417,12 +416,21 @@ const createImageRenderer = async (rawSource, options) => {
           <ImageComponent
             {...this.props}
             className='image'
-            placeholder={{lqip:image.preSrc}}
-            srcSet={[{src: image.src, width: image.width || 100}]}
-            src={image.src}
+            src={image.src.src}
             alt={this.props.alt}
-            width={image.width}
-            height={image.height}
+            width={image.src.width || image.width}
+            height={image.src.height || image.height}
+            placeholder={{ lqip: image.preSrc }}
+            srcSet={image.src.images
+              ? image.src.images.map(i => ({
+                  ...i,
+                  src: i.path
+                }))
+              : [{
+                  src: image.src,
+                  width: image.width
+                }]
+            }
           />
         ) : null;
       }
@@ -628,8 +636,16 @@ export function homePage(source) {
     libHTMLOptions
   );
 
-  const contentRow =
-    '<div class="columns"><div class="home column content is-two-thirds-tablet is-three-quarters-desktop"></div></div>';
+  const contentRow = `
+    <div class="hero">
+      <div class="hero-body">
+        <div class="columns">
+          <div class="home column content is-two-thirds-tablet is-three-quarters-desktop">
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
   let $currentRow;
 
   while ($source('.source > :first-child').length > 0) {

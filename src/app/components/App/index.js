@@ -25,10 +25,15 @@ class App extends Component {
 
       if (hash && document.querySelector(hash)) {
         document.querySelector(hash).scrollIntoView({
+          block: 'start',
+          inline: 'nearest',
           behavior: 'smooth'
         });
       } else if (!hash) {
-        document.querySelector('body').scrollIntoView();
+        document.querySelector('body').scrollIntoView({
+          block: 'start',
+          inline: 'nearest'
+        });
       }
     });
   };
