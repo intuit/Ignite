@@ -417,7 +417,6 @@ const createImageRenderer = async (rawSource, options) => {
             {...this.props}
             className='image'
             src={image.src.src}
-            alt={this.props.alt}
             width={image.src.width || image.width}
             height={image.src.height || image.height}
             placeholder={{ lqip: image.preSrc }}
