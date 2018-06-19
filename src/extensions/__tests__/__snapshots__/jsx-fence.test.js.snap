@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`jsx - fence 1`] = `
+"<Foo />
+"
+`;
+
+exports[`jsx - fence 2`] = `
+"<p><code># something in a code block</code></p>
+"
+`;

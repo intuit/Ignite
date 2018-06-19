@@ -15,7 +15,7 @@ describe('parseArgs', () => {
     });
   });
 
-  describe('propsd', () => {
+  describe('props', () => {
     test('should parse strings', () => {
       expect(parseArgs('somePlugin name=Andrew')).toEqual({
         options: [],
