@@ -76,7 +76,7 @@ module.exports = function(options) {
               options
             },
             {
-              loader: path.resolve(__dirname, './dist/loaders/markdown-it.js'),
+              loader: 'markdown-it-vanilla-loader',
               options: markdownItConfig.generateConfig(options.plugins)
             },
             {
