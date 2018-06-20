@@ -302,7 +302,7 @@ const loadImages = rawSource => {
         resolve(
           `'${rawSrc}': () => Promise.resolve({
               default: {
-                src:'${src}',
+                src: { src: '${src}' },
                 preSrc: '${src}',
                 height: ${dimensions.height},
                 width: ${dimensions.width}
@@ -386,9 +386,11 @@ const createImageRenderer = async (rawSource, options) => {
       state = {
         image: ${options.static}
           ? {
-            src: this.props.src.includes('//') ? this.props.src : path.join('${
-              options.src
-            }', this.props.src),
+            src: {
+              src: this.props.src.includes('//') ? this.props.src : path.join('${
+                options.src
+              }', this.props.src)
+            },
             preSrc: this.props.src.includes('//') ? this.props.src : path.join('${
               options.src
             }', this.props.src)
@@ -415,7 +417,7 @@ const createImageRenderer = async (rawSource, options) => {
         return image ? (
           <ImageComponent
             {...this.props}
-            className='image'
+            className={makeClass('image', this.props.className)}
             src={image.src.src}
             width={image.src.width || image.width}
             height={image.src.height || image.height}

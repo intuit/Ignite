@@ -285,7 +285,7 @@ p > code {
 }
 
 :global .authorImage {
-  position: absolute;
+  position: absolute !important;
   top: -30px;
   left: 50%;
   width: 60px;
