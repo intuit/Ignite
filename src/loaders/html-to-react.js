@@ -232,9 +232,8 @@ export function codeTabs(source) {
 
   while (start !== -1) {
     const endString = '</CodeTabs>';
-    let end = source.indexOf('</CodeTabs>', start);
+    let end = source.indexOf(endString, start);
     let html = source.substring(start, end + endString.length);
-
     html = html.replace('CodeTabs', 'div className="codeTabs"');
     html = html.replace('CodeTabs', 'div');
 
@@ -287,7 +286,7 @@ function getSources(markup) {
   return sources;
 }
 
-const loadImages = rawSource => {
+export const loadImages = rawSource => {
   return getSources(rawSource).map(async src => {
     if (src.includes('//')) {
       const rawSrc = src;
@@ -647,7 +646,7 @@ export function homePage(source) {
       </div>
     </div>
   `;
-  let $currentRow;
+  let $currentRow = cheerio.load(contentRow, libHTMLOptions);
 
   while ($source('.source > :first-child').length > 0) {
     const isHero = $source('.source > :first-child').hasClass('hero');
@@ -693,9 +692,7 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
   );
 }
 
-export default async function(rawSource) {
-  const options = getOptions(this);
-  const pathToMarkdown = path.relative(options.src, this.resourcePath);
+export const determinePage = async (rawSource, pathToMarkdown, options) => {
   let { pageStart, source } = await initPage(
     rawSource,
     pathToMarkdown,
@@ -704,9 +701,9 @@ export default async function(rawSource) {
 
   if (pathToMarkdown === 'home.md') {
     source = homePage(source);
-  } else if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
+  } else if (pathToMarkdown.includes(path.join(options.src, 'blog/'))) {
     source = blogPost(source, pathToMarkdown, options);
-  } else if (detectIndex(this.resourcePath, pathToMarkdown, options)) {
+  } else if (detectIndex(pathToMarkdown, pathToMarkdown, options)) {
     source = index(source, pathToMarkdown, options);
   } else {
     source = markDownPage(source);
@@ -716,4 +713,10 @@ export default async function(rawSource) {
     ${pageStart}
     ${source}
   `;
+};
+
+export default async function(rawSource) {
+  const options = getOptions(this);
+  const pathToMarkdown = path.relative(options.src, this.resourcePath);
+  return determinePage(rawSource, pathToMarkdown, options);
 }

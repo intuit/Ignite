@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should render a search 1`] = `
+<div
+  className="navbar-item root"
+>
+  <div
+    className="control"
+  >
+    <input
+      className="input"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="Search"
+      type="text"
+    />
+  </div>
+</div>
+`;

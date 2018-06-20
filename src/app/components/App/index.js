@@ -60,7 +60,10 @@ class App extends Component {
         />
 
         {this.state.searchResults.length > 0 ? (
-          <SearchResults searchResults={this.state.searchResults} />
+          <SearchResults
+            searchResults={this.state.searchResults}
+            setResults={this.setSearchResults}
+          />
         ) : isHome ? (
           <Page plugins={this.props.plugins} className={styles.Page} />
         ) : isBlog ? (

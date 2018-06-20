@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders blog page 1`] = `
-<div>
+<div
+  className="root"
+>
   <Header
     location={
       Object {
@@ -16,7 +18,7 @@ exports[`App renders blog page 1`] = `
   <BlogPage
     Page={[Function]}
     blogHero={null}
-    className={null}
+    className="App"
     location={
       Object {
         "hash": "",
@@ -30,7 +32,9 @@ exports[`App renders blog page 1`] = `
 `;
 
 exports[`App renders first page at index if found 1`] = `
-<div>
+<div
+  className="root"
+>
   <Header
     location={
       Object {
@@ -44,7 +48,7 @@ exports[`App renders first page at index if found 1`] = `
   <DocsPage
     Page={[Function]}
     SidebarComponent={[Function]}
-    className={null}
+    className="App"
     location={
       Object {
         "hash": "#foo",
@@ -57,7 +61,9 @@ exports[`App renders first page at index if found 1`] = `
 `;
 
 exports[`App renders home page 1`] = `
-<div>
+<div
+  className="root"
+>
   <Header
     location={
       Object {
@@ -68,13 +74,16 @@ exports[`App renders home page 1`] = `
     setSearchResults={[Function]}
   />
   <home
+    className="Page"
     plugins={Array []}
   />
 </div>
 `;
 
 exports[`App renders matched page 1`] = `
-<div>
+<div
+  className="root"
+>
   <Header
     location={
       Object {
@@ -87,7 +96,7 @@ exports[`App renders matched page 1`] = `
   <DocsPage
     Page={[Function]}
     SidebarComponent={[Function]}
-    className={null}
+    className="App"
     location={
       Object {
         "pathname": "/foo",

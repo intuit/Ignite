@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BlogPage 1`] = `
+<div>
+  <BlogHero
+    blogHero={null}
+  />
+  <div
+    className="columns blog"
+  >
+    <div
+      className="column content is-two-thirds-tablet is-three-quarters-desktop"
+    >
+      <Page
+        className="Page"
+        plugins={Array []}
+      />
+    </div>
+  </div>
+</div>
+`;

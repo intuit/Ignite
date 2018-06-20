@@ -1,5 +1,248 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`generate should add blogPosts 1`] = `
+"
+    window.configuration = {
+      searchIndex: [],
+      markdown: [],
+      plugins: [],
+      setFirstLink() {
+        console.log('Called setFirstLink before it was configured');
+      },
+      setSearchIndex() {
+        console.log('Called setSearchIndex before it was configured');
+      }
+    };
+
+    import React from 'react';
+    import path from 'path';
+
+    const e = React.createElement;
+
+    function lazyLoad(CompProvider) {
+      return class extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            Comp: null
+          }
+        }
+
+        componentDidMount() {
+          if (!this.state.Comp) {
+            CompProvider().then(c => {
+              this.setState({
+                Comp: c.default
+              });
+            });
+          }
+        }
+
+        render() {
+          const { Comp } = this.state;
+          return Comp ? React.createElement(Comp, this.props, null) : null;
+        }
+      }
+    }
+
+    const INDEX_PAGE = 'index.md';
+
+    function trim(s, c) {
+      if (c === \\"]\\") c = \\"\\\\\\\\]\\";
+      if (c === \\"\\\\\\\\\\") c = \\"\\\\\\\\\\\\\\\\\\";
+      return s.replace(new RegExp(
+        \\"^[\\" + c + \\"]+|[\\" + c + \\"]+$\\", \\"g\\"
+      ), \\"\\");
+    }
+
+    function isIndex(p) {
+      return p.includes(INDEX_PAGE) && 
+        (!process.env.navItems || 
+          Object.values(process.env.navItems)
+            .map(item => {
+              return item === '/' ? INDEX_PAGE : path.join(trim(item, '/'), INDEX_PAGE);
+            })
+            .includes(p)
+          );
+    }
+
+    function registerMarkdown(markdownPath, provider) {
+      const comp = lazyLoad(provider);
+
+      if(isIndex(markdownPath)) {
+        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
+      } else {
+        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
+      }
+    }
+
+    function registerPlugin(name, provider, options) {
+      const comp = lazyLoad(provider);
+
+      window.configuration.plugins.push([
+        name,
+        lazyLoad(provider),
+        options
+      ]);
+    }
+  
+    import(/* webpackChunkName: \\"search-files\\" */ '/folder/search').then((files) => {
+      window.configuration.setSearchIndex(files.default);
+    })
+  
+        registerMarkdown(
+          '../../../../../docs/blog/Post/1.md',
+          () => import(/* webpackChunkName: \\"1\\" */ '/docs/blog/Post/1.md')
+        );
+      
+
+        registerMarkdown(
+          '../../../../../docs/blog/Post/1.md',
+          () => import(/* webpackChunkName: \\"1\\" */ '/docs/blog/Post/1.md')
+        );
+      
+        var options = {}
+
+        
+          registerPlugin(
+            'first',
+            () => import(/* webpackChunkName: \\"plugin-first\\" */ 'path/to/plugin.js'),
+            options
+          );
+        
+
+        
+      
+
+        var options = { 'options': '1337' };
+
+        
+          registerPlugin(
+            'second',
+            () => import(/* webpackChunkName: \\"plugin-second\\" */ 'path/to/another-plugin.js'),
+            options
+          );
+        
+
+        
+      
+
+        var options = {}
+
+        
+          registerPlugin(
+            'npm',
+            () => import(/* webpackChunkName: \\"plugin-npm\\" */ 'npm-package'),
+            options
+          );
+        
+
+        
+      
+
+        var options = {}
+
+        
+
+        
+            registerPlugin(
+              'es6',
+              () => import(/* webpackChunkName: \\"plugin-es6\\" */ 'modules').then((res) => ({
+                default: res['es6']
+              })),
+              options
+            );
+          
+      
+
+        var options = {}
+
+        
+          registerPlugin(
+            'Default',
+            () => import(/* webpackChunkName: \\"plugin-Default\\" */ 'another-package'),
+            options
+          );
+        
+
+        
+            registerPlugin(
+              'AnExport',
+              () => import(/* webpackChunkName: \\"plugin-AnExport\\" */ 'another-package').then((res) => ({
+                default: res['AnExport']
+              })),
+              options
+            );
+          
+
+            registerPlugin(
+              'AnotherExport',
+              () => import(/* webpackChunkName: \\"plugin-AnotherExport\\" */ 'another-package').then((res) => ({
+                default: res['AnotherExport']
+              })),
+              options
+            );
+          
+      
+    import Waypoint from 'react-waypoint';
+
+    class blogIndex extends React.Component {
+      constructor(props) {
+        super(props)
+
+        this.showMore = this.showMore.bind(this)
+        this.scrollTop = this.scrollTop.bind(this)
+        this.toggleScrollTopButton = this.toggleScrollTopButton.bind(this)
+        this.state = {
+          shownPosts: 10,
+          showScrollButton: false,
+        };
+      }
+
+      componentDidMount() {
+        window.configuration.setBlogHero(null);
+      }
+
+      scrollTop() {
+        document.querySelector('body').scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+
+      toggleScrollTopButton(isVisible) {
+        this.setState({
+          showScrollButton: isVisible
+        });
+      }
+
+      showMore() {
+        this.setState({
+          shownPosts: this.state.shownPosts + 10
+        });
+      }
+
+      render() {
+        return e('div', null, [
+          e(Waypoint, { key: 'Waypoint', onLeave: () => this.toggleScrollTopButton(true), onEnter: () => this.toggleScrollTopButton(false) }, e('div')),
+          [\\"../../../../../docs/blog/Post/1.md\\",\\"../../../../../docs/blog/Post/1.md\\"].slice(0, this.state.shownPosts).map((blogFile, index) => {
+            const BlogPost = window.configuration.markdown.find(page => page[0] === '/' + \`\${blogFile}\`)[1]
+            return e(BlogPost, { stub: true, atIndex: true, key: blogFile });
+          }),
+          2 > this.state.shownPosts && e('div', { className: 'showMore' }, e('button', { className: 'button', onClick: this.showMore, key: 'showMore' } , 'Load More')),
+          this.state.showScrollButton && e('div', { className: 'backToTop notification is-info', onClick: this.scrollTop, key: 'scrollButton' }, [
+            e('i', { className: 'fas fa-angle-up', key: 'uparrow' }),
+            e('span', { className: 'notification is-light', key: 'toTop', style: { paddingRight: '1.5rem', borderBottomLeftRadius: 0, borderTopLeftRadius: 0, boxShadow: 'none', border: 'none' } }, 'Back to Top')
+          ])
+        ]);
+      }
+    }
+
+    registerMarkdown('blog/index.md', async () => ({ 
+      default: blogIndex
+    }));
+  "
+`;
+
 exports[`generate should add markdown 1`] = `
 "
     window.configuration = {

@@ -6344,6 +6344,13 @@ jest-config@^23.1.0:
     jest-validate "^23.0.1"
     pretty-format "^23.0.1"
 
+jest-css-modules-transform@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.intuit.net/j/jest-css-modules-transform/_attachments/jest-css-modules-transform-2.0.0.tgz#4beb6a443d3b48de4383e27a055fe347f8c400ac"
+  dependencies:
+    postcss "^6.0.22"
+    postcss-nested "^3.0.0"
+
 jest-css-modules@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/jest-css-modules/-/jest-css-modules-1.1.0.tgz#19332cf767618e6052f0900de25e6b8859e65b95"

@@ -41,7 +41,7 @@ export async function initPlugins(options) {
           pluginOptions
         );
       } catch (err) {
-        console.error(err, '');
+        throw new TypeError(err);
       }
     }
   });
@@ -49,7 +49,7 @@ export async function initPlugins(options) {
   return options;
 }
 
-export async function blogPosts(options) {
+export async function initBlogPosts(options) {
   let blogPosts = await globby([path.join(options.src, 'blog/**/*.md')]);
 
   if (blogPosts.length === 0) {
@@ -61,20 +61,24 @@ export async function blogPosts(options) {
       .map(blogFile => path.relative(options.src, blogFile))
       .map(async blogFile => {
         try {
-          const docLog = await git().log({ file: 'docs/' + blogFile });
+          const docLog = await git().log({
+            file: path.join(options.src, blogFile)
+          });
           const birth = docLog.all[docLog.all.length - 1].date;
-
           return {
             path: blogFile,
             birth: Number(dayjs(birth))
           };
         } catch (error) {
-          return {};
+          console.error(error);
+          return {
+            path: blogFile
+          };
         }
       })
   );
 
-  return blogPosts;
+  return blogPosts.sort((a, b) => a.birth > b.birth);
 }
 
 export function getAuthor() {
@@ -102,7 +106,7 @@ export const defaults = {
   bulmaTheme: 'default'
 };
 
-function initBuildMessages(options) {
+export function initBuildMessages(options) {
   if (options.watch) {
     options = Object.assign({}, options, {
       mode: 'development',
@@ -150,28 +154,28 @@ function publish(options, user) {
   );
 }
 
-async function initSearchIndex(options) {
+export async function initSearchIndex(options) {
   const entries = await globby([path.join(options.src, '**/*.md')]);
   const files = [];
 
   entries.forEach(entry => {
-    if (fs.existsSync(entry)) {
-      const pageContents = fs.readFileSync(entry, 'utf8');
-      const pagePath = path.relative(options.src, entry);
+    const pageContents = fs.readFileSync(entry, 'utf8');
+    const pagePath = path.relative(options.src, entry);
 
-      files.push({
-        id: pagePath,
-        body: transform(pageContents, entry, options)
-      });
-    }
+    files.push({
+      id: pagePath,
+      body: transform(pageContents, entry, options)
+    });
   });
 
-  return files;
+  return files.sort((a, b) => a.id > b.id);
 }
 
-async function initOptions(options) {
+export async function initOptions(options) {
   const explorer = cosmiconfig('ignite');
   const igniteRc = explorer.searchSync();
+
+  options = Object.assign({}, defaults, options);
 
   if (igniteRc) {
     options = Object.assign({}, options, igniteRc.config);
@@ -182,14 +186,14 @@ async function initOptions(options) {
   });
 
   options = initBuildMessages(options);
-  options.blogPosts = await blogPosts(options);
+  options.blogPosts = await initBlogPosts(options);
   options.searchIndex = await initSearchIndex(options);
 
   if (options.plugins) {
     options = await initPlugins(options);
   }
 
-  return Object.assign({}, defaults, options);
+  return options;
 }
 
 export default async function build(options) {

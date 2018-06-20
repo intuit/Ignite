@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`initOptions uses rc file 1`] = `
+Object {
+  "baseURL": "/pages/Fuego/Ignite/",
+  "blogPosts": null,
+  "bulmaTheme": "default",
+  "codeStyle": "foundation",
+  "color": "auto",
+  "compilationSuccessInfo": Object {
+    "messages": Array [
+      "Documentation built!",
+    ],
+    "notes": Array [
+      "Bundled documentation stored in '_ignite/'.",
+      "Run \`ignite --publish\` to publish documentation to github-pages.",
+    ],
+  },
+  "dst": "_ignite/",
+  "githubURL": "https://github.intuit.com/Fuego/Ignite",
+  "index": "index.md",
+  "logo": "logo.svg",
+  "mode": "production",
+  "plugins": Array [
+    Array [
+      "test",
+      "./src/extensions/testExtension",
+      Object {
+        "_initData": Object {
+          "data": "foo",
+          "nested": Object {
+            "deeply": Object {
+              "func": [Function],
+              "value": "foo",
+            },
+          },
+        },
+        "array": Array [
+          "one",
+          "one",
+        ],
+        "url": "google.com",
+      },
+    ],
+    Array [
+      "Gist",
+      "react-gist",
+      Object {},
+    ],
+    Array [
+      "ColorPicker, { SketchPicker, AlphaPicker }",
+      "react-color",
+      Object {},
+    ],
+  ],
+  "port": 8008,
+  "searchIndex": Array [
+    Object {
+      "body": "# Some Other Page
+",
+      "id": "Root1/Another.md",
+    },
+    Object {
+      "body": "# First Page
+",
+      "id": "Root1/Page.md",
+    },
+    Object {
+      "body": "- [First Page](/examples/multi-root/docs/Root1/Page.html)
+- [Another Page](/examples/multi-root/docs/Root1/Another.html)
+",
+      "id": "Root1/index.md",
+    },
+    Object {
+      "body": "# Second Page
+",
+      "id": "Root2/Page.md",
+    },
+    Object {
+      "body": "- [Second Page](/examples/multi-root/docs/Root2/Page.html)
+",
+      "id": "Root2/index.md",
+    },
+  ],
+  "selectedColor": "auto",
+  "src": "/Users/alisowski/Documents/Ignite/examples/multi-root/docs",
+  "static": false,
+  "title": "Ignite",
+  "webpackPlugins": Array [],
+}
+`;
+
+exports[`initPlugins should call init function if present 1`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "pluginName",
+      "/Users/alisowski/Documents/Ignite/src/extensions/testExtension",
+      Object {
+        "_initData": Object {
+          "data": "foo",
+          "nested": Object {
+            "deeply": Object {
+              "func": [Function],
+              "value": "foo",
+            },
+          },
+        },
+        "foo": "bar",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`initSearchIndex 1`] = `
+Array [
+  Object {
+    "body": "# Some Other Page
+",
+    "id": "Root1/Another.md",
+  },
+  Object {
+    "body": "# First Page
+",
+    "id": "Root1/Page.md",
+  },
+  Object {
+    "body": "- [First Page](/examples/multi-root/docs/Root1/Page.html)
+- [Another Page](/examples/multi-root/docs/Root1/Another.html)
+",
+    "id": "Root1/index.md",
+  },
+  Object {
+    "body": "# Second Page
+",
+    "id": "Root2/Page.md",
+  },
+  Object {
+    "body": "- [Second Page](/examples/multi-root/docs/Root2/Page.html)
+",
+    "id": "Root2/index.md",
+  },
+]
+`;

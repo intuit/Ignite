@@ -48,7 +48,7 @@ describe('header', () => {
   });
 
   test('render active for blogs', () => {
-    window.configuration = { markdown: ['/blog/page.md'] };
+    window.configuration = { markdown: [['/blog/page.md']] };
     const { getByText } = render(
       <Header location={{ hash: '', search: '', pathname: '/blog/page.md' }} />
     );
@@ -69,17 +69,5 @@ describe('header', () => {
     expect(snapshotDiff(Container1, Container2)).toMatchSnapshot();
     fireEvent.click(getByLabelText2('menu'));
     expect(snapshotDiff(Container1, Container2)).toMatchSnapshot();
-  });
-
-  test('other links close menu', () => {
-    const { getByText, container: baseline, debug } = render(<Header />);
-
-    console.log(debug(), getByText('Blog'));
-    // const { getByLabelText, container } = render(<Header />);
-    // fireEvent.click(getByLabelText('menu'));
-    // expect(snapshotDiff(baseline, container)).toMatchSnapshot();
-
-    // fireEvent.click(getByLabelText('Github Repo'));
-    // expect(snapshotDiff(baseline, container)).toMatchSnapshot();
   });
 });
