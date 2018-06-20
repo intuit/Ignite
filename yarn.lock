@@ -7425,6 +7425,13 @@ markdown-it-table-of-contents@0.3.6:
     lodash.assign "~4.2.0"
     string "~3.3.3"
 
+markdown-it-vanilla-loader@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npmjs.intuit.net/m/markdown-it-vanilla-loader/_attachments/markdown-it-vanilla-loader-1.0.9.tgz#cc3e6c9d0d1de47a849b2a0d5f7f48572ab09614"
+  dependencies:
+    loader-utils "^1.1.0"
+    markdown-it "^8.4.1"
+
 markdown-it@^8.4.1:
   version "8.4.1"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.1.tgz#206fe59b0e4e1b78a7c73250af9b34a4ad0aaf44"

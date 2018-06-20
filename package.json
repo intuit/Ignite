@@ -92,6 +92,7 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "markdown-it-table-of-contents": "0.3.6",
+    "markdown-it-vanilla-loader": "1.0.9",
     "mini-css-extract-plugin": "^0.4.0",
     "postcss-color-rgba-fallback": "^3.0.0",
     "postcss-initial": "^2.0.0",
