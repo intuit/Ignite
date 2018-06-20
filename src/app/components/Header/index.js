@@ -25,7 +25,6 @@ const defaultLinkProps = {
 const GithubLink = ({ githubURL, onClick }) =>
   githubURL ? (
     <a
-      aria-label="Github Repo"
       onClick={onClick}
       className="navbar-item"
       href={githubURL}
@@ -48,7 +47,7 @@ GithubLink.defaultProps = {
 };
 
 const hasBlogLink = () =>
-  Object.values(window.configuration.markdown).find(page =>
+  Object.values(window.configuration.markdown).find(([page]) =>
     page.includes('blog/')
   );
 
