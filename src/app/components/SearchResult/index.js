@@ -20,7 +20,7 @@ const SearchResult = ({ fileName, baseURL, results, setResults }) => (
         {fileName}
       </Link>
 
-      {results.map(result => (
+      {[...results].map(result => (
         <div key={result}>
           <p
             dangerouslySetInnerHTML={{

@@ -15,6 +15,10 @@ class App extends Component {
     searchResults: []
   };
 
+  componentDidMount() {
+    document.title = process.env.title;
+  }
+
   componentDidUpdate() {
     this.jumpToHash();
   }

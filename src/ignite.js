@@ -89,6 +89,7 @@ export function getAuthor() {
 }
 
 export const defaults = {
+  open: true,
   mode: 'production',
   webpackPlugins: [],
   plugins: [],
@@ -173,8 +174,7 @@ export async function initSearchIndex(options) {
 
 export async function initOptions(options) {
   const explorer = cosmiconfig('ignite');
-  const igniteRc = explorer.searchSync();
-
+  const igniteRc = explorer.searchSync(options.src);
   options = Object.assign({}, defaults, options);
 
   if (igniteRc) {
@@ -221,7 +221,8 @@ export default async function build(options) {
   if (options.watch) {
     const webpackConfig = configDev(options);
 
-    serve({
+    return serve({
+      open: options.open,
       config: webpackConfig,
       port: options.port,
       logLevel: 'silent',
@@ -245,16 +246,18 @@ export default async function build(options) {
       },
       on: {
         listening: () => {
-          execSync('ps cax | grep "Google Chrome"');
-          execSync(
-            `osascript ../src/chrome.applescript "${encodeURI(
-              `http://localhost:${options.port}`
-            )}"`,
-            {
-              cwd: __dirname,
-              stdio: 'ignore'
-            }
-          );
+          if (options.open) {
+            execSync('ps cax | grep "Google Chrome"');
+            execSync(
+              `osascript ../src/chrome.applescript "${encodeURI(
+                `http://localhost:${options.port}`
+              )}"`,
+              {
+                cwd: __dirname,
+                stdio: 'ignore'
+              }
+            );
+          }
         }
       }
     });
