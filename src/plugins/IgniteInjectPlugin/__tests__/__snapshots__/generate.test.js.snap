@@ -48,8 +48,6 @@ exports[`generate should add blogPosts 1`] = `
     const INDEX_PAGE = 'index.md';
 
     function trim(s, c) {
-      if (c === \\"]\\") c = \\"\\\\\\\\]\\";
-      if (c === \\"\\\\\\\\\\") c = \\"\\\\\\\\\\\\\\\\\\";
       return s.replace(new RegExp(
         \\"^[\\" + c + \\"]+|[\\" + c + \\"]+$\\", \\"g\\"
       ), \\"\\");
@@ -291,8 +289,6 @@ exports[`generate should add markdown 1`] = `
     const INDEX_PAGE = 'index.md';
 
     function trim(s, c) {
-      if (c === \\"]\\") c = \\"\\\\\\\\]\\";
-      if (c === \\"\\\\\\\\\\") c = \\"\\\\\\\\\\\\\\\\\\";
       return s.replace(new RegExp(
         \\"^[\\" + c + \\"]+|[\\" + c + \\"]+$\\", \\"g\\"
       ), \\"\\");
@@ -394,8 +390,6 @@ exports[`generate should add plugins 1`] = `
     const INDEX_PAGE = 'index.md';
 
     function trim(s, c) {
-      if (c === \\"]\\") c = \\"\\\\\\\\]\\";
-      if (c === \\"\\\\\\\\\\") c = \\"\\\\\\\\\\\\\\\\\\";
       return s.replace(new RegExp(
         \\"^[\\" + c + \\"]+|[\\" + c + \\"]+$\\", \\"g\\"
       ), \\"\\");

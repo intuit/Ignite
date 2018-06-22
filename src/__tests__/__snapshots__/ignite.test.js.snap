@@ -36,7 +36,7 @@ Object {
       "id": "Root1/Another.md",
     },
     Object {
-      "body": "# First Page /.firstPage\\\\
+      "body": "# First Page /.firstPage/
 ",
       "id": "Root1/Page.md",
     },
@@ -47,7 +47,7 @@ Object {
       "id": "Root1/index.md",
     },
     Object {
-      "body": "# Second Page /.secondPage\\\\
+      "body": "# Second Page /.secondPage/
 ",
       "id": "Root2/Page.md",
     },
@@ -58,7 +58,7 @@ Object {
     },
   ],
   "selectedColor": "auto",
-  "src": "/Users/alisowski/Documents/Ignite/examples/multi-root/docs",
+  "src": "<PROJECT_ROOT>/examples/multi-root/docs",
   "static": false,
   "title": "Multi Root",
   "webpackPlugins": Array [],
@@ -70,7 +70,7 @@ Object {
   "plugins": Array [
     Array [
       "pluginName",
-      "/Users/alisowski/Documents/Ignite/src/extensions/testExtension",
+      "<PROJECT_ROOT>/src/extensions/testExtension",
       Object {
         "_initData": Object {
           "data": "foo",
@@ -96,7 +96,7 @@ Array [
     "id": "Root1/Another.md",
   },
   Object {
-    "body": "# First Page /.firstPage\\\\
+    "body": "# First Page /.firstPage/
 ",
     "id": "Root1/Page.md",
   },
@@ -107,7 +107,7 @@ Array [
     "id": "Root1/index.md",
   },
   Object {
-    "body": "# Second Page /.secondPage\\\\
+    "body": "# Second Page /.secondPage/
 ",
     "id": "Root2/Page.md",
   },
