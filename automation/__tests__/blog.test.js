@@ -1,12 +1,15 @@
 import start from '../utils/start';
-import visit from '../utils/visit';
+import createPage from '../utils/create-page';
 
 describe('Blog', () => {
+  let visit;
   let docs;
 
   beforeAll(async () => {
+    const port = 8000;
     jest.setTimeout(10 * 1000);
-    docs = await start('examples/blog/docs');
+    docs = await start(port, 'examples/blog/docs');
+    visit = path => createPage(port, path);
   });
 
   afterAll(() => docs.close());
