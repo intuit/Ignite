@@ -1,5 +1,6 @@
+/* global browser */
+
 import url from 'url';
-import nightmare from 'nightmare';
 
 const BASE_URL = url.format({
   protocol: process.env.PROTOCOL || 'http',
@@ -7,7 +8,11 @@ const BASE_URL = url.format({
   port: process.env.PORT || 8008
 });
 
-export default function visit(path = '') {
+export default async function visit(path = '') {
   const location = url.resolve(BASE_URL, path);
-  return nightmare({ show: true }).goto(location);
+  const page = await browser.newPage();
+
+  await page.goto(location);
+
+  return page;
 }

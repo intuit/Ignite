@@ -12,23 +12,21 @@ describe('Blog', () => {
   afterAll(() => docs.close());
 
   test('should display correct title', async () => {
-    const docTitle = await visit('/')
-      .evaluate(() => document.title)
-      .end();
+    const page = await visit('/');
+    const docTitle = await page.evaluate(() => document.title);
 
     expect(docTitle).toBe('Blog');
   });
 
-  // test('should display correct title', async () => {
-  //   const blogPosts = await visit('/')
-  //     .click('.navbar-burger')
-  //     .wait(2000)
-  //     .click('.navbar-end a:nth-of-type(2)')
-  //     .wait(2000)
-  //     .evaluate(() => document.querySelectorAll('.blogPost'))
-  //     .end();
+  test('should display correct title', async () => {
+    const page = await visit('/');
 
-  //   console.log(blogPosts);
-  //   expect(blogPosts).toBe(2);
-  // });
+    await page.click('.navbar-burger');
+    await page.click('.navbar-end a:nth-of-type(2)');
+    await page.waitFor('.blogIndex');
+
+    const blogPosts = await page.$$('.blogPost');
+
+    expect(blogPosts.length).toBe(2);
+  });
 });
