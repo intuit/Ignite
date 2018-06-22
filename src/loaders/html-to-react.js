@@ -692,7 +692,12 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
   );
 }
 
-export const determinePage = async (rawSource, pathToMarkdown, options) => {
+export const determinePage = async (
+  rawSource,
+  resourcePath,
+  pathToMarkdown,
+  options
+) => {
   let { pageStart, source } = await initPage(
     rawSource,
     pathToMarkdown,
@@ -701,9 +706,9 @@ export const determinePage = async (rawSource, pathToMarkdown, options) => {
 
   if (pathToMarkdown === 'home.md') {
     source = homePage(source);
-  } else if (pathToMarkdown.includes(path.join(options.src, 'blog/'))) {
+  } else if (resourcePath.includes(path.join(options.src, 'blog/'))) {
     source = blogPost(source, pathToMarkdown, options);
-  } else if (detectIndex(pathToMarkdown, pathToMarkdown, options)) {
+  } else if (detectIndex(resourcePath, pathToMarkdown, options)) {
     source = index(source, pathToMarkdown, options);
   } else {
     source = markDownPage(source);
@@ -718,5 +723,5 @@ export const determinePage = async (rawSource, pathToMarkdown, options) => {
 export default async function(rawSource) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
-  return determinePage(rawSource, pathToMarkdown, options);
+  return determinePage(rawSource, this.resourcePath, pathToMarkdown, options);
 }
