@@ -21,63 +21,72 @@ describe('Home Page', () => {
     expect(docTitle).toBe('Home Page');
   });
 
-  // test('should have a home page linked to in the brand', async () => {
-  //   const heroTitle = await visit('/')
-  //     .click('.navbar-brand .navbar-item')
-  //     .wait('.homePage')
-  //     .evaluate(() => document.querySelector('.hero .title').innerText)
-  //     .end();
+  test('should have a home page linked to in the brand', async () => {
+    const page = await visit('/');
 
-  //   expect(heroTitle).toBe('Home Page');
-  // });
+    await page.click('.navbar-brand .navbar-item');
+    await page.waitFor('.homePage');
 
-  // test('should have multiple docs pages', async () => {
-  //   const page = visit('/');
+    const heroTitle = await page.evaluate(
+      () => document.querySelector('.hero .title').textContent
+    );
 
-  //   let pageTitle = await page.evaluate(
-  //     () => document.querySelector('.content h1').innerText
-  //   );
+    expect(heroTitle).toBe('Home Page');
+  });
 
-  //   expect(pageTitle).toBe('A page of Content');
+  test('should have multiple docs pages', async () => {
+    const page = await visit('/');
 
-  //   pageTitle = await page
-  //     .click('.menu-list li:nth-child(2) a')
-  //     .wait('.menu-list li:nth-child(2) a.is-active')
-  //     .evaluate(() => document.querySelector('.content h1').innerText);
+    let pageTitle = await page.evaluate(
+      () => document.querySelector('.content h1').textContent
+    );
 
-  //   expect(pageTitle).toBe('Another Title');
+    expect(pageTitle).toBe('A page of Content');
 
-  //   pageTitle = await page
-  //     .click('.menu-list li:nth-child(1) a')
-  //     .wait('.menu-list li:nth-child(1) a.is-active')
-  //     .evaluate(() => document.querySelector('.content h1').innerText)
-  //     .end();
+    await page.click('.menu-list li:nth-child(2) a');
+    await page.waitFor('.menu-list li:nth-child(2) a.is-active');
 
-  //   expect(pageTitle).toBe('A page of Content');
-  // });
+    pageTitle = await page.evaluate(
+      () => document.querySelector('.content h1').textContent
+    );
 
-  // test('search bar works', async () => {
-  //   const page = visit('/');
+    expect(pageTitle).toBe('Another Title');
 
-  //   const heroTitle = await page
-  //     .click('.navbar-burger')
-  //     .type('input', 'page')
-  //     .wait(100) // bug #151
-  //     .click('.card a')
-  //     .wait('.homePage')
-  //     .evaluate(() => document.querySelector('.hero .title').innerText);
+    await page.click('.menu-list li:nth-child(1) a');
+    await page.waitFor('.menu-list li:nth-child(1) a.is-active');
 
-  //   expect(heroTitle).toBe('Home Page');
+    pageTitle = await page.evaluate(
+      () => document.querySelector('.content h1').innerText
+    );
 
-  //   const pageTitle = await page
-  //     .type('input', false)
-  //     .type('input', 'page')
-  //     .wait(1000) // bug #151
-  //     .click('.card:nth-child(3) a')
-  //     .wait('.content')
-  //     .evaluate(() => document.querySelector('.content h1').innerText)
-  //     .end();
+    expect(pageTitle).toBe('A page of Content');
+  });
 
-  //   expect(pageTitle).toBe('A page of Content');
-  // });
+  test('search bar works', async () => {
+    const page = await visit('/');
+
+    await page.click('.navbar-burger');
+    await page.type('input', 'page');
+    await page.click('.card a');
+    await page.waitFor('.homePage');
+
+    const heroTitle = await page.evaluate(
+      () => document.querySelector('.hero .title').innerText
+    );
+
+    expect(heroTitle).toBe('Home Page');
+
+    await page.click('input', { clickCount: 3 });
+    await page.keyboard.press('Backspace');
+    await page.type('input', 'page');
+    await page.waitFor('.card:nth-child(3) a');
+    await page.click('.card:nth-child(3) a');
+    await page.waitFor('.content');
+
+    const pageTitle = await page.evaluate(
+      () => document.querySelector('.content h1').innerText
+    );
+
+    expect(pageTitle).toBe('A page of Content');
+  });
 });

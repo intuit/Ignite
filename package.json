@@ -25,7 +25,7 @@
     "lint:js": "xo",
     "lint:css": "stylelint 'src/**/*.css'",
     "test": "jest --roots src",
-    "test:automation": "jest --roots automation --preset jest-puppeteer",
+    "test:automation": "jest --roots automation --preset jest-puppeteer --runInBand --coverage=false",
     "serve": "webpack-serve",
     "start": "npm run build -- -w",
     "build": "chmod 777 ./dist/ignite-cli.js && ./dist/ignite-cli.js",
