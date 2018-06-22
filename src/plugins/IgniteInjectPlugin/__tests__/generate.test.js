@@ -1,4 +1,7 @@
+import path from 'path';
 import generate, { stringify } from '../generate';
+
+path.relative = (p, p1) => `${p1}`;
 
 test('stringify', () => {
   expect(
@@ -18,7 +21,7 @@ test('stringify', () => {
 
 describe('generate', () => {
   const options = {
-    src: 'docs/',
+    src: '/docs/',
     baseURL: '/',
     index: 'index.md',
     dir: '/folder'

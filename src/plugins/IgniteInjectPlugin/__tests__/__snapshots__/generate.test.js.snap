@@ -91,13 +91,13 @@ exports[`generate should add blogPosts 1`] = `
     })
   
         registerMarkdown(
-          '../../../../../docs/blog/Post/1.md',
+          '/docs/blog/Post/1.md',
           () => import(/* webpackChunkName: \\"1\\" */ '/docs/blog/Post/1.md')
         );
       
 
         registerMarkdown(
-          '../../../../../docs/blog/Post/1.md',
+          '/docs/blog/Post/1.md',
           () => import(/* webpackChunkName: \\"1\\" */ '/docs/blog/Post/1.md')
         );
       
@@ -222,9 +222,9 @@ exports[`generate should add blogPosts 1`] = `
       }
 
       render() {
-        return e('div', null, [
+        return e('div', { className: 'blogIndex' }, [
           e(Waypoint, { key: 'Waypoint', onLeave: () => this.toggleScrollTopButton(true), onEnter: () => this.toggleScrollTopButton(false) }, e('div')),
-          [\\"../../../../../docs/blog/Post/1.md\\",\\"../../../../../docs/blog/Post/1.md\\"].slice(0, this.state.shownPosts).map((blogFile, index) => {
+          [\\"/docs/blog/Post/1.md\\",\\"/docs/blog/Post/1.md\\"].slice(0, this.state.shownPosts).map((blogFile, index) => {
             const BlogPost = window.configuration.markdown.find(page => page[0] === '/' + \`\${blogFile}\`)[1]
             return e(BlogPost, { stub: true, atIndex: true, key: blogFile });
           }),
@@ -334,13 +334,13 @@ exports[`generate should add markdown 1`] = `
     })
   
         registerMarkdown(
-          '../path/to/markdown.md',
+          'path/to/markdown.md',
           () => import(/* webpackChunkName: \\"markdown\\" */ 'path/to/markdown.md')
         );
       
 
         registerMarkdown(
-          '../path/to/another-markdown.md',
+          'path/to/another-markdown.md',
           () => import(/* webpackChunkName: \\"another-markdown\\" */ 'path/to/another-markdown.md')
         );
       "
