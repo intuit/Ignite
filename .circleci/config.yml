@@ -15,16 +15,16 @@ jobs:
     steps:
       - run: mkdir ~/.ssh && ssh-keyscan -t rsa github.intuit.com >> ~/.ssh/known_hosts
       - checkout
-      - restore_cache:
-          keys: 
-            # # Find a cache corresponding to this specific package.json checksum
-            # # when this file is changed, this key will fail
-            - ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-            - ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - ignite-{{ .Branch }}
-            # # Find the most recent cache used from any branch
-            - ignite-master
-            - ignite-
+      # - restore_cache:
+      #     keys: 
+      #       # # Find a cache corresponding to this specific package.json checksum
+      #       # # when this file is changed, this key will fail
+      #       - ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+      #       - ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #       - ignite-{{ .Branch }}
+      #       # # Find the most recent cache used from any branch
+      #       - ignite-master
+      #       - ignite-
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
