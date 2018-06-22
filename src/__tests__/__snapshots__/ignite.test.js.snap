@@ -2,7 +2,7 @@
 
 exports[`initOptions uses rc file 1`] = `
 Object {
-  "baseURL": "/pages/Fuego/Ignite/",
+  "baseURL": "/",
   "blogPosts": null,
   "bulmaTheme": "default",
   "codeStyle": "foundation",
@@ -17,42 +17,17 @@ Object {
     ],
   },
   "dst": "_ignite/",
-  "githubURL": "https://github.intuit.com/Fuego/Ignite",
   "index": "index.md",
+  "log": true,
   "logo": "logo.svg",
   "mode": "production",
-  "plugins": Array [
-    Array [
-      "test",
-      "./src/extensions/testExtension",
-      Object {
-        "_initData": Object {
-          "data": "foo",
-          "nested": Object {
-            "deeply": Object {
-              "func": [Function],
-              "value": "foo",
-            },
-          },
-        },
-        "array": Array [
-          "one",
-          "one",
-        ],
-        "url": "google.com",
-      },
-    ],
-    Array [
-      "Gist",
-      "react-gist",
-      Object {},
-    ],
-    Array [
-      "ColorPicker, { SketchPicker, AlphaPicker }",
-      "react-color",
-      Object {},
-    ],
-  ],
+  "navItems": Object {
+    "First": "/Root1",
+    "Second": "/Root2",
+    "root": "/Root1",
+  },
+  "open": true,
+  "plugins": Array [],
   "port": 8008,
   "searchIndex": Array [
     Object {
@@ -61,7 +36,7 @@ Object {
       "id": "Root1/Another.md",
     },
     Object {
-      "body": "# First Page
+      "body": "# First Page /.firstPage\\\\
 ",
       "id": "Root1/Page.md",
     },
@@ -72,7 +47,7 @@ Object {
       "id": "Root1/index.md",
     },
     Object {
-      "body": "# Second Page
+      "body": "# Second Page /.secondPage\\\\
 ",
       "id": "Root2/Page.md",
     },
@@ -85,7 +60,7 @@ Object {
   "selectedColor": "auto",
   "src": "/Users/alisowski/Documents/Ignite/examples/multi-root/docs",
   "static": false,
-  "title": "Ignite",
+  "title": "Multi Root",
   "webpackPlugins": Array [],
 }
 `;
@@ -121,7 +96,7 @@ Array [
     "id": "Root1/Another.md",
   },
   Object {
-    "body": "# First Page
+    "body": "# First Page /.firstPage\\\\
 ",
     "id": "Root1/Page.md",
   },
@@ -132,7 +107,7 @@ Array [
     "id": "Root1/index.md",
   },
   Object {
-    "body": "# Second Page
+    "body": "# Second Page /.secondPage\\\\
 ",
     "id": "Root2/Page.md",
   },

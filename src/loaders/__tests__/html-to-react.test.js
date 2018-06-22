@@ -234,21 +234,26 @@ test('detectIndex', () => {
 
 describe('determinePage', () => {
   test('home', async () => {
-    const result = await determinePage(`<div />`, 'home.md', {
+    const result = await determinePage(`<div />`, 'home.md', 'home.md', {
       src: '/docs'
     });
     expect(result).toMatch(/homePage/);
   });
 
   test('blogPost', async () => {
-    const result = await determinePage(`<div />`, '/docs/blog/post.md', {
-      src: '/docs'
-    });
+    const result = await determinePage(
+      `<div />`,
+      '/docs/blog/post.md',
+      '/docs/blog/post.md',
+      {
+        src: '/docs'
+      }
+    );
     expect(result).toMatch(/blogPost/);
   });
 
   test('index', async () => {
-    const result = await determinePage(`<div />`, 'index.md', {
+    const result = await determinePage(`<div />`, 'index.md', 'index.md', {
       src: '/docs',
       baseURL: '/',
       index: 'index.md'
@@ -257,11 +262,16 @@ describe('determinePage', () => {
   });
 
   test('defaults to markdown page', async () => {
-    const result = await determinePage(`<div />`, 'somePage.md', {
-      src: '/docs',
-      baseURL: '/',
-      index: 'index.md'
-    });
+    const result = await determinePage(
+      `<div />`,
+      'somePage.md',
+      'somePage.md',
+      {
+        src: '/docs',
+        baseURL: '/',
+        index: 'index.md'
+      }
+    );
     expect(result).toMatch(/markDownPage/);
   });
 });
