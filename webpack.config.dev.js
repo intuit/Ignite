@@ -192,10 +192,11 @@ module.exports = function(options) {
           plugins: JSON.stringify(options.plugins)
         }
       }),
-      new FriendlyErrorsWebpackPlugin({
-        clearConsole: true,
-        compilationSuccessInfo: options.compilationSuccessInfo
-      }),
+      options.log &&
+        new FriendlyErrorsWebpackPlugin({
+          clearConsole: true,
+          compilationSuccessInfo: options.compilationSuccessInfo
+        }),
       ...options.webpackPlugins
     ].filter(Boolean)
   };

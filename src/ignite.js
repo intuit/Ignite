@@ -90,6 +90,7 @@ export function getAuthor() {
 
 export const defaults = {
   open: true,
+  log: true,
   mode: 'production',
   webpackPlugins: [],
   plugins: [],
