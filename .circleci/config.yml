@@ -7,7 +7,7 @@ general:
 defaults: &defaults
   working_directory: ~/Ignite
   docker:
-    - image: circleci/node:9.5.0
+    - image: circleci/node:latest-browsers
     
 jobs:
   build:
