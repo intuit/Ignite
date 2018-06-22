@@ -19,9 +19,8 @@ describe('initPlugins', () => {
   });
 
   test('should call init function if present', async () => {
-    const pluginPath = path.resolve('src/extensions/testExtension/');
     const result = await initPlugins({
-      plugins: [['pluginName', pluginPath, { foo: 'bar' }]]
+      plugins: [['pluginName', 'src/extensions/testExtension/', { foo: 'bar' }]]
     });
     expect(result).toMatchSnapshot();
   });
@@ -71,7 +70,7 @@ test('initBuildMessages', () => {
 describe('initOptions', () => {
   test('uses rc file', async () => {
     const result = await initOptions({
-      src: path.resolve('examples/multi-root/docs')
+      src: 'examples/multi-root/docs'
     });
     expect(result).toMatchSnapshot();
   });
