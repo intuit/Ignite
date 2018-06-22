@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DocsPage - with hash id 1`] = `
+<div
+  className="contentArea"
+  id="root"
+>
+  <div
+    className="columns"
+  >
+    <Sidebar
+      className="column is-one-third-tablet is-one-quarter-desktop box"
+      content={null}
+      currentPage="/someId"
+    />
+    <div
+      className="content column content is-two-thirds-tablet is-three-quarters-desktop"
+    >
+      <Page
+        className="Page"
+        plugins={Array []}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DocsPage 1`] = `
+<div
+  className="contentArea"
+  id="root"
+>
+  <div
+    className="columns"
+  >
+    <Sidebar
+      className="column is-one-third-tablet is-one-quarter-desktop box"
+      content={null}
+      currentPage="/"
+    />
+    <div
+      className="content column content is-two-thirds-tablet is-three-quarters-desktop"
+    >
+      <Page
+        className="Page"
+        plugins={Array []}
+      />
+    </div>
+  </div>
+</div>
+`;

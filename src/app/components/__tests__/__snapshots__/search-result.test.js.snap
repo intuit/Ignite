@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResult 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-content"
+  >
+    <ForwardRef
+      className="subtitle has-text-link title"
+      onClick={[Function]}
+      to="/foo.html"
+    >
+      foo.md
+    </ForwardRef>
+    <div>
+      <p
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "text results for foo.md",
+          }
+        }
+      />
+      <br />
+    </div>
+  </div>
+</div>
+`;

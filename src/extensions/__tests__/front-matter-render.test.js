@@ -29,3 +29,13 @@ test('front-matter-render - banner image', () => {
     ])
   ).toMatchSnapshot();
 });
+
+test('front-matter-render - error', () => {
+  expect(() =>
+    render([
+      {
+        markup: `---\ntitle= First Post\nauthor: Andrew Lisowski\n---`
+      }
+    ])
+  ).toThrow();
+});

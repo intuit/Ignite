@@ -1,4 +1,7 @@
+import path from 'path';
 import generate, { stringify } from '../generate';
+
+path.relative = (p, p1) => `${p1}`;
 
 test('stringify', () => {
   expect(
@@ -18,7 +21,7 @@ test('stringify', () => {
 
 describe('generate', () => {
   const options = {
-    src: 'docs/',
+    src: '/docs/',
     baseURL: '/',
     index: 'index.md',
     dir: '/folder'
@@ -46,5 +49,23 @@ describe('generate', () => {
 
   test('should add plugins', () => {
     expect(generate(undefined, plugins, options)()).toMatchSnapshot();
+  });
+
+  test('should add blogPosts', () => {
+    expect(
+      generate(['/docs/blog/Post/1.md', '/docs/blog/Post/1.md'], plugins, {
+        ...options,
+        blogPosts: [
+          {
+            path: '/docs/blog/Post/1.md',
+            birth: 1
+          },
+          {
+            path: '/docs/blog/Post/1.md',
+            birth: 2
+          }
+        ]
+      })()
+    ).toMatchSnapshot();
   });
 });

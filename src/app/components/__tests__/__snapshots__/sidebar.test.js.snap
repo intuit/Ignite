@@ -4,10 +4,10 @@ exports[`only renders content if its there 1`] = `null`;
 
 exports[`only renders content if its there 2`] = `
 <div
-  className=""
+  className="root"
 >
   <button
-    className="is-hidden-tablet button is-white"
+    className="is-hidden-tablet button is-white toggle"
     onClick={[Function]}
     type="button"
   >
@@ -18,6 +18,7 @@ exports[`only renders content if its there 2`] = `
     />
   </button>
   <content
+    className="sidebar"
     currentPage={null}
     onClick={[Function]}
   />
@@ -26,10 +27,10 @@ exports[`only renders content if its there 2`] = `
 
 exports[`should close when clicked outside 1`] = `
 <div
-  className=""
+  className="root open"
 >
   <button
-    className="is-hidden-tablet button is-white"
+    className="is-hidden-tablet button is-white toggle"
     onClick={[Function]}
     type="button"
   >
@@ -45,10 +46,10 @@ exports[`should close when clicked outside 1`] = `
 
 exports[`should close when clicked outside 2`] = `
 <div
-  className=""
+  className="root"
 >
   <button
-    className="is-hidden-tablet button is-white"
+    className="is-hidden-tablet button is-white toggle"
     onClick={[Function]}
     type="button"
   >
@@ -64,10 +65,10 @@ exports[`should close when clicked outside 2`] = `
 
 exports[`should open and close 1`] = `
 <div
-  className=""
+  className="root open"
 >
   <button
-    className="is-hidden-tablet button is-white"
+    className="is-hidden-tablet button is-white toggle"
     onClick={[Function]}
     type="button"
   >
@@ -83,10 +84,10 @@ exports[`should open and close 1`] = `
 
 exports[`should open and close 2`] = `
 <div
-  className=""
+  className="root"
 >
   <button
-    className="is-hidden-tablet button is-white"
+    className="is-hidden-tablet button is-white toggle"
     onClick={[Function]}
     type="button"
   >

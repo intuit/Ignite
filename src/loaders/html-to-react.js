@@ -232,9 +232,8 @@ export function codeTabs(source) {
 
   while (start !== -1) {
     const endString = '</CodeTabs>';
-    let end = source.indexOf('</CodeTabs>', start);
+    let end = source.indexOf(endString, start);
     let html = source.substring(start, end + endString.length);
-
     html = html.replace('CodeTabs', 'div className="codeTabs"');
     html = html.replace('CodeTabs', 'div');
 
@@ -287,7 +286,7 @@ function getSources(markup) {
   return sources;
 }
 
-const loadImages = rawSource => {
+export const loadImages = rawSource => {
   return getSources(rawSource).map(async src => {
     if (src.includes('//')) {
       const rawSrc = src;
@@ -302,7 +301,7 @@ const loadImages = rawSource => {
         resolve(
           `'${rawSrc}': () => Promise.resolve({
               default: {
-                src:'${src}',
+                src: { src: '${src}' },
                 preSrc: '${src}',
                 height: ${dimensions.height},
                 width: ${dimensions.width}
@@ -386,9 +385,11 @@ const createImageRenderer = async (rawSource, options) => {
       state = {
         image: ${options.static}
           ? {
-            src: this.props.src.includes('//') ? this.props.src : path.join('${
-              options.src
-            }', this.props.src),
+            src: {
+              src: this.props.src.includes('//') ? this.props.src : path.join('${
+                options.src
+              }', this.props.src)
+            },
             preSrc: this.props.src.includes('//') ? this.props.src : path.join('${
               options.src
             }', this.props.src)
@@ -415,9 +416,8 @@ const createImageRenderer = async (rawSource, options) => {
         return image ? (
           <ImageComponent
             {...this.props}
-            className='image'
+            className={makeClass('image', this.props.className)}
             src={image.src.src}
-            alt={this.props.alt}
             width={image.src.width || image.width}
             height={image.src.height || image.height}
             placeholder={{ lqip: image.preSrc }}
@@ -646,7 +646,7 @@ export function homePage(source) {
       </div>
     </div>
   `;
-  let $currentRow;
+  let $currentRow = cheerio.load(contentRow, libHTMLOptions);
 
   while ($source('.source > :first-child').length > 0) {
     const isHero = $source('.source > :first-child').hasClass('hero');
@@ -692,9 +692,12 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
   );
 }
 
-export default async function(rawSource) {
-  const options = getOptions(this);
-  const pathToMarkdown = path.relative(options.src, this.resourcePath);
+export const determinePage = async (
+  rawSource,
+  resourcePath,
+  pathToMarkdown,
+  options
+) => {
   let { pageStart, source } = await initPage(
     rawSource,
     pathToMarkdown,
@@ -703,9 +706,9 @@ export default async function(rawSource) {
 
   if (pathToMarkdown === 'home.md') {
     source = homePage(source);
-  } else if (this.resourcePath.includes(path.join(options.src, 'blog/'))) {
+  } else if (resourcePath.includes(path.join(options.src, 'blog/'))) {
     source = blogPost(source, pathToMarkdown, options);
-  } else if (detectIndex(this.resourcePath, pathToMarkdown, options)) {
+  } else if (detectIndex(resourcePath, pathToMarkdown, options)) {
     source = index(source, pathToMarkdown, options);
   } else {
     source = markDownPage(source);
@@ -715,4 +718,10 @@ export default async function(rawSource) {
     ${pageStart}
     ${source}
   `;
+};
+
+export default async function(rawSource) {
+  const options = getOptions(this);
+  const pathToMarkdown = path.relative(options.src, this.resourcePath);
+  return determinePage(rawSource, this.resourcePath, pathToMarkdown, options);
 }

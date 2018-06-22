@@ -41,7 +41,7 @@ export async function initPlugins(options) {
           pluginOptions
         );
       } catch (err) {
-        console.error(err, '');
+        throw new TypeError(err);
       }
     }
   });
@@ -49,7 +49,7 @@ export async function initPlugins(options) {
   return options;
 }
 
-export async function blogPosts(options) {
+export async function initBlogPosts(options) {
   let blogPosts = await globby([path.join(options.src, 'blog/**/*.md')]);
 
   if (blogPosts.length === 0) {
@@ -61,20 +61,24 @@ export async function blogPosts(options) {
       .map(blogFile => path.relative(options.src, blogFile))
       .map(async blogFile => {
         try {
-          const docLog = await git().log({ file: 'docs/' + blogFile });
+          const docLog = await git().log({
+            file: path.join(options.src, blogFile)
+          });
           const birth = docLog.all[docLog.all.length - 1].date;
-
           return {
             path: blogFile,
             birth: Number(dayjs(birth))
           };
         } catch (error) {
-          return {};
+          console.error(error);
+          return {
+            path: blogFile
+          };
         }
       })
   );
 
-  return blogPosts;
+  return blogPosts.sort((a, b) => a.birth > b.birth);
 }
 
 export function getAuthor() {
@@ -85,6 +89,8 @@ export function getAuthor() {
 }
 
 export const defaults = {
+  open: true,
+  log: true,
   mode: 'production',
   webpackPlugins: [],
   plugins: [],
@@ -102,7 +108,7 @@ export const defaults = {
   bulmaTheme: 'default'
 };
 
-function initBuildMessages(options) {
+export function initBuildMessages(options) {
   if (options.watch) {
     options = Object.assign({}, options, {
       mode: 'development',
@@ -150,28 +156,27 @@ function publish(options, user) {
   );
 }
 
-async function initSearchIndex(options) {
+export async function initSearchIndex(options) {
   const entries = await globby([path.join(options.src, '**/*.md')]);
   const files = [];
 
   entries.forEach(entry => {
-    if (fs.existsSync(entry)) {
-      const pageContents = fs.readFileSync(entry, 'utf8');
-      const pagePath = path.relative(options.src, entry);
+    const pageContents = fs.readFileSync(entry, 'utf8');
+    const pagePath = path.relative(options.src, entry);
 
-      files.push({
-        id: pagePath,
-        body: transform(pageContents, entry, options)
-      });
-    }
+    files.push({
+      id: pagePath,
+      body: transform(pageContents, entry, options)
+    });
   });
 
-  return files;
+  return files.sort((a, b) => a.id > b.id);
 }
 
-async function initOptions(options) {
+export async function initOptions(options) {
   const explorer = cosmiconfig('ignite');
-  const igniteRc = explorer.searchSync();
+  const igniteRc = explorer.searchSync(options.src);
+  options = Object.assign({}, defaults, options);
 
   if (igniteRc) {
     options = Object.assign({}, options, igniteRc.config);
@@ -182,14 +187,14 @@ async function initOptions(options) {
   });
 
   options = initBuildMessages(options);
-  options.blogPosts = await blogPosts(options);
+  options.blogPosts = await initBlogPosts(options);
   options.searchIndex = await initSearchIndex(options);
 
   if (options.plugins) {
     options = await initPlugins(options);
   }
 
-  return Object.assign({}, defaults, options);
+  return options;
 }
 
 export default async function build(options) {
@@ -217,7 +222,8 @@ export default async function build(options) {
   if (options.watch) {
     const webpackConfig = configDev(options);
 
-    serve({
+    return serve({
+      open: options.open,
       config: webpackConfig,
       port: options.port,
       logLevel: 'silent',
@@ -241,58 +247,60 @@ export default async function build(options) {
       },
       on: {
         listening: () => {
-          execSync('ps cax | grep "Google Chrome"');
-          execSync(
-            `osascript ../src/chrome.applescript "${encodeURI(
-              `http://localhost:${options.port}`
-            )}"`,
-            {
-              cwd: __dirname,
-              stdio: 'ignore'
-            }
-          );
-        }
-      }
-    });
-  } else {
-    const webpackConfig = config(options);
-    const compiler = webpack(webpackConfig);
-
-    compiler.run(async (err, stats) => {
-      if (options.json) {
-        fs.writeFile(
-          'stats.json',
-          JSON.stringify(stats.toJson(), null, 2),
-          () => {
-            console.warn('Wrote `stats.json` to root.');
+          if (options.open) {
+            execSync('ps cax | grep "Google Chrome"');
+            execSync(
+              `osascript ../src/chrome.applescript "${encodeURI(
+                `http://localhost:${options.port}`
+              )}"`,
+              {
+                cwd: __dirname,
+                stdio: 'ignore'
+              }
+            );
           }
-        );
-      }
-
-      if (err) {
-        console.error(err.stack || err);
-        if (err.details) {
-          console.error(err.details);
         }
-        return;
-      }
-
-      stats.hasWarnings();
-
-      if (stats.hasErrors()) {
-        return;
-      }
-
-      if (options.static) {
-        await createStaticWebsite.run({
-          source: options.dst,
-          publicPath: path.join(options.baseURL, '/')
-        });
-      }
-
-      if (options.publish) {
-        publish(options, user);
       }
     });
   }
+
+  const webpackConfig = config(options);
+  const compiler = webpack(webpackConfig);
+
+  compiler.run(async (err, stats) => {
+    if (options.json) {
+      fs.writeFile(
+        'stats.json',
+        JSON.stringify(stats.toJson(), null, 2),
+        () => {
+          console.warn('Wrote `stats.json` to root.');
+        }
+      );
+    }
+
+    if (err) {
+      console.error(err.stack || err);
+      if (err.details) {
+        console.error(err.details);
+      }
+      return;
+    }
+
+    stats.hasWarnings();
+
+    if (stats.hasErrors()) {
+      return;
+    }
+
+    if (options.static) {
+      await createStaticWebsite.run({
+        source: options.dst,
+        publicPath: path.join(options.baseURL, '/')
+      });
+    }
+
+    if (options.publish) {
+      publish(options, user);
+    }
+  });
 }

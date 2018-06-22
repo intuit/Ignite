@@ -1,4 +1,4 @@
-import yaml from 'js-yaml';
+import yaml from 'yaml';
 import gravatar from 'gravatar';
 
 function parseConfig(config) {
@@ -30,9 +30,9 @@ export default function renderBlogFrontMatter(tokens) {
   let blogConfig = markup.substring(4, markup.length - 4);
 
   try {
-    blogConfig = yaml.safeLoad(blogConfig, 'utf8');
+    blogConfig = yaml.parse(blogConfig);
   } catch (e) {
-    console.error(e);
+    throw new TypeError(e);
   }
 
   let { title, image, name, url, email } = parseConfig(blogConfig);

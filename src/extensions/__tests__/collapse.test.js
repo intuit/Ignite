@@ -28,9 +28,9 @@ test('collapse', () => {
 
   expect(
     md.render(`
-* ::: collapse [:package: Publishing](./pages/Publishing.md)
-  * [Setup](./pages/Publishing.md#setup-branch)
-  * [Continuous Integration](./pages/Publishing.md#Continuous-integration)u
+* ::: collapse [:package: Publishing](./pages/Publishing.html)
+  * [Setup](./pages/Publishing.html#setup-branch)
+  * [Continuous Integration](./pages/Publishing.html#Continuous-integration)u
   `)
   ).toMatchSnapshot();
 });

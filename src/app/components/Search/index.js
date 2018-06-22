@@ -8,7 +8,7 @@ import replaceAt from '../../../utils/replace-at';
 
 import styles from './search.css';
 
-const indexOfAll = (source, term) => {
+export const indexOfAll = (source, term) => {
   const indexes = [];
 
   let index = source.toLowerCase().indexOf(term);
@@ -21,7 +21,7 @@ const indexOfAll = (source, term) => {
   return indexes;
 };
 
-const lineWithCodeBlock = (line, term) => {
+export const lineWithCodeBlock = (line, term) => {
   let tickIndex = line.indexOf('`');
   let termIndex = line.indexOf(term);
 
@@ -53,7 +53,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const getLines = (source, indexes, term) => {
+export const getLines = (source, indexes, term) => {
   return new Set(
     indexes.map(index => {
       const lineNumber = getLineNumber(source, index);
@@ -76,11 +76,13 @@ const getLines = (source, indexes, term) => {
 
 class Search extends Component {
   static propTypes = {
+    static: PropTypes.bool,
     searchIndex: PropTypes.array,
     setSearchResults: PropTypes.func
   };
 
   static defaultProps = {
+    static: process.env.static,
     searchIndex: [],
     setSearchResults: () => {}
   };
@@ -129,7 +131,7 @@ class Search extends Component {
   };
 
   render() {
-    return process.env.static ? null : (
+    return this.props.static ? null : (
       <div className={makeClass('navbar-item', styles.root)}>
         <div className="control">
           <input

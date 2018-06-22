@@ -2,7 +2,7 @@
 
 exports[`BlogHero - index has title 1`] = `
 <section
-  className="hero is-info is-medium is-bold"
+  className="hero is-info is-medium is-bold blogHero"
   style={Object {}}
 >
   <div
@@ -24,7 +24,7 @@ exports[`BlogHero - index has title 1`] = `
 
 exports[`BlogHero - page - hero 1`] = `
 <section
-  className="hero is-info is-medium is-bold"
+  className="hero is-info is-medium is-bold blogHero"
   style={
     Object {
       "background": "url(https://some.link)",
@@ -58,7 +58,7 @@ exports[`BlogHero - page - hero 1`] = `
 
 exports[`BlogHero - page - no hero 1`] = `
 <section
-  className="hero is-info is-medium is-bold"
+  className="hero is-info is-medium is-bold blogHero"
   style={Object {}}
 >
   <div

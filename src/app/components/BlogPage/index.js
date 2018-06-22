@@ -6,25 +6,23 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import BlogHero from '../BlogHero';
 import styles from './blog-page.css';
 
-function BlogPage({ Page, location, plugins, blogHero, className }) {
-  return (
-    <div>
-      <BlogHero key="hero" location={location} blogHero={blogHero} />
-      <div className={makeClass(className, 'columns', styles.blog)}>
-        <div
-          className={makeClass(
-            'column',
-            'content',
-            'is-two-thirds-tablet',
-            'is-three-quarters-desktop'
-          )}
-        >
-          <Page plugins={plugins} className={styles.Page} />
-        </div>
+const BlogPage = ({ Page, location, plugins, blogHero, className }) => (
+  <div>
+    <BlogHero key="hero" location={location} blogHero={blogHero} />
+    <div className={makeClass(className, 'columns', styles.blog)}>
+      <div
+        className={makeClass(
+          'column',
+          'content',
+          'is-two-thirds-tablet',
+          'is-three-quarters-desktop'
+        )}
+      >
+        <Page plugins={plugins} className={styles.Page} />
       </div>
     </div>
-  );
-}
+  </div>
+);
 
 BlogPage.propTypes = {
   Page: PropTypes.node.isRequired,

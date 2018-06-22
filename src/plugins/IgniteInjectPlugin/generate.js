@@ -150,7 +150,7 @@ const generateBlogIndex = (blogFiles, options) => {
       }
 
       render() {
-        return e('div', null, [
+        return e('div', { className: 'blogIndex' }, [
           e(Waypoint, { key: 'Waypoint', onLeave: () => this.toggleScrollTopButton(true), onEnter: () => this.toggleScrollTopButton(false) }, e('div')),
           ${JSON.stringify(
             blogPosts
@@ -225,8 +225,6 @@ const initLazyLoad = options => {
     const INDEX_PAGE = '${options.index}';
 
     function trim(s, c) {
-      if (c === "]") c = "\\\\]";
-      if (c === "\\\\") c = "\\\\\\\\";
       return s.replace(new RegExp(
         "^[" + c + "]+|[" + c + "]+$", "g"
       ), "");

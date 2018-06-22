@@ -53,7 +53,7 @@ exports[`collapse 3`] = `
         <details
           open=!{
             false ||
-            [].find(link => (
+            [\\"./pages/Publishing.html#setup-branch\\",\\"./pages/Publishing.html#Continuous-integration\\"].find(link => (
               link === ((this && this.props) || props).currentPage ||
               (((this && this.props) || props).currentPage === process.env.baseURL &&
                 link === window.configuration.currentFirstPage.replace('.md', '.html'))
@@ -62,11 +62,11 @@ exports[`collapse 3`] = `
           !}
         >
           <summary className='collapse-summary'>
-            <p><a href=\\"./pages/Publishing.md\\">:package: Publishing</a></p>
+            <p><a href=\\"./pages/Publishing.html\\">:package: Publishing</a></p>
           </summary>
       <ul>
-<li><a href=\\"./pages/Publishing.md#setup-branch\\">Setup</a></li>
-<li><a href=\\"./pages/Publishing.md#Continuous-integration\\">Continuous Integration</a>u</li>
+<li><a href=\\"./pages/Publishing.html#setup-branch\\">Setup</a></li>
+<li><a href=\\"./pages/Publishing.html#Continuous-integration\\">Continuous Integration</a>u</li>
 </ul>
 
       </details>

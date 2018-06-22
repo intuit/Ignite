@@ -15,6 +15,10 @@ class App extends Component {
     searchResults: []
   };
 
+  componentDidMount() {
+    document.title = process.env.title;
+  }
+
   componentDidUpdate() {
     this.jumpToHash();
   }
@@ -60,7 +64,10 @@ class App extends Component {
         />
 
         {this.state.searchResults.length > 0 ? (
-          <SearchResults searchResults={this.state.searchResults} />
+          <SearchResults
+            searchResults={this.state.searchResults}
+            setResults={this.setSearchResults}
+          />
         ) : isHome ? (
           <Page plugins={this.props.plugins} className={styles.Page} />
         ) : isBlog ? (

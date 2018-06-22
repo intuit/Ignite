@@ -35,4 +35,13 @@ describe('withGlobalConfig', () => {
     window.configuration.setFirstLink('index.md', 'page.md');
     expect(renderToJson(<ComponentWithConfig />)).toMatchSnapshot();
   });
+
+  test('sets search index', () => {
+    const ComponentWithConfig = withGlobalConfig(component);
+    expect(renderToJson(<ComponentWithConfig />)).toMatchSnapshot();
+    window.configuration.setSearchIndex({
+      'page.md': 'all the markdown text for page.md'
+    });
+    expect(renderToJson(<ComponentWithConfig />)).toMatchSnapshot();
+  });
 });

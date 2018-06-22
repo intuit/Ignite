@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon 1`] = `
+<div
+  className="searchResults"
+>
+  <SearchResult
+    fileName="foo.md"
+    results={
+      Array [
+        "text results for foo.md",
+      ]
+    }
+    setResults={[Function]}
+  />
+  <SearchResult
+    fileName="bar.md"
+    results={
+      Array [
+        "text results for bar.md",
+      ]
+    }
+    setResults={[Function]}
+  />
+</div>
+`;

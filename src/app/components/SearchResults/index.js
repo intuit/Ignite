@@ -5,26 +5,26 @@ import makeClass from 'classnames';
 import SearchResult from '../SearchResult';
 import styles from './search-results.css';
 
-function SearchResults({ searchResults }) {
-  return (
-    <div className={makeClass(styles.searchResults)}>
-      {searchResults.map(([fileName, results]) => (
-        <SearchResult
-          key={fileName}
-          setResults={searchResults => this.setState({ searchResults })}
-          fileName={fileName}
-          results={results}
-        />
-      ))}
-    </div>
-  );
-}
+const SearchResults = ({ searchResults, setResults }) => (
+  <div className={makeClass(styles.searchResults)}>
+    {searchResults.map(([fileName, results]) => (
+      <SearchResult
+        key={fileName}
+        setResults={setResults}
+        fileName={fileName}
+        results={results}
+      />
+    ))}
+  </div>
+);
 
 SearchResults.propTypes = {
+  setResults: PropTypes.func,
   searchResults: PropTypes.array
 };
 
 SearchResults.defaultProps = {
+  setResults: () => {},
   searchResults: []
 };
 

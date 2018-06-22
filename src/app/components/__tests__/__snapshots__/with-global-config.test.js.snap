@@ -131,3 +131,64 @@ exports[`withGlobalConfig sets first page 2`] = `
   }
 />
 `;
+
+exports[`withGlobalConfig sets search index 1`] = `
+<component
+  blogHero="http://some.link"
+  markdown={
+    Array [
+      Array [
+        "index.md",
+        [Function],
+        undefined,
+        "page.md",
+      ],
+      Array [
+        "page.md",
+        [Function],
+      ],
+    ]
+  }
+  plugins={
+    Array [
+      Array [
+        "somePlugin",
+        [Function],
+      ],
+    ]
+  }
+/>
+`;
+
+exports[`withGlobalConfig sets search index 2`] = `
+<component
+  blogHero="http://some.link"
+  markdown={
+    Array [
+      Array [
+        "index.md",
+        [Function],
+        undefined,
+        "page.md",
+      ],
+      Array [
+        "page.md",
+        [Function],
+      ],
+    ]
+  }
+  plugins={
+    Array [
+      Array [
+        "somePlugin",
+        [Function],
+      ],
+    ]
+  }
+  searchIndex={
+    Object {
+      "page.md": "all the markdown text for page.md",
+    }
+  }
+/>
+`;

@@ -95,13 +95,7 @@ module.exports = function(options) {
         {
           test: /\.(gif|png|jpe?g)$/i,
           use: [
-            {
-              loader: 'lqip-loader',
-              options: {
-                base64: true,
-                palette: false
-              }
-            },
+            'lqip-loader',
             {
               loader: 'responsive-loader',
               options: {
@@ -198,10 +192,11 @@ module.exports = function(options) {
           plugins: JSON.stringify(options.plugins)
         }
       }),
-      new FriendlyErrorsWebpackPlugin({
-        clearConsole: true,
-        compilationSuccessInfo: options.compilationSuccessInfo
-      }),
+      options.log &&
+        new FriendlyErrorsWebpackPlugin({
+          clearConsole: true,
+          compilationSuccessInfo: options.compilationSuccessInfo
+        }),
       ...options.webpackPlugins
     ].filter(Boolean)
   };

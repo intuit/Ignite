@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`initOptions uses rc file 1`] = `
+Object {
+  "baseURL": "/",
+  "blogPosts": null,
+  "bulmaTheme": "default",
+  "codeStyle": "foundation",
+  "color": "auto",
+  "compilationSuccessInfo": Object {
+    "messages": Array [
+      "Documentation built!",
+    ],
+    "notes": Array [
+      "Bundled documentation stored in '_ignite/'.",
+      "Run \`ignite --publish\` to publish documentation to github-pages.",
+    ],
+  },
+  "dst": "_ignite/",
+  "index": "index.md",
+  "log": true,
+  "logo": "logo.svg",
+  "mode": "production",
+  "navItems": Object {
+    "First": "/Root1",
+    "Second": "/Root2",
+    "root": "/Root1",
+  },
+  "open": true,
+  "plugins": Array [],
+  "port": 8008,
+  "searchIndex": Array [
+    Object {
+      "body": "# Some Other Page
+",
+      "id": "Root1/Another.md",
+    },
+    Object {
+      "body": "# First Page /.firstPage/
+",
+      "id": "Root1/Page.md",
+    },
+    Object {
+      "body": "- [First Page](/Root1/Page.html)
+- [Another Page](/Root1/Another.html)
+",
+      "id": "Root1/index.md",
+    },
+    Object {
+      "body": "# Second Page /.secondPage/
+",
+      "id": "Root2/Page.md",
+    },
+    Object {
+      "body": "- [Second Page](/Root2/Page.html)
+",
+      "id": "Root2/index.md",
+    },
+  ],
+  "selectedColor": "auto",
+  "src": "examples/multi-root/docs",
+  "static": false,
+  "title": "Multi Root",
+  "webpackPlugins": Array [],
+}
+`;
+
+exports[`initPlugins should call init function if present 1`] = `
+Object {
+  "plugins": Array [
+    Array [
+      "pluginName",
+      "src/extensions/testExtension/",
+      Object {
+        "_initData": Object {
+          "data": "foo",
+          "nested": Object {
+            "deeply": Object {
+              "func": [Function],
+              "value": "foo",
+            },
+          },
+        },
+        "foo": "bar",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`initSearchIndex 1`] = `
+Array [
+  Object {
+    "body": "# Some Other Page
+",
+    "id": "Root1/Another.md",
+  },
+  Object {
+    "body": "# First Page /.firstPage/
+",
+    "id": "Root1/Page.md",
+  },
+  Object {
+    "body": "- [First Page](/examples/multi-root/docs/Root1/Page.html)
+- [Another Page](/examples/multi-root/docs/Root1/Another.html)
+",
+    "id": "Root1/index.md",
+  },
+  Object {
+    "body": "# Second Page /.secondPage/
+",
+    "id": "Root2/Page.md",
+  },
+  Object {
+    "body": "- [Second Page](/examples/multi-root/docs/Root2/Page.html)
+",
+    "id": "Root2/index.md",
+  },
+]
+`;

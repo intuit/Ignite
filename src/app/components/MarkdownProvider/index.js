@@ -4,7 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import App from '../App';
 
-const setMarkdown = (markdown = []) => {
+const setMarkdown = markdown => {
   return markdown.reduce(
     (markdownMap, [pathToMarkdown, component, isIndex, firstLink]) => {
       markdownMap[pathToMarkdown] = component;

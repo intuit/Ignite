@@ -102,7 +102,6 @@ class Header extends Component {
     const hasHomePage = window.configuration.markdown.find(
       ([key]) => key === path.join(process.env.baseURL, 'home.md')
     );
-
     return (
       <nav
         className={makeClass('navbar', styles.nav)}
