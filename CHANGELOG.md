@@ -234,3 +234,9 @@
  0.2.1
 
 - Bugs and Typos #146
+
+ 0.2.2
+
+- Test everything #152
+- use published loader! #150
+- Image Updates #148
