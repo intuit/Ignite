@@ -7,7 +7,7 @@ describe('Blog', () => {
 
   beforeAll(async () => {
     const port = 8000;
-    jest.setTimeout(10 * 1000);
+    jest.setTimeout(20 * 1000);
     docs = await start(port, 'examples/blog/docs');
     visit = path => createPage(port, path);
   });
