@@ -41,8 +41,8 @@ Object {
       "id": "Root1/Page.md",
     },
     Object {
-      "body": "- [First Page](/examples/multi-root/docs/Root1/Page.html)
-- [Another Page](/examples/multi-root/docs/Root1/Another.html)
+      "body": "- [First Page](/Root1/Page.html)
+- [Another Page](/Root1/Another.html)
 ",
       "id": "Root1/index.md",
     },
@@ -52,13 +52,13 @@ Object {
       "id": "Root2/Page.md",
     },
     Object {
-      "body": "- [Second Page](/examples/multi-root/docs/Root2/Page.html)
+      "body": "- [Second Page](/Root2/Page.html)
 ",
       "id": "Root2/index.md",
     },
   ],
   "selectedColor": "auto",
-  "src": "<PROJECT_ROOT>/examples/multi-root/docs",
+  "src": "examples/multi-root/docs",
   "static": false,
   "title": "Multi Root",
   "webpackPlugins": Array [],
@@ -70,7 +70,7 @@ Object {
   "plugins": Array [
     Array [
       "pluginName",
-      "<PROJECT_ROOT>/src/extensions/testExtension",
+      "src/extensions/testExtension/",
       Object {
         "_initData": Object {
           "data": "foo",
