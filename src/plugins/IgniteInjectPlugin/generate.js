@@ -150,7 +150,7 @@ const generateBlogIndex = (blogFiles, options) => {
       }
 
       render() {
-        return e('div', null, [
+        return e('div', { className: 'blogIndex' }, [
           e(Waypoint, { key: 'Waypoint', onLeave: () => this.toggleScrollTopButton(true), onEnter: () => this.toggleScrollTopButton(false) }, e('div')),
           ${JSON.stringify(
             blogPosts
