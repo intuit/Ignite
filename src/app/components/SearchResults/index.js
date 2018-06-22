@@ -19,10 +19,12 @@ const SearchResults = ({ searchResults, setResults }) => (
 );
 
 SearchResults.propTypes = {
+  setResults: PropTypes.func,
   searchResults: PropTypes.array
 };
 
 SearchResults.defaultProps = {
+  setResults: () => {},
   searchResults: []
 };
 
