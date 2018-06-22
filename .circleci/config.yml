@@ -28,6 +28,9 @@ jobs:
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile
+      - run:
+          name: Build Library
+          command: yarn build:lib
       - save_cache:
           key: ignite-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
           paths:
@@ -75,9 +78,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/Ignite 
-      - run:
-          name: Build Library
-          command: yarn build:lib
       - run: mkdir ~/.ssh && ssh-keyscan -t rsa github.intuit.com >> ~/.ssh/known_hosts
       - run: echo "//registry.npmjs.intuit.net/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run:
