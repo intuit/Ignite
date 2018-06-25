@@ -252,7 +252,7 @@ module.exports = function(options) {
           NODE_ENV: JSON.stringify(options.mode),
           SEARCH: JSON.stringify(options.searchIndex),
           index: JSON.stringify(options.index),
-          static: JSON.stringify(options.static),
+          // static: JSON.stringify(options.static),
           baseURL: JSON.stringify(options.baseURL),
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),

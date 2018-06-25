@@ -15,13 +15,13 @@ import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
 import serve from 'webpack-serve';
 import ghpages from 'gh-pages';
-import createStaticWebsite from 'react-snap';
 import webpackServeWaitpage from 'webpack-serve-waitpage';
 
 import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
 import packageJSON from '../package';
 import { transform } from './loaders/hash-link';
+import createStaticSite from './createStaticSite';
 
 register(packageJSON.babel || {});
 
@@ -293,10 +293,7 @@ export default async function build(options) {
     }
 
     if (options.static) {
-      await createStaticWebsite.run({
-        source: options.dst,
-        publicPath: path.join(options.baseURL, '/')
-      });
+      await createStaticSite(options);
     }
 
     if (options.publish) {
