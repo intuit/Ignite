@@ -194,6 +194,10 @@ export async function initOptions(options) {
     options = await initPlugins(options);
   }
 
+  Object.entries(options.navItems).forEach(([key, val]) => {
+    options.navItems[key] = path.join(options.baseURL, val);
+  });
+
   return options;
 }
 
@@ -273,9 +277,7 @@ export default async function build(options) {
         fs.writeFile(
           'stats.json',
           JSON.stringify(stats.toJson(), null, 2),
-          () => {
-            console.warn('Wrote `stats.json` to root.');
-          }
+          () => console.warn('Wrote `stats.json` to root.')
         );
       }
       if (err) {

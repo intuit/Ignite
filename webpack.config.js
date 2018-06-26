@@ -36,6 +36,7 @@ module.exports = function(options) {
   return {
     mode: options.mode,
     profile: options.json,
+    devtool: 'source-map',
 
     entry: [
       logoExists ? path.resolve(logoPath) : null,
@@ -82,7 +83,8 @@ module.exports = function(options) {
           // Default number of concurrent runs: os.cpus().length - 1
           parallel: true,
           // Enable file caching
-          cache: true
+          cache: true,
+          sourceMap: true
         })
       ],
       // Automatically split vendor and commons

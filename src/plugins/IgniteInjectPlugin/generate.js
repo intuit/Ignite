@@ -43,7 +43,10 @@ const registerMarkdown = (entries, options) => {
     .map(
       pathToMarkdown => `
         registerMarkdown(
-          '${path.relative(options.src, pathToMarkdown)}',
+          '${path.join(
+            options.baseURL,
+            path.relative(options.src, pathToMarkdown)
+          )}',
           () => import(/* webpackChunkName: "${path.basename(
             pathToMarkdown,
             '.md'
@@ -235,7 +238,7 @@ const initLazyLoad = options => {
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(trim(item, '/'), INDEX_PAGE);
+              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
             })
             .includes(p)
           );
@@ -245,13 +248,9 @@ const initLazyLoad = options => {
       const comp = lazyLoad(provider);
 
       if(isIndex(markdownPath)) {
-        window.configuration.markdown.push([path.join('${
-          options.baseURL
-        }', markdownPath), comp, true, null]);
+        window.configuration.markdown.push([markdownPath, comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('${
-          options.baseURL
-        }', markdownPath), comp]);
+        window.configuration.markdown.push([markdownPath, comp]);
       }
     }
 

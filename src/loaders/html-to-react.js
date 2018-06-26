@@ -675,7 +675,7 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
             ? options.index
             : path.join(trimChar(item, '/'), options.index);
         })
-        .includes(pathToMarkdown))
+        .includes(trimChar(path.join(options.baseURL, pathToMarkdown), '/')))
   );
 }
 
