@@ -114,6 +114,7 @@ const generateBlogIndex = (blogFiles, options) => {
         findBirthday(options.blogPosts, a) < findBirthday(options.blogPosts, b)
     );
 
+  // prettier-ignore
   return `
     import Waypoint from 'react-waypoint';
 
@@ -174,7 +175,7 @@ const generateBlogIndex = (blogFiles, options) => {
       }
     }
 
-    registerMarkdown('/blog/${options.index}', async () => ({ 
+    registerMarkdown(path.join('${options.baseURL}', '/blog/${options.index}'), async () => ({ 
       default: blogIndex
     }));
   `;
