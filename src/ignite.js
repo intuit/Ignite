@@ -267,37 +267,41 @@ export default async function build(options) {
   const webpackConfig = config(options);
   const compiler = webpack(webpackConfig);
 
-  compiler.run(async (err, stats) => {
-    if (options.json) {
-      fs.writeFile(
-        'stats.json',
-        JSON.stringify(stats.toJson(), null, 2),
-        () => {
-          console.warn('Wrote `stats.json` to root.');
-        }
-      );
-    }
-
-    if (err) {
-      console.error(err.stack || err);
-      if (err.details) {
-        console.error(err.details);
+  return new Promise((resolve, reject) =>
+    compiler.run(async (err, stats) => {
+      if (options.json) {
+        fs.writeFile(
+          'stats.json',
+          JSON.stringify(stats.toJson(), null, 2),
+          () => {
+            console.warn('Wrote `stats.json` to root.');
+          }
+        );
       }
-      return;
-    }
+      if (err) {
+        console.error(err.stack || err);
+        if (err.details) {
+          console.error(err.details);
+        }
+        return reject();
+      }
 
-    stats.hasWarnings();
+      stats.hasWarnings();
 
-    if (stats.hasErrors()) {
-      return;
-    }
+      if (stats.hasErrors()) {
+        return;
+      }
 
-    if (options.static) {
-      await createStaticSite(options);
-    }
+      if (options.static) {
+        await createStaticSite(options);
+      }
 
-    if (options.publish) {
-      publish(options, user);
-    }
-  });
+      if (options.publish) {
+        publish(options, user);
+      }
+
+      console.log('compilation done');
+      resolve();
+    })
+  );
 }

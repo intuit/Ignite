@@ -228,7 +228,8 @@
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!**/testExtension/*.js"
+      "!**/testExtension/*.js",
+      "!**/create-static-site.js"
     ],
     "coverageReporters": [
       "cobertura",
