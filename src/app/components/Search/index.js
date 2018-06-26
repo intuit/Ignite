@@ -76,13 +76,11 @@ export const getLines = (source, indexes, term) => {
 
 class Search extends Component {
   static propTypes = {
-    static: PropTypes.bool,
     searchIndex: PropTypes.array,
     setSearchResults: PropTypes.func
   };
 
   static defaultProps = {
-    static: process.env.static,
     searchIndex: [],
     setSearchResults: () => {}
   };
@@ -131,7 +129,7 @@ class Search extends Component {
   };
 
   render() {
-    return this.props.static ? null : (
+    return (
       <div className={makeClass('navbar-item', styles.root)}>
         <div className="control">
           <input

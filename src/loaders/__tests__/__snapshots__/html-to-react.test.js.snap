@@ -266,19 +266,12 @@ Object {
 
     class LazyImageComponent extends React.Component {
       state = {
-        image: undefined
-          ? {
-            src: {
-              src: this.props.src.includes('//') ? this.props.src : path.join('undefined', this.props.src)
-            },
-            preSrc: this.props.src.includes('//') ? this.props.src : path.join('undefined', this.props.src)
-          }
-          : null,
+        image: null,
         ImageProvider: imageSources[this.props.src]
       }
 
       componentDidMount() {
-        if (!this.state.image && true) {
+        if (!this.state.image) {
           this.state.ImageProvider().then(c => {
             this.setState({
               image: c.default
@@ -290,10 +283,8 @@ Object {
       render() {
         let { image } = this.state;
 
-        const ImageComponent = undefined ? 'img' : IdealImage;
-
         return image ? (
-          <ImageComponent
+          <IdealImage
             {...this.props}
             className={makeClass('image', this.props.className)}
             src={image.src.src}

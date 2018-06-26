@@ -21,7 +21,7 @@ import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
 import packageJSON from '../package';
 import { transform } from './loaders/hash-link';
-import createStaticSite from './createStaticSite';
+import createStaticSite from './create-static-site';
 
 register(packageJSON.babel || {});
 

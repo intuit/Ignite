@@ -40,7 +40,7 @@ ignite --index index.md
 
 ## Static (--static)
 
-Build the documentation website as individual static html pages. Search is disabled in this mode. Some other things might be wonky.
+Build the documentation website as individual static html pages.
 
 ```bash
 ignite --static
