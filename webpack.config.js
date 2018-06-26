@@ -262,9 +262,10 @@ module.exports = function(options) {
           plugins: JSON.stringify(options.plugins)
         }
       }),
-      new FriendlyErrorsWebpackPlugin({
-        compilationSuccessInfo: options.compilationSuccessInfo
-      }),
+      options.log &&
+        new FriendlyErrorsWebpackPlugin({
+          compilationSuccessInfo: options.compilationSuccessInfo
+        }),
       options.static &&
         new CopyWebpackPlugin([
           {

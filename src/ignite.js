@@ -194,9 +194,11 @@ export async function initOptions(options) {
     options = await initPlugins(options);
   }
 
-  Object.entries(options.navItems).forEach(([key, val]) => {
-    options.navItems[key] = path.join(options.baseURL, val);
-  });
+  if (options.navItems) {
+    Object.entries(options.navItems).forEach(([key, val]) => {
+      options.navItems[key] = path.join(options.baseURL, val);
+    });
+  }
 
   return options;
 }
@@ -302,7 +304,6 @@ export default async function build(options) {
         publish(options, user);
       }
 
-      console.log('compilation done');
       resolve();
     })
   );

@@ -10,7 +10,7 @@ import root from 'root-path';
 import handler from 'serve-handler';
 import puppeteer from 'puppeteer';
 
-const startServer = options =>
+export const startServer = options =>
   http.createServer((request, response) => {
     return handler(request, response, {
       cleanUrls: false,
@@ -48,11 +48,12 @@ const writeHtml = async (page, filePath) => {
 
 export default function createStaticSite(options) {
   const server = startServer(options);
+  const log = (...string) => options.log && console.warn(...string);
 
   return new Promise(resolve =>
     server.listen(options.port, async () => {
-      console.warn(`server is listening on ${options.port}`);
-      console.warn('Generating static page for:');
+      log(`server is listening on ${options.port}`);
+      log('Generating static page for:');
 
       const rootIndex = path
         .join(options.baseURL, options.index)
@@ -79,7 +80,7 @@ export default function createStaticSite(options) {
           return;
         }
 
-        console.warn('**', link);
+        log('**', link);
         linksToVisit.delete(link);
         linksVisited.add(link);
 

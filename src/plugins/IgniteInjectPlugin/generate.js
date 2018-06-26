@@ -174,7 +174,7 @@ const generateBlogIndex = (blogFiles, options) => {
       }
     }
 
-    registerMarkdown('blog/${options.index}', async () => ({ 
+    registerMarkdown('/blog/${options.index}', async () => ({ 
       default: blogIndex
     }));
   `;
