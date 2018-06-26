@@ -215,6 +215,7 @@ test('homePage put everything in a hero', () => {
 
 test('detectIndex', () => {
   const options = {
+    baseURL: '/',
     index: 'index.md'
   };
 
