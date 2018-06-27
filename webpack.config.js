@@ -36,6 +36,7 @@ module.exports = function(options) {
   return {
     mode: options.mode,
     profile: options.json,
+    devtool: 'source-map',
 
     entry: [
       logoExists ? path.resolve(logoPath) : null,
@@ -82,7 +83,8 @@ module.exports = function(options) {
           // Default number of concurrent runs: os.cpus().length - 1
           parallel: true,
           // Enable file caching
-          cache: true
+          cache: true,
+          sourceMap: true
         })
       ],
       // Automatically split vendor and commons
@@ -252,7 +254,6 @@ module.exports = function(options) {
           NODE_ENV: JSON.stringify(options.mode),
           SEARCH: JSON.stringify(options.searchIndex),
           index: JSON.stringify(options.index),
-          static: JSON.stringify(options.static),
           baseURL: JSON.stringify(options.baseURL),
           title: JSON.stringify(options.title),
           githubURL: JSON.stringify(options.githubURL),
@@ -261,9 +262,10 @@ module.exports = function(options) {
           plugins: JSON.stringify(options.plugins)
         }
       }),
-      new FriendlyErrorsWebpackPlugin({
-        compilationSuccessInfo: options.compilationSuccessInfo
-      }),
+      options.log &&
+        new FriendlyErrorsWebpackPlugin({
+          compilationSuccessInfo: options.compilationSuccessInfo
+        }),
       options.static &&
         new CopyWebpackPlugin([
           {

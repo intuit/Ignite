@@ -1,5 +1,5 @@
 import React from 'react';
-import { hydrate, render } from 'react-dom';
+import { render } from 'react-dom';
 import { Router } from '@reach/router';
 
 import withGlobalConfig from './components/WithGlobalConfig';
@@ -14,8 +14,4 @@ const IgniteApp = (
   </Router>
 );
 
-if (rootElement.hasChildNodes()) {
-  hydrate(IgniteApp, rootElement);
-} else {
-  render(IgniteApp, rootElement);
-}
+render(IgniteApp, rootElement);

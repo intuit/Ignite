@@ -1,12 +1,13 @@
 import ignite from '../../src/ignite';
 
-const startIgnite = async (port, example) => {
+const startIgnite = async (port, example, options = {}) => {
   const docs = await ignite({
     port,
     src: example,
     open: false,
     watch: true,
-    log: false
+    log: false,
+    ...options
   });
 
   await new Promise(resolve => {

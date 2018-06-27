@@ -374,7 +374,7 @@ const createDetailsComponent = () => `
   };
 `;
 
-const createImageRenderer = async (rawSource, options) => {
+const createImageRenderer = async rawSource => {
   const imageSources = await Promise.all(loadImages(rawSource));
   return `
     import IdealImage from 'react-ideal-image';
@@ -383,23 +383,12 @@ const createImageRenderer = async (rawSource, options) => {
 
     class LazyImageComponent extends React.Component {
       state = {
-        image: ${options.static}
-          ? {
-            src: {
-              src: this.props.src.includes('//') ? this.props.src : path.join('${
-                options.src
-              }', this.props.src)
-            },
-            preSrc: this.props.src.includes('//') ? this.props.src : path.join('${
-              options.src
-            }', this.props.src)
-          }
-          : null,
+        image: null,
         ImageProvider: imageSources[this.props.src]
       }
 
       componentDidMount() {
-        if (!this.state.image && ${!options.static}) {
+        if (!this.state.image) {
           this.state.ImageProvider().then(c => {
             this.setState({
               image: c.default
@@ -411,10 +400,8 @@ const createImageRenderer = async (rawSource, options) => {
       render() {
         let { image } = this.state;
 
-        const ImageComponent = ${options.static} ? 'img' : IdealImage;
-
         return image ? (
-          <ImageComponent
+          <IdealImage
             {...this.props}
             className={makeClass('image', this.props.className)}
             src={image.src.src}
@@ -468,7 +455,7 @@ const createLazyComponent = () => `
 
 export const initPage = async (rawSource, pathToMarkdown, options) => {
   const { codeTabsComponent, source } = codeTabs(rawSource);
-  const imageRenderer = await createImageRenderer(rawSource, options);
+  const imageRenderer = await createImageRenderer(rawSource);
 
   return {
     pageStart: `
@@ -688,7 +675,7 @@ export function detectIndex(resourcePath, pathToMarkdown, options) {
             ? options.index
             : path.join(trimChar(item, '/'), options.index);
         })
-        .includes(pathToMarkdown))
+        .includes(trimChar(path.join(options.baseURL, pathToMarkdown), '/')))
   );
 }
 

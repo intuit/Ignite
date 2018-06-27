@@ -15,19 +15,6 @@ describe('Search', () => {
       )
     ).toMatchSnapshot();
   });
-
-  test('should not render a search in static mode', () => {
-    expect(
-      renderToJson(
-        <Search
-          static
-          searchIndex={[
-            { id: 'page.md', body: 'all the markdown text for page.md' }
-          ]}
-        />
-      )
-    ).toBeNull();
-  });
 });
 
 test('indexOfAll', () => {

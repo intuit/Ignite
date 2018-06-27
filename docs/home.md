@@ -16,7 +16,7 @@ Ignite makes documenting your open source project as easy as adding files to a f
 
 ### Plugins
 
-Just write React Components
+They're just React Components. Use NPM packages or write your own.
 :::
 
 ::: box
@@ -33,11 +33,29 @@ Built on [Bulma](https://bulma.io/documentation/overview/customize/)
 Great for things that aren't quite documentation but need explanation.
 :::
 
+|||
+
+||| row has-text-centered wide
+
 ::: box
 
-### Deploy With Git
+### Optimized Images
 
-Always have old documentation available
+All images are minified and transformed into various formats for a progressive image loading experience.
+:::
+
+::: box
+
+### Lazy Loading
+
+Every page, plugin, and image is lazy loaded, making the initial bundle download as small as possible.
+:::
+
+::: box
+
+### Static Builds
+
+Build your website as a Single Page App or a collection of HTML Files. You Choose
 :::
 
 |||

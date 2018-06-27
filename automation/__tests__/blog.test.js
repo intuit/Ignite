@@ -21,7 +21,7 @@ describe('Blog', () => {
     expect(docTitle).toBe('Blog');
   });
 
-  test('should display correct title', async () => {
+  test('should have correct amount of blog posts', async () => {
     const page = await visit('/');
 
     await page.click('.navbar-burger');

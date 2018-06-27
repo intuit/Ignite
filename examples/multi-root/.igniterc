@@ -1,5 +1,6 @@
 {
   "title": "Multi Root",
+  "baseURL": "/_ignite",
 
   "navItems": {
     "root": "/Root1",

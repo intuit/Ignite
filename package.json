@@ -94,6 +94,7 @@
     "markdown-it-table-of-contents": "0.3.6",
     "markdown-it-vanilla-loader": "1.0.9",
     "mini-css-extract-plugin": "^0.4.0",
+    "mkdirp": "0.5.1",
     "nightmare": "3.0.1",
     "postcss-color-rgba-fallback": "^3.0.0",
     "postcss-initial": "^2.0.0",
@@ -109,12 +110,12 @@
     "react-gist": "1.2.1",
     "react-ideal-image": "0.0.5",
     "react-router-prop-types": "^1.0.4",
-    "react-snap": "1.15.0",
     "react-tweet-embed": "1.1.0",
     "react-waypoint": "8.0.1",
     "request-promise": "4.2.2",
     "responsive-loader": "1.1.0",
     "root-path": "^0.2.1",
+    "serve-handler": "3.2.2",
     "simple-git": "1.96.0",
     "throttle-debounce": "2.0.0",
     "transform-markdown-links": "^2.0.0",
@@ -227,7 +228,8 @@
     "coverageDirectory": "./coverage",
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!**/testExtension/*.js"
+      "!**/testExtension/*.js",
+      "!**/create-static-site.js"
     ],
     "coverageReporters": [
       "cobertura",

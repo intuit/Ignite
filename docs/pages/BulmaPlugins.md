@@ -10,14 +10,14 @@ The classic button, in different colors, sizes, and states
 
 ```markdown
 ::: button is-large is-bold
-[Get Started :tada:](pages/GettingStarted.md)
+[Get Started :tada:](GettingStarted.md)
 :::
 ```
 
 OUTPUT:
 
 ::: button is-large is-bold
-[Get Started :tada:](pages/GettingStarted.md)
+[Get Started :tada:](GettingStarted.md)
 :::
 
 ### [Box](https://bulma.io/documentation/elements/box/)

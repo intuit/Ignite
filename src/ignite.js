@@ -15,13 +15,13 @@ import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
 import serve from 'webpack-serve';
 import ghpages from 'gh-pages';
-import createStaticWebsite from 'react-snap';
 import webpackServeWaitpage from 'webpack-serve-waitpage';
 
 import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
 import packageJSON from '../package';
 import { transform } from './loaders/hash-link';
+import createStaticSite from './create-static-site';
 
 register(packageJSON.babel || {});
 
@@ -194,6 +194,12 @@ export async function initOptions(options) {
     options = await initPlugins(options);
   }
 
+  if (options.navItems) {
+    Object.entries(options.navItems).forEach(([key, val]) => {
+      options.navItems[key] = path.join(options.baseURL, val);
+    });
+  }
+
   return options;
 }
 
@@ -267,40 +273,38 @@ export default async function build(options) {
   const webpackConfig = config(options);
   const compiler = webpack(webpackConfig);
 
-  compiler.run(async (err, stats) => {
-    if (options.json) {
-      fs.writeFile(
-        'stats.json',
-        JSON.stringify(stats.toJson(), null, 2),
-        () => {
-          console.warn('Wrote `stats.json` to root.');
-        }
-      );
-    }
-
-    if (err) {
-      console.error(err.stack || err);
-      if (err.details) {
-        console.error(err.details);
+  return new Promise((resolve, reject) =>
+    compiler.run(async (err, stats) => {
+      if (options.json) {
+        fs.writeFile(
+          'stats.json',
+          JSON.stringify(stats.toJson(), null, 2),
+          () => console.warn('Wrote `stats.json` to root.')
+        );
       }
-      return;
-    }
+      if (err) {
+        console.error(err.stack || err);
+        if (err.details) {
+          console.error(err.details);
+        }
+        return reject();
+      }
 
-    stats.hasWarnings();
+      stats.hasWarnings();
 
-    if (stats.hasErrors()) {
-      return;
-    }
+      if (stats.hasErrors()) {
+        return;
+      }
 
-    if (options.static) {
-      await createStaticWebsite.run({
-        source: options.dst,
-        publicPath: path.join(options.baseURL, '/')
-      });
-    }
+      if (options.static) {
+        await createStaticSite(options);
+      }
 
-    if (options.publish) {
-      publish(options, user);
-    }
-  });
+      if (options.publish) {
+        publish(options, user);
+      }
+
+      resolve();
+    })
+  );
 }

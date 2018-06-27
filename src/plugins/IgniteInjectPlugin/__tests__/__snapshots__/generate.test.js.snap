@@ -58,7 +58,7 @@ exports[`generate should add blogPosts 1`] = `
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(trim(item, '/'), INDEX_PAGE);
+              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
             })
             .includes(p)
           );
@@ -68,9 +68,9 @@ exports[`generate should add blogPosts 1`] = `
       const comp = lazyLoad(provider);
 
       if(isIndex(markdownPath)) {
-        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
+        window.configuration.markdown.push([markdownPath, comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
+        window.configuration.markdown.push([markdownPath, comp]);
       }
     }
 
@@ -235,7 +235,7 @@ exports[`generate should add blogPosts 1`] = `
       }
     }
 
-    registerMarkdown('blog/index.md', async () => ({ 
+    registerMarkdown(path.join('/', '/blog/index.md'), async () => ({ 
       default: blogIndex
     }));
   "
@@ -299,7 +299,7 @@ exports[`generate should add markdown 1`] = `
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(trim(item, '/'), INDEX_PAGE);
+              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
             })
             .includes(p)
           );
@@ -309,9 +309,9 @@ exports[`generate should add markdown 1`] = `
       const comp = lazyLoad(provider);
 
       if(isIndex(markdownPath)) {
-        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
+        window.configuration.markdown.push([markdownPath, comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
+        window.configuration.markdown.push([markdownPath, comp]);
       }
     }
 
@@ -330,13 +330,13 @@ exports[`generate should add markdown 1`] = `
     })
   
         registerMarkdown(
-          'path/to/markdown.md',
+          '/path/to/markdown.md',
           () => import(/* webpackChunkName: \\"markdown\\" */ 'path/to/markdown.md')
         );
       
 
         registerMarkdown(
-          'path/to/another-markdown.md',
+          '/path/to/another-markdown.md',
           () => import(/* webpackChunkName: \\"another-markdown\\" */ 'path/to/another-markdown.md')
         );
       "
@@ -400,7 +400,7 @@ exports[`generate should add plugins 1`] = `
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(trim(item, '/'), INDEX_PAGE);
+              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
             })
             .includes(p)
           );
@@ -410,9 +410,9 @@ exports[`generate should add plugins 1`] = `
       const comp = lazyLoad(provider);
 
       if(isIndex(markdownPath)) {
-        window.configuration.markdown.push([path.join('/', markdownPath), comp, true, null]);
+        window.configuration.markdown.push([markdownPath, comp, true, null]);
       } else {
-        window.configuration.markdown.push([path.join('/', markdownPath), comp]);
+        window.configuration.markdown.push([markdownPath, comp]);
       }
     }
 
