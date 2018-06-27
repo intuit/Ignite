@@ -240,3 +240,7 @@
 - Test everything #152
 - use published loader! #150
 - Image Updates #148
+
+ 0.2.3
+
+- Fix static builds again and add automation #153
