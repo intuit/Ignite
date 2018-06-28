@@ -244,3 +244,7 @@
  0.2.3
 
 - Fix static builds again and add automation #153
+
+ 0.2.4
+
+- update deps #154
