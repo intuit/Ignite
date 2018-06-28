@@ -2923,9 +2923,9 @@ console-stream@^0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.intuit.net/c/console-stream/_attachments/console-stream-0.1.1.tgz#a095fe07b20465955f2fafd28b5d72bccd949d44"
 
-consolidated-events@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.npmjs.intuit.net/c/consolidated-events/_attachments/consolidated-events-1.1.1.tgz#25395465b35e531395418b7bbecb5ecaf198d179"
+"consolidated-events@^1.1.0 || ^2.0.0":
+  version "2.0.2"
+  resolved "https://registry.npmjs.intuit.net/c/consolidated-events/_attachments/consolidated-events-2.0.2.tgz#da8d8f8c2b232831413d9e190dc11669c79f4a91"
 
 constants-browserify@^1.0.0:
   version "1.0.0"
@@ -9915,10 +9915,10 @@ react-tweet-embed@1.1.0:
   resolved "https://registry.npmjs.intuit.net/r/react-tweet-embed/_attachments/react-tweet-embed-1.1.0.tgz#eb83ad8d75bb29d81b2e5c2d9d586021ceeda948"
 
 react-waypoint@8.0.2:
-  version "8.0.1"
-  resolved "https://registry.npmjs.intuit.net/r/react-waypoint/_attachments/react-waypoint-8.0.1.tgz#00f7694a9d54da5a50be859da5dde96b1795b892"
+  version "8.0.2"
+  resolved "https://registry.npmjs.intuit.net/r/react-waypoint/_attachments/react-waypoint-8.0.2.tgz#4780c9b79189104eaec4cc7968ac60a900e508b1"
   dependencies:
-    consolidated-events "^1.1.0"
+    consolidated-events "^1.1.0 || ^2.0.0"
     prop-types "^15.0.0"
 
 react@^16.4.1:
