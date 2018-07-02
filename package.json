@@ -35,7 +35,8 @@
     "build:lib:watch": "npm run build:lib -- -w --verbose",
     "publish:docs": "npm run build -- --publish",
     "analyze": "npm run build -- --analyze",
-    "release": "github-semantic-version --bump --changelog --push --publish"
+    "release": "github-semantic-version --bump --changelog --push --publish",
+    "add-contributor": "all-contributors add"
   },
   "license": "ISC",
   "dependencies": {
