@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/dt/ignite.svg?style=for-the-badge)](https://www.npmjs.com/package/ignite) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier) [![Intuit](https://img.shields.io/badge/Created%20by-Intuit-blue.svg?style=for-the-badge)](https://www.intuit.com/)
 
 <div align="center">
-  <a href="https://github.com/webpack/webpack">
+  <a href="https://intuit.github.io/Ignite/">
     <img width="200" height="200"
       src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-11/256/fire.png">
   </a>
