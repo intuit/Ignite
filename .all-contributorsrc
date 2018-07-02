@@ -25,6 +25,16 @@
         "review",
         "test"
       ]
+    },
+    {
+      "login": "adierkens",
+      "name": "Adam Dierkens",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13004162?v=4",
+      "profile": "https://adamdierkens.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ]
 }
