@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-yarn add -D @fuego/ignite
+yarn add -D ignite
 ```
 
 ## Add scripts
