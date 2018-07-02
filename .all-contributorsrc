@@ -15,7 +15,16 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/1192452?v=4",
       "profile": "http://hipstersmoothie.com",
       "contributions": [
-        "code"
+        "code",
+        "design",
+        "doc",
+        "example",
+        "ideas",
+        "infra",
+        "platform",
+        "review",
+        "test",
+        "bug"
       ]
     }
   ]
