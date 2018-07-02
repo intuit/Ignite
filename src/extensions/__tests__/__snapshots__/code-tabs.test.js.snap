@@ -18,7 +18,7 @@ exports[`code tabs 1`] = `
                       className=!{this.state.tabIndex === 0 ? 'is-active' : undefined!}
                       onClick=!{this.onClick(0)!}
                     >
-                      <a>
+                      <a href=\\"#\\">
                         <span>CSS</span>
                       </a>
                     </li>
@@ -28,7 +28,7 @@ exports[`code tabs 1`] = `
                       className=!{this.state.tabIndex === 1 ? 'is-active' : undefined!}
                       onClick=!{this.onClick(1)!}
                     >
-                      <a>
+                      <a href=\\"#\\">
                         <span>HTML</span>
                       </a>
                     </li>
@@ -38,7 +38,7 @@ exports[`code tabs 1`] = `
                       className=!{this.state.tabIndex === 2 ? 'is-active' : undefined!}
                       onClick=!{this.onClick(2)!}
                     >
-                      <a>
+                      <a href=\\"#\\">
                         <span>JS</span>
                       </a>
                     </li>
