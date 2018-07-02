@@ -44,6 +44,6 @@ Releasing and publishing are handled automatically. Any time a PR is merged or c
 <h2 align="center">Contributing / Bug Reporting</h2>
 
 <p align="center">
-  <a href="https://github.com/Fuego/Ignite/pulls">Pull Requests</a> welcome! Submit any bug report or feature enhancement as an
-  <a href="https://github.com/Fuego/Ignite/issues">issue</a>.
+  <a href="https://github.com/intuit/Ignite/pulls">Pull Requests</a> welcome! Submit any bug report or feature enhancement as an
+  <a href="https://github.com/intuit/Ignite/issues">issue</a>.
 </p>
