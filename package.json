@@ -32,7 +32,8 @@
     "build:lib": "babel src -d dist --ignore '**/__tests__/','**/app/'",
     "build:lib:watch": "npm run build:lib -- -w --verbose",
     "publish:docs": "npm run build -- --publish",
-    "analyze": "npm run build -- --analyze"
+    "analyze": "npm run build -- --analyze",
+    "release": "github-semantic-version --bump --changelog --push --publish"
   },
   "license": "ISC",
   "dependencies": {
