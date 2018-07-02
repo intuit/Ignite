@@ -9,7 +9,8 @@
   "files": [
     "dist",
     "src",
-    "webpack.config.js"
+    "webpack.config.js",
+    "webpack.config.dev.js"
   ],
   "repository": {
     "type": "git",
