@@ -82,6 +82,19 @@ jobs:
       - run:
           name: Publish Library
           command: npm run release
+  publishCanary:
+    <<: *defaults
+    steps: 
+      - attach_workspace:
+           at: ~/Ignite
+      - run: mkdir ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: 
+          name: Version Canary
+          command: npm run version:canary
+      - run:
+          name: Publish Canary
+          command: npm publish --tag PR
   publishDocs:
     <<: *defaults
     steps:
@@ -117,6 +130,14 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - publishCanary:
+          requires:
+              - lint
+              - test
+              - automationTest
+          filters:
+            branches:
+              ignore: /master/
       - publishLibrary:
           requires:
               - lint
