@@ -35,7 +35,8 @@
     "build:lib:watch": "npm run build:lib -- -w --verbose",
     "publish:docs": "npm run build -- --publish",
     "analyze": "npm run build -- --analyze",
-    "release": "github-semantic-version --bump --changelog --push --publish"
+    "release": "github-semantic-version --bump --changelog --push --publish",
+    "add-contributor": "all-contributors add"
   },
   "license": "ISC",
   "dependencies": {
@@ -134,6 +135,7 @@
     "zeedown": "2.0.1"
   },
   "devDependencies": {
+    "all-contributors-cli": "^5.2.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^8.2.5",
     "babel-jest": "^23.2.0",
