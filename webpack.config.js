@@ -15,7 +15,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 const { defaults } = require('./dist/ignite');
-
+const babelRc = require('./.babelrc');
 const markdownItConfig = require('./markdownit.config');
 
 module.exports = function(options) {
@@ -40,7 +40,7 @@ module.exports = function(options) {
 
     entry: [
       logoExists ? path.resolve(logoPath) : null,
-      path.resolve(__dirname, './src/app/index.js')
+      path.resolve(__dirname, './dist/app/index.js')
     ].filter(Boolean),
 
     optimization: {
@@ -109,7 +109,17 @@ module.exports = function(options) {
         {
           test: /\.md$/,
           use: [
-            'babel-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                ...babelRc({
+                  env() {
+                    return 'production';
+                  }
+                })
+              }
+            },
             {
               loader: path.resolve(
                 __dirname,
@@ -207,7 +217,7 @@ module.exports = function(options) {
 
     resolve: {
       alias: {
-        ignite: path.resolve(__dirname, './src/app/index.js')
+        ignite: path.resolve(__dirname, './dist/app/index.js')
       }
     },
 

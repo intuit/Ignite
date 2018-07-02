@@ -15,6 +15,7 @@ module.exports = function(params) {
       '@babel/preset-stage-3'
     ],
     plugins: [
+      '@babel/plugin-proposal-object-rest-spread',
       '@babel/plugin-transform-react-constant-elements',
       '@babel/transform-react-inline-elements',
       'add-module-exports',
