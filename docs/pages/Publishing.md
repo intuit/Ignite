@@ -22,10 +22,10 @@ git push origin gh-pages
 
 ### Key
 
-To successfully publish your documentation on a Continuous integration environment, or anything other than your local machine, you will need to set up a `GITHUB_KEY` environment variable.
+To successfully publish your documentation on a Continuous integration environment, or anything other than your local machine, you will need to set up a `GH_TOKEN` environment variable.
 
 ```bash
-GITHUB_KEY={github key with write access}
+GH_TOKEN={github key with write access}
 ```
 
 ### Name and Email
@@ -59,7 +59,7 @@ Now all that's left to do is to publish to github-pages! Run the publish docs co
 
 ### Circle CI
 
-Make sure you have set up the `GITHUB_KEY` environment variable. Then add the publish job to your `config.yml`.
+Make sure you have set up the `GH_TOKEN` environment variable. Then add the publish job to your `config.yml`.
 
 ```yaml
 publishDocs:

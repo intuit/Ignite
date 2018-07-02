@@ -19,7 +19,7 @@
   },
   "author": {
     "name": "Andrew Lisowski",
-    "email": "andrew_lisowski@intuit.com"
+    "email": "lisowski54@gmail.com"
   },
   "scripts": {
     "precommit": "lint-staged",

@@ -142,7 +142,7 @@ function publish(options, user) {
     options.dst,
     {
       message: ':memo: Update Documentation',
-      repo: `https://username:${process.env.GITHUB_KEY}@${options.githubURL}`,
+      repo: `https://username:${process.env.GH_TOKEN}@${options.githubURL}`,
       user
     },
     err => {
