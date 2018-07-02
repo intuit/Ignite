@@ -10,7 +10,8 @@
     "dist",
     "src",
     "webpack.config.js",
-    "webpack.config.dev.js"
+    "webpack.config.dev.js",
+    "markdownit.config.js"
   ],
   "repository": {
     "type": "git",
