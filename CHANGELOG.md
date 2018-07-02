@@ -3,8 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
-## 2018-07-02 - [0.2.668 - current version]
+## 2018-07-02 - [0.2.669 - current version]
 
+- 0.2.669 - ([1dfcad7](https://github.com/intuit/Ignite/commit/1dfcad7f06f98940765f4198c616b21bd2e27353)) - update tests (@hipstersmoothie)
 - 0.2.668 - ([2e0d01f](https://github.com/intuit/Ignite/commit/2e0d01f7f7c5e8a0f55be5ebeeb86c24b120d4f6)) - update config for public github (@hipstersmoothie)
 - 0.2.667 - ([4](https://github.com/intuit/Ignite/pull/4)) - Publishing (@hipstersmoothie)
 - 0.2.666 - ([3](https://github.com/intuit/Ignite/pull/3)) - Include webpack dev in publish (@adierkens)
@@ -799,6 +800,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - 0.2.7 - ([99192e4](https://github.com/intuit/Ignite/commit/99192e4ade59fdea6b135e458672f471a531258d)) - add XO (@hipstersmoothie)
 - 0.2.6 - ([21dc660](https://github.com/intuit/Ignite/commit/21dc660c944bc425683a2ad17a11d994733e4290)) - add prettier (@hipstersmoothie)
 - 0.2.5 - ([581ee8f](https://github.com/intuit/Ignite/commit/581ee8ffb2572e050c4e8028ce3b9af64c063701)) - getting started (@hipstersmoothie)
+
 
 
 
