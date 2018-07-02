@@ -23,8 +23,7 @@
         "infra",
         "platform",
         "review",
-        "test",
-        "bug"
+        "test"
       ]
     }
   ]
