@@ -6,7 +6,7 @@
       src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-11/256/fire.png">
   </a>
   <h1>
-    <a href="https://github.intuit.com/pages/Fuego/Ignite/">
+    <a href="https://github.com/pages/Fuego/Ignite/">
       Ignite
     </a>
   </h1>
@@ -44,6 +44,6 @@ Releasing and publishing are handled automatically. Any time a PR is merged or c
 <h2 align="center">Contributing / Bug Reporting</h2>
 
 <p align="center">
-  <a href="https://github.intuit.com/Fuego/Ignite/pulls">Pull Requests</a> welcome! Submit any bug report or feature enhancement as an
-  <a href="https://github.intuit.com/Fuego/Ignite/issues">issue</a>.
+  <a href="https://github.com/Fuego/Ignite/pulls">Pull Requests</a> welcome! Submit any bug report or feature enhancement as an
+  <a href="https://github.com/Fuego/Ignite/issues">issue</a>.
 </p>
