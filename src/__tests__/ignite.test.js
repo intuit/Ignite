@@ -45,7 +45,7 @@ describe('initBlogPosts', () => {
 
 test('getAuthor', () => {
   expect(getAuthor()).toEqual({
-    email: 'andrew_lisowski@intuit.com',
+    email: 'lisowski54@gmail.com',
     name: 'Andrew Lisowski'
   });
 });
