@@ -1,4 +1,4 @@
-[![CircleCI](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite.svg?style=shield)](https://circle.circleci.sbg.intuit.com/gh/Fuego/Ignite) [![codecov](https://codecov.tools.a.intuit.com/ghe/Fuego/Ignite/branch/master/graph/badge.svg)](https://codecov.tools.a.intuit.com/ghe/Fuego/Ignite)
+[![CircleCI](https://img.shields.io/circleci/project/github/intuit/Ignite.svg?style=for-the-badge)](https://circleci.com/gh/intuit/Ignite) [![Codecov](https://img.shields.io/codecov/c/github/intuit/ignite.svg?style=for-the-badge)](https://codecov.io/gh/intuit/ignite)
 
 <div align="center">
   <a href="https://github.com/webpack/webpack">
@@ -6,7 +6,7 @@
       src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-11/256/fire.png">
   </a>
   <h1>
-    <a href="https://github.com/pages/Fuego/Ignite/">
+    <a href="https://intuit.github.io/Ignite/">
       Ignite
     </a>
   </h1>
