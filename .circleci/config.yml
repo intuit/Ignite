@@ -77,14 +77,11 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/Ignite 
-      # - run: echo "//registry.npmjs.intuit.net/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: mkdir ~/.ssh && ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run:
           name: Publish Library
-          command: scripts/ci-publish.sh
-      - persist_to_workspace:
-          root: .
-          paths:
-              - dist/
+          command: npm run release
   publishDocs:
     <<: *defaults
     steps:
@@ -93,26 +90,11 @@ jobs:
       - run:
           name: Publish Docs
           command: yarn publish:docs
-  pr-check:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/Ignite
-      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      - run:
-          name: PR Check
-          command: scripts/pr-check.sh
 
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - pr-check:
-          requires:
-              - build
-          filters:
-            tags:
-              only: /.*/
       - build:
           filters:
             tags:

@@ -1,6 +1,6 @@
 {
   "name": "@fuego/ignite",
-  "version": "0.2.4",
+  "version": "0.2.665",
   "description": "Modern markdown documentation generator",
   "main": "dist/ignite.js",
   "bin": {
@@ -138,6 +138,7 @@
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-prettier": "^2.6.1",
     "eslint-plugin-react": "^7.10.0",
+    "github-semantic-version": "^7.6.0",
     "husky": "^0.14.3",
     "jest": "^23.2.0",
     "jest-css-modules-transform": "2.0.0",
@@ -243,7 +244,12 @@
   "jest-junit": {
     "output": "./coverage/junit/junit.xml"
   },
-  "reactSnap": {
-    "source": "_ignite"
+  "gsv": {
+    "majorLabel": "major",
+    "minorLabel": "minor",
+    "patchLabel": "patch",
+    "internalLabel": "internal",
+    "releasedLabel": "Released",
+    "addReleasedLabelOnSuccess": true
   }
 }
