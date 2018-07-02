@@ -229,7 +229,6 @@ export default async function build(options) {
     const webpackConfig = configDev(options);
 
     return serve({
-      open: options.open,
       config: webpackConfig,
       port: options.port,
       logLevel: 'silent',
