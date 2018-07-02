@@ -1,6 +1,6 @@
 # Bulma Plugins
 
-Ignite is build upon Bulma and exposes some of the elements and components as markdown extensions. Not all of them are implemented but feel free to make a pull request!
+Ignite is built upon Bulma and exposes some of the elements and components as markdown extensions. Not all of them are implemented but feel free to make a pull request!
 
 ## Elements
 
