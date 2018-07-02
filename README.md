@@ -1,6 +1,6 @@
 [![CircleCI](https://img.shields.io/circleci/project/github/intuit/Ignite.svg?style=for-the-badge)](https://circleci.com/gh/intuit/Ignite) [![Codecov](https://img.shields.io/codecov/c/github/intuit/ignite.svg?style=for-the-badge)](https://codecov.io/gh/intuit/ignite)
 [![npm](https://img.shields.io/npm/v/ignite.svg?style=for-the-badge)](https://www.npmjs.com/package/ignite)
-[![npm](https://img.shields.io/npm/dt/ignite.svg?style=for-the-badge)](https://www.npmjs.com/package/ignite) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
+[![npm](https://img.shields.io/npm/dt/ignite.svg?style=for-the-badge)](https://www.npmjs.com/package/ignite) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier) [![Intuit](https://img.shields.io/badge/Created%20by-Intuit-blue.svg?style=for-the-badge)](https://www.intuit.com/)
 
 <div align="center">
   <a href="https://github.com/webpack/webpack">
