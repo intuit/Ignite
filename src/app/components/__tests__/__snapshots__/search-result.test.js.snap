@@ -7,13 +7,13 @@ exports[`SearchResult 1`] = `
   <div
     className="card-content"
   >
-    <ForwardRef
+    <Link
       className="subtitle has-text-link title"
       onClick={[Function]}
       to="/foo.html"
     >
       foo.md
-    </ForwardRef>
+    </Link>
     <div>
       <p
         dangerouslySetInnerHTML={
