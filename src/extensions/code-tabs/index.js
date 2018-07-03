@@ -32,7 +32,7 @@ const codeTabs = {
                       className=!{this.state.tabIndex === ${index} ? 'is-active' : undefined!}
                       onClick=!{this.onClick(${index})!}
                     >
-                      <a>
+                      <a href="#">
                         <span>${title}</span>
                       </a>
                     </li>

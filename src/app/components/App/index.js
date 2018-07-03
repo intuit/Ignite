@@ -25,7 +25,7 @@ class App extends Component {
 
   jumpToHash = () => {
     setImmediate(() => {
-      let { hash } = this.props.location;
+      let { hash, href } = this.props.location;
       hash = hash.slice(1);
 
       if (hash && document.getElementById(hash)) {
@@ -34,7 +34,7 @@ class App extends Component {
           inline: 'nearest',
           behavior: 'smooth'
         });
-      } else if (!hash) {
+      } else if (!hash && !href.includes('#')) {
         document.querySelector('body').scrollIntoView({
           block: 'start',
           inline: 'nearest'
