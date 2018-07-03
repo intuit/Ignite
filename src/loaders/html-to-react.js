@@ -333,7 +333,7 @@ const createOptionalLink = (pathToMarkdown, options) =>`
       to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '.html')}') + to;
     }
 
-    return <Link {...props} currentPage={currentPage} to={to} />;
+    return <Link {...props} currentPage={currentPage} href={to} />;
   };
 `;
 
@@ -462,7 +462,38 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
       import path from 'path';
       import React, { Component } from 'react';
       import makeClass from 'classnames';
-      import { Link } from 'react-router-dom';
+      // import { Link } from 'react-router-dom';
+
+      const getLocation = Location => ({
+        pathname: Location.pathname,
+        hash: Location.hash,
+        query: Location.query
+      });
+
+      const Link = props => {
+        return (
+          <a
+            {...props}
+            onClick={e => {
+              e.preventDefault();
+              const location = new URL(path.join(window.location.origin, props.href))
+
+              window.history.pushState(getLocation(location), null, props.href);
+              props.onClick();
+
+              const popStateEvent = new CustomEvent('changeLocation', { detail: location });
+              dispatchEvent(popStateEvent);
+
+              return false;
+            }}
+          />
+        );
+      };
+
+      Link.defaultProps = {
+        href: '',
+        onClick: () => {}
+      };
 
       ${createOptionalLink(pathToMarkdown, options)}
       ${createPluginProvider()}
@@ -515,7 +546,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
           : i === 4 &&
             `
       <div class='has-text-centered learnMore'>
-        <Link to='${path.join(
+        <Link href='${path.join(
           options.baseURL,
           pathToMarkdown.replace('.md', '.html')
         )}'>

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
-import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
+
+import Link from '../Router/link';
 
 const getIndex = (index = process.env.index) => index.replace('.md', '.html');
 
@@ -43,7 +44,7 @@ const NavItem = ({ item: [key, item], ...props }) => {
         key={key}
         onClick={props.onClick}
         className={makeClass('navbar-item', isActive && 'is-active')}
-        to={makeRouterLink(item)}
+        href={makeRouterLink(item)}
       >
         {key}
         {props.icon}

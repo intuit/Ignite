@@ -5,7 +5,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import markdown from 'zeedown';
-import { Link } from 'react-router-dom';
+
+import Link from '../Router/link';
 
 import styles from './searchResult.css';
 
@@ -14,7 +15,7 @@ const SearchResult = ({ fileName, baseURL, results, setResults }) => (
     <div key={fileName} className="card-content">
       <Link
         className={makeClass('subtitle', 'has-text-link', styles.title)}
-        to={path.join(baseURL, fileName.replace('.md', '.html'))}
+        href={path.join(baseURL, fileName.replace('.md', '.html'))}
         onClick={() => setTimeout(() => setResults({}), 10)}
       >
         {fileName}

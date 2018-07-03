@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Link } from 'react-router-dom';
 
 import { default as Sidebar } from '../Sidebar';
 import styles from './docs-page.css';
