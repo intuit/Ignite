@@ -1,6 +1,6 @@
 # Options
 
-All options can be used as CLI arguments or declared in the package.json.
+All options can be used as CLI arguments, declared in the package.json, or your project can have an `.igniterc`. This file can be at the project root or anywhere [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) can find it.
 
 ```json
 {
