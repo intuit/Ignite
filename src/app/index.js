@@ -1,13 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import withLocation from './components/Router/withLocation';
+import Router from './components/Router';
 import withGlobalConfig from './components/WithGlobalConfig';
 import MarkdownProvider from './components/MarkdownProvider';
 
-const rootElement = document.getElementById('index');
-const MarkdownProviderWithConfig = withLocation(
-  withGlobalConfig(MarkdownProvider)
-);
+const MarkdownProviderWithConfig = withGlobalConfig(MarkdownProvider);
 
-render(<MarkdownProviderWithConfig />, rootElement);
+render(
+  <Router>
+    <MarkdownProviderWithConfig />
+  </Router>,
+  document.getElementById('index')
+);

@@ -2,7 +2,7 @@ import path from 'path';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getLocation } from './withLocation';
+import getLocation from './get-location';
 
 const Link = props => {
   return (
