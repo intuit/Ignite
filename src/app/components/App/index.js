@@ -25,10 +25,11 @@ class App extends Component {
 
   jumpToHash = () => {
     setImmediate(() => {
-      const { hash } = this.props.location;
+      let { hash } = this.props.location;
+      hash = hash.slice(1);
 
-      if (hash && document.querySelector(hash)) {
-        document.querySelector(hash).scrollIntoView({
+      if (hash && document.getElementById(hash)) {
+        document.getElementById(hash).scrollIntoView({
           block: 'start',
           inline: 'nearest',
           behavior: 'smooth'
