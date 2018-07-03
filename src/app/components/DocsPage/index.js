@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import { default as Sidebar } from '../Sidebar';
 import styles from './docs-page.css';
@@ -27,8 +27,6 @@ const DocsPage = ({ Page, SidebarComponent, location, plugins, className }) => (
           'is-three-quarters-desktop'
         )}
       >
-        <Link to="test.html"> Link </Link>
-
         <Page plugins={plugins} className={styles.Page} />
       </div>
     </div>

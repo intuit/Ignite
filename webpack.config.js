@@ -174,7 +174,17 @@ module.exports = function(options) {
         {
           test: /\.js$/,
           exclude: /node_modules\/(?!.*ignite\/src)/,
-          use: 'babel-loader'
+          use: {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              ...babelRc({
+                env() {
+                  return 'production';
+                }
+              })
+            }
+          }
         },
         // CSS
         {

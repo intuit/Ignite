@@ -31,7 +31,7 @@ module.exports = function(options) {
 
     entry: [
       logoExists ? path.resolve(logoPath) : null,
-      path.resolve(__dirname, './dist/app/index.js')
+      path.resolve(__dirname, './src/app/index.js')
     ].filter(Boolean),
 
     devtool: 'source-map',
@@ -99,7 +99,17 @@ module.exports = function(options) {
         {
           test: /\.js$/,
           exclude: /node_modules\/(?!.*ignite\/src)/,
-          use: 'babel-loader'
+          use: {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              ...babelRc({
+                env() {
+                  return 'development';
+                }
+              })
+            }
+          }
         },
         // Images
         {
@@ -169,7 +179,7 @@ module.exports = function(options) {
 
     resolve: {
       alias: {
-        ignite: path.resolve(__dirname, './dist/app/index.js')
+        ignite: path.resolve(__dirname, './src/app/index.js')
       }
     },
 

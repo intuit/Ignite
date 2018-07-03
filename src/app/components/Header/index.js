@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import makeClass from 'classnames';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import NavItem from '../NavItem';
 import Search from '../Search';

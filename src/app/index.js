@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router } from '@reach/router';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import withGlobalConfig from './components/WithGlobalConfig';
 import MarkdownProvider from './components/MarkdownProvider';
@@ -9,9 +9,9 @@ const MarkdownProviderWithConfig = withGlobalConfig(MarkdownProvider);
 const rootElement = document.getElementById('index');
 
 const IgniteApp = (
-  <Router>
-    <MarkdownProviderWithConfig path="*" />
-  </Router>
+  <BrowserRouter>
+    <Route path="*" component={MarkdownProviderWithConfig} />
+  </BrowserRouter>
 );
 
 render(IgniteApp, rootElement);

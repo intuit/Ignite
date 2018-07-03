@@ -462,7 +462,7 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
       import path from 'path';
       import React, { Component } from 'react';
       import makeClass from 'classnames';
-      import { Link } from '@reach/router';
+      import { Link } from 'react-router-dom';
 
       ${createOptionalLink(pathToMarkdown, options)}
       ${createPluginProvider()}
@@ -603,8 +603,6 @@ export function markDownPage(source) {
   return `
     const markDownPage = props => (
       <div className={props.className}>
-        <Link to="test"> Link </Link>
-
         <section>
           ${source}
         </section>
