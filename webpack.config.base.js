@@ -5,7 +5,6 @@ const path = require('path');
 const webpack = require('webpack');
 const globby = require('globby');
 
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
@@ -41,8 +40,6 @@ module.exports = function(options) {
       logoExists ? path.resolve(logoPath) : null,
       path.resolve(__dirname, './src/app/index.js')
     ].filter(Boolean),
-
-    devtool: 'source-map',
 
     optimization: {
       // Automatically split vendor and commons
