@@ -1,4 +1,5 @@
 import path from 'path';
+import url from 'url';
 import dayjs from 'dayjs';
 import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
