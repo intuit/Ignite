@@ -270,9 +270,9 @@ const initLazyLoad = options => {
 const fixSlashes = p => p.replace(/\\/g, '/');
 
 const buildSearchIndex = (dir = __dirname) => {
-  const r = fixSlashes(path.join(dir, 'search'));
-  console.log(r);
-  return `import(/* webpackChunkName: "search-files" */ '${r}').then((files) => {
+  return `import(/* webpackChunkName: "search-files" */ '${fixSlashes(
+    path.join(dir, 'search')
+  )}').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   `;
