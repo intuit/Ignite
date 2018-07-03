@@ -345,6 +345,11 @@ const createLink = (pathToMarkdown, options) =>`
         href={to}
         onClick={e => {
           e.preventDefault();
+
+          if (props.to === '#') {
+            return false;
+          }
+
           const location = new URL(path.join(window.location.origin, to))
 
           window.history.pushState(getLocation(location), null, to);
