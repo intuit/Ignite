@@ -32,6 +32,8 @@ module.exports = function(options) {
   const logoExists = logoPath && fs.existsSync(path.resolve(logoPath));
   const dest = options.dst ? path.resolve(options.dst) : null;
 
+  console.log(docs);
+
   return {
     mode: options.mode,
     devtool: 'source-map',

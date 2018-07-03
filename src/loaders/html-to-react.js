@@ -624,9 +624,9 @@ export function index(source, pathToMarkdown, options) {
 
     window.configuration.setFirstLink('${
       options.watch
-        ? path.join('/', pathToMarkdown)
-        : path.join(options.baseURL, pathToMarkdown)
-    }', '${path.join('/', firstLink.link.replace('.html', '.md'))}');
+        ? url.resolve('/', pathToMarkdown)
+        : url.resolve(options.baseURL, pathToMarkdown)
+    }', '${url.resolve('/', firstLink.link.replace('.html', '.md'))}');
   `;
 }
 

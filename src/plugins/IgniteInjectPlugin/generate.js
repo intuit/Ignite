@@ -267,9 +267,12 @@ const initLazyLoad = options => {
   `;
 };
 
+const fixSlashes = p => p.replace(/\\/g, '/');
+
 const buildSearchIndex = (dir = __dirname) => {
-  return `
-    import(/* webpackChunkName: "search-files" */ '${dir}/search').then((files) => {
+  const r = fixSlashes(path.join(dir, 'search'));
+  console.log(r);
+  return `import(/* webpackChunkName: "search-files" */ '${r}').then((files) => {
       window.configuration.setSearchIndex(files.default);
     })
   `;
@@ -277,6 +280,8 @@ const buildSearchIndex = (dir = __dirname) => {
 
 export default function generate(entries = [], plugins = [], options = {}) {
   return () => {
+    entries = entries.map(fixSlashes);
+
     let generated = initLazyLoad(options);
     const blogFiles = entries.filter(page =>
       page.includes(path.join(options.src, 'blog/'))

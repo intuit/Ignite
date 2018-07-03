@@ -234,16 +234,19 @@ export default async function build(options) {
       on: {
         listening: () => {
           if (options.open) {
-            execSync('ps cax | grep "Google Chrome"');
-            execSync(
-              `osascript ../src/chrome.applescript "${encodeURI(
-                `http://localhost:${options.port}`
-              )}"`,
-              {
-                cwd: __dirname,
-                stdio: 'ignore'
-              }
-            );
+            const url = `http://localhost:${options.port}`;
+            try {
+              execSync('ps cax | grep "Google Chrome"');
+              execSync(
+                `osascript ../src/chrome.applescript "${encodeURI(url)}"`,
+                {
+                  cwd: __dirname,
+                  stdio: 'ignore'
+                }
+              );
+            } catch (err) {
+              console.warn(`Tried to open Chrome but couldn't. Go to: ${url}`);
+            }
           }
         }
       }
