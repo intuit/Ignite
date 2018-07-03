@@ -323,6 +323,7 @@ export const loadImages = rawSource => {
 // prettier-ignore
 const createLink = (pathToMarkdown, options) =>`
   const getLocation = Location => ({
+    href: Location.href,
     pathname: Location.pathname,
     hash: Location.hash,
     query: Location.query
