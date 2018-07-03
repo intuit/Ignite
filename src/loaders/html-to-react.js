@@ -603,6 +603,8 @@ export function markDownPage(source) {
   return `
     const markDownPage = props => (
       <div className={props.className}>
+        <Link to="test"> Link </Link>
+
         <section>
           ${source}
         </section>
