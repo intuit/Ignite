@@ -31,7 +31,7 @@ module.exports = function(options) {
 
     entry: [
       logoExists ? path.resolve(logoPath) : null,
-      path.resolve(__dirname, './src/app/index.js')
+      path.resolve(__dirname, './dist/app/index.js')
     ].filter(Boolean),
 
     devtool: 'source-map',
