@@ -2,7 +2,8 @@
 
 import yargs from 'yargs';
 
-import build, { defaults } from './ignite';
+import build from './ignite';
+import defaults from './default-config';
 
 const { argv } = yargs
   .describe('s', 'folder to look for markdown files in')

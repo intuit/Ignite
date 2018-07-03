@@ -22,6 +22,7 @@ import config from '../webpack.config';
 import packageJSON from '../package';
 import { transform } from './loaders/hash-link';
 import createStaticSite from './create-static-site';
+import defaults from './default-config';
 
 register(packageJSON.babel || {});
 
@@ -87,26 +88,6 @@ export function getAuthor() {
 
   return author;
 }
-
-export const defaults = {
-  open: true,
-  log: true,
-  mode: 'production',
-  webpackPlugins: [],
-  plugins: [],
-  baseURL: '/',
-  static: false,
-  src: 'docs/',
-  dst: '_ignite/',
-  index: 'index.md',
-  port: 8008,
-  title: 'Documentation',
-  codeStyle: 'foundation',
-  color: 'auto',
-  selectedColor: 'auto',
-  logo: 'logo.svg',
-  bulmaTheme: 'default'
-};
 
 export function initBuildMessages(options) {
   if (options.watch) {

@@ -8,7 +8,7 @@ const globby = require('globby');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
-const { defaults } = require('./dist/ignite');
+const defaults = require('./dist/default-config');
 const babelRc = require('./.babelrc');
 const markdownItConfig = require('./markdownit.config');
 
