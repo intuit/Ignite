@@ -333,7 +333,7 @@ const createOptionalLink = (pathToMarkdown, options) =>`
       to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '.html')}') + to;
     }
 
-    return <Link {...props} currentPage={currentPage} href={to} />;
+    return <Link {...props} currentPage={currentPage} to={to} />;
   };
 `;
 
@@ -474,11 +474,12 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
         return (
           <a
             {...props}
+            href={props.to}
             onClick={e => {
               e.preventDefault();
-              const location = new URL(path.join(window.location.origin, props.href))
+              const location = new URL(path.join(window.location.origin, props.to))
 
-              window.history.pushState(getLocation(location), null, props.href);
+              window.history.pushState(getLocation(location), null, props.to);
               props.onClick();
 
               const popStateEvent = new CustomEvent('changeLocation', { detail: location });
@@ -546,7 +547,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
           : i === 4 &&
             `
       <div class='has-text-centered learnMore'>
-        <Link href='${path.join(
+        <Link to='${path.join(
           options.baseURL,
           pathToMarkdown.replace('.md', '.html')
         )}'>

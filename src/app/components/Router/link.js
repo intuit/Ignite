@@ -8,11 +8,12 @@ const Link = props => {
   return (
     <a
       {...props}
+      href={props.to}
       onClick={e => {
         e.preventDefault();
-        const location = new URL(path.join(window.location.origin, props.href));
+        const location = new URL(path.join(window.location.origin, props.to));
 
-        history.pushState(getLocation(location), null, props.href);
+        history.pushState(getLocation(location), null, props.to);
         props.onClick();
 
         const popStateEvent = new CustomEvent('changeLocation', {
@@ -27,12 +28,12 @@ const Link = props => {
 };
 
 Link.propTypes = {
-  href: PropTypes.string,
+  to: PropTypes.string,
   onClick: PropTypes.func
 };
 
 Link.defaultProps = {
-  href: '',
+  to: '',
   onClick: () => {}
 };
 

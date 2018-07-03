@@ -44,7 +44,7 @@ const NavItem = ({ item: [key, item], ...props }) => {
         key={key}
         onClick={props.onClick}
         className={makeClass('navbar-item', isActive && 'is-active')}
-        href={makeRouterLink(item)}
+        to={makeRouterLink(item)}
       >
         {key}
         {props.icon}

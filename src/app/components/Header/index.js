@@ -112,7 +112,7 @@ class Header extends Component {
           <div className="navbar-brand">
             <Link
               onClick={this.closeMenu}
-              href={path.join(
+              to={path.join(
                 process.env.baseURL,
                 hasHomePage ? '/home.html' : '/'
               )}
