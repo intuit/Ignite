@@ -13,6 +13,12 @@ const { defaults } = require('./dist/ignite');
 const babelRc = require('./.babelrc');
 const markdownItConfig = require('./markdownit.config');
 
+const babelConfig = babelRc({
+  env() {
+    return 'development';
+  }
+});
+
 module.exports = function(options) {
   options = {
     ...defaults,
@@ -69,14 +75,7 @@ module.exports = function(options) {
           use: [
             {
               loader: 'babel-loader',
-              options: {
-                babelrc: false,
-                ...babelRc({
-                  env() {
-                    return 'development';
-                  }
-                })
-              }
+              options: babelConfig
             },
             {
               loader: path.resolve(
@@ -101,14 +100,7 @@ module.exports = function(options) {
           exclude: /node_modules\/(?!.*ignite\/src)/,
           use: {
             loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              ...babelRc({
-                env() {
-                  return 'development';
-                }
-              })
-            }
+            options: babelConfig
           }
         },
         // Images

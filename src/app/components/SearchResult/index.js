@@ -7,7 +7,6 @@ import makeClass from 'classnames';
 import markdown from 'zeedown';
 
 import Link from '../Router/link';
-
 import styles from './searchResult.css';
 
 const SearchResult = ({ fileName, baseURL, results, setResults }) => (
