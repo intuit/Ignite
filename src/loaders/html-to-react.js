@@ -75,8 +75,8 @@ export const replaceIdLinks = source => {
     },
     {
       start:
-        '<OptionalLink currentPage={(this && this.props || props).currentPage} to="#',
-      end: '</OptionalLink>'
+        '<Link currentPage={(this && this.props || props).currentPage} to="#',
+      end: '</Link>'
     }
   );
   source = replaceAll(
@@ -88,8 +88,8 @@ export const replaceIdLinks = source => {
     },
     {
       start:
-        '<OptionalLink currentPage={(this && this.props || props).currentPage} className="fas fa-hashtag headerLink" to="#',
-      end: '</OptionalLink>'
+        '<Link currentPage={(this && this.props || props).currentPage} className="fas fa-hashtag headerLink" to="#',
+      end: '</Link>'
     }
   );
 
@@ -146,22 +146,22 @@ export function sanitizeJSX(source) {
 
   source = source.replace(
     new RegExp('<a target="_blank" href', 'g'),
-    '<OptionalLink currentPage={(this && this.props || props).currentPage} target="_blank" to'
+    '<Link currentPage={(this && this.props || props).currentPage} target="_blank" to'
   );
   source = source.replace(
     new RegExp('<a href', 'g'),
-    '<OptionalLink currentPage={(this && this.props || props).currentPage} to'
+    '<Link currentPage={(this && this.props || props).currentPage} to'
   );
   source = source.replace(
     new RegExp('<a ', 'g'),
-    '<OptionalLink currentPage={(this && this.props || props).currentPage} '
+    '<Link currentPage={(this && this.props || props).currentPage} '
   );
   source = source.replace(new RegExp('href', 'g'), 'to');
   source = source.replace(
     new RegExp('<a>', 'g'),
-    '<OptionalLink currentPage={(this && this.props || props).currentPage} to="">'
+    '<Link currentPage={(this && this.props || props).currentPage} to="">'
   );
-  source = source.replace(new RegExp('</a>', 'g'), '</OptionalLink>');
+  source = source.replace(new RegExp('</a>', 'g'), '</Link>');
 
   // React uses className
   source = source.replace(new RegExp('class=', 'g'), 'className=');
@@ -321,9 +321,15 @@ export const loadImages = rawSource => {
 };
 
 // prettier-ignore
-const createOptionalLink = (pathToMarkdown, options) =>`
-  const OptionalLink = ({ currentPage, ...props }) => {
-    let to = props.to;
+const createLink = (pathToMarkdown, options) =>`
+  const getLocation = Location => ({
+    pathname: Location.pathname,
+    hash: Location.hash,
+    query: Location.query
+  });
+
+  const Link = props => {
+    let {to, ...rest} = props;
 
     if (to.includes('http')) {
       return <a {...props} href={to} />
@@ -333,7 +339,29 @@ const createOptionalLink = (pathToMarkdown, options) =>`
       to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '.html')}') + to;
     }
 
-    return <Link {...props} currentPage={currentPage} to={to} />;
+    return (
+      <a
+        {...rest}
+        href={to}
+        onClick={e => {
+          e.preventDefault();
+          const location = new URL(path.join(window.location.origin, to))
+
+          window.history.pushState(getLocation(location), null, to);
+          props.onClick();
+
+          const popStateEvent = new CustomEvent('changeLocation', { detail: location });
+          dispatchEvent(popStateEvent);
+
+          return false;
+        }}
+      />
+    );
+  };
+
+  Link.defaultProps = {
+    href: '',
+    onClick: () => {}
   };
 `;
 
@@ -462,41 +490,8 @@ export const initPage = async (rawSource, pathToMarkdown, options) => {
       import path from 'path';
       import React, { Component } from 'react';
       import makeClass from 'classnames';
-      // import { Link } from 'react-router-dom';
 
-      const getLocation = Location => ({
-        pathname: Location.pathname,
-        hash: Location.hash,
-        query: Location.query
-      });
-
-      const Link = props => {
-        return (
-          <a
-            {...props}
-            href={props.to}
-            onClick={e => {
-              e.preventDefault();
-              const location = new URL(path.join(window.location.origin, props.to))
-
-              window.history.pushState(getLocation(location), null, props.to);
-              props.onClick();
-
-              const popStateEvent = new CustomEvent('changeLocation', { detail: location });
-              dispatchEvent(popStateEvent);
-
-              return false;
-            }}
-          />
-        );
-      };
-
-      Link.defaultProps = {
-        href: '',
-        onClick: () => {}
-      };
-
-      ${createOptionalLink(pathToMarkdown, options)}
+      ${createLink(pathToMarkdown, options)}
       ${createPluginProvider()}
       ${createDetailsComponent()}
       ${codeTabsComponent}
