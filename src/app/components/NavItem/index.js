@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
-import { Link } from '@reach/router';
 import ReactRouterPropTypes from 'react-router-prop-types';
+
+import Link from '../Router/link';
 
 const getIndex = (index = process.env.index) => index.replace('.md', '.html');
 

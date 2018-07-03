@@ -11,7 +11,8 @@
     "src",
     "webpack.config.js",
     "webpack.config.dev.js",
-    "markdownit.config.js"
+    "markdownit.config.js",
+    "*.js"
   ],
   "repository": {
     "type": "git",
@@ -31,7 +32,7 @@
     "serve": "webpack-serve",
     "start": "npm run build -- -w",
     "build": "chmod 777 ./dist/ignite-cli.js && ./dist/ignite-cli.js",
-    "build:lib": "babel src -d dist --ignore '**/__tests__/','**/app/'",
+    "build:lib": "babel src -d dist --ignore '**/__tests__/' --copy-files",
     "build:lib:watch": "npm run build:lib -- -w --verbose",
     "publish:docs": "npm run build -- --publish",
     "analyze": "npm run build -- --analyze",
@@ -50,7 +51,6 @@
     "@babel/preset-react": "7.0.0-beta.51",
     "@babel/preset-stage-3": "^7.0.0-beta.51",
     "@babel/register": "7.0.0-beta.51",
-    "@reach/router": "1.1.1",
     "ast-types": "0.11.5",
     "autoprefixer": "^8.6.4",
     "babel-loader": "^8.0.0-beta",

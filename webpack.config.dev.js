@@ -10,8 +10,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
 const { defaults } = require('./dist/ignite');
-
+const babelRc = require('./.babelrc');
 const markdownItConfig = require('./markdownit.config');
+
+const babelConfig = babelRc({
+  env() {
+    return 'development';
+  }
+});
 
 module.exports = function(options) {
   options = {
@@ -67,7 +73,10 @@ module.exports = function(options) {
         {
           test: /\.md$/,
           use: [
-            'babel-loader',
+            {
+              loader: 'babel-loader',
+              options: babelConfig
+            },
             {
               loader: path.resolve(
                 __dirname,
@@ -89,7 +98,10 @@ module.exports = function(options) {
         {
           test: /\.js$/,
           exclude: /node_modules\/(?!.*ignite\/src)/,
-          use: 'babel-loader'
+          use: {
+            loader: 'babel-loader',
+            options: babelConfig
+          }
         },
         // Images
         {

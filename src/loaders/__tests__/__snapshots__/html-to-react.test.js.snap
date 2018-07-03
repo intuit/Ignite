@@ -206,11 +206,16 @@ Object {
       import path from 'path';
       import React, { Component } from 'react';
       import makeClass from 'classnames';
-      import { Link } from '@reach/router';
 
       
-  const OptionalLink = ({ currentPage, ...props }) => {
-    let to = props.to;
+  const getLocation = Location => ({
+    pathname: Location.pathname,
+    hash: Location.hash,
+    query: Location.query
+  });
+
+  const Link = props => {
+    let {to, ...rest} = props;
 
     if (to.includes('http')) {
       return <a {...props} href={to} />
@@ -220,7 +225,29 @@ Object {
       to = path.join('/','/path/to/markdown.html') + to;
     }
 
-    return <Link {...props} currentPage={currentPage} to={to} />;
+    return (
+      <a
+        {...rest}
+        href={to}
+        onClick={e => {
+          e.preventDefault();
+          const location = new URL(path.join(window.location.origin, to))
+
+          window.history.pushState(getLocation(location), null, to);
+          props.onClick();
+
+          const popStateEvent = new CustomEvent('changeLocation', { detail: location });
+          dispatchEvent(popStateEvent);
+
+          return false;
+        }}
+      />
+    );
+  };
+
+  Link.defaultProps = {
+    href: '',
+    onClick: () => {}
   };
 
       
@@ -402,14 +429,14 @@ exports[`markDownPage 1`] = `
 
 exports[`replaceIdLinks 1`] = `
 "
-    <OptionalLink currentPage={(this && this.props || props).currentPage} to=\\"#some-id\\">Link</OptionalLink>
-    <OptionalLink currentPage={(this && this.props || props).currentPage} className=\\"fas fa-hashtag headerLink\\" to=\\"#some-other-id\\">Link</OptionalLink>
+    <Link currentPage={(this && this.props || props).currentPage} to=\\"#some-id\\">Link</Link>
+    <Link currentPage={(this && this.props || props).currentPage} className=\\"fas fa-hashtag headerLink\\" to=\\"#some-other-id\\">Link</Link>
   "
 `;
 
-exports[`sanitizeJSX 1`] = `"<OptionalLink currentPage={(this && this.props || props).currentPage} className=\\"/foo\\">&#123;Foo&#125;</OptionalLink>"`;
+exports[`sanitizeJSX 1`] = `"<Link currentPage={(this && this.props || props).currentPage} className=\\"/foo\\">&#123;Foo&#125;</Link>"`;
 
-exports[`sanitizeJSX 2`] = `"<OptionalLink currentPage={(this && this.props || props).currentPage} className={\\"/foo\\"}>Foo</OptionalLink>"`;
+exports[`sanitizeJSX 2`] = `"<Link currentPage={(this && this.props || props).currentPage} className={\\"/foo\\"}>Foo</Link>"`;
 
 exports[`sanitizeJSX 3`] = `"<br/>"`;
 
@@ -429,7 +456,7 @@ exports[`sanitizeJSX 8`] = `
 
 exports[`sanitizeJSX- complex 1`] = `
 "
-    <OptionalLink currentPage={(this && this.props || props).currentPage} className=\\"fas fa-hashtag headerLink\\" to=\\"#zero-hassle-documentation\\" aria-hidden=\\"true\\" />
-    <OptionalLink currentPage={(this && this.props || props).currentPage} to=\\"#/pages/GettingStarted.md\\">&#x1F389; Get Started</OptionalLink>
+    <Link currentPage={(this && this.props || props).currentPage} className=\\"fas fa-hashtag headerLink\\" to=\\"#zero-hassle-documentation\\" aria-hidden=\\"true\\" />
+    <Link currentPage={(this && this.props || props).currentPage} to=\\"#/pages/GettingStarted.md\\">&#x1F389; Get Started</Link>
   "
 `;

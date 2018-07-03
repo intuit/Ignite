@@ -5,7 +5,7 @@ Snapshot Diff:
 - First value
 + Second value
 
-@@ -17,11 +17,11 @@
+@@ -18,11 +18,11 @@
             />
           </a>
           <a
@@ -18,7 +18,7 @@ Snapshot Diff:
             <span
               aria-hidden="true"
             />
-@@ -32,11 +32,11 @@
+@@ -33,11 +33,11 @@
               aria-hidden="true"
             />
           </a>

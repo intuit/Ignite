@@ -5,8 +5,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
 import markdown from 'zeedown';
-import { Link } from '@reach/router';
 
+import Link from '../Router/link';
 import styles from './searchResult.css';
 
 const SearchResult = ({ fileName, baseURL, results, setResults }) => (
