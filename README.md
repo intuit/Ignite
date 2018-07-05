@@ -44,7 +44,7 @@ Then use your favorite HTTP server to emulate a server environment.
 python -m SimpleHTTPServer
 ```
 
-:warning: All urls are relative to `options.baseURL.` Make sure to change baseURL if your website isn't served from '/'.
+NOTE: All urls are relative to `options.baseURL.` Make sure to change baseURL if your website isn't served from '/'.
 
 <h3 align="center">Publishing</h2>
 
