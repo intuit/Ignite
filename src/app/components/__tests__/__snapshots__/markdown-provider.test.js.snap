@@ -54,7 +54,8 @@ exports[`uses plugins 1`] = `
       "test": Object {
         "component": [Function],
         "name": "test",
-        "options": undefined,
+        "options": null,
+        "provider": [Function],
       },
     }
   }
