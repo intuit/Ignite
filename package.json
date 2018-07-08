@@ -31,7 +31,7 @@
     "test:automation": "jest --roots automation --preset jest-puppeteer --runInBand --coverage=false",
     "serve": "webpack-serve",
     "start": "npm run build -- -w",
-    "build": "chmod 777 ./dist/ignite-cli.js && ./dist/ignite-cli.js",
+    "build": "chmod +x ./dist/ignite-cli.js && node ./dist/ignite-cli.js",
     "build:lib": "babel src -d dist --ignore '**/__tests__/' --copy-files",
     "build:lib:watch": "npm run build:lib -- -w --verbose",
     "publish:docs": "npm run build -- --publish",
