@@ -31,7 +31,7 @@ test('sets first page and root from index file', () => {
 const plugins = [];
 
 test('uses plugins', () => {
-  plugins.push(['test', () => <h1> Simple Component </h1>]);
+  plugins.push(['test', () => <h1> Simple Component </h1>, null, () => {}]);
   expect(
     renderToJson(<MarkdownProvider markdown={markdown} plugins={plugins} />, {
       new: true

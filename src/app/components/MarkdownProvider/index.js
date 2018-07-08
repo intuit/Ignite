@@ -24,12 +24,13 @@ const setMarkdown = markdown => {
 
 const setPlugins = plugins => {
   return plugins.reduce(
-    (pluginMap, [name, component, options]) =>
+    (pluginMap, [name, component, options, provider]) =>
       Object.assign({}, pluginMap, {
         [name]: {
           name,
           component,
-          options
+          options,
+          provider
         }
       }),
     {}

@@ -322,6 +322,8 @@ export const loadImages = rawSource => {
 
 // prettier-ignore
 const createLink = (pathToMarkdown, options) =>`
+  import PropTypes from 'prop-types';
+
   const getLocation = Location => ({
     href: Location.href,
     pathname: Location.pathname,
@@ -369,6 +371,11 @@ const createLink = (pathToMarkdown, options) =>`
     href: '',
     onClick: () => {}
   };
+
+  Link.propTypes = {
+    href: PropTypes.string,
+    onClick: PropTypes.func
+  }
 `;
 
 const createPluginProvider = () => `
@@ -387,6 +394,7 @@ const createPluginProvider = () => `
         options={options ? options.options : {}}
         {...(options ? options.props : props)}
         children={children}
+        plugins={plugins}
       />
     );
   };

@@ -208,6 +208,8 @@ Object {
       import makeClass from 'classnames';
 
       
+  import PropTypes from 'prop-types';
+
   const getLocation = Location => ({
     href: Location.href,
     pathname: Location.pathname,
@@ -256,6 +258,11 @@ Object {
     onClick: () => {}
   };
 
+  Link.propTypes = {
+    href: PropTypes.string,
+    onClick: PropTypes.func
+  }
+
       
   const PluginProvider = ({plugins, name, options, children, ...props}) => {
     let Plugin = plugins[name];
@@ -272,6 +279,7 @@ Object {
         options={options ? options.options : {}}
         {...(options ? options.props : props)}
         children={children}
+        plugins={plugins}
       />
     );
   };

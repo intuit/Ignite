@@ -75,12 +75,11 @@ exports[`generate should add blogPosts 1`] = `
     }
 
     function registerPlugin(name, provider, options) {
-      const comp = lazyLoad(provider);
-
       window.configuration.plugins.push([
         name,
         lazyLoad(provider),
-        options
+        options,
+        provider
       ]);
     }
   
@@ -316,12 +315,11 @@ exports[`generate should add markdown 1`] = `
     }
 
     function registerPlugin(name, provider, options) {
-      const comp = lazyLoad(provider);
-
       window.configuration.plugins.push([
         name,
         lazyLoad(provider),
-        options
+        options,
+        provider
       ]);
     }
   
@@ -417,12 +415,11 @@ exports[`generate should add plugins 1`] = `
     }
 
     function registerPlugin(name, provider, options) {
-      const comp = lazyLoad(provider);
-
       window.configuration.plugins.push([
         name,
         lazyLoad(provider),
-        options
+        options,
+        provider
       ]);
     }
   

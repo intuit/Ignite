@@ -256,12 +256,11 @@ const initLazyLoad = options => {
     }
 
     function registerPlugin(name, provider, options) {
-      const comp = lazyLoad(provider);
-
       window.configuration.plugins.push([
         name,
         lazyLoad(provider),
-        options
+        options,
+        provider
       ]);
     }
   `;
