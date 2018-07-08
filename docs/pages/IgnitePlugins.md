@@ -2,7 +2,7 @@
 
 Ignite plugins are incredibly easy to write. If you know how to write a react component, then you already know how to write an Ignite plugin.
 
-Ignite works by parsing all of you markdown files into react components and loading them into a single page documentation app. Since we are already building the app in react, it just made sense to have the plugins just be react components.
+Ignite works by parsing all of you markdown files into react components and loading them into a single page documentation app. Since we are already building the app in react, it makes sense to have the plugins just be react components.
 
 ## Define your plugin
 
@@ -23,26 +23,30 @@ export default myPlugin;
 
 To register a component just add an entry to the plugins array defined in your config.
 
-Ignite will load strings as markdown-it plugins. If entry in plugin array is an array, then the first element of that array is used as the plugin name and the second is used to load it. This can be either a path or a package name.
+Ignite will load strings as markdown-it plugins. If an entry in the plugin array is an array, then the first element of that array is used as the plugin name and the second is used to load it. This can be either a path or a package name.
 
 ```json
 {
   "ignite": {
-    "plugins": [["boom", "/path/to/myPlugin.js"], "some-markdown-plugin"]
+    "plugins": [
+      ["Boom", "/path/to/myPlugin.js"],
+      "some-markdown-plugin",
+      "another-markdown-plugin"
+    ]
   }
 }
 ```
 
 ## Use your plugins
 
-Now that you have written the behavior of your plugin and registered it with your documentation website, you can use your plugin in any of your markdown pages.
+Now that you have defined the behavior of your plugin and registered it with Ignite, you can use your plugin in any of your markdown pages.
 
-In the example above we defined the name of the plugin to be `boom`. This means anytime the markdown parser sees a block with your name it knows to load your plugin.
+You can use the plugin with a markdown syntax or just plain old JSX. To use the plugin as JSX make sure that the plugin is capitalized just like in normal JSX.
 
-_Usage:_
+_Markdown:_
 
 ```markdown
-::: boom
+::: Boom
 
 # Anything inside
 
@@ -51,7 +55,16 @@ _Usage:_
 :::
 ```
 
-Will render this to the dom
+_JSX:_
+
+```html
+<Boom>
+  <h1>Anything inside</h1>
+  <h2>is passed in as props.children</h2>
+</Boom>
+```
+
+Will render this to the dom:
 
 ```html
 <div>
@@ -61,7 +74,7 @@ Will render this to the dom
 </div>
 ```
 
-## Options
+### Options
 
 Any single token arguments following the keyword become an array of `options` passed to the component as a prop.
 
@@ -75,7 +88,7 @@ Any single token arguments following the keyword become an array of `options` pa
 :::
 ```
 
-## Properties
+### Properties
 
 Any token after the arg with an equal sign in it is treated as a property. All matching tokens fill an object the is spread onto the component.
 
@@ -94,7 +107,7 @@ Any token after the arg with an equal sign in it is treated as a property. All m
 Properties with arrays or objects must be valid JSON
 :::
 
-## Style
+### Style
 
 CSS Modules is supported for all plugins. To style your component simply import your styles and use them.
 
@@ -112,25 +125,9 @@ const myPlugin = props => (
 export myPlugin;
 ```
 
-## Use It
-
-Now you can use the component anywhere in your docs!
-
-```markdown
-::: test
-:fas-bomb: :fas-bomb: :fas-bomb:
-:::
-```
-
-OUTPUT:
-
-::: test
-:fas-bomb: :fas-bomb: :fas-bomb:
-:::
-
 ## Using Any React Component
 
-Since we can render a react component as a plugin that means something cool. We can use _ANY_ react component as plugin to our docs. If the component doesn't require state to be handled by the parent, using it is as simple as giving it a name!
+Since we can render a react component as a plugin that means we can use _ANY_ react component as plugin to our docs. If the component doesn't require state to be handled by the parent, using it is as simple as giving it a name!
 
 ## Download
 
@@ -146,18 +143,18 @@ Add an entry to your configuration's plugin section. The first item in the entry
 
 ```json
 {
-  "plugins": [["gist", "react-gist"]]
+  "plugins": [["Gist", "react-gist"]]
 }
 ```
 
 ## All Done
 
-Now you can use the new component anywhere! The possibilities for new components in your app is endless.
+Now you can use the new component anywhere! The possibilities for new components in your app are endless.
 
 **Markdown**
 
 ```markdown
-::: gist id="5995ea726914f280afb3" file="Chef-Dockerfile"
+::: Gist id="5995ea726914f280afb3" file="Chef-Dockerfile"
 :::
 ```
 
