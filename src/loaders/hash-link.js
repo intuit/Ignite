@@ -20,7 +20,7 @@ export function transformLink(resourcePath, link, options) {
     return path.join(options.baseURL, correctPath).replace('.md', '.html');
   }
 
-  return correctPath;
+  return link;
 }
 
 export function transform(source, resourcePath, options) {
