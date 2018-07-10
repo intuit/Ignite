@@ -182,6 +182,7 @@ const generateBlogIndex = (blogFiles, options) => {
 };
 
 const initLazyLoad = options => {
+  // prettier-ignore
   return `
     window.configuration = {
       searchIndex: [],
@@ -239,7 +240,11 @@ const initLazyLoad = options => {
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+              return item === '/' ? path.join('${
+                options.baseURL
+              }', INDEX_PAGE) : path.join('${
+                options.baseURL
+              }', item, INDEX_PAGE);
             })
             .includes(p)
           );
