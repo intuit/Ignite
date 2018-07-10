@@ -39,7 +39,7 @@ describe('transformLink', () => {
         src: 'docs/',
         baseURL: '/'
       })
-    ).toBe('../../link/to/image.png');
+    ).toBe('./link/to/image.png');
     expect(
       transformLink('/path/', './link/to/image.png "With a description"', {
         src: 'docs/'

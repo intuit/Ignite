@@ -58,7 +58,7 @@ exports[`generate should add blogPosts 1`] = `
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+              return item === '/' ? path.join('/', INDEX_PAGE) : path.join('/', item, INDEX_PAGE);
             })
             .includes(p)
           );
@@ -298,7 +298,7 @@ exports[`generate should add markdown 1`] = `
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+              return item === '/' ? path.join('/', INDEX_PAGE) : path.join('/', item, INDEX_PAGE);
             })
             .includes(p)
           );
@@ -398,7 +398,7 @@ exports[`generate should add plugins 1`] = `
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+              return item === '/' ? path.join('/', INDEX_PAGE) : path.join('/', item, INDEX_PAGE);
             })
             .includes(p)
           );
