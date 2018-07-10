@@ -1,4 +1,15 @@
 {
   "title": "Home Page",
-  "baseURL": "/_ignite"
+  "baseURL": "/_ignite",
+
+  "plugins": [
+    ["Schema", "ignite-plugin-json-schema", {
+      "bundled": true,
+      "schema": "/Users/alisowski/Documents/Ignite/examples/home/plugins/merged-schema.json",
+      "plugins": {
+        "modifiers": "/Users/alisowski/Documents/Ignite/examples/home/plugins/modifier-table.js",
+        "metaData.properties.role": "/Users/alisowski/Documents/Ignite/examples/home/plugins/role-table.js"
+      }
+    }]
+  ]
 }

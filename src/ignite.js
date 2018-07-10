@@ -19,29 +19,50 @@ import webpackServeWaitpage from 'webpack-serve-waitpage';
 
 import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
-import packageJSON from '../package';
 import { transform } from './loaders/hash-link';
 import createStaticSite from './create-static-site';
 import defaults from './default-config';
 import printError from './utils/print-error';
 
-register(packageJSON.babel || {});
-
 export async function initPlugins(options) {
+  register();
+
   options.plugins.forEach(async plugin => {
     let [, pluginPath, pluginOptions] = plugin;
-    const initFile = path.join(pluginPath, 'init.js');
+    const pluginPackage = path.join(pluginPath, 'package.json');
+    let initFile;
 
     if (!pluginOptions) {
       pluginOptions = {};
       plugin[2] = pluginOptions;
     }
 
+    try {
+      initFile = path.join(
+        'node_modules',
+        pluginPath,
+        require(pluginPackage).init
+      );
+    } catch (err) {
+      initFile = path.join(pluginPath, 'init.js');
+    }
+
     if (fs.existsSync(initFile)) {
       try {
-        pluginOptions._initData = await require(path.resolve(initFile))(
-          pluginOptions
-        );
+        const initFunction = require(path.resolve(initFile));
+        pluginOptions._initData = await initFunction.default(pluginOptions);
+
+        if (initFunction.injectComponents) {
+          pluginOptions._injectedComponents = `
+            {
+              ${Object.entries(initFunction.injectComponents(pluginOptions))
+                .map(([name, componentPath]) => {
+                  return `'${name}': require('${path.resolve(componentPath)}')`;
+                })
+                .join(',')}
+            }
+          `;
+        }
       } catch (err) {
         throw new TypeError(err);
       }

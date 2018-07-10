@@ -1,9 +1,4 @@
 import path from 'path';
-import { parseScript } from 'esprima';
-import types from 'ast-types';
-import escodegen from 'escodegen';
-
-const { builders } = types;
 
 const functionsToString = obj => {
   const isArray = Array.isArray(obj);
@@ -24,18 +19,6 @@ const functionsToString = obj => {
   stringOptions += isArray ? ']' : '}';
 
   return stringOptions;
-};
-
-export const stringify = code => {
-  try {
-    const options = functionsToString(code);
-    const ast = parseScript(`var options = ${options}`).body;
-    const program = builders.program(ast);
-
-    return escodegen.generate(program);
-  } catch (error) {
-    throw new Error('Error parsing options.', error);
-  }
 };
 
 const registerMarkdown = (entries, options) => {
@@ -91,7 +74,12 @@ const generatePlugins = plugins => {
         .join('\n');
 
       return `
-        ${options ? stringify(options) : 'var options = {}'}
+        var options = ${JSON.stringify(options ? options : '{}')}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: ${options._injectedComponents}
+        })
 
         ${defaultImport}
 
