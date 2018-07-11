@@ -324,7 +324,7 @@ Object {
       render() {
         let { image } = this.state;
 
-        return image ? (
+        return image && typeof image === 'object' ? (
           <IdealImage
             {...this.props}
             className={makeClass('image', this.props.className)}
@@ -343,7 +343,7 @@ Object {
                 }]
             }
           />
-        ) : null;
+        ) : <img className={makeClass('image', this.props.className)} src={image} />;
       }
     }
   
@@ -370,7 +370,7 @@ Object {
   
       render() {
         const { Comp } = this.state;
-        return Comp ? React.createElement(Comp, this.props, null) : null;
+        return Comp ? React.createElement(Comp, this.props, this.props.children || null) : null;
       }
     };
 

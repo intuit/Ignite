@@ -36,7 +36,7 @@ Object {
       "id": "Root1/Another.md",
     },
     Object {
-      "body": "# First Page /.firstPage/
+      "body": "# First Page /.firstPage\\\\
 ",
       "id": "Root1/Page.md",
     },
@@ -47,7 +47,7 @@ Object {
       "id": "Root1/index.md",
     },
     Object {
-      "body": "# Second Page /.secondPage/
+      "body": "# Second Page /.secondPage\\\\
 ",
       "id": "Root2/Page.md",
     },
@@ -96,7 +96,7 @@ Array [
     "id": "Root1/Another.md",
   },
   Object {
-    "body": "# First Page /.firstPage/
+    "body": "# First Page /.firstPage\\\\
 ",
     "id": "Root1/Page.md",
   },
@@ -107,7 +107,7 @@ Array [
     "id": "Root1/index.md",
   },
   Object {
-    "body": "# Second Page /.secondPage/
+    "body": "# Second Page /.secondPage\\\\
 ",
     "id": "Root2/Page.md",
   },

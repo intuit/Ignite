@@ -1,26 +1,5 @@
 import path from 'path';
 
-const functionsToString = obj => {
-  const isArray = Array.isArray(obj);
-  let stringOptions = isArray ? '[' : '{';
-
-  Object.entries(obj).forEach(([key, val]) => {
-    if (typeof val === 'function') {
-      val = val.toString();
-    } else if (typeof val === 'object') {
-      val = functionsToString(val);
-    } else {
-      val = `"${val}"`;
-    }
-
-    stringOptions += isArray ? `${val},` : `"${key}": ${val},`;
-  });
-
-  stringOptions += isArray ? ']' : '}';
-
-  return stringOptions;
-};
-
 const registerMarkdown = (entries, options) => {
   return entries
     .map(
@@ -74,11 +53,11 @@ const generatePlugins = plugins => {
         .join('\n');
 
       return `
-        var options = ${JSON.stringify(options ? options : '{}')}
+        var options = ${JSON.stringify(options ? options : {})}
 
         // Need to inject the _injectedComponents for Webpack to load the require statements correctly
         Object.assign(options, {
-          _injectedComponents: ${options._injectedComponents}
+          _injectedComponents: ${options && options._injectedComponents}
         })
 
         ${defaultImport}

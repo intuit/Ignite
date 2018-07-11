@@ -40,7 +40,7 @@ exports[`generate should add blogPosts 1`] = `
 
         render() {
           const { Comp } = this.state;
-          return Comp ? React.createElement(Comp, this.props, null) : null;
+          return Comp ? React.createElement(Comp, this.props, this.props.children || null) : null;
         }
       }
     }
@@ -60,7 +60,7 @@ exports[`generate should add blogPosts 1`] = `
             .map(item => {
               return item === '/' ? path.join('/', INDEX_PAGE) : path.join('/', item, INDEX_PAGE);
             })
-            .includes(p)
+            .reduce((acc, val) => acc || val.includes(p), false)
           );
     }
 
@@ -100,6 +100,11 @@ exports[`generate should add blogPosts 1`] = `
       
         var options = {}
 
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
+
         
           registerPlugin(
             'first',
@@ -111,7 +116,12 @@ exports[`generate should add blogPosts 1`] = `
         
       
 
-        var options = { 'options': '1337' };
+        var options = {\\"options\\":1337}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
 
         
           registerPlugin(
@@ -126,6 +136,11 @@ exports[`generate should add blogPosts 1`] = `
 
         var options = {}
 
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
+
         
           registerPlugin(
             'npm',
@@ -138,6 +153,11 @@ exports[`generate should add blogPosts 1`] = `
       
 
         var options = {}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
 
         
 
@@ -153,6 +173,11 @@ exports[`generate should add blogPosts 1`] = `
       
 
         var options = {}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
 
         
           registerPlugin(
@@ -280,7 +305,7 @@ exports[`generate should add markdown 1`] = `
 
         render() {
           const { Comp } = this.state;
-          return Comp ? React.createElement(Comp, this.props, null) : null;
+          return Comp ? React.createElement(Comp, this.props, this.props.children || null) : null;
         }
       }
     }
@@ -300,7 +325,7 @@ exports[`generate should add markdown 1`] = `
             .map(item => {
               return item === '/' ? path.join('/', INDEX_PAGE) : path.join('/', item, INDEX_PAGE);
             })
-            .includes(p)
+            .reduce((acc, val) => acc || val.includes(p), false)
           );
     }
 
@@ -380,7 +405,7 @@ exports[`generate should add plugins 1`] = `
 
         render() {
           const { Comp } = this.state;
-          return Comp ? React.createElement(Comp, this.props, null) : null;
+          return Comp ? React.createElement(Comp, this.props, this.props.children || null) : null;
         }
       }
     }
@@ -400,7 +425,7 @@ exports[`generate should add plugins 1`] = `
             .map(item => {
               return item === '/' ? path.join('/', INDEX_PAGE) : path.join('/', item, INDEX_PAGE);
             })
-            .includes(p)
+            .reduce((acc, val) => acc || val.includes(p), false)
           );
     }
 
@@ -429,6 +454,11 @@ exports[`generate should add plugins 1`] = `
   
         var options = {}
 
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
+
         
           registerPlugin(
             'first',
@@ -440,7 +470,12 @@ exports[`generate should add plugins 1`] = `
         
       
 
-        var options = { 'options': '1337' };
+        var options = {\\"options\\":1337}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
 
         
           registerPlugin(
@@ -455,6 +490,11 @@ exports[`generate should add plugins 1`] = `
 
         var options = {}
 
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
+
         
           registerPlugin(
             'npm',
@@ -467,6 +507,11 @@ exports[`generate should add plugins 1`] = `
       
 
         var options = {}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
 
         
 
@@ -482,6 +527,11 @@ exports[`generate should add plugins 1`] = `
       
 
         var options = {}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: undefined
+        })
 
         
           registerPlugin(
@@ -510,18 +560,4 @@ exports[`generate should add plugins 1`] = `
             );
           
       "
-`;
-
-exports[`stringify 1`] = `
-"var options = {
-    'number': '1',
-    'string': 'string',
-    'bool': 'true',
-    'array': [() => 'string'],
-    'functions': {
-        'first': () => {
-            return 1;
-        }
-    }
-};"
 `;
