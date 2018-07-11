@@ -24,8 +24,8 @@ class Router extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('popstate');
-    window.removeEventListener('changeLocation');
+    window.removeEventListener('popstate', this.changeLocation);
+    window.removeEventListener('changeLocation', this.changeLocation);
   }
 
   changeLocation = newLocation => {

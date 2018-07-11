@@ -1,23 +1,7 @@
 import path from 'path';
-import generate, { stringify } from '../generate';
+import generate from '../generate';
 
 path.relative = (p, p1) => `${p1}`;
-
-test('stringify', () => {
-  expect(
-    stringify({
-      number: 1,
-      string: 'string',
-      bool: true,
-      array: [() => 'string'],
-      functions: {
-        first: () => {
-          return 1;
-        }
-      }
-    })
-  ).toMatchSnapshot();
-});
 
 describe('generate', () => {
   const options = {

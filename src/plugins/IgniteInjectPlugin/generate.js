@@ -1,42 +1,4 @@
 import path from 'path';
-import { parseScript } from 'esprima';
-import types from 'ast-types';
-import escodegen from 'escodegen';
-
-const { builders } = types;
-
-const functionsToString = obj => {
-  const isArray = Array.isArray(obj);
-  let stringOptions = isArray ? '[' : '{';
-
-  Object.entries(obj).forEach(([key, val]) => {
-    if (typeof val === 'function') {
-      val = val.toString();
-    } else if (typeof val === 'object') {
-      val = functionsToString(val);
-    } else {
-      val = `"${val}"`;
-    }
-
-    stringOptions += isArray ? `${val},` : `"${key}": ${val},`;
-  });
-
-  stringOptions += isArray ? ']' : '}';
-
-  return stringOptions;
-};
-
-export const stringify = code => {
-  try {
-    const options = functionsToString(code);
-    const ast = parseScript(`var options = ${options}`).body;
-    const program = builders.program(ast);
-
-    return escodegen.generate(program);
-  } catch (error) {
-    throw new Error('Error parsing options.', error);
-  }
-};
 
 const registerMarkdown = (entries, options) => {
   return entries
@@ -91,7 +53,12 @@ const generatePlugins = plugins => {
         .join('\n');
 
       return `
-        ${options ? stringify(options) : 'var options = {}'}
+        var options = ${JSON.stringify(options ? options : {})}
+
+        // Need to inject the _injectedComponents for Webpack to load the require statements correctly
+        Object.assign(options, {
+          _injectedComponents: ${options && options._injectedComponents}
+        })
 
         ${defaultImport}
 
@@ -182,6 +149,7 @@ const generateBlogIndex = (blogFiles, options) => {
 };
 
 const initLazyLoad = options => {
+  // prettier-ignore
   return `
     window.configuration = {
       searchIndex: [],
@@ -221,7 +189,7 @@ const initLazyLoad = options => {
 
         render() {
           const { Comp } = this.state;
-          return Comp ? React.createElement(Comp, this.props, null) : null;
+          return Comp ? React.createElement(Comp, this.props, this.props.children || null) : null;
         }
       }
     }
@@ -239,9 +207,13 @@ const initLazyLoad = options => {
         (!process.env.navItems || 
           Object.values(process.env.navItems)
             .map(item => {
-              return item === '/' ? INDEX_PAGE : path.join(item, INDEX_PAGE);
+              return item === '/' ? path.join('${
+                options.baseURL
+              }', INDEX_PAGE) : path.join('${
+                options.baseURL
+              }', item, INDEX_PAGE);
             })
-            .includes(p)
+            .reduce((acc, val) => acc || val.includes(p), false)
           );
     }
 

@@ -51,7 +51,6 @@
     "@babel/preset-react": "7.0.0-beta.51",
     "@babel/preset-stage-3": "^7.0.0-beta.51",
     "@babel/register": "7.0.0-beta.51",
-    "ast-types": "0.11.5",
     "autoprefixer": "^8.6.4",
     "babel-loader": "^8.0.0-beta",
     "babel-plugin-add-module-exports": "0.2.1",
@@ -65,8 +64,6 @@
     "cosmiconfig": "5.0.5",
     "css-loader": "^0.28.11",
     "dayjs": "1.7.0",
-    "escodegen": "1.10.0",
-    "esprima": "4.0.0",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "get-line-from-pos": "1.0.0",
@@ -107,6 +104,7 @@
     "postcss-nested": "^3.0.0",
     "postcss-pseudoelements": "^5.0.0",
     "postcss-simple-vars": "^4.1.0",
+    "pretty-exceptions": "^1.4.0",
     "probe-image-size": "4.0.0",
     "prop-types": "^15.6.2",
     "puppeteer": "1.5.0",
@@ -153,7 +151,6 @@
     "jest-css-modules-transform": "2.0.0",
     "jest-junit": "^5.1.0",
     "jest-puppeteer": "^3.2.1",
-    "jest-serializer-path": "0.1.15",
     "jest-watch-typeahead": "0.1.0",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.7",
@@ -213,13 +210,13 @@
     }
   },
   "jest": {
+    "testURL": "http://localhost/",
     "transform": {
       "\\.(css)$": "jest-css-modules-transform",
       "^.+\\.js?$": "babel-jest"
     },
     "snapshotSerializers": [
-      "<rootDir>/node_modules/snapshot-diff/serializer.js",
-      "jest-serializer-path"
+      "<rootDir>/node_modules/snapshot-diff/serializer.js"
     ],
     "testPathIgnorePatterns": [
       "/dist/",

@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`printError error 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "[37m[1m[41mError[49m[22m[39m[35m:[39m An error String
+ [90m│[39m
+ [90m├─┬╼[39m [32msrc/utils/__tests__/print-error.test.js[39m
+[90m │ │[39m
+[90m │ ├──╼[39m [33mObject.test[39m [90m[3m@ line[23m[39m [34m[3m17[23m[39m
+[90m │ │[39m
+[90m │ └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮[39m
+[90m │      printError(new Error('An error String'));[39m
+[90m │ [39m
+ [90m│[39m
+ [90m├─┬╼[39m [32mnode_modules/jest-jasmine2/build/jasmine_async.js[39m
+[90m │ │[39m
+[90m │ ├──╼[39m [33mObject.asyncFn[39m [90m[3m@ line[23m[39m [34m[3m108[23m[39m
+[90m │ │[39m
+[90m │ │    : fn;[39m
+[90m │ └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮[39m
+[90m │      const returnValue = wrappedFn.call({});[39m
+[90m │ [39m
+ [90m│[39m
+ [90m└┬╼[39m [32mnode_modules/jest-jasmine2/build/queue_runner.js[39m
+[90m  │[39m
+[90m  ├──╼[39m [33mresolve[39m [90m[3m@ line[23m[39m [34m[3m56[23m[39m
+[90m  │[39m
+[90m  │    try {[39m
+[90m  ├╌╌╌╌╌╌╌╮[39m
+[90m  │    fn.call(options.userContext, next);[39m
+[90m  │    } catch (e) {[39m
+[90m  │[39m
+[90m  ├──╼[39m [33mmapper[39m [90m[3m@ line[23m[39m [34m[3m43[23m[39m
+[90m  │[39m
+[90m  ├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮[39m
+[90m  │    let promise = new Promise(resolve => {[39m
+[90m  │    const next = function(err) {[39m
+[90m  │[39m
+[90m  ├──╼[39m [33mpromise.then[39m [90m[3m@ line[23m[39m [34m[3m87[23m[39m
+[90m  │[39m
+[90m  │    const result = options.queueableFns.reduce([39m
+[90m  └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮[39m
+[90m       (promise, fn) => promise.then(() => mapper(fn)),[39m
+[90m       Promise.resolve()[39m
+[90m  [39m",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`printError string 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "[37m[1m[41mError[49m[22m[39m[35m:[39m An error String
+ [90m│[39m
+ [90m├─┬╼[39m [32msrc/utils/__tests__/print-error.test.js[39m
+[90m │ │[39m
+[90m │ ├──╼[39m [33mObject.test[39m [90m[3m@ line[23m[39m [34m[3m8[23m[39m
+[90m │ │[39m
+[90m │ └╌╌╌╌╮[39m
+[90m │      printError('An error String');[39m
+[90m │ [39m
+ [90m│[39m
+ [90m├─┬╼[39m [32mnode_modules/jest-jasmine2/build/jasmine_async.js[39m
+[90m │ │[39m
+[90m │ ├──╼[39m [33mObject.asyncFn[39m [90m[3m@ line[23m[39m [34m[3m108[23m[39m
+[90m │ │[39m
+[90m │ │    : fn;[39m
+[90m │ └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮[39m
+[90m │      const returnValue = wrappedFn.call({});[39m
+[90m │ [39m
+ [90m│[39m
+ [90m└┬╼[39m [32mnode_modules/jest-jasmine2/build/queue_runner.js[39m
+[90m  │[39m
+[90m  ├──╼[39m [33mresolve[39m [90m[3m@ line[23m[39m [34m[3m56[23m[39m
+[90m  │[39m
+[90m  │    try {[39m
+[90m  ├╌╌╌╌╌╌╌╮[39m
+[90m  │    fn.call(options.userContext, next);[39m
+[90m  │    } catch (e) {[39m
+[90m  │[39m
+[90m  ├──╼[39m [33mmapper[39m [90m[3m@ line[23m[39m [34m[3m43[23m[39m
+[90m  │[39m
+[90m  ├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮[39m
+[90m  │    let promise = new Promise(resolve => {[39m
+[90m  │    const next = function(err) {[39m
+[90m  │[39m
+[90m  ├──╼[39m [33mpromise.then[39m [90m[3m@ line[23m[39m [34m[3m87[23m[39m
+[90m  │[39m
+[90m  │    const result = options.queueableFns.reduce([39m
+[90m  └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮[39m
+[90m       (promise, fn) => promise.then(() => mapper(fn)),[39m
+[90m       Promise.resolve()[39m
+[90m  [39m",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
