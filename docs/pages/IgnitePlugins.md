@@ -19,6 +19,51 @@ const myPlugin = props => (
 export default myPlugin;
 ```
 
+### Init
+
+Your plugin might need to do some `node` based initialization. These can take a long time to run in the browser. Ignite lets you define an init function to accomplish this during the build. This function can either return just a piece of data or a promise.
+
+Ignite will look for this init function either where you store the plugin:
+
+```
+path/
+  to/
+    myPlugin/
+      index.js
+      init.js
+```
+
+Or you can define a path to it in your packages.json.
+
+```json
+{
+  "name": "myPlugin",
+  "main": "dist/index.js",
+  "init": "dist/init",
+  ...
+}
+```
+
+### Inject Components
+
+Your plugin also might want use user defined function or components. i.e Plugins for your plugins. To accomplish this simply export a function from your `init.js` called `injectComponents`. This function needs to return a map of component names to paths. This will result in your component being called with a prop called `\_injectedComponents' containing the injected function/components.
+
+_Example_:
+
+```json
+{
+  "plugins": {
+    "firstPlugin": "path/to/plugin"
+  }
+}
+```
+
+```js
+export function injectComponents(config = {}) {
+  return config.plugins;
+}
+```
+
 ## Register Plugin
 
 To register a component just add an entry to the plugins array defined in your config.
@@ -29,7 +74,7 @@ Ignite will load strings as markdown-it plugins. If an entry in the plugin array
 {
   "ignite": {
     "plugins": [
-      ["Boom", "/path/to/myPlugin.js"],
+      ["Boom", "/path/to/myPlugin/"],
       "some-markdown-plugin",
       "another-markdown-plugin"
     ]
