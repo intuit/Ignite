@@ -246,7 +246,7 @@ const initLazyLoad = options => {
                 options.baseURL
               }', item, INDEX_PAGE);
             })
-            .includes(p)
+            .reduce((acc, val) => acc || val.includes(p), false)
           );
     }
 
