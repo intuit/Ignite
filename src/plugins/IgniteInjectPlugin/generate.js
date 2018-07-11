@@ -222,7 +222,7 @@ const initLazyLoad = options => {
 
         render() {
           const { Comp } = this.state;
-          return Comp ? React.createElement(Comp, this.props, null) : null;
+          return Comp ? React.createElement(Comp, this.props, this.props.children || null) : null;
         }
       }
     }
