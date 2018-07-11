@@ -107,6 +107,7 @@
     "postcss-nested": "^3.0.0",
     "postcss-pseudoelements": "^5.0.0",
     "postcss-simple-vars": "^4.1.0",
+    "pretty-exceptions": "^1.4.0",
     "probe-image-size": "4.0.0",
     "prop-types": "^15.6.2",
     "puppeteer": "1.5.0",

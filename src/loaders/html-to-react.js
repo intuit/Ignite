@@ -4,6 +4,7 @@ import cheerio from 'cheerio';
 import { getOptions } from 'loader-utils';
 import probe from 'probe-image-size';
 
+import printError from '../utils/print-error';
 import replaceAt from '../utils/replace-at';
 import trimChar from '../utils/trim-char';
 
@@ -295,7 +296,16 @@ export const loadImages = rawSource => {
         src = 'http:' + src;
       }
 
-      const dimensions = await probe(src);
+      let dimensions;
+
+      try {
+        dimensions = await probe(src);
+      } catch (error) {
+        printError(`Couldn't resolve image: ${src}`);
+        printError(error);
+
+        dimensions = {};
+      }
 
       return new Promise(resolve => {
         resolve(
@@ -726,26 +736,31 @@ export const determinePage = async (
   pathToMarkdown,
   options
 ) => {
-  let { pageStart, source } = await initPage(
-    rawSource,
-    pathToMarkdown,
-    options
-  );
+  try {
+    let { pageStart, source } = await initPage(
+      rawSource,
+      pathToMarkdown,
+      options
+    );
 
-  if (pathToMarkdown === 'home.md') {
-    source = homePage(source);
-  } else if (resourcePath.includes(path.join(options.src, 'blog/'))) {
-    source = blogPost(source, pathToMarkdown, options);
-  } else if (detectIndex(resourcePath, pathToMarkdown, options)) {
-    source = index(source, pathToMarkdown, options);
-  } else {
-    source = markDownPage(source);
+    if (pathToMarkdown === 'home.md') {
+      source = homePage(source);
+    } else if (resourcePath.includes(path.join(options.src, 'blog/'))) {
+      source = blogPost(source, pathToMarkdown, options);
+    } else if (detectIndex(resourcePath, pathToMarkdown, options)) {
+      source = index(source, pathToMarkdown, options);
+    } else {
+      source = markDownPage(source);
+    }
+
+    return `
+      ${pageStart}
+      ${source}
+    `;
+  } catch (error) {
+    printError(`Problem transforming ${pathToMarkdown}`);
+    printError(error);
   }
-
-  return `
-    ${pageStart}
-    ${source}
-  `;
 };
 
 export default async function(rawSource) {

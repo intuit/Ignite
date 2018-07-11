@@ -3823,7 +3823,7 @@ error-inject@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/error-inject/-/error-inject-1.0.0.tgz#e2b3d91b54aed672f309d950d154850fa11d4f37"
 
-error-stack-parser@^2.0.0:
+error-stack-parser@^2.0.0, error-stack-parser@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-2.0.2.tgz#4ae8dbaa2bf90a8b450707b9149dcabca135520d"
   dependencies:
@@ -9380,6 +9380,14 @@ pretty-error@^2.0.2:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
+
+pretty-exceptions@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/pretty-exceptions/-/pretty-exceptions-1.4.0.tgz#1bf7bc61d90d6e36881d8a18524823daa025b6fa"
+  dependencies:
+    chalk "^2.3.2"
+    error-stack-parser "^2.0.1"
+    strip-ansi "^4.0.0"
 
 pretty-format@^22.4.3:
   version "22.4.3"

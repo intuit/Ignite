@@ -23,6 +23,7 @@ import packageJSON from '../package';
 import { transform } from './loaders/hash-link';
 import createStaticSite from './create-static-site';
 import defaults from './default-config';
+import printError from './utils/print-error';
 
 register(packageJSON.babel || {});
 
@@ -71,7 +72,8 @@ export async function initBlogPosts(options) {
             birth: Number(dayjs(birth))
           };
         } catch (error) {
-          console.error(error);
+          printError(error);
+
           return {
             path: blogFile
           };
@@ -128,7 +130,8 @@ function publish(options, user) {
     },
     err => {
       if (err) {
-        console.error(err);
+        printError(err);
+
         return;
       }
 
@@ -191,17 +194,17 @@ export default async function build(options) {
 
   if (options.publish) {
     if (!options.githubURL) {
-      console.error('Need to provide githubURL option to publish');
+      printError('Need to provide githubURL option to publish');
       return;
     }
 
     if (!user.name) {
-      console.error('Need author.name in package.json to publish');
+      printError('Need author.name in package.json to publish');
       return;
     }
 
     if (!user.email) {
-      console.error('Need author.email in package.json to publish');
+      printError('Need author.email in package.json to publish');
       return;
     }
   }
@@ -263,10 +266,12 @@ export default async function build(options) {
         );
       }
       if (err) {
-        console.error(err.stack || err);
+        printError(err);
+
         if (err.details) {
-          console.error(err.details);
+          printError(err.details);
         }
+
         return reject();
       }
 
