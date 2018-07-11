@@ -51,9 +51,9 @@ export async function initPlugins(options) {
       try {
         const initFunction = require(path.resolve(initFile));
 
-        pluginOptions._initData = initFunction.default
-          ? await initFunction.default(pluginOptions)
-          : initFunction(pluginOptions);
+        pluginOptions._initData = await (initFunction.default
+          ? initFunction.default(pluginOptions)
+          : initFunction(pluginOptions));
 
         if (initFunction.injectComponents) {
           pluginOptions._injectedComponents = `
