@@ -93,7 +93,7 @@ module.exports = function(options) {
         },
         // Images
         {
-          test: /\.(gif|png|jpe?g)$/i,
+          test: /\.(png|jpe?g)$/i,
           use: [
             {
               loader: 'lqip-loader',
@@ -111,6 +111,10 @@ module.exports = function(options) {
             },
             'image-webpack-loader'
           ]
+        },
+        {
+          test: /\.(gif)$/i,
+          use: ['file-loader', 'image-webpack-loader']
         },
         {
           test: /\.(svg)$/i,

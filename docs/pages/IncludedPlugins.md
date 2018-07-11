@@ -168,12 +168,12 @@ Adds a caption to an image and centers it within the page.
 **_Must have 'caption' alt text for styles to work_**
 
 ```markdown
-![caption](https://media.tenor.com/images/cb12bc24511449db821768715e85b0d9/tenor.gif)
+![caption](../images/doggo.gif)
 _image caption_
 ```
 
 OUTPUT:
-![caption](https://media.tenor.com/images/cb12bc24511449db821768715e85b0d9/tenor.gif)
+![caption](../images/doggo.gif)
 _image caption_
 
 ## (Super|Sub)script

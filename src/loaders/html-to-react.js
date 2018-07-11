@@ -442,7 +442,7 @@ const createImageRenderer = async rawSource => {
       render() {
         let { image } = this.state;
 
-        return image ? (
+        return image && typeof image === 'object' ? (
           <IdealImage
             {...this.props}
             className={makeClass('image', this.props.className)}
@@ -461,7 +461,7 @@ const createImageRenderer = async rawSource => {
                 }]
             }
           />
-        ) : null;
+        ) : <img className={makeClass('image', this.props.className)} src={image} />;
       }
     }
   `;
