@@ -38,25 +38,20 @@ export async function initPlugins(options) {
     }
 
     try {
-      initFile = path.join(
-        'node_modules',
-        pluginPath,
-        require(pluginPackage).init
-      );
+      initFile = path.join(pluginPath, require(pluginPackage).init);
     } catch (err) {
-      initFile = path.join(pluginPath, 'init.js');
+      initFile = path.resolve(path.join(pluginPath, 'init.js'));
     }
 
-    if (fs.existsSync(initFile)) {
-      try {
-        const initFunction = require(path.resolve(initFile));
+    try {
+      const initFunction = require(initFile);
 
-        pluginOptions._initData = await (initFunction.default
-          ? initFunction.default(pluginOptions)
-          : initFunction(pluginOptions));
+      pluginOptions._initData = await (initFunction.default
+        ? initFunction.default(pluginOptions)
+        : initFunction(pluginOptions));
 
-        if (initFunction.injectComponents) {
-          pluginOptions._injectedComponents = `
+      if (initFunction.injectComponents) {
+        pluginOptions._injectedComponents = `
             {
               ${Object.entries(initFunction.injectComponents(pluginOptions))
                 .map(([name, componentPath]) => {
@@ -65,10 +60,9 @@ export async function initPlugins(options) {
                 .join(',')}
             }
           `;
-        }
-      } catch (err) {
-        throw new TypeError(err);
       }
+    } catch (err) {
+      // No Init function found
     }
   });
 
