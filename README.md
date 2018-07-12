@@ -71,3 +71,5 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 ## Awesome Plugins:
 
 :star: [Prop-Types](https://github.com/hipstersmoothie/ignite-plugin-prop-types) - Takes a react component and displays a table with it's prop-types.
+
+:star: [JSON Schema](https://github.com/hipstersmoothie/ignite-plugin-json-schema) - Takes a JSON-Schema and exposes a Component that matches ids to auto-generate docs.
