@@ -3,8 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
-## 2018-07-12 - [1.1.2 - current version]
+## 2018-07-12 - [1.1.3 - current version]
 
+- 1.1.3 - ([43](https://github.com/intuit/Ignite/pull/43)) - Deps (@hipstersmoothie)
 - 1.1.2 - ([42](https://github.com/intuit/Ignite/pull/42)) - MonoRepo Bugs (@hipstersmoothie)
 
 ## 2018-07-11
@@ -824,6 +825,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - 0.2.7 - ([99192e4](https://github.com/intuit/Ignite/commit/99192e4ade59fdea6b135e458672f471a531258d)) - add XO (@hipstersmoothie)
 - 0.2.6 - ([21dc660](https://github.com/intuit/Ignite/commit/21dc660c944bc425683a2ad17a11d994733e4290)) - add prettier (@hipstersmoothie)
 - 0.2.5 - ([581ee8f](https://github.com/intuit/Ignite/commit/581ee8ffb2572e050c4e8028ce3b9af64c063701)) - getting started (@hipstersmoothie)
+
 
 
 
