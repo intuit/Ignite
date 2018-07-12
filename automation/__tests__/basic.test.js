@@ -12,7 +12,7 @@ describe('Home Page', () => {
     visit = path => createPage(port, path);
   });
 
-  afterAll(() => docs.close());
+  afterAll(() => docs.app.stop());
 
   test('should display correct title', async () => {
     const page = await visit('/');
