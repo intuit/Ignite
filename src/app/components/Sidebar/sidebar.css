@@ -23,6 +23,7 @@
   }
 
   @media screen and (min-width: 769px) {
+    position: -webkit-sticky;
     position: sticky;
 
     .sidebar {
