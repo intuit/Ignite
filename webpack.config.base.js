@@ -142,8 +142,7 @@ module.exports = function(options) {
                   options.mode === 'production'
                     ? '[sha1:hash:hex:4]'
                     : '[name]_[local]_[sha1:hash:hex:4]',
-                sourceMap: true,
-                minimize: true
+                sourceMap: true
               }
             },
             {
@@ -161,7 +160,8 @@ module.exports = function(options) {
                       APP_COLOR: options.color,
                       SELECTED_COLOR: options.selectedColor
                     }
-                  })
+                  }),
+                  require('cssnano')
                 ]
               }
             }

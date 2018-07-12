@@ -230,45 +230,47 @@ export default async function build(options) {
   if (options.watch) {
     const webpackConfig = configDev(options);
 
-    return serve({
-      config: webpackConfig,
-      port: options.port,
-      logLevel: 'silent',
-      dev: { logLevel: 'silent' },
-      hot: { logLevel: 'silent' },
-      add: (app, middleware, options) => {
-        app.use(
-          webpackServeWaitpage(options, {
-            title: 'Ignite Dev Server',
-            theme: 'material'
-          })
-        );
-
-        app.use(
-          convert(
-            history({
-              ...webpackConfig.devServer.historyApiFallback
-            })
-          )
-        );
+    return serve(
+      {
+        logLevel: 'silent'
       },
-      on: {
-        listening: () => {
-          if (options.open) {
-            execSync('ps cax | grep "Google Chrome"');
-            execSync(
-              `osascript ../src/chrome.applescript "${encodeURI(
-                `http://localhost:${options.port}`
-              )}"`,
-              {
-                cwd: __dirname,
-                stdio: 'ignore'
-              }
-            );
+      {
+        config: webpackConfig,
+        port: options.port,
+        add: (app, middleware, options) => {
+          app.use(
+            webpackServeWaitpage(options, {
+              title: 'Ignite Dev Server',
+              theme: 'material'
+            })
+          );
+
+          app.use(
+            convert(
+              history({
+                ...webpackConfig.devServer.historyApiFallback
+              })
+            )
+          );
+        },
+        on: {
+          listening: () => {
+            if (options.open) {
+              execSync('ps cax | grep "Google Chrome"');
+              execSync(
+                `osascript ../src/chrome.applescript "${encodeURI(
+                  `http://localhost:${options.port}`
+                )}"`,
+                {
+                  cwd: __dirname,
+                  stdio: 'ignore'
+                }
+              );
+            }
           }
         }
       }
-    });
+    );
   }
 
   const webpackConfig = config(options);
