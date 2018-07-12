@@ -231,13 +231,12 @@ export default async function build(options) {
     const webpackConfig = configDev(options);
 
     return serve(
-      {},
+      {
+        logLevel: 'silent'
+      },
       {
         config: webpackConfig,
         port: options.port,
-        logLevel: 'silent',
-        dev: { logLevel: 'silent' },
-        hot: { logLevel: 'silent' },
         add: (app, middleware, options) => {
           app.use(
             webpackServeWaitpage(options, {
