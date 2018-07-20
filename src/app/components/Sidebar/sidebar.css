@@ -42,11 +42,11 @@
   details {
     margin: auto;
 
-    summary:before {
+    summary::before {
       display: none;
     }
 
-    summary:after {
+    summary::after {
       content: '\f0fe';
       font-family: Font Awesome\ 5 Free, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -62,11 +62,11 @@
     }
   }
 
-  details[open] summary:before {
+  details[open] summary::before {
     display: none;
   }
 
-  details[open] summary:after {
+  details[open] summary::after {
     content: '\f146';
   }
 
