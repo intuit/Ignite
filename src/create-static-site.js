@@ -13,6 +13,7 @@ import puppeteer from 'puppeteer';
 export const startServer = options =>
   http.createServer((request, response) => {
     return handler(request, response, {
+      public: options.dst,
       cleanUrls: false,
       rewrites: [
         {
@@ -35,10 +36,10 @@ const getLinks = async page => {
   return anchors.concat(iframes);
 };
 
-const writeHtml = async (page, filePath) => {
+const writeHtml = async (page, filePath, options) => {
   const content = await page.content();
 
-  filePath = path.join(root(), filePath);
+  filePath = path.join(root(), options.dst, 'static', filePath);
 
   if (filePath.endsWith('.html')) {
     mkdirp.sync(path.dirname(filePath));
@@ -73,7 +74,7 @@ export default function createStaticSite(options) {
           await page.goto(
             url.resolve(`http://localhost:${options.port}`, rootIndex)
           );
-          await writeHtml(page, rootIndex);
+          await writeHtml(page, rootIndex, options);
           browser.close();
           server.close();
           resolve();
@@ -106,7 +107,7 @@ export default function createStaticSite(options) {
 
         const file = url.parse(link).pathname;
         if (file !== rootIndex) {
-          await writeHtml(page, file);
+          await writeHtml(page, file, options);
         }
         page.close();
         processLink();

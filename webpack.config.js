@@ -17,9 +17,9 @@ const babelConfig = options =>
       return options.mode;
     }
   });
+
 const modeConfig = env =>
   require(`./build-utils/webpack.config.${env.mode}`)(env);
-// const presetConfig = require("./build-utils/loadPresets");
 
 module.exports = options => {
   options = {
@@ -32,7 +32,9 @@ module.exports = options => {
   const docs = globby.sync([path.join(options.src, '**/*.md')]);
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
   const logoExists = logoPath && fs.existsSync(path.resolve(logoPath));
-  const dest = options.dst ? path.resolve(options.dst) : null;
+  const dest = options.dst
+    ? path.join(path.resolve(options.dst), options.baseURL)
+    : null;
 
   return webpackMerge(
     {
@@ -122,6 +124,5 @@ module.exports = options => {
       ].filter(Boolean)
     },
     modeConfig(options)
-    // presetConfig({ mode, presets })
   );
 };
