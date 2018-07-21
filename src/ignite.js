@@ -17,7 +17,6 @@ import serve from 'webpack-serve';
 import ghpages from 'gh-pages';
 import webpackServeWaitpage from 'webpack-serve-waitpage';
 
-import configDev from '../webpack.config.dev';
 import config from '../webpack.config';
 import { transform } from './loaders/hash-link';
 import createStaticSite from './create-static-site';
@@ -209,6 +208,7 @@ export default async function build(options) {
   const user = getAuthor();
 
   options = await initOptions(options);
+  const webpackConfig = config(options);
 
   if (options.publish) {
     if (!options.githubURL) {
@@ -228,8 +228,6 @@ export default async function build(options) {
   }
 
   if (options.watch) {
-    const webpackConfig = configDev(options);
-
     return serve(
       {
         logLevel: 'silent'
@@ -273,7 +271,6 @@ export default async function build(options) {
     );
   }
 
-  const webpackConfig = config(options);
   const compiler = webpack(webpackConfig);
 
   return new Promise((resolve, reject) =>

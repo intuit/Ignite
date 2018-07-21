@@ -2,7 +2,7 @@
 
 exports[`initOptions uses rc file 1`] = `
 Object {
-  "baseURL": "/_ignite/",
+  "baseURL": "/",
   "blogPosts": null,
   "bulmaTheme": "default",
   "codeStyle": "foundation",
@@ -22,9 +22,9 @@ Object {
   "logo": "logo.svg",
   "mode": "production",
   "navItems": Object {
-    "First": "/_ignite/Root1",
-    "Second": "/_ignite/Root2",
-    "root": "/_ignite/Root1",
+    "First": "/Root1",
+    "Second": "/Root2",
+    "root": "/Root1",
   },
   "open": true,
   "plugins": Array [],
@@ -41,8 +41,8 @@ Object {
       "id": "Root1/Page.md",
     },
     Object {
-      "body": "- [First Page](/_ignite/Root1/Page.html)
-- [Another Page](/_ignite/Root1/Another.html)
+      "body": "- [First Page](/Root1/Page.html)
+- [Another Page](/Root1/Another.html)
 ",
       "id": "Root1/index.md",
     },
@@ -52,7 +52,7 @@ Object {
       "id": "Root2/Page.md",
     },
     Object {
-      "body": "- [Second Page](/_ignite/Root2/Page.html)
+      "body": "- [Second Page](/Root2/Page.html)
 ",
       "id": "Root2/index.md",
     },

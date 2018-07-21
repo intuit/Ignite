@@ -43,7 +43,7 @@ details {
     }
   }
 
-  summary:before {
+  summary::before {
     content: '\f0fe';
     font-family: Font Awesome\ 5 Free, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -57,7 +57,7 @@ details {
   }
 }
 
-details[open] summary:before {
+details[open] summary::before {
   content: '\f146';
 }
 
