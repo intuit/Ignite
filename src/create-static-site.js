@@ -6,6 +6,7 @@ import path from 'path';
 import http from 'http';
 import mkdirp from 'mkdirp';
 import root from 'root-path';
+import cpy from 'cpy';
 
 import handler from 'serve-handler';
 import puppeteer from 'puppeteer';
@@ -64,6 +65,15 @@ export default function createStaticSite(options) {
       const linksToVisit = new Set([
         url.resolve(`http://localhost:${options.port}`, options.baseURL)
       ]);
+
+      await cpy(
+        ['*.css', '*.js', '**/*.{png,svg,gif,jpg,jpeg}'],
+        path.join(root(), options.dst, 'static', options.baseURL),
+        {
+          parents: true,
+          cwd: path.join(root(), options.dst, options.baseURL)
+        }
+      );
 
       async function processLink() {
         const [link] = [...linksToVisit];
