@@ -12,8 +12,8 @@ import handler from 'serve-handler';
 import puppeteer from 'puppeteer';
 
 export const startServer = options =>
-  http.createServer((request, response) => {
-    return handler(request, response, {
+  http.createServer((request, response) =>
+    handler(request, response, {
       public: options.dst,
       cleanUrls: false,
       rewrites: [
@@ -22,8 +22,8 @@ export const startServer = options =>
           destination: path.join(options.baseURL, 'index.html')
         }
       ]
-    });
-  });
+    })
+  );
 
 const getLinks = async page => {
   const anchors = await page.evaluate(() =>

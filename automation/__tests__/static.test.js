@@ -3,7 +3,7 @@ import createPage from '../utils/create-page';
 import { startServer } from '../../src/create-static-site';
 
 describe('Static', () => {
-  const baseURL = '/_ignite';
+  const baseURL = '/my/baseURL/';
   let server;
   let visit;
 
@@ -13,6 +13,7 @@ describe('Static', () => {
     const options = {
       port,
       baseURL,
+      dst: '_ignite',
       src: 'examples/multi-root/docs',
       open: false,
       static: true,
