@@ -13,7 +13,8 @@
     "webpack.config.js",
     "webpack.config.dev.js",
     "markdownit.config.js",
-    "*.js"
+    "*.js",
+    "build-utils"
   ],
   "repository": {
     "type": "git",
