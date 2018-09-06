@@ -120,11 +120,7 @@ class Header extends Component {
             >
               {this.props.logo && (
                 <img
-                  src={`${
-                    this.props.logo.includes('http')
-                      ? this.props.logo
-                      : `./${this.props.logo}`
-                  }`}
+                  src={this.props.logo}
                   alt="logo"
                   className={makeClass(styles.logo, 'navbar-item')}
                 />
