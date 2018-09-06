@@ -125,7 +125,7 @@
     "throttle-debounce": "2.0.0",
     "transform-markdown-links": "^2.0.0",
     "uglifyjs-webpack-plugin": "1.2.7",
-    "webpack": "4.16.0",
+    "webpack": "^4.17.2",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cdn-plugin": "2.2.0",
     "webpack-inject-plugin": "~0.5.0",
