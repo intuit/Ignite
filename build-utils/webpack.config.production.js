@@ -94,7 +94,7 @@ module.exports = function(options) {
           use: ['file-loader', 'image-webpack-loader']
         },
         {
-          test: /\.(svg)$/i,
+          test: new RegExp(`.(svg)$|${options.logo}`, 'i'),
           use: [
             {
               loader: 'file-loader',

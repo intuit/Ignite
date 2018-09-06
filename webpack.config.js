@@ -111,7 +111,9 @@ module.exports = options => {
             title: JSON.stringify(options.title),
             githubURL: JSON.stringify(options.githubURL),
             navItems: JSON.stringify(options.navItems),
-            logo: JSON.stringify(logoExists ? logoPath : ''),
+            logo: JSON.stringify(
+              logoExists ? path.join(options.baseURL, logoPath) : ''
+            ),
             plugins: JSON.stringify(options.plugins)
           }
         }),
