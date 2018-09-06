@@ -60,6 +60,7 @@ export class Sidebar extends Component {
         }}
         className={makeClass(
           styles.root,
+          'menu-list',
           this.props.className,
           this.state.open && styles.open
         )}

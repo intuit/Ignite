@@ -89,3 +89,7 @@
 .open {
   left: 0;
 }
+
+:global .menu-label a {
+  display: inline;
+}
