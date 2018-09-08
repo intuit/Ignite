@@ -31,8 +31,8 @@ export default function renderBlogFrontMatter(tokens) {
 
   try {
     blogConfig = yaml.parse(blogConfig);
-  } catch (e) {
-    throw new TypeError(e);
+  } catch (error) {
+    throw new TypeError(error);
   }
 
   let { title, image, name, url, email } = parseConfig(blogConfig);

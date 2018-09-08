@@ -8,14 +8,16 @@ module.exports = function(params) {
         {
           targets: {
             node: 'current'
-          }
+          },
+          modules: 'commonjs'
         }
       ],
-      '@babel/preset-react',
-      '@babel/preset-stage-3'
+      '@babel/preset-react'
     ],
     plugins: [
       '@babel/plugin-proposal-object-rest-spread',
+      '@babel/plugin-syntax-dynamic-import',
+      ['@babel/plugin-proposal-class-properties', { loose: false }],
       '@babel/plugin-transform-react-constant-elements',
       '@babel/transform-react-inline-elements',
       'add-module-exports',
