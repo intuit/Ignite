@@ -55,9 +55,6 @@ export class Sidebar extends Component {
 
     return (
       <div
-        ref={ref => {
-          this.sidebar = ref;
-        }}
         className={makeClass(
           styles.root,
           'menu-list',
@@ -65,29 +62,36 @@ export class Sidebar extends Component {
           this.state.open && styles.open
         )}
       >
-        <button
-          className={makeClass(
-            'is-hidden-tablet',
-            'button',
-            'is-white',
-            styles.toggle
-          )}
-          type="button"
-          onClick={this.toggleSidebar}
+        <div
+          ref={ref => {
+            this.sidebar = ref;
+          }}
+          className={styles.sticky}
         >
-          {this.state.open ? (
-            <Icon type="fas" icon="angle-left" />
-          ) : (
-            <Icon type="fas" icon="angle-right" />
+          <button
+            className={makeClass(
+              'is-hidden-tablet',
+              'button',
+              'is-white',
+              styles.toggle
+            )}
+            type="button"
+            onClick={this.toggleSidebar}
+          >
+            {this.state.open ? (
+              <Icon type="fas" icon="angle-left" />
+            ) : (
+              <Icon type="fas" icon="angle-right" />
+            )}
+          </button>
+          {this.props.content && (
+            <this.props.content
+              className={styles.sidebar}
+              currentPage={this.props.currentPage}
+              onClick={this.handleClickOutside}
+            />
           )}
-        </button>
-        {this.props.content && (
-          <this.props.content
-            className={styles.sidebar}
-            currentPage={this.props.currentPage}
-            onClick={this.handleClickOutside}
-          />
-        )}
+        </div>
       </div>
     );
   }

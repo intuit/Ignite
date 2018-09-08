@@ -10,7 +10,9 @@ exports[`Link works with just a to 1`] = `
 `;
 
 exports[`Router passes location to children 1`] = `
-<div>
+<div
+  style="height: 100%;"
+>
   <div
     location="http://localhost/somePath"
   />
@@ -18,7 +20,9 @@ exports[`Router passes location to children 1`] = `
 `;
 
 exports[`Router updates location on window events 1`] = `
-<div>
+<div
+  style="height: 100%;"
+>
   <div
     location="[object Object]"
   />

@@ -6,22 +6,24 @@ exports[`only renders content if its there 2`] = `
 <div
   className="root menu-list"
 >
-  <button
-    className="is-hidden-tablet button is-white toggle"
-    onClick={[Function]}
-    type="button"
-  >
-    <Icon
-      className={null}
-      icon="angle-right"
-      type="fas"
+  <div>
+    <button
+      className="is-hidden-tablet button is-white toggle"
+      onClick={[Function]}
+      type="button"
+    >
+      <Icon
+        className={null}
+        icon="angle-right"
+        type="fas"
+      />
+    </button>
+    <content
+      className="sidebar"
+      currentPage={null}
+      onClick={[Function]}
     />
-  </button>
-  <content
-    className="sidebar"
-    currentPage={null}
-    onClick={[Function]}
-  />
+  </div>
 </div>
 `;
 
@@ -29,18 +31,20 @@ exports[`should close when clicked outside 1`] = `
 <div
   className="root menu-list open"
 >
-  <button
-    className="is-hidden-tablet button is-white toggle"
-    onClick={[Function]}
-    type="button"
-  >
-    <i
-      className="fas fa-angle-left"
-    />
-  </button>
-  <h1>
-    beans
-  </h1>
+  <div>
+    <button
+      className="is-hidden-tablet button is-white toggle"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-angle-left"
+      />
+    </button>
+    <h1>
+      beans
+    </h1>
+  </div>
 </div>
 `;
 
@@ -48,18 +52,20 @@ exports[`should close when clicked outside 2`] = `
 <div
   className="root menu-list"
 >
-  <button
-    className="is-hidden-tablet button is-white toggle"
-    onClick={[Function]}
-    type="button"
-  >
-    <i
-      className="fas fa-angle-right"
-    />
-  </button>
-  <h1>
-    beans
-  </h1>
+  <div>
+    <button
+      className="is-hidden-tablet button is-white toggle"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-angle-right"
+      />
+    </button>
+    <h1>
+      beans
+    </h1>
+  </div>
 </div>
 `;
 
@@ -67,18 +73,20 @@ exports[`should open and close 1`] = `
 <div
   className="root menu-list open"
 >
-  <button
-    className="is-hidden-tablet button is-white toggle"
-    onClick={[Function]}
-    type="button"
-  >
-    <i
-      className="fas fa-angle-left"
-    />
-  </button>
-  <h1>
-    beans
-  </h1>
+  <div>
+    <button
+      className="is-hidden-tablet button is-white toggle"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-angle-left"
+      />
+    </button>
+    <h1>
+      beans
+    </h1>
+  </div>
 </div>
 `;
 
@@ -86,17 +94,19 @@ exports[`should open and close 2`] = `
 <div
   className="root menu-list"
 >
-  <button
-    className="is-hidden-tablet button is-white toggle"
-    onClick={[Function]}
-    type="button"
-  >
-    <i
-      className="fas fa-angle-right"
-    />
-  </button>
-  <h1>
-    beans
-  </h1>
+  <div>
+    <button
+      className="is-hidden-tablet button is-white toggle"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-angle-right"
+      />
+    </button>
+    <h1>
+      beans
+    </h1>
+  </div>
 </div>
 `;

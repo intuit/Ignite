@@ -46,6 +46,7 @@ class Router extends Component {
         ref={ref => {
           this.router = ref;
         }}
+        style={{ height: '100%' }}
       >
         {childrenWithProps}
       </div>
