@@ -65,6 +65,8 @@ describe('Home Page', () => {
   test('search bar works', async () => {
     const page = await visit('/');
 
+    await page.setViewport({ height: 800, width: 1000 });
+
     await page.click('.navbar-burger');
     await page.type('input', 'page');
     await page.click('.card a');
