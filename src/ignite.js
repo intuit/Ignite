@@ -3,6 +3,7 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
 import path from 'path';
+import opn from 'opn';
 
 import history from 'connect-history-api-fallback';
 import convert from 'koa-connect';
@@ -255,16 +256,16 @@ export default async function build(options) {
         on: {
           listening: () => {
             if (finalOptions.open) {
-              execSync('ps cax | grep "Google Chrome"');
-              execSync(
-                `osascript ../src/chrome.applescript "${encodeURI(
-                  `http://localhost:${finalOptions.port}`
-                )}"`,
-                {
+              const url = encodeURI(`http://localhost:${finalOptions.port}`);
+              try {
+                execSync('ps cax | grep "Google Chrome"');
+                execSync(`osascript ../src/chrome.applescript "${url}"`, {
                   cwd: __dirname,
                   stdio: 'ignore'
-                }
-              );
+                });
+              } catch (error) {
+                opn(url);
+              }
             }
           }
         }
