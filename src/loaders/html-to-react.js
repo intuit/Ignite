@@ -763,7 +763,7 @@ export const determinePage = async (
   }
 };
 
-export default async function(rawSource) {
+export default function(rawSource) {
   const options = getOptions(this);
   const pathToMarkdown = path.relative(options.src, this.resourcePath);
   return determinePage(rawSource, this.resourcePath, pathToMarkdown, options);

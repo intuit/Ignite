@@ -90,6 +90,47 @@ h6 > code {
   margin-right: 10px;
 }
 
+:global p {
+  .image {
+    max-width: 80% !important;
+    max-height: 65% !important;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .image + em {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+:global .feature {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 25px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
 h1 > strong:not(:only-child),
 h2 > strong:not(:only-child),
 h3 > strong:not(:only-child),
@@ -108,19 +149,21 @@ p > code {
   white-space: normal;
 }
 
-:global p {
-  .image {
-    max-width: 80% !important;
-    max-height: 65% !important;
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
+:global .has-text-centered {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    justify-content: center;
   }
+}
 
-  .image + em {
-    display: block;
-    text-align: center;
-    margin: auto;
+:global .tile {
+  h1,
+  h2 {
+    color: currentColor;
   }
 }
 
@@ -145,17 +188,6 @@ p > code {
     &:first-of-type {
       margin-left: 15px;
     }
-  }
-}
-
-:global .has-text-centered {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    justify-content: center;
   }
 }
 
@@ -209,13 +241,6 @@ p > code {
   i {
     padding: 1.25rem 1rem;
     font-size: x-large;
-  }
-}
-
-:global .tile {
-  h1,
-  h2 {
-    color: currentColor;
   }
 }
 
@@ -354,31 +379,6 @@ p > code {
 :global .columns.wide {
   @media screen and (min-width: 769px) {
     margin: 4rem -5rem;
-  }
-}
-
-:global .feature {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-  h1 {
-    margin-bottom: 25px;
-  }
-
-  p {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-  }
-
-  strong {
-    font-weight: 700;
-  }
-
-  a {
-    text-decoration: underline;
   }
 }
 

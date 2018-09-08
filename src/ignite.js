@@ -23,7 +23,7 @@ import createStaticSite from './create-static-site';
 import defaults from './default-config';
 import printError from './utils/print-error';
 
-export async function initPlugins(options) {
+export function initPlugins(options) {
   register();
 
   options.plugins.forEach(async plugin => {
@@ -38,7 +38,7 @@ export async function initPlugins(options) {
 
     try {
       initFile = path.join(pluginPath, require(pluginPackage).init);
-    } catch (err) {
+    } catch (error) {
       initFile = path.resolve(path.join(pluginPath, 'init.js'));
     }
 
@@ -60,7 +60,7 @@ export async function initPlugins(options) {
             }
           `;
       }
-    } catch (err) {
+    } catch (error) {
       // No Init function found
     }
   });
@@ -192,7 +192,8 @@ export async function initOptions(options) {
   options.searchIndex = await initSearchIndex(options);
 
   if (options.plugins) {
-    options = await initPlugins(options);
+    const pluggedOptions = await initPlugins(options);
+    options = pluggedOptions;
   }
 
   if (options.navItems) {
@@ -207,11 +208,11 @@ export async function initOptions(options) {
 export default async function build(options) {
   const user = getAuthor();
 
-  options = await initOptions(options);
+  const finalOptions = await initOptions(options);
   const webpackConfig = config(options);
 
-  if (options.publish) {
-    if (!options.githubURL) {
+  if (finalOptions.publish) {
+    if (!finalOptions.githubURL) {
       printError('Need to provide githubURL option to publish');
       return;
     }
@@ -227,17 +228,17 @@ export default async function build(options) {
     }
   }
 
-  if (options.watch) {
+  if (finalOptions.watch) {
     return serve(
       {
         logLevel: 'silent'
       },
       {
         config: webpackConfig,
-        port: options.port,
-        add: (app, middleware, options) => {
+        port: finalOptions.port,
+        add: (app, middleware, finalOptions) => {
           app.use(
-            webpackServeWaitpage(options, {
+            webpackServeWaitpage(finalOptions, {
               title: 'Ignite Dev Server',
               theme: 'material'
             })
@@ -253,11 +254,11 @@ export default async function build(options) {
         },
         on: {
           listening: () => {
-            if (options.open) {
+            if (finalOptions.open) {
               execSync('ps cax | grep "Google Chrome"');
               execSync(
                 `osascript ../src/chrome.applescript "${encodeURI(
-                  `http://localhost:${options.port}`
+                  `http://localhost:${finalOptions.port}`
                 )}"`,
                 {
                   cwd: __dirname,

@@ -25,11 +25,11 @@ const defaultLinkProps = {
 const GithubLink = ({ githubURL, onClick }) =>
   githubURL ? (
     <a
-      onClick={onClick}
       className="navbar-item"
       href={githubURL}
       rel="noopener noreferrer"
       target="_blank"
+      onClick={onClick}
     >
       GitHub
       <Icon className={styles.icon} type="fab" icon="github" />
@@ -56,9 +56,9 @@ const BlogLink = ({ className, onClick }) =>
     <NavItem
       location={location}
       className={className}
-      onClick={onClick}
       item={['Blog', path.join(process.env.baseURL, '/blog/index.html')]}
       icon={<Icon className={styles.icon} type="fas" icon="rss" />}
+      onClick={onClick}
     />
   ) : null;
 
@@ -69,9 +69,9 @@ const DocsLink = ({ className, onClick }) => (
   <NavItem
     location={location}
     className={className}
-    onClick={onClick}
     item={['Docs', path.join(process.env.baseURL, getIndex())]}
     icon={<Icon className={styles.icon} type="fas" icon="book" />}
+    onClick={onClick}
   />
 );
 
@@ -111,12 +111,12 @@ class Header extends Component {
         <div className={styles.container}>
           <div className="navbar-brand">
             <Link
-              onClick={this.closeMenu}
               to={path.join(
                 process.env.baseURL,
                 hasHomePage ? '/home.html' : '/'
               )}
               className={makeClass(styles.title, 'navbar-item')}
+              onClick={this.closeMenu}
             >
               {this.props.logo && (
                 <img
@@ -169,7 +169,6 @@ class Header extends Component {
                 ))
               ) : (
                 <DocsLink
-                  onClick={this.closeMenu}
                   className={
                     !this.props.location.pathname.includes('blog/') &&
                     !(
@@ -178,18 +177,19 @@ class Header extends Component {
                     ) &&
                     'is-active'
                   }
+                  onClick={this.closeMenu}
                 />
               )}
 
               <BlogLink
-                onClick={this.closeMenu}
                 className={
                   this.props.location.pathname.includes('blog/') && 'is-active'
                 }
+                onClick={this.closeMenu}
               />
               <GithubLink
-                onClick={this.closeMenu}
                 githubURL={this.props.githubURL}
+                onClick={this.closeMenu}
               />
             </div>
           </div>

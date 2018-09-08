@@ -42,9 +42,9 @@ const NavItem = ({ item: [key, item], ...props }) => {
     key !== 'root' && (
       <Link
         key={key}
-        onClick={props.onClick}
         className={makeClass('navbar-item', isActive && 'is-active')}
         to={makeRouterLink(item)}
+        onClick={props.onClick}
       >
         {key}
         {props.icon}
