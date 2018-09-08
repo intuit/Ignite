@@ -209,7 +209,7 @@ export default async function build(options) {
   const user = getAuthor();
 
   const finalOptions = await initOptions(options);
-  const webpackConfig = config(options);
+  const webpackConfig = config(finalOptions);
 
   if (finalOptions.publish) {
     if (!finalOptions.githubURL) {
