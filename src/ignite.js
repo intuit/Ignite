@@ -276,7 +276,7 @@ export default async function build(options) {
 
   return new Promise((resolve, reject) =>
     compiler.run(async (err, stats) => {
-      if (options.json) {
+      if (finalOptions.json) {
         fs.writeFile(
           'stats.json',
           JSON.stringify(stats.toJson(), null, 2),
@@ -299,12 +299,12 @@ export default async function build(options) {
         return;
       }
 
-      if (options.static) {
-        await createStaticSite(options);
+      if (finalOptions.static) {
+        await createStaticSite(finalOptions);
       }
 
-      if (options.publish) {
-        publish(options, user);
+      if (finalOptions.publish) {
+        publish(finalOptions, user);
       }
 
       resolve();
