@@ -13,9 +13,8 @@
     width: 100%;
   }
 
-  @media screen and (min-width: 1500px) {
-    max-width: 1344px;
-    width: 1344px;
+  @media screen and (min-width: 1800px) {
+    width: 80%;
     margin: auto;
   }
 }

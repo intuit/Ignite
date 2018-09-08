@@ -39,6 +39,13 @@
     }
   }
 
+  @media screen and (min-width: 1800px) {
+    .sticky {
+      max-width: 60%;
+      margin-left: auto;
+    }
+  }
+
   li {
     list-style: none;
 

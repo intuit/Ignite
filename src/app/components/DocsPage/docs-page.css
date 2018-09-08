@@ -1,11 +1,5 @@
 .contentArea {
   flex: 1;
-
-  @media screen and (min-width: 1500px) {
-    max-width: 1344px;
-    width: 1344px;
-    margin: auto;
-  }
 }
 
 .content {
