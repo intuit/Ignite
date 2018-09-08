@@ -2,6 +2,7 @@
   "title": "Ignite",
   "githubURL": "https://github.com/intuit/Ignite",
   "baseURL": "/Ignite",
+  "bulmaTheme": "darkly",
 
   "plugins": [
     ["test", "./src/extensions/testExtension", {

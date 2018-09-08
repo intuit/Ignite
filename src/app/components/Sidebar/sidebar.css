@@ -5,15 +5,12 @@
 .root {
   z-index: 1;
   padding: 0;
-  height: calc(100vh + 60px - 7em);
   overflow-x: visible;
   border: none;
-  border-right: 1px solid #e0e0e0;
   box-shadow: none !important;
   border-radius: 0;
   margin-bottom: 0 !important;
 
-  top: 0;
   width: 350px;
   position: fixed;
   left: -350px;
@@ -27,8 +24,15 @@
   }
 
   @media screen and (min-width: 769px) {
-    position: -webkit-sticky;
-    position: sticky;
+    position: inherit;
+
+    .sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 10px;
+      max-height: 100vh;
+      overflow: scroll;
+    }
 
     .sidebar {
       padding: 4rem 20px 3rem;

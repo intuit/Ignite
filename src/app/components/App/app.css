@@ -9,6 +9,8 @@ body {
 
 .root {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 h1,
@@ -168,6 +170,7 @@ p > code {
 }
 
 .App {
+  height: 100%;
   display: flex;
   justify-content: center;
 

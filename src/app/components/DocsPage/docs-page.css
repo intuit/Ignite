@@ -1,5 +1,5 @@
 .contentArea {
-  min-height: calc(100% - 60px - 97px);
+  flex: 1;
 
   @media screen and (min-width: 1500px) {
     max-width: 1344px;
