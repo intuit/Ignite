@@ -4,7 +4,7 @@ exports[`only renders content if its there 1`] = `null`;
 
 exports[`only renders content if its there 2`] = `
 <div
-  className="root"
+  className="root menu-list"
 >
   <button
     className="is-hidden-tablet button is-white toggle"
@@ -27,7 +27,7 @@ exports[`only renders content if its there 2`] = `
 
 exports[`should close when clicked outside 1`] = `
 <div
-  className="root open"
+  className="root menu-list open"
 >
   <button
     className="is-hidden-tablet button is-white toggle"
@@ -46,7 +46,7 @@ exports[`should close when clicked outside 1`] = `
 
 exports[`should close when clicked outside 2`] = `
 <div
-  className="root"
+  className="root menu-list"
 >
   <button
     className="is-hidden-tablet button is-white toggle"
@@ -65,7 +65,7 @@ exports[`should close when clicked outside 2`] = `
 
 exports[`should open and close 1`] = `
 <div
-  className="root open"
+  className="root menu-list open"
 >
   <button
     className="is-hidden-tablet button is-white toggle"
@@ -84,7 +84,7 @@ exports[`should open and close 1`] = `
 
 exports[`should open and close 2`] = `
 <div
-  className="root"
+  className="root menu-list"
 >
   <button
     className="is-hidden-tablet button is-white toggle"
