@@ -63,10 +63,10 @@ export class Sidebar extends Component {
         )}
       >
         <div
-          className={styles.sticky}
           ref={ref => {
             this.sidebar = ref;
           }}
+          className={styles.sticky}
         >
           <button
             className={makeClass(
