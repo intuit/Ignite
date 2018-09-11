@@ -7,7 +7,7 @@
 }
 
 .container {
-  .navbar-brand {
+  :global .navbar-brand {
     min-height: 100%;
   }
 

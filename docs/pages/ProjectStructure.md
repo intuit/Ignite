@@ -43,6 +43,10 @@ Some Other Nav Section
   ...
 ```
 
+::: message is-warning
+NOTE: if you want a list label to indent correctly you might have to add /.sidebar\
+:::
+
 ## Multiple Top Level Tags
 
 You can split your documentation up into multiple top level sections. To have multiple top level headings you will need to also have multiple index files in multiple folders.
