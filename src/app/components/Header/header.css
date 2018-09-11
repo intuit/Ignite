@@ -7,6 +7,10 @@
 }
 
 .container {
+  .navbar-brand {
+    min-height: 100%;
+  }
+
   @media screen and (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
