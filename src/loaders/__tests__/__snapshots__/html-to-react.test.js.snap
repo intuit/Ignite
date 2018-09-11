@@ -448,6 +448,8 @@ exports[`replaceIdLinks 1`] = `
   "
 `;
 
+exports[`sanitizeJSX - back ticks 1`] = `"<div>  <pre>    formatter.hooks.resolve.tap(      'phone',      value =>        &#96;($&#123;value.substr(0, 3)&#125;) $&#123;value.substr(3, 3)&#125; - $&#123;value.substr(6, 4)&#125;&#96;    );  </pre></div>"`;
+
 exports[`sanitizeJSX 1`] = `"<Link currentPage={(this && this.props || props).currentPage} className=\\"/foo\\">&#123;Foo&#125;</Link>"`;
 
 exports[`sanitizeJSX 2`] = `"<Link currentPage={(this && this.props || props).currentPage} className={\\"/foo\\"}>Foo</Link>"`;

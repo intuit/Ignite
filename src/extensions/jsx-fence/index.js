@@ -2,7 +2,9 @@
 
 function escape_code(defaultRenderer) {
   return function(tokens, idx, options, env, slf) {
-    tokens[idx].content = tokens[idx].content.slice(2, -2);
+    tokens[idx].content = tokens[idx].content
+      .slice(2, -2)
+      .replace(/\\`/g, '__BACK_TICK__');
 
     return defaultRenderer(tokens, idx, options, env, slf);
   };

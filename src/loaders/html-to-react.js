@@ -19,15 +19,11 @@ export function insertBreaks(source) {
     let endPreTag = source.indexOf('</pre>', preTeg);
     let newLine = source.indexOf('\n', preTeg);
 
-    do {
-      newLine = source.indexOf('\n', preTeg);
+    while (newLine < endPreTag && newLine !== -1) {
       endPreTag = source.indexOf('</pre>', preTeg);
       source = replaceAt(source, '\n', '<br />', newLine);
-    } while (
-      source.indexOf('\n', preTeg) < endPreTag &&
-      newLine !== source.indexOf('\n', preTeg) &&
-      newLine !== -1
-    );
+      newLine = source.indexOf('\n', preTeg);
+    }
 
     preTeg = source.indexOf('<pre', endPreTag);
   }
@@ -107,7 +103,8 @@ export function sanitizeJSX(source) {
   source = source.replace(new RegExp('!}', 'g'), '__CURLY_RIGHT__');
 
   // Don't break the JSX
-  // source = source.replace(new RegExp('`', 'g'), '\\`');
+  source = source.replace(/__BACK_TICK__/g, '&#96;');
+  source = source.replace(new RegExp('`', 'g'), '\\`');
   source = source.replace(new RegExp('{', 'g'), '&#123;');
   source = source.replace(new RegExp('}', 'g'), '&#125;');
 
