@@ -180,6 +180,23 @@ test('sanitizeJSX', () => {
   ).toMatchSnapshot();
 });
 
+test('sanitizeJSX - back ticks', () => {
+  expect(
+    sanitizeJSX(
+      '<div>' +
+        '  <pre>' +
+        '    formatter.hooks.resolve.tap(' +
+        "      'phone'," +
+        '      value =>' +
+        // eslint-disable-next-line no-template-curly-in-string
+        '        __BACK_TICK__(${value.substr(0, 3)}) ${value.substr(3, 3)} - ${value.substr(6, 4)}__BACK_TICK__' +
+        '    );' +
+        '  </pre>' +
+        '</div>'
+    )
+  ).toMatchSnapshot();
+});
+
 test('markDownPage', () => {
   expect(
     markDownPage(`<span class="highlighted-line"></span>`)
