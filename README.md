@@ -74,3 +74,8 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 :star: [JSON Schema](https://github.com/hipstersmoothie/ignite-plugin-json-schema) - Takes a JSON-Schema and exposes a Component that matches ids to auto-generate docs.
 
+:rocket: If you want to add your plugins to this list make a PR! :rocket:
+
+## Gallary
+
+:nail_care: Have some beatiful docs built using Ignite? Make a PR and feature them here :nail_care:
