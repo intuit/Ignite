@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
-## 2018-09-11 - [1.2.11 - current version]
+## 2018-09-21 - [1.2.12 - current version]
+
+- 1.2.12 - ([63](https://github.com/intuit/Ignite/pull/63)) - fix scrollbars in sidebar (@garetmckinley)
+
+## 2018-09-11
 
 - 1.2.11 - ([60](https://github.com/intuit/Ignite/pull/60)) - add sidebar class for special situations (@hipstersmoothie)
 - 1.2.10 - ([59](https://github.com/intuit/Ignite/pull/59)) - fix back ticks in code blocks by marking them with __BACK_TICK__ (@hipstersmoothie)
@@ -855,6 +859,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - 0.2.7 - ([99192e4](https://github.com/intuit/Ignite/commit/99192e4ade59fdea6b135e458672f471a531258d)) - add XO (@hipstersmoothie)
 - 0.2.6 - ([21dc660](https://github.com/intuit/Ignite/commit/21dc660c944bc425683a2ad17a11d994733e4290)) - add prettier (@hipstersmoothie)
 - 0.2.5 - ([581ee8f](https://github.com/intuit/Ignite/commit/581ee8ffb2572e050c4e8028ce3b9af64c063701)) - getting started (@hipstersmoothie)
+
 
 
 
