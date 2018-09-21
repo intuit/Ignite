@@ -104,11 +104,11 @@ class Header extends Component {
     );
     return (
       <nav
-        className={makeClass('navbar', styles.nav)}
+        className={makeClass('main-nav navbar', styles.nav)}
         role="navigation"
         aria-label="main navigation"
       >
-        <div className={styles.container}>
+        <div className={makeClass('container', styles.container)}>
           <div className="navbar-brand">
             <Link
               to={path.join(
@@ -119,20 +119,11 @@ class Header extends Component {
               onClick={this.closeMenu}
             >
               {this.props.logo && (
-                <img
-                  src={this.props.logo}
-                  alt="logo"
-                  className={makeClass(styles.logo, 'navbar-item')}
-                />
+                <img src={this.props.logo} alt="logo" className={styles.logo} />
               )}
-              <span
-                className={makeClass(
-                  'is-hidden-mobile navbar-item',
-                  styles.titleText
-                )}
-              >
+              <h1 className={makeClass('is-hidden-mobile', styles.titleText)}>
                 {this.props.title}
-              </span>
+              </h1>
             </Link>
 
             <a

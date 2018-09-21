@@ -263,8 +263,11 @@ p > code {
 }
 
 :global .navbar-item img {
-  max-height: 3rem;
   height: 100%;
+}
+
+:global .navbar-item {
+  padding: 0.5rem 20px;
 }
 
 :global .headerLink {

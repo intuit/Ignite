@@ -7,6 +7,8 @@
 }
 
 .container {
+  max-width: 100%;
+
   :global .navbar-brand {
     min-height: 100%;
   }
@@ -14,18 +16,17 @@
   @media screen and (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    padding: 0 1rem;
   }
 
   @media screen and (min-width: 1800px) {
-    width: 80%;
+    max-width: 80%;
     margin: auto;
   }
 }
 
 .title {
   font-size: 20px;
-  padding: 0;
   padding-right: 50px;
 }
 
@@ -33,8 +34,8 @@
   padding: 0;
 }
 
-.titleText:only-child {
-  padding-left: 1rem;
+.logo {
+  margin-right: 1rem;
 }
 
 :global .navbar {
