@@ -618,7 +618,7 @@ export function blogPost(source, pathToMarkdown, options) {
 
 export function index(source, pathToMarkdown, options) {
   const firstLink = getLink(source);
-
+  pathToMarkdown = pathToMarkdown.replace('.md', '');
   source = addActiveAll(source, firstLink, options.index, options);
   source = sanitizeJSX(source);
   source = source.replace(
@@ -640,7 +640,7 @@ export function index(source, pathToMarkdown, options) {
       options.watch
         ? path.join('/', pathToMarkdown)
         : path.join(options.baseURL, pathToMarkdown)
-    }', '${path.join('/', firstLink.link.replace('.html', '.md'))}');
+    }', '${path.join('/', firstLink.link)}');
   `;
 }
 

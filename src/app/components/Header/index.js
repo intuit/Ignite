@@ -98,7 +98,7 @@ class Header extends Component {
 
   render() {
     const hasHomePage = window.configuration.markdown.find(
-      ([key]) => key === path.join(process.env.baseURL, 'home.md')
+      ([key]) => key === path.join(process.env.baseURL, 'home')
     );
     return (
       <nav
@@ -159,7 +159,9 @@ class Header extends Component {
                     !this.props.location.pathname.includes('blog/') &&
                     !(
                       this.props.location.pathname === '/' &&
-                      !window.configuration.markdown['home.md']
+                      !window.configuration.markdown[
+                        path.join(process.env.baseURL, 'home')
+                      ]
                     ) &&
                     'is-active'
                   }

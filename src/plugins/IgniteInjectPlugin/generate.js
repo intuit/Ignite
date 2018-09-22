@@ -221,9 +221,9 @@ const initLazyLoad = options => {
       const comp = lazyLoad(provider);
 
       if(isIndex(markdownPath)) {
-        window.configuration.markdown.push([markdownPath, comp, true, null]);
+        window.configuration.markdown.push([markdownPath.replace('.md', ''), comp, true, null]);
       } else {
-        window.configuration.markdown.push([markdownPath, comp]);
+        window.configuration.markdown.push([markdownPath.replace('.md', ''), comp]);
       }
     }
 

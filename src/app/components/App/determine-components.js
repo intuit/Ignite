@@ -4,11 +4,11 @@ import trimChar from '../../../utils/trim-char';
 const getParent = (markdown, navItems, filePath) =>
   markdown.indexFiles &&
   Object.entries(markdown.indexFiles).find(([key]) => {
-    const currentDir = path.dirname(filePath);
-
+    const compare =
+      path.dirname(filePath) !== '/' ? path.dirname(filePath) : filePath;
     return (
       Object.values(navItems).includes(path.dirname(key)) &&
-      trimChar(path.dirname(key), '/') === trimChar(currentDir, '/')
+      trimChar(path.dirname(key), '/') === trimChar(compare, '/')
     );
   });
 
@@ -27,13 +27,13 @@ export const determineSidebar = (
     const [parentIndex, parentPageFirstPage] =
       getParent(markdown, navItems, location.pathname) || [];
 
-    if (parentIndex && parentPageFirstPage) {
+    if (parentIndex) {
       SidebarComponent = markdown[parentIndex];
       currentFirstPage = parentPageFirstPage;
     }
 
     if (!SidebarComponent && markdown.indexFiles) {
-      const rootIndex = path.join(navItems.root, indexFile);
+      const rootIndex = path.join(navItems.root, indexFile.replace('.md', ''));
       SidebarComponent = markdown[rootIndex];
       currentFirstPage = markdown.indexFiles[rootIndex];
     }
@@ -67,7 +67,7 @@ export const determinePage = (
     }
 
     if (!Page && markdown.indexFiles) {
-      const rootIndex = path.join(navItems.root, indexFile);
+      const rootIndex = path.join(navItems.root, indexFile).replace('.md', '');
       Page = markdown[markdown.indexFiles[rootIndex]];
     }
   }
