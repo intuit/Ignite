@@ -100,12 +100,10 @@ export default function createStaticSite(options) {
         await page.goto(link);
 
         const newLinks = await getLinks(page);
+
         newLinks
           .filter(
-            link =>
-              link !== '' &&
-              link.includes(`localhost:${options.port}`) &&
-              link.includes('.html')
+            link => link !== '' && link.includes(`localhost:${options.port}`)
           )
           .forEach(link => {
             const [newLink] = link.split('#');

@@ -124,7 +124,7 @@ const generateBlogIndex = (blogFiles, options) => {
         return e('div', { className: 'blogIndex' }, [
           e(Waypoint, { key: 'Waypoint', onLeave: () => this.toggleScrollTopButton(true), onEnter: () => this.toggleScrollTopButton(false) }, e('div')),
           ${JSON.stringify(
-            blogPosts
+            blogPosts.map(post => post.replace('.md', ''))
           )}.slice(0, this.state.shownPosts).map((blogFile, index) => {
             const BlogPost = window.configuration.markdown.find(page => page[0] === '${
               options.baseURL
