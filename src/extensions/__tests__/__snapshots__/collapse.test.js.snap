@@ -8,7 +8,7 @@ exports[`collapse 1`] = `
             [].find(link => (
               link === ((this && this.props) || props).currentPage ||
               (((this && this.props) || props).currentPage === process.env.baseURL &&
-                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+                link === window.configuration.currentFirstPage.replace('.md', ''))
               )
             )
           !}
@@ -31,7 +31,7 @@ exports[`collapse 2`] = `
             [].find(link => (
               link === ((this && this.props) || props).currentPage ||
               (((this && this.props) || props).currentPage === process.env.baseURL &&
-                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+                link === window.configuration.currentFirstPage.replace('.md', ''))
               )
             )
           !}
@@ -56,7 +56,7 @@ exports[`collapse 3`] = `
             [\\"./pages/Publishing.html#setup-branch\\",\\"./pages/Publishing.html#Continuous-integration\\"].find(link => (
               link === ((this && this.props) || props).currentPage ||
               (((this && this.props) || props).currentPage === process.env.baseURL &&
-                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+                link === window.configuration.currentFirstPage.replace('.md', ''))
               )
             )
           !}
@@ -66,7 +66,7 @@ exports[`collapse 3`] = `
           </summary>
       <ul>
 <li><a href=\\"./pages/Publishing.html#setup-branch\\">Setup</a></li>
-<li><a href=\\"./pages/Publishing.html#Continuous-integration\\">Continuous Integration</a>u</li>
+<li><a href=\\"./pages/Publishing.html#Continuous-integration\\">Continuous Integration</a></li>
 </ul>
 
       </details>

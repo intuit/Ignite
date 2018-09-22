@@ -26,7 +26,7 @@ const BlogHero = ({ location, blogHero, baseURL }) => (
         <h1
           className="title"
           style={
-            location.pathname === path.join(baseURL, 'blog/')
+            location.pathname === path.join(baseURL, '/blog')
               ? {}
               : { opacity: 0 }
           }

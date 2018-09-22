@@ -236,18 +236,16 @@ test('detectIndex', () => {
     index: 'index.md'
   };
 
-  expect(detectIndex('path/to/file.md', 'file.md', options)).toBe(false);
-  expect(detectIndex('path/to/index.md', 'index.md', options)).toBe(true);
+  expect(detectIndex('file.md', options)).toBe(false);
+  expect(detectIndex('index.md', options)).toBe(true);
 
   options.navItems = {
     root: '/',
     pages: 'pages'
   };
 
-  expect(detectIndex('path/to/index.md', 'index.md', options)).toBe(true);
-  expect(detectIndex('path/to/pages/index.md', 'pages/index.md', options)).toBe(
-    true
-  );
+  expect(detectIndex('index.md', options)).toBe(true);
+  expect(detectIndex('pages/index.md', options)).toBe(true);
 });
 
 describe('determinePage', () => {

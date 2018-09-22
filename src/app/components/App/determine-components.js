@@ -4,9 +4,7 @@ import trimChar from '../../../utils/trim-char';
 const getParent = (markdown, navItems, filePath) =>
   markdown.indexFiles &&
   Object.entries(markdown.indexFiles).find(([key]) => {
-    const currentDir = filePath.includes('.md')
-      ? path.dirname(filePath)
-      : filePath;
+    const currentDir = path.dirname(filePath);
 
     return (
       Object.values(navItems).includes(path.dirname(key)) &&
@@ -52,7 +50,6 @@ export const determinePage = (
   indexFile,
   navItems = process.env.navItems
 ) => {
-  console.log(location.pathname);
   const filePath = location.pathname.replace('.html', '.md');
 
   if (filePath.includes('/blog')) {

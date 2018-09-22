@@ -30,7 +30,7 @@ describe('transformLink', () => {
         src: 'docs/',
         baseURL: '/'
       })
-    ).toBe('/docs/markdown.html');
+    ).toBe('/docs/markdown');
   });
 
   test('should make relative paths to images', () => {

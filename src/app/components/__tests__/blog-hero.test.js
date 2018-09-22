@@ -7,7 +7,8 @@ test('BlogHero - page - no hero', () => {
   expect(
     renderToJson(
       <BlogHero
-        location={{ pathname: '/blog/page.md', hash: '', search: '' }}
+        baseURL="/"
+        location={{ pathname: '/blog/page', hash: '', search: '' }}
       />
     )
   ).toMatchSnapshot();
@@ -17,8 +18,9 @@ test('BlogHero - page - hero', () => {
   expect(
     renderToJson(
       <BlogHero
+        baseURL="/"
         blogHero="https://some.link"
-        location={{ pathname: '/blog/page.md', hash: '', search: '' }}
+        location={{ pathname: '/blog/page', hash: '', search: '' }}
       />
     )
   ).toMatchSnapshot();
@@ -28,7 +30,8 @@ test('BlogHero - index has title', () => {
   expect(
     renderToJson(
       <BlogHero
-        location={{ pathname: '/blog/index.md', hash: '', search: '' }}
+        baseURL="/"
+        location={{ pathname: '/blog', hash: '', search: '' }}
       />
     )
   ).toMatchSnapshot();

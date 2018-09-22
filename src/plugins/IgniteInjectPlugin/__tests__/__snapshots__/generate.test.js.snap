@@ -259,7 +259,7 @@ exports[`generate should add blogPosts 1`] = `
       }
     }
 
-    registerMarkdown(path.join('/', '/blog/index.md'), async () => ({ 
+    registerMarkdown(path.join('/', '/blog'), async () => ({ 
       default: blogIndex
     }));
   "

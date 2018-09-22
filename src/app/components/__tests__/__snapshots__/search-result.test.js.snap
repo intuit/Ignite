@@ -10,7 +10,7 @@ exports[`SearchResult 1`] = `
     <Link
       className="subtitle has-text-link title"
       onClick={[Function]}
-      to="/foo.html"
+      to="/foo"
     >
       foo.md
     </Link>

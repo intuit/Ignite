@@ -28,7 +28,7 @@ const collapse = md => ({
                 .findIndex(token => token.type === 'container_collapse_close')
           )
           .map(token => token.content)
-          .filter(content => content !== '')
+          .filter(content => content.match(/\[[\S ]+\]\(\S+\)/s))
           .map(link => link.slice(link.indexOf('(') + 1, link.indexOf(')')));
 
         if (isOpen) {

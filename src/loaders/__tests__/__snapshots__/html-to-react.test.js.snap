@@ -5,9 +5,8 @@ exports[`addActive 1`] = `
         '/foo' === props.currentPage ||
         props.currentPage.includes('#') && '/foo' === props.currentPage.split('#')[0] ||
         ('bar' === 'foo' && ('/' === props.currentPage ||
-        '/index.html' === props.currentPage)) ||
-        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') ||
-        !props.currentPage.includes('.html'))) 
+        '/index' === props.currentPage)) ||
+        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index'))) 
           ? 'is-active'
           : null
       !}
@@ -20,9 +19,8 @@ exports[`addActiveAll 1`] = `
         '/' === props.currentPage ||
         props.currentPage.includes('#') && '/' === props.currentPage.split('#')[0] ||
         ('bar' === '' && ('/' === props.currentPage ||
-        '/index.html' === props.currentPage)) ||
-        ('bar' === '' && props.currentPage && (props.currentPage.includes('index.html') ||
-        !props.currentPage.includes('.html'))) 
+        '/index' === props.currentPage)) ||
+        ('bar' === '' && props.currentPage && (props.currentPage.includes('index'))) 
           ? 'is-active'
           : null
       !}
@@ -31,9 +29,8 @@ exports[`addActiveAll 1`] = `
         '/foo' === props.currentPage ||
         props.currentPage.includes('#') && '/foo' === props.currentPage.split('#')[0] ||
         ('bar' === 'foo' && ('/' === props.currentPage ||
-        '/index.html' === props.currentPage)) ||
-        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index.html') ||
-        !props.currentPage.includes('.html'))) 
+        '/index' === props.currentPage)) ||
+        ('bar' === 'foo' && props.currentPage && (props.currentPage.includes('index'))) 
           ? 'is-active'
           : null
       !}
@@ -42,9 +39,8 @@ exports[`addActiveAll 1`] = `
         '/bar' === props.currentPage ||
         props.currentPage.includes('#') && '/bar' === props.currentPage.split('#')[0] ||
         ('bar' === 'bar' && ('/' === props.currentPage ||
-        '/index.html' === props.currentPage)) ||
-        ('bar' === 'bar' && props.currentPage && (props.currentPage.includes('index.html') ||
-        !props.currentPage.includes('.html'))) 
+        '/index' === props.currentPage)) ||
+        ('bar' === 'bar' && props.currentPage && (props.currentPage.includes('index'))) 
           ? 'is-active'
           : null
       !}
@@ -225,7 +221,7 @@ Object {
     }
 
     if (to[0] === '#') {
-      to = path.join('/','/path/to/markdown.html') + to;
+      to = path.join('/','/path/to/markdown') + to;
     }
 
     return (

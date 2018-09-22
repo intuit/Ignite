@@ -3,6 +3,6 @@
 exports[` 1`] = `
 "
     [Link](#foo)
-    [Another](/pages/intro.html)
+    [Another](/pages/intro)
   "
 `;

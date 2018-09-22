@@ -30,7 +30,7 @@ test('collapse', () => {
     md.render(`
 * ::: collapse [:package: Publishing](./pages/Publishing.html)
   * [Setup](./pages/Publishing.html#setup-branch)
-  * [Continuous Integration](./pages/Publishing.html#Continuous-integration)u
+  * [Continuous Integration](./pages/Publishing.html#Continuous-integration)
   `)
   ).toMatchSnapshot();
 });

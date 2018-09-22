@@ -47,14 +47,14 @@ describe('App', () => {
 
   test('renders home page', () => {
     const home = () => <h1>I am Home</h1>;
-    markdown['/home.md'] = home;
+    markdown['/home'] = home;
 
     expect(
       renderToJson(
         <App
           markdown={markdown}
           index="index"
-          location={{ pathname: '/home.html' }}
+          location={{ pathname: '/home' }}
         />
       )
     ).toMatchSnapshot();

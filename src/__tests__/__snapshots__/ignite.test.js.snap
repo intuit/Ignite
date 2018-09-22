@@ -41,8 +41,8 @@ Object {
       "id": "Root1/Page.md",
     },
     Object {
-      "body": "- [First Page](/Root1/Page.html)
-- [Another Page](/Root1/Another.html)
+      "body": "- [First Page](/Root1/Page)
+- [Another Page](/Root1/Another)
 ",
       "id": "Root1/index.md",
     },
@@ -52,7 +52,7 @@ Object {
       "id": "Root2/Page.md",
     },
     Object {
-      "body": "- [Second Page](/Root2/Page.html)
+      "body": "- [Second Page](/Root2/Page)
 ",
       "id": "Root2/index.md",
     },
@@ -101,8 +101,8 @@ Array [
     "id": "Root1/Page.md",
   },
   Object {
-    "body": "- [First Page](/examples/multi-root/docs/Root1/Page.html)
-- [Another Page](/examples/multi-root/docs/Root1/Another.html)
+    "body": "- [First Page](/examples/multi-root/docs/Root1/Page)
+- [Another Page](/examples/multi-root/docs/Root1/Another)
 ",
     "id": "Root1/index.md",
   },
@@ -112,7 +112,7 @@ Array [
     "id": "Root2/Page.md",
   },
   Object {
-    "body": "- [Second Page](/examples/multi-root/docs/Root2/Page.html)
+    "body": "- [Second Page](/examples/multi-root/docs/Root2/Page)
 ",
     "id": "Root2/index.md",
   },

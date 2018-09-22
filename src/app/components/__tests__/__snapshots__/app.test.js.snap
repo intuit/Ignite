@@ -67,7 +67,7 @@ exports[`App renders home page 1`] = `
   <Header
     location={
       Object {
-        "pathname": "/home.html",
+        "pathname": "/home",
       }
     }
     searchIndex={Array []}
