@@ -28,7 +28,7 @@ const collapse = md => ({
                 .findIndex(token => token.type === 'container_collapse_close')
           )
           .map(token => token.content)
-          .filter(content => content !== '' && content.includes('.html'))
+          .filter(content => content !== '')
           .map(link => link.slice(link.indexOf('(') + 1, link.indexOf(')')));
 
         if (isOpen) {
@@ -48,7 +48,7 @@ const collapse = md => ({
             ${JSON.stringify(childLinks)}.find(link => (
               link === ((this && this.props) || props).currentPage ||
               (((this && this.props) || props).currentPage === process.env.baseURL &&
-                link === window.configuration.currentFirstPage.replace('.md', '.html'))
+                link === window.configuration.currentFirstPage.replace('.md', ''))
               )
             )
           !}

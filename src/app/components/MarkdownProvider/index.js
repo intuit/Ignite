@@ -7,6 +7,7 @@ import App from '../App';
 const setMarkdown = markdown => {
   return markdown.reduce(
     (markdownMap, [pathToMarkdown, component, isIndex, firstLink]) => {
+      pathToMarkdown = pathToMarkdown.replace('.md', '');
       markdownMap[pathToMarkdown] = component;
 
       if (isIndex) {

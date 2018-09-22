@@ -14,7 +14,7 @@ const SearchResult = ({ fileName, baseURL, results, setResults }) => (
     <div key={fileName} className="card-content">
       <Link
         className={makeClass('subtitle', 'has-text-link', styles.title)}
-        to={path.join(baseURL, fileName.replace('.md', '.html'))}
+        to={path.join(baseURL, fileName.replace('.md', ''))}
         onClick={() => setTimeout(() => setResults({}), 10)}
       >
         {fileName}

@@ -20,15 +20,14 @@ export const determineSidebar = (
   indexFile,
   navItems = process.env.navItems
 ) => {
-  const filePath = location.pathname.replace('.html', '.md');
-  const index = path.join(process.env.baseURL, indexFile);
+  const index = path.join(process.env.baseURL, indexFile).replace('.md', '');
 
   let SidebarComponent = markdown[index];
   let currentFirstPage = markdown.indexFiles[index];
 
   if (navItems) {
     const [parentIndex, parentPageFirstPage] =
-      getParent(markdown, navItems, filePath) || [];
+      getParent(markdown, navItems, location.pathname) || [];
 
     if (parentIndex && parentPageFirstPage) {
       SidebarComponent = markdown[parentIndex];
@@ -53,9 +52,10 @@ export const determinePage = (
   indexFile,
   navItems = process.env.navItems
 ) => {
+  console.log(location.pathname);
   const filePath = location.pathname.replace('.html', '.md');
 
-  if (filePath.includes('blog/')) {
+  if (filePath.includes('/blog')) {
     return markdown[filePath];
   }
 
@@ -75,7 +75,7 @@ export const determinePage = (
     }
   }
 
-  const index = path.join(process.env.baseURL, indexFile);
+  const index = path.join(process.env.baseURL, indexFile).replace('.md', '');
 
   if ((!Page || index === filePath) && markdown.indexFiles) {
     Page = markdown[markdown.indexFiles[index]];

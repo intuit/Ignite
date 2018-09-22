@@ -17,7 +17,7 @@ export function transformLink(resourcePath, link, options) {
   const correctPath = path.relative(pathToDocs, pathToLink);
 
   if (path.extname(link).includes('.md')) {
-    return path.join(options.baseURL, correctPath).replace('.md', '.html');
+    return path.join(options.baseURL, correctPath).replace('.md', '');
   }
 
   return link;

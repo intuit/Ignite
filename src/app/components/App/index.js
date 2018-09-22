@@ -51,9 +51,9 @@ class App extends Component {
 
   render() {
     const { markdown, location, index } = this.props;
-    const isBlog = location.pathname.includes('blog/');
+    const isBlog = location.pathname.includes('/blog');
     const isHome =
-      location.pathname === path.join(process.env.baseURL, '/home.html');
+      location.pathname === path.join(process.env.baseURL, '/home');
     const Page = determinePage(markdown, location, index);
 
     return (

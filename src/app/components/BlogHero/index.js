@@ -1,3 +1,4 @@
+import path from 'path';
 import React from 'react';
 import PropTypes from 'prop-types';
 import makeClass from 'classnames';
@@ -5,7 +6,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import styles from './blogHero.css';
 
-const BlogHero = ({ location, blogHero }) => (
+const BlogHero = ({ location, blogHero, baseURL }) => (
   <section
     className={makeClass('hero is-info is-medium is-bold', styles.blogHero)}
     style={
@@ -25,7 +26,9 @@ const BlogHero = ({ location, blogHero }) => (
         <h1
           className="title"
           style={
-            location.pathname.includes('blog/index.md') ? {} : { opacity: 0 }
+            location.pathname === path.join(baseURL, 'blog/')
+              ? {}
+              : { opacity: 0 }
           }
         >
           Blog
@@ -38,10 +41,13 @@ const BlogHero = ({ location, blogHero }) => (
 BlogHero.propTypes = {
   // eslint-disable-next-line react/no-typos
   location: ReactRouterPropTypes.location.isRequired,
+  baseURL: PropTypes.string,
   blogHero: PropTypes.string
 };
 
 BlogHero.defaultProps = {
+  baseURL: process.env.baseURL,
+
   blogHero: null
 };
 

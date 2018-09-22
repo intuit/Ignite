@@ -142,7 +142,7 @@ const generateBlogIndex = (blogFiles, options) => {
       }
     }
 
-    registerMarkdown(path.join('${options.baseURL}', '/blog/${options.index}'), async () => ({ 
+    registerMarkdown(path.join('${options.baseURL}', '/blog'), async () => ({ 
       default: blogIndex
     }));
   `;

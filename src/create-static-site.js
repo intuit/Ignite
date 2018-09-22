@@ -59,7 +59,7 @@ export default function createStaticSite(options) {
 
       const rootIndex = path
         .join(options.baseURL, options.index)
-        .replace('.md', '.html');
+        .replace('.md', '');
       const browser = await puppeteer.launch();
       const linksVisited = new Set();
       const linksToVisit = new Set([

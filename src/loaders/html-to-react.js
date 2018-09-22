@@ -192,7 +192,7 @@ export function getLink(source, index = 0) {
 }
 
 export function addActive(source, link, firstLink, indexFile, options) {
-  indexFile = indexFile.replace('.md', '.html');
+  indexFile = indexFile.replace('.md', '');
   source = source.replace(
     new RegExp('<a h'),
     // prettier-ignore
@@ -201,8 +201,7 @@ export function addActive(source, link, firstLink, indexFile, options) {
         props.currentPage.includes('#') && '/${link}' === props.currentPage.split('#')[0] ||
         ('${firstLink.link}' === '${link}' && ('${options.baseURL}' === props.currentPage ||
         '/${indexFile}' === props.currentPage)) ||
-        ('${firstLink.link}' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}') ||
-        !props.currentPage.includes('.html'))) 
+        ('${firstLink.link}' === '${link}' && props.currentPage && (props.currentPage.includes('${indexFile}'))) 
           ? 'is-active'
           : null
       !}
@@ -346,7 +345,7 @@ const createLink = (pathToMarkdown, options) =>`
     }
 
     if (to[0] === '#') {
-      to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '.html')}') + to;
+      to = path.join('${options.baseURL}','${pathToMarkdown.replace('.md', '')}') + to;
     }
 
     return (
@@ -565,7 +564,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
       <div class='has-text-centered learnMore'>
         <Link to='${path.join(
           options.baseURL,
-          pathToMarkdown.replace('.md', '.html')
+          pathToMarkdown.replace('.md', '')
         )}'>
           Read More
         </Link>
@@ -713,16 +712,17 @@ export function homePage(source) {
   `;
 }
 
-export function detectIndex(resourcePath, pathToMarkdown, options) {
+export function detectIndex(pathToMarkdown, options) {
+  const index = options.index.replace('.md', '');
+  pathToMarkdown = pathToMarkdown.replace('.md', '');
+
   return (
-    resourcePath.includes(options.index) &&
+    pathToMarkdown.includes(index) &&
     (!options.navItems ||
       Object.values(options.navItems)
-        .map(item => {
-          return item === '/'
-            ? options.index
-            : path.join(trimChar(item, '/'), options.index);
-        })
+        .map(
+          item => (item === '/' ? index : path.join(trimChar(item, '/'), index))
+        )
         .includes(trimChar(path.join(options.baseURL, pathToMarkdown), '/')))
   );
 }
@@ -744,7 +744,7 @@ export const determinePage = async (
       source = homePage(source);
     } else if (resourcePath.includes(path.join(options.src, 'blog/'))) {
       source = blogPost(source, pathToMarkdown, options);
-    } else if (detectIndex(resourcePath, pathToMarkdown, options)) {
+    } else if (detectIndex(pathToMarkdown, options)) {
       source = index(source, pathToMarkdown, options);
     } else {
       source = markDownPage(source);

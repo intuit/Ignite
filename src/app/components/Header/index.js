@@ -10,8 +10,6 @@ import Search from '../Search';
 import Icon from '../Icon';
 import styles from './header.css';
 
-const getIndex = (index = process.env.index) => index.replace('.md', '.html');
-
 const linkProps = {
   className: PropTypes.string,
   onClick: PropTypes.func
@@ -56,7 +54,7 @@ const BlogLink = ({ className, onClick }) =>
     <NavItem
       location={location}
       className={className}
-      item={['Blog', path.join(process.env.baseURL, '/blog/index.html')]}
+      item={['Blog', path.join(process.env.baseURL, '/blog')]}
       icon={<Icon className={styles.icon} type="fas" icon="rss" />}
       onClick={onClick}
     />
@@ -69,7 +67,7 @@ const DocsLink = ({ className, onClick }) => (
   <NavItem
     location={location}
     className={className}
-    item={['Docs', path.join(process.env.baseURL, getIndex())]}
+    item={['Docs', process.env.baseURL]}
     icon={<Icon className={styles.icon} type="fas" icon="book" />}
     onClick={onClick}
   />
@@ -111,10 +109,7 @@ class Header extends Component {
         <div className={makeClass('container', styles.container)}>
           <div className="navbar-brand">
             <Link
-              to={path.join(
-                process.env.baseURL,
-                hasHomePage ? '/home.html' : '/'
-              )}
+              to={path.join(process.env.baseURL, hasHomePage ? '/home' : '/')}
               className={makeClass(styles.title, 'navbar-item')}
               onClick={this.closeMenu}
             >
