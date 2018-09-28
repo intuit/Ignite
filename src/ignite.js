@@ -194,9 +194,7 @@ export async function initOptions(options) {
 
   if (options.baseURL.includes('http')) {
     // Extract the fqdn from the baseURL
-    const [, fqdn] = options.baseURL.match(
-      /^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i
-    );
+    const [, fqdn] = options.baseURL.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
     options = Object.assign({}, options, {
       fqdn
     });
