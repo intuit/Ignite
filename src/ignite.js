@@ -139,6 +139,14 @@ function publish(options, user) {
     [, options.githubURL] = options.githubURL.split('//');
   }
 
+  // If a fqdn is set, write to the CNAME file
+  if (options.fqdn) {
+    fs.writeFileSync(
+      path.join(options.dst, options.baseURL, 'CNAME'),
+      `${options.fqdn}\n`
+    );
+  }
+
   ghpages.publish(
     path.join(options.dst, options.baseURL),
     {
@@ -184,8 +192,21 @@ export async function initOptions(options) {
     options = Object.assign({}, options, igniteRc.config);
   }
 
+  if (options.baseURL.includes('http')) {
+    // Extract the fqdn from the baseURL
+    const [, fqdn] = options.baseURL.match(/^https?:\/\/([^/?#]+)(?:[/?#]|$)/i);
+    options = Object.assign({}, options, {
+      fqdn
+    });
+  }
+
+  // If fqdn is set, remove it from the baseURL
+  const baseURL = options.fqdn
+    ? options.baseURL.split(options.fqdn)[1]
+    : options.baseURL;
+
   options = Object.assign({}, options, {
-    baseURL: options.watch ? '/' : path.join('/', options.baseURL, '/')
+    baseURL: options.watch ? '/' : path.join('/', baseURL, '/')
   });
 
   options = initBuildMessages(options);
