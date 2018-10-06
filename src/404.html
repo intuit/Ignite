@@ -31,7 +31,8 @@
       ), "");
     }
 
-    var segmentCount = trim('<%= htmlWebpackPlugin.options.baseURL %>', '/').split('/').length;
+    var baseURL = '<%= htmlWebpackPlugin.options.baseURL %>'
+    var segmentCount = baseURL === '/' ? 0 : trim(baseURL, '/').split('/').length;
     var l = window.location;
 
     l.replace(

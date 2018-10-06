@@ -42,10 +42,9 @@ const writeHtml = async (page, filePath, options) => {
 
   filePath = path.join(root(), options.dst, 'static', filePath);
 
-  if (filePath.endsWith('.html')) {
-    mkdirp.sync(path.dirname(filePath));
-    fs.writeFileSync(filePath, content);
-  }
+  const staticPath = filePath + '/index.html';
+  mkdirp.sync(path.dirname(staticPath));
+  fs.writeFileSync(staticPath, content);
 };
 
 export default function createStaticSite(options) {

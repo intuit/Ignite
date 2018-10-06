@@ -1,5 +1,7 @@
 {
   "title": "Multi Root",
+  "baseURL": "/my/baseURL",
+
 
   "navItems": {
     "root": "/Root1",
