@@ -30,7 +30,7 @@ export const determineSidebar = (
     const [parentIndex, parentPageFirstPage] =
       getParent(markdown, navItems, filePath) || [];
 
-    if (parentIndex && parentPageFirstPage) {
+    if (parentIndex) {
       SidebarComponent = markdown[parentIndex];
       currentFirstPage = parentPageFirstPage;
     }
