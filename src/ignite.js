@@ -102,9 +102,23 @@ export async function initBlogPosts(options) {
   return blogPosts.sort((a, b) => a.birth > b.birth);
 }
 
-export function getAuthor() {
-  const rootJson = JSON.parse(fs.readFileSync(`${root()}/package.json`));
-  const author = rootJson ? rootJson.author : {};
+export function getAuthor(pkgJson) {
+  const rootJson =
+    pkgJson || JSON.parse(fs.readFileSync(`${root()}/package.json`));
+  let author = rootJson ? rootJson.author : {};
+
+  if (typeof author === 'string') {
+    // Stolen from https://stackoverflow.com/a/14011481
+    const regexParseMatch = author.match(
+      /(?:"?([^"]*)"?\s)?(?:<?(.+@[^>]+)>?)/
+    );
+    if (regexParseMatch) {
+      author = {
+        name: regexParseMatch[1],
+        email: regexParseMatch[2]
+      };
+    }
+  }
 
   return author;
 }
