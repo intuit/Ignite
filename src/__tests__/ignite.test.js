@@ -17,7 +17,6 @@ describe('initPlugins', () => {
       plugins: [['pluginName', '../extensions/notRealExtension/', {}]]
     });
   });
-
   test('should call init function if present', async () => {
     const result = await initPlugins({
       plugins: [['pluginName', 'src/extensions/testExtension/', { foo: 'bar' }]]
@@ -43,10 +42,30 @@ describe('initBlogPosts', () => {
   });
 });
 
-test('getAuthor', () => {
-  expect(getAuthor()).toEqual({
-    email: 'lisowski54@gmail.com',
-    name: 'Andrew Lisowski'
+describe('getAuthor', () => {
+  test('works with obj way', () => {
+    expect(
+      getAuthor({
+        author: {
+          email: 'lisowski54@gmail.com',
+          name: 'Andrew Lisowski'
+        }
+      })
+    ).toEqual({
+      email: 'lisowski54@gmail.com',
+      name: 'Andrew Lisowski'
+    });
+  });
+
+  test('works with string way', () => {
+    expect(
+      getAuthor({
+        author: 'Adam Dierkens <adam@dierkens.com>'
+      })
+    ).toEqual({
+      name: 'Adam Dierkens',
+      email: 'adam@dierkens.com'
+    });
   });
 });
 
