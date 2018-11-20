@@ -5,8 +5,8 @@
 
 <div align="center">
   <a href="https://intuit.github.io/Ignite/">
-    <img width="200" height="200"
-      src="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-11/256/fire.png">
+    <img width="250" height="250"
+      src="./os-project-logo.svg">
   </a>
   <h1>
     <a href="https://intuit.github.io/Ignite/">
