@@ -60,7 +60,8 @@ module.exports = function(options) {
         codeStyle: options.codeStyle,
         bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, '../src/index.html'),
-        filename: './index.html'
+        filename: './index.html',
+        customHead: options.customHead
       })
     ]
   };
