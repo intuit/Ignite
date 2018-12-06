@@ -123,6 +123,14 @@ ignite --color 'cadetblue'
 ignite --color '#f44336'
 ```
 
+## Custom Head (--customHead)
+
+Specify a string to inject into the head of the page.
+
+```bash
+ignite --customHead '<style>* { color: red; }</style>'
+```
+
 ---
 
 ## Utility Commands
