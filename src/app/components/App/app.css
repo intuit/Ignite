@@ -94,8 +94,8 @@ h6 > code {
 
 :global p {
   .image {
-    max-width: 80% !important;
-    max-height: 65% !important;
+    max-width: 80%;
+    max-height: 65%;
     display: block;
     margin: auto;
     margin-bottom: 10px;
