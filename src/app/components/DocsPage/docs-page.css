@@ -1,5 +1,8 @@
 .contentArea {
   flex: 1;
+  margin: auto;
+  max-width: 1800px;
+  width: 100%;
 }
 
 .content {

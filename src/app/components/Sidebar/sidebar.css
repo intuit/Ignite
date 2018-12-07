@@ -18,7 +18,7 @@
   transition-timing-function: ease-in-out;
 
   .sidebar {
-    height: 100%;
+    height: calc(100vh - 64px);
     padding: 8rem 20px 3rem;
     overflow-y: auto;
   }

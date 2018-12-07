@@ -7,7 +7,7 @@
 }
 
 .container {
-  max-width: 100%;
+  max-width: 1800px !important;
 
   :global .navbar-brand {
     min-height: 100%;
@@ -43,6 +43,7 @@
   border-radius: 0;
 
   .navbar-menu {
+    background: white;
     border-radius: 0;
   }
 

@@ -370,8 +370,6 @@ p > code {
 }
 
 :global .homePage .columns {
-  margin-top: 2rem;
-
   .column {
     margin-left: auto;
     margin-right: auto;
