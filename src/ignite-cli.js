@@ -69,7 +69,7 @@ const { argv } = yargs
   .describe('customHead', 'String to load into the head to the webpage')
 
   .describe('faviconType', 'Image type of the favicon')
-  .default('b', defaults.faviconType)
+  .default('faviconType', defaults.faviconType)
 
   .describe('favicon', 'Favicon for the website')
 
