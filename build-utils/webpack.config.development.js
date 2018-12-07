@@ -63,7 +63,9 @@ module.exports = function(options) {
         filename: './index.html',
         customHead: options.customHead,
         faviconType: options.faviconType,
-        favicon: path.join(options.src, options.favicon)
+        favicon: options.favicon
+          ? path.join(options.src, options.favicon)
+          : undefined
       })
     ]
   };
