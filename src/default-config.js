@@ -15,7 +15,8 @@ const defaults = {
   color: 'auto',
   selectedColor: 'auto',
   logo: 'logo.svg',
-  bulmaTheme: 'default'
+  bulmaTheme: 'default',
+  faviconType: 'image/png'
 };
 
 export default defaults;

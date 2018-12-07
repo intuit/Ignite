@@ -61,7 +61,9 @@ module.exports = function(options) {
         bulmaTheme: options.bulmaTheme,
         template: path.resolve(__dirname, '../src/index.html'),
         filename: './index.html',
-        customHead: options.customHead
+        customHead: options.customHead,
+        faviconType: options.faviconType,
+        favicon: path.join(options.src, options.favicon)
       })
     ]
   };

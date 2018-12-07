@@ -154,6 +154,8 @@ module.exports = function(options) {
         template: path.resolve(__dirname, '../src/index.html'),
         filename: './index.html',
         customHead: options.customHead,
+        faviconType: options.faviconType,
+        favicon: path.join(options.src, options.favicon),
         minify: {
           removeComments: true,
           collapseWhitespace: true,

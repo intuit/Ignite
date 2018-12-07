@@ -131,6 +131,22 @@ Specify a string to inject into the head of the page.
 ignite --customHead '<style>* { color: red; }</style>'
 ```
 
+## Favicon (--favicon)
+
+Favicon for the website
+
+```bash
+ignite --favicon 'favicon.png'
+```
+
+## Favicon Type (--faviconType)
+
+Image type of the favicon
+
+```bash
+ignite --favicon 'favicon.ico' --faviconType 'image/ico'
+```
+
 ---
 
 ## Utility Commands
