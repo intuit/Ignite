@@ -68,6 +68,11 @@ const { argv } = yargs
 
   .describe('customHead', 'String to load into the head to the webpage')
 
+  .describe('faviconType', 'Image type of the favicon')
+  .default('b', defaults.faviconType)
+
+  .describe('favicon', 'Favicon for the website')
+
   .describe(
     'static',
     'build website as a static html app. argument should be base url where your static site is served from Some features may now work. (search)'

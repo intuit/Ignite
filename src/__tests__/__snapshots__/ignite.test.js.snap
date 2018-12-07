@@ -17,6 +17,7 @@ Object {
     ],
   },
   "dst": "_ignite/",
+  "faviconType": "image/png",
   "index": "index.md",
   "log": true,
   "logo": "logo.svg",
