@@ -98,7 +98,7 @@ h6 > code {
     max-height: 65%;
     display: block;
     margin: auto;
-    margin-bottom: 10px;
+    overflow: hidden;
   }
 
   .image + em {
