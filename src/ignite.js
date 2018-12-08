@@ -164,7 +164,7 @@ function publish(options, user) {
   ghpages.publish(
     path.join(options.dst, options.baseURL),
     {
-      message: ':memo: Update Documentation',
+      message: ':memo: Update Documentation [skip ci]',
       repo: `https://username:${process.env.GH_TOKEN}@${options.githubURL}`,
       user
     },
