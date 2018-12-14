@@ -41,9 +41,6 @@ module.exports = function(options) {
             minify: {
               toplevel: true
             },
-            mangle: {
-              safari10: true
-            },
             output: {
               ecma: 5,
               comments: false,
