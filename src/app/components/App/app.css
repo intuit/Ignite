@@ -88,8 +88,24 @@ h3 > code,
 h4 > code,
 h5 > code,
 h6 > code {
-  margin-left: 10px;
   margin-right: 10px;
+}
+
+p > code {
+  padding: 0.5em;
+  font-size: 85%;
+  line-height: 40px;
+  border-radius: 3px;
+  white-space: normal;
+}
+
+h1:not(:first-child) > code,
+h2:not(:first-child) > code,
+h3:not(:first-child) > code,
+h4:not(:first-child) > code,
+h5:not(:first-child) > code,
+h6:not(:first-child) > code {
+  margin-left: 10px;
 }
 
 :global p {
@@ -141,14 +157,6 @@ h5 > strong:not(:only-child),
 h6 > strong:not(:only-child) {
   margin-left: 10px;
   margin-right: 10px;
-}
-
-p > code {
-  padding: 0.5em;
-  font-size: 85%;
-  line-height: 40px;
-  border-radius: 3px;
-  white-space: normal;
 }
 
 :global .has-text-centered {
