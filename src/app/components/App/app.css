@@ -88,8 +88,16 @@ h3 > code,
 h4 > code,
 h5 > code,
 h6 > code {
-  margin-left: 10px;
   margin-right: 10px;
+}
+
+h1:not(:first-child) > code,
+h2:not(:first-child) > code,
+h3:not(:first-child) > code,
+h4:not(:first-child) > code,
+h5:not(:first-child) > code,
+h6:not(:first-child) > code {
+  margin-left: 10px;
 }
 
 :global p {
