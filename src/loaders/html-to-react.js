@@ -546,9 +546,12 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
     .remove()
     .text();
 
-  $source('.blogSubtitle').append(
-    `<span> on ${dayjs(date).format('MMMM D, YYYY')}<span/>`
-  );
+  if (date) {
+    $source('.blogSubtitle').append(
+      `<span> on ${dayjs(date).format('MMMM D, YYYY')}<span/>`
+    );
+  }
+
   $stub('.card-content').prepend($source('.media').clone());
   $fullPage('.card-content').prepend($source('.media').clone());
   $source('.media').remove();
@@ -561,7 +564,7 @@ export const createStubAndPost = (source, pathToMarkdown, options) => {
         i < 3
           ? el
           : i === 4 &&
-            `
+              `
       <div class='has-text-centered learnMore'>
         <Link to='${path.join(
           options.baseURL,
