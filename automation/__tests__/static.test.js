@@ -8,7 +8,7 @@ describe('Static', () => {
   let visit;
 
   beforeAll(async () => {
-    jest.setTimeout(20 * 1000);
+    jest.setTimeout(100 * 1000);
     const port = 8005;
     const options = {
       port,
