@@ -102,7 +102,6 @@
     "markdown-it-vanilla-loader": "1.0.10",
     "mini-css-extract-plugin": "^0.5.0",
     "mkdirp": "0.5.1",
-    "nightmare": "3.0.1",
     "opn": "^5.4.0",
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.1.1",
