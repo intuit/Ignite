@@ -6,9 +6,9 @@ Ignite supports all the plugins available on the underlying markdown parser. Mar
 
 ### Configuration
 
-A markdown-it plugin can be included in 2 ways. For both you must include a plugins options when running Ignite.
+A markdown-it plugin can be included in 2 ways. For both you must include a plugins option when running Ignite.
 
-It can either be the npm package name.
+It can either be the npm package name
 
 ```json
 {
@@ -43,7 +43,7 @@ export default function fontawesomePlugin(md) {
 }
 ```
 
-The following is an partial es6 implementation of the 'markdown-it-regexp' used above. It shows how to hook into the markdown engine in a more complex manner.
+The following is a partial es6 implementation of the 'markdown-it-regexp' used above. It shows how to hook into the markdown engine in a more complex manner.
 
 ```js
 class Plugin {
