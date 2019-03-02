@@ -1,6 +1,6 @@
 # Publishing
 
-Publishing to github pages is easy.
+Publishing to GitHub pages is easy.
 
 [[toc]]
 
