@@ -6,7 +6,7 @@ Publishing to GitHub pages is easy.
 
 ## Setup Branch
 
-To publish your docs first setup a clean `gh-pages` branch.
+To publish your docs first set up a clean `gh-pages` branch.
 
 ```bash
 git symbolic-ref HEAD refs/heads/gh-pages
@@ -22,7 +22,7 @@ git push origin gh-pages
 
 ### Key
 
-To successfully publish your documentation on a Continuous integration environment, or anything other than your local machine, you will need to set up a `GH_TOKEN` environment variable.
+To successfully publish your documentation on a continuous integration environment, or anything other than your local machine, you will need to set up a `GH_TOKEN` environment variable.
 
 ```bash
 GH_TOKEN={github key with write access}
@@ -53,7 +53,7 @@ Now all you need to do is setup up a `script` in package.json to publish the doc
 }
 ```
 
-Now all that's left to do is to publish to github-pages! Run the publish docs command and if everything goes well your 'gh-pages' branch should be updated with the new documentation bundle. A little more setup is needed for a Continuos Integration environment.
+Now all that's left to do is to publish to github-pages! Run the publish docs command and if everything goes well your 'gh-pages' branch should be updated with the new documentation bundle. A little more setup is needed for a continuous integration environment.
 
 ## Continuous Integration
 
