@@ -1,6 +1,6 @@
 # Index Structure
 
-Ignite builds the app from your side bar. Here is where your organize your documentation into overall ideas.
+Ignite builds the app from your side bar. Here is where you organize your documentation into overall ideas.
 
 <br>
 
@@ -51,7 +51,7 @@ NOTE: if you want a list label to indent correctly you might have to add /.sideb
 
 You can split your documentation up into multiple top level sections. To have multiple top level headings you will need to also have multiple index files in multiple folders.
 
-Each index file will used as the sidebar and the first link in the sidebar as it's default page.
+Each index file will used as the sidebar and the first link in the sidebar as its default page.
 
 ```text
 folder1/

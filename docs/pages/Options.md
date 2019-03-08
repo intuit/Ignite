@@ -161,7 +161,7 @@ ignite --version
 
 ### Help (--help -h)
 
-List all of these commands an their defaults.
+List all of these commands and their defaults.
 
 ```bash
 ignite --help

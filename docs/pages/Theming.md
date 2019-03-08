@@ -1,10 +1,10 @@
 # Theming
 
-Ignite offers a variety ways to theme the documentation website.
+Ignite offers a variety of ways to theme the documentation website.
 
 ## Default Color
 
-Set the default color for everything across the app. This set the header, links, and all low level colored things.
+Set the default color for everything across the app. This sets the header, links, and all low level colored things.
 
 ```bash
 ignite --color '#f44336'

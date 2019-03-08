@@ -2,7 +2,7 @@
 
 Ignite plugins are incredibly easy to write. If you know how to write a react component, then you already know how to write an Ignite plugin.
 
-Ignite works by parsing all of you markdown files into react components and loading them into a single page documentation app. Since we are already building the app in react, it makes sense to have the plugins just be react components.
+Ignite works by parsing all of your markdown files into react components and loading them into a single page documentation app. Since we are already building the app in react, it makes sense to have the plugins just be react components.
 
 ## Define your plugin
 
@@ -135,7 +135,7 @@ Any single token arguments following the keyword become an array of `options` pa
 
 ### Properties
 
-Any token after the arg with an equal sign in it is treated as a property. All matching tokens fill an object the is spread onto the component.
+Any token after the arg with an equal sign in it is treated as a property. All matching tokens fill an object that is spread onto the component.
 
 ```
 ::: boom first=string second=2 third=["Array", "of, "Things"] fourth={ "some": "JSON Structure" }

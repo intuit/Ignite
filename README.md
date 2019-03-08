@@ -18,7 +18,7 @@
 
 <h2 align="center">Usage</h2>
 
-Head over the the full [documentation](https://intuit.github.io/Ignite/) for a guide on getting started with Ignite.
+Head over to the full [documentation](https://intuit.github.io/Ignite/) for a guide on getting started with Ignite.
 
 <h2 align="center">Contributing</h2>
 
@@ -70,12 +70,12 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 ## Awesome Plugins:
 
-:star: [Prop-Types](https://github.com/hipstersmoothie/ignite-plugin-prop-types) - Takes a react component and displays a table with it's prop-types.
+:star: [Prop-Types](https://github.com/hipstersmoothie/ignite-plugin-prop-types) - Takes a react component and displays a table with its prop-types.
 
 :star: [JSON Schema](https://github.com/hipstersmoothie/ignite-plugin-json-schema) - Takes a JSON-Schema and exposes a Component that matches ids to auto-generate docs.
 
 :rocket: If you want to add your plugins to this list make a PR! :rocket:
 
-## Gallary
+## Gallery
 
-:nail_care: Have some beatiful docs built using Ignite? Make a PR and feature them here :nail_care:
+:nail_care: Have some beautiful docs built using Ignite? Make a PR and feature them here :nail_care:

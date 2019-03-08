@@ -4,7 +4,7 @@ To setup a blog for your documentation website all you have to do is create a `b
 
 ## Blog Front Matter
 
-At the Start of each blog post you must have a front matter. This sections specifies metadata about your blog post that will also be used to render the header.
+At the start of each blog post you must have a front matter. This section specifies metadata about your blog post that will also be used to render the header.
 
 ## Title
 
