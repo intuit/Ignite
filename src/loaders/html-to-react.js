@@ -165,7 +165,7 @@ export function sanitizeJSX(source) {
   source = source.replace(new RegExp('class=', 'g'), 'className=');
   source = replaceIdLinks(source, /<a href="#(?!\/)[\S]+/);
 
-  source = source.replace(new RegExp('img', 'g'), 'LazyImageComponent');
+  source = source.replace(new RegExp('<img', 'g'), '<LazyImageComponent');
 
   return source;
 }
