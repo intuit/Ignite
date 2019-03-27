@@ -9,13 +9,10 @@ Publishing to GitHub pages is easy.
 To publish your docs first set up a clean `gh-pages` branch.
 
 ```bash
-git symbolic-ref HEAD refs/heads/gh-pages
-rm .git/index
-git clean -fdx
-echo "My GitHub Page" > index.html
-git add .
-git commit -a -m "First pages commit"
-git push origin gh-pages
+git checkout --orphan gh-pages
+git rm -rf . (the gitignored files/folders may still be there but nothing to worry)
+git commit --allow-empty -m "empty commit"
+git push -u origin gh-pages
 ```
 
 ## Setup Git
