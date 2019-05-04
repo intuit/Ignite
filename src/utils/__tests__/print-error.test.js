@@ -1,6 +1,6 @@
 import printError from '../print-error';
 
-describe('printError', () => {
+describe.skip('printError', () => {
   test('string', () => {
     const mock = jest.fn();
     console.error = mock;
