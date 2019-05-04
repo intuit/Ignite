@@ -74,6 +74,7 @@ test('initSearchIndex', async () => {
     baseURL: '/',
     src: path.resolve('examples/multi-root/docs')
   });
+  result.sort((a, b) => a.id.localeCompare(b.id));
   expect(result).toMatchSnapshot();
 });
 
