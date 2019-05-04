@@ -292,6 +292,18 @@ h6 > strong:not(:only-child) {
   padding: 2rem;
 }
 
+:global .smallImage .image {
+  max-width: 200px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:global .mediumImage .image {
+  max-width: 200px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 :global .blogPost {
   width: 100%;
   max-width: 100vw;
@@ -308,18 +320,6 @@ h6 > strong:not(:only-child) {
   @media screen and (min-width: 769px) {
     max-width: 1000px;
   }
-}
-
-:global .smallImage .image {
-  max-width: 200px !important;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-:global .mediumImage .image {
-  max-width: 200px !important;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 :global .blogHeader {
