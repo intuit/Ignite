@@ -92,9 +92,6 @@ jobs:
       - run: 
           name: Version Canary
           command: npm run version:canary
-      - run:
-          name: Publish Canary
-          command: npm publish --tag PR
   publishDocs:
     <<: *defaults
     steps:

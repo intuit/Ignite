@@ -298,9 +298,28 @@ h6 > strong:not(:only-child) {
   margin: auto;
   margin-bottom: 65px;
 
+  .image {
+    max-width: 80%;
+    max-height: 65%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   @media screen and (min-width: 769px) {
     max-width: 1000px;
   }
+}
+
+:global .smallImage .image {
+  max-width: 200px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:global .mediumImage .image {
+  max-width: 200px !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 :global .blogHeader {
