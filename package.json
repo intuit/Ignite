@@ -40,7 +40,7 @@
     "analyze": "npm run build -- --analyze",
     "release": "auto shipit",
     "add-contributor": "all-contributors add",
-    "version:canary": "npm version --no-git-tag-version ${npm_package_version}-alpha-$(echo $CIRCLE_SHA1 | cut -c 1-5)"
+    "version:canary": "auto canary"
   },
   "dependencies": {
     "@babel/cli": "7.2.0",
@@ -54,6 +54,7 @@
     "@babel/preset-react": "7.0.0",
     "@babel/preset-stage-3": "7.0.0",
     "@babel/register": "7.0.0",
+    "auto": "^5.0.0",
     "autoprefixer": "^9.4.2",
     "babel-loader": "8.0.4",
     "babel-plugin-add-module-exports": "1.0.0",
@@ -140,7 +141,6 @@
   },
   "devDependencies": {
     "all-contributors-cli": "^5.4.1",
-    "auto-release-cli": "^0.37.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "23.6.0",
