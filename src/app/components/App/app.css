@@ -298,7 +298,7 @@ h6 > strong:not(:only-child) {
   margin: auto;
   margin-bottom: 65px;
 
-  .image {
+  .image:not(.authorImage) {
     max-width: 80%;
     max-height: 65%;
     margin-top: 20px;
