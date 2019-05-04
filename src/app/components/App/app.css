@@ -1,10 +1,10 @@
 .Page {
-  padding-left: 45px;
-  padding-right: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   @media screen and (min-width: 769px) {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 45px;
+    padding-right: 45px;
   }
 }
 
