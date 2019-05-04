@@ -1,3 +1,9 @@
+# v1.7.2 (Sat May 04 2019)
+
+
+
+---
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
