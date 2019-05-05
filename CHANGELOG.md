@@ -1,3 +1,15 @@
+# v1.8.2 (Sun May 05 2019)
+
+#### 🐛  Bug Fix
+
+- fix author image placement [#95](https://github.com/intuit/Ignite/pull/95) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.7.2 (Sat May 04 2019)
 
 
