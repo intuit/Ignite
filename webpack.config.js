@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const globby = require('globby');
 
 const webpack = require('webpack');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -9,6 +8,7 @@ const webpackMerge = require('webpack-merge');
 const defaults = require('./dist/default-config');
 const markdownItConfig = require('./markdownit.config');
 const IgnitePlugin = require('./dist/plugins/IgniteInjectPlugin');
+const ignite = require('./dist/ignite');
 const babelRc = require('./.babelrc');
 
 const babelConfig = options =>
@@ -29,7 +29,7 @@ module.exports = options => {
 
   const { ignitePlugins } = markdownItConfig.splitPlugins(options.plugins);
 
-  const docs = globby.sync([path.join(options.src, '**/*.md')]);
+  const docs = ignite.getPages(options);
   const logoPath = options.logo ? path.join(options.src, options.logo) : null;
   const logoExists = logoPath && fs.existsSync(path.resolve(logoPath));
   const dest = options.dst

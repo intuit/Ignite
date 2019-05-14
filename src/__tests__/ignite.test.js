@@ -1,11 +1,13 @@
 import path from 'path';
+import fs from 'fs';
 import {
   initOptions,
   initPlugins,
   initBlogPosts,
   initSearchIndex,
   initBuildMessages,
-  getAuthor
+  getAuthor,
+  getPages
 } from '../ignite';
 
 describe('initPlugins', () => {
@@ -72,10 +74,32 @@ describe('getAuthor', () => {
 test('initSearchIndex', async () => {
   const result = await initSearchIndex({
     baseURL: '/',
-    src: path.resolve('examples/multi-root/docs')
+    index: 'index.md',
+    src: path.resolve('examples/multi-root/docs'),
+    navItems: {
+      root: '/Root1',
+      First: '/Root1',
+      Second: '/Root2'
+    }
   });
+
   result.sort((a, b) => a.id.localeCompare(b.id));
   expect(result).toMatchSnapshot();
+});
+
+test('getPages - doc outside root', () => {
+  jest.spyOn(fs, 'readFileSync').mockReturnValueOnce(`
+    - [outside](../outside/docs/folder.md)
+  `);
+  const result = getPages({
+    index: 'index.md',
+    src: path.resolve('examples/home')
+  });
+
+  result.sort((a, b) => a.localeCompare(b));
+  expect(
+    result.find(link => link.includes('examples/outside/docs/folder.md'))
+  ).toBeDefined();
 });
 
 test('initBuildMessages', () => {
