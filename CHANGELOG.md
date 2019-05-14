@@ -1,3 +1,15 @@
+# v1.9.0 (Tue May 14 2019)
+
+#### 🚀  Enhancement
+
+- allows users to specify markdown files outside of root [#96](https://github.com/intuit/Ignite/pull/96) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.8.2 (Sun May 05 2019)
 
 #### 🐛  Bug Fix
