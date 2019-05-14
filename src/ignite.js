@@ -180,8 +180,39 @@ function publish(options, user) {
   );
 }
 
-export async function initSearchIndex(options) {
-  const entries = await globby([path.join(options.src, '**/*.md')]);
+const getIndexLink = (options, index) => {
+  try {
+    const indexFile = fs.readFileSync(path.join(options.src, index), 'utf8');
+
+    return indexFile
+      .match(/\[(.+)\]\((\S+)\)/gm)
+      .map(link => link.match(/\[(.+)\]\((\S+)\)/))
+      .filter(Boolean)
+      .map(link => link[2])
+      .map(link => path.resolve(path.join(options.src, link)))
+      .filter(link => !link.includes(options.src));
+  } catch (error) {
+    return [];
+  }
+};
+
+export const getPages = options => {
+  const entries = globby.sync([path.join(options.src, '**/*.md')]);
+  const linksNotInSrcFolder = options.navItems
+    ? Object.values(options.navItems).reduce(
+        (all, value) => [
+          ...all,
+          ...getIndexLink(options, path.join(value, options.index))
+        ],
+        []
+      )
+    : getIndexLink(options, options.index);
+
+  return [...entries, ...linksNotInSrcFolder];
+};
+
+export function initSearchIndex(options) {
+  const entries = getPages(options);
   const files = [];
 
   entries.forEach(entry => {
