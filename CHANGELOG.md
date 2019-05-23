@@ -1,3 +1,15 @@
+# v1.10.0 (Thu May 23 2019)
+
+#### 🚀  Enhancement
+
+- Bump webpack-bundle-analyzer from 3.0.3 to 3.3.2 [#97](https://github.com/intuit/Ignite/pull/97) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v1.9.0 (Tue May 14 2019)
 
 #### 🚀  Enhancement
