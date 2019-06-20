@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
-import { execSync } from 'child_process';
 import path from 'path';
-import opn from 'opn';
 
-import history from 'connect-history-api-fallback';
-import convert from 'koa-connect';
 import git from 'simple-git/promise';
 import dayjs from 'dayjs';
 import globby from 'globby';
@@ -14,9 +10,8 @@ import register from '@babel/register';
 import root from 'root-path';
 import cosmiconfig from 'cosmiconfig';
 import webpack from 'webpack';
-import serve from 'webpack-serve';
+import WebpackDevServer from 'webpack-dev-server';
 import ghpages from 'gh-pages';
-import webpackServeWaitpage from 'webpack-serve-waitpage';
 
 import config from '../webpack.config';
 import { transform } from './loaders/hash-link';
@@ -295,51 +290,21 @@ export default async function build(options) {
     }
   }
 
-  if (finalOptions.watch) {
-    return serve(
-      {
-        logLevel: 'silent'
-      },
-      {
-        config: webpackConfig,
-        port: finalOptions.port,
-        add: (app, middleware, finalOptions) => {
-          app.use(
-            webpackServeWaitpage(finalOptions, {
-              title: 'Ignite Dev Server',
-              theme: 'material'
-            })
-          );
-
-          app.use(
-            convert(
-              history({
-                ...webpackConfig.devServer.historyApiFallback
-              })
-            )
-          );
-        },
-        on: {
-          listening: () => {
-            if (finalOptions.open) {
-              const url = encodeURI(`http://localhost:${finalOptions.port}`);
-              try {
-                execSync('ps cax | grep "Google Chrome"');
-                execSync(`osascript ../src/chrome.applescript "${url}"`, {
-                  cwd: __dirname,
-                  stdio: 'ignore'
-                });
-              } catch (error) {
-                opn(url);
-              }
-            }
-          }
-        }
-      }
-    );
-  }
-
   const compiler = webpack(webpackConfig);
+
+  if (finalOptions.watch) {
+    const devServerOptions = {
+      ...webpackConfig.devServer,
+      port: finalOptions.port,
+      open: true,
+      stats: {
+        colors: true
+      }
+    };
+    const server = new WebpackDevServer(compiler, devServerOptions);
+
+    return server.listen(8008, '127.0.0.1');
+  }
 
   return new Promise((resolve, reject) =>
     compiler.run(async (err, stats) => {
