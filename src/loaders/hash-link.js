@@ -17,7 +17,13 @@ export function transformLink(resourcePath, link, options) {
   const correctPath = path.relative(pathToDocs, pathToLink);
 
   if (path.extname(link).includes('.md')) {
-    return path.join(options.baseURL, correctPath).replace('.md', '.html');
+    const newUrl = path
+      .join(options.baseURL, correctPath)
+      .replace('.md', '.html');
+
+    return correctPath.startsWith('..')
+      ? path.join(options.baseURL, newUrl)
+      : newUrl;
   }
 
   return link;
