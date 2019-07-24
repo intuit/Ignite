@@ -1,3 +1,15 @@
+# v1.10.1 (Wed Jul 24 2019)
+
+#### 🐛  Bug Fix
+
+- ensure links outside root resolve to the baseUrl [#102](https://github.com/intuit/Ignite/pull/102) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.10.0 (Thu May 23 2019)
 
 #### 🚀  Enhancement
