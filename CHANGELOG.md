@@ -1,3 +1,15 @@
+# v1.10.2 (Thu Jul 25 2019)
+
+#### 🐛  Bug Fix
+
+- ensure markdown map has correct links [#103](https://github.com/intuit/Ignite/pull/103) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.10.1 (Wed Jul 24 2019)
 
 #### 🐛  Bug Fix
