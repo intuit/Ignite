@@ -2,20 +2,26 @@ import path from 'path';
 
 const registerMarkdown = (entries, options) => {
   return entries
-    .map(
-      pathToMarkdown => `
+    .map(pathToMarkdown => {
+      let url = path.join(
+        options.baseURL,
+        path.relative(options.src, pathToMarkdown)
+      );
+
+      if (!url.startsWith(options.baseURL)) {
+        url = path.join(options.baseURL, url);
+      }
+
+      return `
         registerMarkdown(
-          '${path.join(
-            options.baseURL,
-            path.relative(options.src, pathToMarkdown)
-          )}',
+          '${url}',
           () => import(/* webpackChunkName: "${path.basename(
             pathToMarkdown,
             '.md'
           )}" */ '${pathToMarkdown}')
         );
-      `
-    )
+      `;
+    })
     .join('\n');
 };
 
