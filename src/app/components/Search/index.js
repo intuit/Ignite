@@ -107,7 +107,7 @@ class Search extends Component {
       return this.props.setSearchResults([]);
     }
 
-    let results = await this.index.search(term);
+    const results = await this.index.search(term);
     const filteredResults = [];
     results.forEach(result => {
       const page = this.props.searchIndex.find(file => file.id === result);
