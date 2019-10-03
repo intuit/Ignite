@@ -115,7 +115,11 @@ class Header extends Component {
                 process.env.baseURL,
                 hasHomePage ? '/home.html' : '/'
               )}
-              className={makeClass(styles.title, 'navbar-item')}
+              className={makeClass(
+                styles.title,
+                'navbar-item',
+                styles.brandBasis
+              )}
               onClick={this.closeMenu}
             >
               {this.props.logo && (

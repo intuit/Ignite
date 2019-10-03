@@ -34,6 +34,14 @@
   padding: 0;
 }
 
+.brandBasis {
+  flex-basis: 120px;
+
+  @media screen and (max-width: 768px) {
+    flex-basis: 60px;
+  }
+}
+
 .logo {
   margin-right: 1rem;
 }
