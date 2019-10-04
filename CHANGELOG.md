@@ -1,3 +1,15 @@
+# v1.10.4 (Fri Oct 04 2019)
+
+#### 🐛  Bug Fix
+
+- Fix empty search results in few searches. Issue: #15 [#105](https://github.com/intuit/Ignite/pull/105) ([@anands](https://github.com/anands))
+
+#### Authors: 1
+
+- Anand Sudhanaboina ([@anands](https://github.com/anands))
+
+---
+
 # v1.10.3 (Fri Oct 04 2019)
 
 #### 🐛  Bug Fix
