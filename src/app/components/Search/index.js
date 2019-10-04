@@ -107,15 +107,17 @@ class Search extends Component {
       return this.props.setSearchResults([]);
     }
 
-    let results = await this.index.search(term);
-    results = results.map(result => {
+    const results = await this.index.search(term);
+    const filteredResults = [];
+    results.forEach(result => {
       const page = this.props.searchIndex.find(file => file.id === result);
       const indexes = indexOfAll(page.body, term);
-
-      return [page.id, getLines(page.body, indexes, term)];
+      if (indexes.length !== 0) {
+        filteredResults.push([page.id, getLines(page.body, indexes, term)]);
+      }
     });
 
-    this.props.setSearchResults(results);
+    this.props.setSearchResults(filteredResults);
   });
 
   keyDown = event => {
