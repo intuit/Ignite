@@ -1,3 +1,15 @@
+# v1.10.3 (Fri Oct 04 2019)
+
+#### 🐛  Bug Fix
+
+- Flexbox bug fix with brand padding. Issue #68 [#106](https://github.com/intuit/Ignite/pull/106) (lisowski54@gmail.com)
+
+#### Authors: 1
+
+- lisowski54@gmail.com
+
+---
+
 # v1.10.2 (Thu Jul 25 2019)
 
 #### 🐛  Bug Fix
