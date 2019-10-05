@@ -1,6 +1,6 @@
 {
   "name": "ignite",
-  "version": "1.10.4",
+  "version": "1.10.5",
   "description": "Modern markdown documentation generator",
   "main": "dist/ignite.js",
   "license": "Apache-2.0",
