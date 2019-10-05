@@ -1,3 +1,15 @@
+# v1.10.5 (Sat Oct 05 2019)
+
+#### 🐛  Bug Fix
+
+- fix first child code header [#111](https://github.com/intuit/Ignite/pull/111) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.10.4 (Fri Oct 04 2019)
 
 #### 🐛  Bug Fix
