@@ -14,6 +14,8 @@ Supported Embeds:
 [twitter|ID]
 
 [soundcloud|id]
+
+[codepen|username:penId]
 ```
 
 OUTPUT:
@@ -103,7 +105,7 @@ Also must include the matching index of the title on the code block.
 ```
 
 ```html [1]
-<div class="className">
+<div class="className"></div>
 ```
 
 ```javascript [2]
@@ -126,7 +128,7 @@ OUTPUT:
 ```
 
 ```html [1]
-<div class="className">
+<div class="className"></div>
 ```
 
 ```javascript [2]
