@@ -105,7 +105,7 @@ Also must include the matching index of the title on the code block.
 ```
 
 ```html [1]
-<div class="className"></div>
+<div class="className">
 ```
 
 ```javascript [2]
@@ -128,7 +128,7 @@ OUTPUT:
 ```
 
 ```html [1]
-<div class="className"></div>
+<div class="className">
 ```
 
 ```javascript [2]
