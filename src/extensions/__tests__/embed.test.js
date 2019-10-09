@@ -19,3 +19,7 @@ test('embed - twitter', () => {
 test('embed - soundcloud', () => {
   expect(md.render(`[soundcloud|386355071]`)).toMatchSnapshot();
 });
+
+test('embed - codepen', () => {
+  expect(md.render(`[codepen|aaroniker:zYOewEP]`)).toMatchSnapshot();
+});
