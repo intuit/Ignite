@@ -61,7 +61,8 @@
               q[a[0]] = a
                 .slice(1)
                 .join('=')
-                .replace(/~and~/g, '&');
+                .replace(/~and~/g, '&')
+                .replace(/~hash~/g, '#');
             });
           if (q.p !== undefined) {
             window.history.replaceState(
