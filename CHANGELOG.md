@@ -1,3 +1,15 @@
+# v1.10.6 (Tue Nov 12 2019)
+
+#### 🐛  Bug Fix
+
+- handle hashes in 404 redirect [#113](https://github.com/intuit/Ignite/pull/113) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.10.5 (Sat Oct 05 2019)
 
 #### 🐛  Bug Fix
