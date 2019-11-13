@@ -1,3 +1,15 @@
+# v1.10.7 (Wed Nov 13 2019)
+
+#### 🐛  Bug Fix
+
+- fix code in header spacing + add space between lists and headers [#114](https://github.com/intuit/Ignite/pull/114) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.10.6 (Tue Nov 12 2019)
 
 #### 🐛  Bug Fix
