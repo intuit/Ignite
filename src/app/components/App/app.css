@@ -94,6 +94,7 @@ h4 > code,
 h5 > code,
 h6 > code {
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 p > code {
@@ -104,13 +105,22 @@ p > code {
   white-space: normal;
 }
 
-h1 > code:not(:first-child),
-h2 > code:not(:first-child),
-h3 > code:not(:first-child),
-h4 > code:not(:first-child),
-h5 > code:not(:first-child),
-h6 > code:not(:first-child) {
-  margin-left: 10px;
+h1 > code:first-child,
+h2 > code:first-child,
+h3 > code:first-child,
+h4 > code:first-child,
+h5 > code:first-child,
+h6 > code:first-child {
+  margin-left: 0;
+}
+
+ul + h1,
+ul + h2,
+ul + h3,
+ul + h4,
+ul + h5,
+ul + h6 {
+  margin-top: 25px;
 }
 
 :global p {
