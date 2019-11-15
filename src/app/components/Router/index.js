@@ -14,7 +14,7 @@ class Router extends Component {
     window.history.replaceState(
       getLocation(window.location),
       null,
-      window.location.pathname
+      window.location.pathname + window.location.hash
     );
   }
 
