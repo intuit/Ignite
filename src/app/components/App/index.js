@@ -17,14 +17,15 @@ class App extends Component {
 
   componentDidMount() {
     document.title = process.env.title;
+    this.jumpToHash(100);
   }
 
   componentDidUpdate() {
     this.jumpToHash();
   }
 
-  jumpToHash = () => {
-    setImmediate(() => {
+  jumpToHash = (delay = 0) => {
+    setTimeout(() => {
       let { hash, href } = this.props.location;
       hash = hash.slice(1);
 
@@ -40,7 +41,7 @@ class App extends Component {
           inline: 'nearest'
         });
       }
-    });
+    }, delay);
   };
 
   setSearchResults = searchResults => {
