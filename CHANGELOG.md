@@ -1,3 +1,15 @@
+# v1.10.8 (Fri Nov 15 2019)
+
+#### 🐛  Bug Fix
+
+- respect hash and ensure it gets scrolled to [#115](https://github.com/intuit/Ignite/pull/115) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.10.7 (Wed Nov 13 2019)
 
 #### 🐛  Bug Fix
