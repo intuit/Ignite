@@ -393,7 +393,7 @@ h6 > strong:not(:only-child) {
 }
 
 :global .content :not(.codeBlocks) > pre:not(:last-child) {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 :global .content .codeTabs li + li {
