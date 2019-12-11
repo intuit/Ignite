@@ -1,3 +1,15 @@
+# v1.10.9 (Wed Dec 11 2019)
+
+#### 🐛  Bug Fix
+
+- reduce code spacing [#116](https://github.com/intuit/Ignite/pull/116) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.10.8 (Fri Nov 15 2019)
 
 #### 🐛  Bug Fix
