@@ -127,7 +127,6 @@
     "style-loader": "^0.23.1",
     "throttle-debounce": "2.0.1",
     "transform-markdown-links": "^2.0.0",
-    "uglifyjs-webpack-plugin": "2.0.1",
     "webpack": "^4.27.1",
     "webpack-bundle-analyzer": "3.3.2",
     "webpack-cdn-plugin": "2.3.3",
