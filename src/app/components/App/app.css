@@ -18,17 +18,6 @@ body {
   flex-direction: column;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
 section {
   padding: 2rem 0;
 }
@@ -52,7 +41,7 @@ details {
 
   summary::before {
     content: '\f0fe';
-    font-family: Font Awesome\ 5 Free, sans-serif;
+    font-family: Font Awesome\5 Free, sans-serif;
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-style: normal;
@@ -180,6 +169,9 @@ h6 > strong:not(:only-child) {
   h4,
   h5,
   h6 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
   }
 }
@@ -272,7 +264,7 @@ h6 > strong:not(:only-child) {
 :global .external-link {
   &::after {
     content: '\f14d';
-    font-family: Font Awesome\ 5 Free, sans-serif;
+    font-family: Font Awesome\5 Free, sans-serif;
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-style: normal;

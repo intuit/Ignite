@@ -64,33 +64,67 @@ module.exports = function(options) {
         // CSS
         {
           test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
+          oneOf: [
             {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                importLoaders: 1,
-                localIdentName: '[sha1:hash:hex:4]',
-                sourceMap: true
-              }
+              resource: /\.plugin\.css$/,
+              use: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: 'css-loader',
+                  options: {
+                    importLoaders: 1
+                  }
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    ident: 'postcss',
+                    plugins: () => [
+                      require('postcss-nested'),
+                      require('autoprefixer'),
+                      require('postcss-simple-vars')({
+                        variables: {
+                          APP_COLOR: options.color,
+                          SELECTED_COLOR: options.selectedColor
+                        }
+                      }),
+                      require('cssnano')
+                    ]
+                  }
+                }
+              ]
             },
             {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: () => [
-                  require('postcss-nested'),
-                  require('autoprefixer'),
-                  require('postcss-simple-vars')({
-                    variables: {
-                      APP_COLOR: options.color,
-                      SELECTED_COLOR: options.selectedColor
-                    }
-                  }),
-                  require('cssnano')
-                ]
-              }
+              resource: /\.css$/,
+              use: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: 'css-loader',
+                  options: {
+                    modules: true,
+                    importLoaders: 1,
+                    localIdentName: '[sha1:hash:hex:4]',
+                    sourceMap: true
+                  }
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    ident: 'postcss',
+                    plugins: () => [
+                      require('postcss-nested'),
+                      require('autoprefixer'),
+                      require('postcss-simple-vars')({
+                        variables: {
+                          APP_COLOR: options.color,
+                          SELECTED_COLOR: options.selectedColor
+                        }
+                      }),
+                      require('cssnano')
+                    ]
+                  }
+                }
+              ]
             }
           ]
         }

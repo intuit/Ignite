@@ -665,50 +665,54 @@ export function markDownPage(source) {
 }
 
 export function homePage(source) {
-  const $source = cheerio.load(
-    `<div class="source">${source}</div>`,
-    libHTMLOptions
-  );
-  const $homePage = cheerio.load(
-    `<div class="homePage"></div>`,
-    libHTMLOptions
-  );
+  if (source.includes('<!-- no-hero -->')) {
+    source = source.replace('<!-- no-hero -->', '');
+  } else {
+    const $source = cheerio.load(
+      `<div class="source">${source}</div>`,
+      libHTMLOptions
+    );
+    const $homePage = cheerio.load(
+      `<div class="homePage"></div>`,
+      libHTMLOptions
+    );
 
-  const contentRow = `
-    <div class="hero">
-      <div class="hero-body">
-        <div class="columns">
-          <div class="home column content is-two-thirds-tablet is-three-quarters-desktop">
+    const contentRow = `
+      <div class="hero">
+        <div class="hero-body">
+          <div class="columns">
+            <div class="home column content is-two-thirds-tablet is-three-quarters-desktop">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  `;
-  let $currentRow = cheerio.load(contentRow, libHTMLOptions);
+    `;
+    let $currentRow = cheerio.load(contentRow, libHTMLOptions);
 
-  while ($source('.source > :first-child').length > 0) {
-    const isHero = $source('.source > :first-child').hasClass('hero');
-    const $element = $source.html('.source > :first-child');
-    $source('.source > :first-child').remove();
+    while ($source('.source > :first-child').length > 0) {
+      const isHero = $source('.source > :first-child').hasClass('hero');
+      const $element = $source.html('.source > :first-child');
+      $source('.source > :first-child').remove();
 
-    if (isHero) {
-      if ($currentRow && $currentRow('.home.column').children().length > 0) {
-        $homePage('.homePage').append($currentRow.html());
+      if (isHero) {
+        if ($currentRow && $currentRow('.home.column').children().length > 0) {
+          $homePage('.homePage').append($currentRow.html());
+        }
+
+        $currentRow = cheerio.load(contentRow, libHTMLOptions);
+        $homePage('.homePage').append($element);
+      } else {
+        $currentRow('.home.column').append($element);
       }
-
-      $currentRow = cheerio.load(contentRow, libHTMLOptions);
-      $homePage('.homePage').append($element);
-    } else {
-      $currentRow('.home.column').append($element);
     }
-  }
 
-  source = sanitizeJSX($homePage.html());
+    source = $homePage.html();
+  }
 
   return `
     const homePage = props => (
       <div>
-        ${source}
+        ${sanitizeJSX(source)}
       </div>
     );
 
