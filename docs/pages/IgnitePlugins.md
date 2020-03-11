@@ -9,6 +9,9 @@ Ignite works by parsing all of your markdown files into react components and loa
 ```javascript
 import React from 'react';
 
+// To import CSS into a plugin make sure to name it .plugin.css!
+import './my-plugin.plugin.css'
+
 const myPlugin = props => (
   <div>
     <h1>This is pretty awesome.</h1>
