@@ -147,6 +147,23 @@ Object {
 }
 `;
 
+exports[`homePage not put everything in a hero 1`] = `
+"
+    const homePage = props => (
+      <div>
+        
+      
+      <div className='hero'>
+        Another hero
+      </div>
+    
+      </div>
+    );
+
+    export default homePage;
+  "
+`;
+
 exports[`homePage put everything in a hero 1`] = `
 "
     const homePage = props => (
@@ -154,15 +171,15 @@ exports[`homePage put everything in a hero 1`] = `
         <div className=\\"homePage\\"><div className=\\"hero\\">
         Some hero content
       </div>
-    <div className=\\"hero\\">
-      <div className=\\"hero-body\\">
-        <div className=\\"columns\\">
-          <div className=\\"home column content is-two-thirds-tablet is-three-quarters-desktop\\">
-          <div>other</div><div>not hero</div></div>
+      <div className=\\"hero\\">
+        <div className=\\"hero-body\\">
+          <div className=\\"columns\\">
+            <div className=\\"home column content is-two-thirds-tablet is-three-quarters-desktop\\">
+            <div>other</div><div>not hero</div></div>
+          </div>
         </div>
       </div>
-    </div>
-  <div className=\\"hero\\">
+    <div className=\\"hero\\">
         Another hero
       </div></div>
       </div>

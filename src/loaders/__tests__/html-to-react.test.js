@@ -230,6 +230,17 @@ test('homePage put everything in a hero', () => {
   ).toMatchSnapshot();
 });
 
+test('homePage not put everything in a hero', () => {
+  expect(
+    homePage(`
+      <!-- no-hero -->
+      <div class='hero'>
+        Another hero
+      </div>
+    `)
+  ).toMatchSnapshot();
+});
+
 test('detectIndex', () => {
   const options = {
     baseURL: '/',
