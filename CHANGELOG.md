@@ -1,3 +1,20 @@
+# v1.11.0 (Wed Mar 11 2020)
+
+#### 🚀  Enhancement
+
+- Custom Home Page [#119](https://github.com/intuit/Ignite/pull/119) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### 🐛  Bug Fix
+
+- Remove uglifyjs-webpack-plugin from dependency [#118](https://github.com/intuit/Ignite/pull/118) ([@smsunarto](https://github.com/smsunarto))
+
+#### Authors: 2
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+- Scott M Sunarto ([@smsunarto](https://github.com/smsunarto))
+
+---
+
 # v1.10.9 (Wed Dec 11 2019)
 
 #### 🐛  Bug Fix
