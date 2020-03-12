@@ -51,10 +51,17 @@
   border-radius: 0;
 
   .navbar-menu {
+    background: white;
     border-radius: 0;
   }
 
   .navbar-menu.is-active .navbar-item {
     text-align: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .navbar-menu {
+      background: transparent;
+    }
   }
 }
