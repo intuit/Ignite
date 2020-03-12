@@ -1,3 +1,15 @@
+# v1.11.1 (Thu Mar 12 2020)
+
+#### 🐛  Bug Fix
+
+- fix mobile menu [#120](https://github.com/intuit/Ignite/pull/120) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.11.0 (Wed Mar 11 2020)
 
 #### 🚀  Enhancement
