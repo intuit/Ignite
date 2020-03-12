@@ -1,3 +1,15 @@
+# v1.11.2 (Thu Mar 12 2020)
+
+#### 🐛  Bug Fix
+
+- fix squished logo [#121](https://github.com/intuit/Ignite/pull/121) ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+#### Authors: 1
+
+- Andrew Lisowski ([@hipstersmoothie](https://github.com/hipstersmoothie))
+
+---
+
 # v1.11.1 (Thu Mar 12 2020)
 
 #### 🐛  Bug Fix
