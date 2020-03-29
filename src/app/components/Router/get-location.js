@@ -2,7 +2,7 @@ const getLocation = Location => ({
   href: Location.href,
   pathname: Location.pathname,
   hash: Location.hash,
-  query: Location.query
+  search: Location.search
 });
 
 export default getLocation;

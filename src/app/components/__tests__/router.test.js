@@ -13,7 +13,7 @@ test('getLocation', () => {
       href: 'href',
       pathname: 'pathname',
       hash: 'hash',
-      query: 'query',
+      search: 'search',
       other: true,
       prosp: 1,
       excluded: '1000'
@@ -22,7 +22,7 @@ test('getLocation', () => {
     href: 'href',
     pathname: 'pathname',
     hash: 'hash',
-    query: 'query'
+    search: 'search'
   });
 });
 
