@@ -14,6 +14,8 @@ Supported Embeds:
 [twitter|ID]
 
 [soundcloud|id]
+
+[codepen|username:penId]
 ```
 
 OUTPUT:
