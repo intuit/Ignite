@@ -109,7 +109,7 @@
     "pretty-exceptions": "^1.4.0",
     "probe-image-size": "4.0.0",
     "prop-types": "^15.6.2",
-    "puppeteer": "1.8.0",
+    "puppeteer": "1.13.0",
     "react": "^16.6.3",
     "react-color": "2.14.1",
     "react-dom": "^16.6.3",
