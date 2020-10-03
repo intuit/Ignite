@@ -14,7 +14,7 @@ Add `docs` script to package.json
 {
   "scripts": {
     "docs": "ignite",
-    "docs:watch": "ignite -w"
+    "docs:watch": "ignite dev"
   }
 }
 ```
